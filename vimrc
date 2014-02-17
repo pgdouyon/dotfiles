@@ -1,0 +1,682 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" NeoBundle Setup
+""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('vim_starting')
+    set nocompatible
+    set encoding=utf-8
+    "I don't know why people always use the ',' key...
+    let g:mapleader="'"
+    filetype off
+
+    let neobundle_installed=1
+    let neobundle_script=expand('~/.vim/bundle/neobundle.vim/autoload/neobundle.vim')
+    if !filereadable(neobundle_script)
+        echo "Installing NeoBundle..."
+        echo ""
+        silent !mkdir -p ~/.vim/bundle
+        silent !mkdir -p ~/.vim/_backup
+        silent !mkdir -p ~/.vim/_temp
+        silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+        let neobundle_installed=0
+    endif
+
+    set rtp+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" NeoBundle Bundles
+""""""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+"Shougo - Unite plugins OMFG this stuff is awesome!!!!!!!!!
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/vimfiler.vim'
+
+"Clojure
+NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'tpope/vim-classpath', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'vim-scripts/paredit.vim', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'kien/rainbow_parentheses.vim', {'autoload':
+    \ {'filetypes' : ['clojure', 'javascript', 'html']}}
+
+"Tim Pope
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundleLazy 'tpope/vim-eunuch', {'autoload':
+    \ {'commands' : ['SudoWrite', 'Locate', 'Find', 'Chmod', 'Move', 'Remove']}}
+NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-abolish'
+"NeoBundle 'tpope/vim-dispatch'
+"NeoBundle 'tpope/vim-sensible'
+
+"File Search and Navigation
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'vim-scripts/bufkill.vim'
+"NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'kien/ctrlp.vim'
+"NeoBundle 'scrooloose/nerdtree'
+
+"Editing Enhancements
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'vim-scripts/ZoomWin'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundleLazy 'sjl/gundo.vim', {'autoload':
+    \ {'commands' : 'GundoToggle'}}
+NeoBundleLazy 'mattn/emmet-vim', {'autoload':
+    \ {'filetypes' : ['html', 'xhtml', 'xml']}}
+NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
+    \ {'commands' : 'NarrowRegion'}}
+"NeoBundle 'sk1418/Join'
+"NeoBundle 'maxbrunsfeld/vim-yankstack'
+"NeoBundle 'tomtom/tlib_vim'
+"NeoBundle 'MarcWeber/vim-addon-mw-utils'
+"NeoBundle 'garbas/vim-snipmate'
+"NeoBundle 'honza/vim-snippets'
+
+"Screen Enhancements/Colors
+NeoBundle 'bling/vim-airline'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'Lokaltog/powerline-fonts'
+NeoBundleLazy 'skammer/vim-css-color', {'autoload':
+     \ {'filetypes' : 'css'}}
+
+"Language Modes
+NeoBundleLazy 'klen/python-mode', {'autoload':
+\ {'filetypes' : 'python'}}
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload':
+\ {'filetypes' : ['javascript', 'html']}}
+NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':
+\ {'filetypes' : 'coffee'}}
+NeoBundleLazy 'elzr/vim-json', {'autoload':
+\ {'filetypes' : ['javascript', 'json']}}
+NeoBundleLazy 'othree/html5.vim', {'autoload':
+\ {'filetypes' : 'html'}}
+NeoBundleLazy 'tpope/vim-markdown', {'autoload':
+\ {'filetypes' : 'markdown'}}
+NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
+\ {'filetypes' : 'tex'}}
+"NeoBundleLazy 'mustache/vim-mustache-handlebars'
+"NeoBundleLazy 'vim-scripts/indenthtml.vim'
+
+"Tooling
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mattn/gist-vim'
+NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
+\ {'filetypes' : 'markdown'}}
+"NeoBundle 'kballenegger/vim-autoreadwatch'
+
+"Misc
+NeoBundle 'vim-scripts/scratch.vim'
+"NeoBundle 'papanikge/vim-voogle'
+
+call neobundle#config('vimproc', {
+\ 'build' : {
+\       'windows' : 'make -f make_mingw64.mak',
+\       'cygwin' : 'make -f make_cygwin.mak',
+\       'mac' : 'make -f make_mac.mak',
+\       'unix' : 'make -f make_unix.mak',
+\   },
+\ })
+
+call neobundle#config('vimfiler', {
+\ 'lazy' : 1,
+\ 'depends' : 'Shougo/unite.vim',
+\ 'autoload' : {
+\       'commands' : [
+\           {'name' : 'VimFiler',
+\           'complete' : 'customlist,vimfiler#complete'},
+\           {'name' : 'VimFilerTab',
+\           'complete' : 'customlist,vimfiler#complete'},
+\           {'name' : 'VimFilerExplorer',
+\           'complete' : 'customlist,vimfiler#complete'},
+\           {'name' : 'Edit',
+\           'complete' : 'customlist,vimfiler#complete'},
+\           {'name' : 'Write',
+\           'complete' : 'customlist,vimfiler#complete'},
+\           'Read', 'Source'],
+\       'mappings' : '<Plug>vimfiler_',
+\       'explorer' : 1,
+\}})
+
+if neobundle_installed == 0
+    echo "Installing NeoBundles..."
+    echo ""
+    NeoBundleInstall
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"maximize gvim on open, set terminal to 256 colors
+if has("gui_running")
+    set lines=999 columns=999
+else
+    set t_Co=256
+"    let g:solarized_termcolors=256
+endif
+
+"change background color based on time of day
+if strftime('%H') > 6 && strftime("%H") < 18
+    set background=light
+else
+    set background=dark
+endif
+colorscheme solarized
+
+set number
+set relativenumber
+set ruler
+set history=300
+set timeoutlen=1000
+syntax enable
+filetype plugin indent on
+
+"Tab/indent
+set autoindent
+set expandtab
+set smarttab
+set shiftround
+set softtabstop=4
+set shiftwidth=4
+set scrolloff=8
+set sidescrolloff=5
+set backspace=indent,eol,start
+set textwidth=80
+
+set nrformats-=octal
+set fileformats+=mac
+
+set shellslash
+set ttyfast
+if has("unix")
+    set shell=bash
+else
+    "set shell=ksh.exe
+endif
+
+set list
+set listchars=""                  " Reset the listchars
+set listchars=tab:\ \             " a tab should display as ' ', trailing whitespace as .
+set listchars+=trail:.            " show trailing spaces as dots
+set listchars+=extends:>          " The character to show in the last column when wrap is
+                                  " off and the line continues beyond the right of the screen
+set listchars+=precedes:<         " The character to show in the last column when wrap is
+                                  " off and the line continues beyond the left of the screen
+"Search
+set hlsearch
+set ignorecase      " do case insensitive matching
+set smartcase       " do smart case matching
+set incsearch       " incremental search
+set showmatch       " show matching brackets.
+
+set autowrite       " automatically save before commands like :next and :make
+set autoread        " automatically read a file if it's been changed on disk
+set hidden          " hide buffers when they are abandoned
+set lazyredraw
+
+"Window/menu
+set splitbelow
+set splitright
+set wildmenu
+set laststatus=2
+set guioptions-=T
+set clipboard+=unnamed
+set display+=lastline
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore librarian-chef, vagrant, test-kitchen and Berkshelf cache
+set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
+
+" Ignore rails temporary asset caches
+set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+set wildignore+=*.exe,*/tmp/*,*\\tmp\\*
+
+"Swap files
+set backupdir^=~/.vim/_backup//    " where to put backup files.
+set directory^=~/.vim/_temp//      " where to put swap files.
+set shortmess+=A
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+au BufRead,BufNewFile *.json set ft=javascript
+
+au FocusLost *.{html,css} w
+
+autocmd InsertEnter * set norelativenumber
+autocmd InsertLeave * set relativenumber
+
+"open help in vsplit
+augroup helpfiles
+    au!
+    au BufRead,BufEnter */doc/* wincmd L
+augroup END
+
+if !exists('g:loaded_matchit')
+  runtime! macros/matchit.vim
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap hd <Esc>l
+cnoremap hd <Esc>l
+onoremap hd <Esc>l
+vnoremap hd <Esc>l
+inoremap hd <Esc>l
+
+nnoremap \ '
+vnoremap \ '
+
+nnoremap n nzz
+nnoremap N Nzz
+
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap Y y$
+
+nnoremap * *N
+nnoremap # #n
+
+nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
+
+nmap <silent> <Leader>l :nohls<CR>
+
+inoremap <C-U> <C-G>u<C-U>
+
+"make current file executable
+nmap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
+
+"Window navigation commands
+nnoremap <Leader>wv <C-w>v
+nnoremap <Leader>ws <C-w>s
+nnoremap <Leader>ww <C-w>w
+nnoremap <Leader>wh <C-w>h
+nnoremap <Leader>wj <C-w>j
+nnoremap <Leader>wk <C-w>k
+nnoremap <Leader>wl <C-w>l
+nnoremap <Leader>wq <C-w>q
+nnoremap <Leader>wc <C-w>c
+nnoremap <Leader>wo <C-w>o
+nnoremap <Leader>w= <C-w>=
+noremap <silent> <F3> :vertical resize -10<CR>
+noremap <silent> <F4> :vertical resize +10<CR>
+noremap <silent> <F7> :resize -10<CR>
+noremap <silent> <F8> :resize +10<CR>
+
+nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
+nmap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
+nmap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
+nmap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
+
+" cd to the directory containing the file in the buffer
+nmap <silent> <leader>cd :lcd %:h<CR>
+
+" Create the directory containing the file in the buffer
+nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
+
+" find merge conflict markers
+nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+function! NumberToggle()
+    if(&relativenumber==1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunc
+
+nnoremap <silent> <Leader>nu :call NumberToggle()<CR>
+
+function! SaveAbbrev()
+    let g:ab_mistake = expand("<cword>")
+    let g:ab_correction = input("Please enter the correct spelling: ")
+    execute "normal ciw" . g:ab_correction
+    execute "edit $MYVIMRC"
+    execute "normal Goiabbrev" g:ab_mistake g:ab_correction
+    execute "iabbrev" g:ab_mistake g:ab_correction
+    write
+    bnext
+endfunction
+
+nnoremap <Leader>ab :call SaveAbbrev()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Finish NeoBundle Setup
+""""""""""""""""""""""""""""""""""""""""""""""""""
+NeoBundleCheck
+NeoBundleClean
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" VimShell Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+
+nmap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
+nmap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
+nmap <silent> <Leader>py :VimShellInteractive python3.3<CR>
+nmap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
+nmap <silent> <Leader>vx :VimShellExecute 
+nmap <silent> <Leader>ve :VimShellSendString<CR>
+vmap <silent> <Leader>ve :VimShellSendString<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Unite Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:unite_force_overwrite_statusline = 0
+let g:unite_source_history_yank_enable = 1
+let g:unite_source_rec_max_cache_files = 5000
+
+if executable('ack-grep')
+    let g:unite_source_grep_command = "ack-grep"
+    let g:unite_source_grep_default_opts = '--line-numbers --nogroup -a -w'
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack')
+    let g:unite_source_grep_command = "ack"
+    let g:unite_source_grep_default_opts = '--line-numbers --nogroup -a -w'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
+    \ 'ignore_pattern', join(['\.git/', '\.pptx$', '\.docx$', '\.jpg$',
+    \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/'], '\|'))
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+nnoremap <Leader>uf :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file file_mru<CR>
+nnoremap <Leader>ur :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file_rec/async:~/Projects
+nnoremap <Leader>up :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file_rec/async:!<CR>
+nnoremap <Leader>ud :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file:
+
+nnoremap <Leader>ub :<C-u>Unite -no-split -resume -buffer-name=buffers -quick-match buffer<CR>
+
+nnoremap <Leader>uo :<C-u>Unite -resume -buffer-name=outline -start-insert outline<CR>
+nnoremap <Leader>uy :<C-u>Unite -resume -buffer-name=yanks -quick-match history/yank<CR>
+nnoremap <Leader>ug :<C-u>Unite -resume -buffer-name=grep grep:.<CR>
+
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+    let b:SuperTabDisabled=1
+    nmap <silent><buffer><expr> s unite#do_action('split')
+    nmap <silent><buffer><expr> v unite#do_action('vsplit')
+    imap <silent><buffer><expr> <C-s> unite#do_action('split')
+    imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" set rtp+=~/.vim/bundle/vim-snippets/
+let g:UltiSnipsSnippetDirectories = ["UltiSnips", "mysnippets"]
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+
+" let bundle = neobundle#get('ultisnips')
+" function! bundle.hooks.on_source(bundle)
+"     let g:UltiSnips.always_use_first_snippet = 1
+" endfunction
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Seek Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:seek_enable_jumps = 1
+"r - remote iw
+"p - jump iw
+"u - remote aw
+"o - jump aw
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Gundo Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <F5> :GundoToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Netrw Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:netrw_liststyle=3
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"nmap <silent> <Leader>nt :NERDTree<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:ctrlp_by_filename = 1
+"let g:ctrlp_regexp = 1
+"let g:ctrlp_match_window_bottom = 0
+"let g:ctrlp_match_window_reversed = 0
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_open_new_file = 'r'
+"let g:ctrlp_open_multiple_files = '1ijr'
+"let g:ctrlp_arg_map = 1
+"let g:ctrlp_cmd = 'CtrlPMixed'
+"let g:ctrlp_show_hidden = 1
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rainbow Parentheses Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let bundle = neobundle#get('rainbow_parentheses.vim')
+function! bundle.hooks.on_source(bundle)
+    au VimEnter * RainbowParenthesesActivate
+    au BufEnter * RainbowParenthesesActivate
+    au ColorScheme * RainbowParenthesesActivate
+
+    au Syntax * RainbowParenthesesLoadBraces
+    au Syntax * RainbowParenthesesLoadChevrons
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabular Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists(":Tabularize")
+    nmap <silent> <Leader>t= :Tabularize /=<CR>
+    vmap <silent> <Leader>t= :Tabularize /=<CR>
+    nmap <silent> <Leader>t: :Tabularize /:\zs<CR>
+    vmap <silent> <Leader>t: :Tabularize /:\zs<CR>
+endif
+
+nmap <silent> <Leader>ta :Tabularize /
+vmap <silent> <Leader>ta :Tabularize /
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fireplace Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>fdj yiw:Djump <C-r>0<CR>
+nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
+nnoremap <silent> <Leader>fev :%Eval<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fugitive Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <Leader>gb :Gblame<CR>
+nmap <silent> <Leader>gs :Gstatus<CR>
+nmap <silent> <Leader>gd :Gdiff<CR>
+nmap <silent> <Leader>gl :Glog<CR>
+nmap <silent> <Leader>gc :Gcommit<CR>
+nmap <silent> <Leader>gpo :Git push origin master<CR>
+nmap <silent> <Leader>gph :Git push heroku master<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+if !exists('g:airline_symbols')
+    let g:airline_symbols={}
+endif
+if has("gui_running")
+    set guifont=Ubuntu\ Mono\ 11
+else
+    let g:airline_right_sep=""
+endif
+
+let g:airline_symbols.space="\ua0"
+let g:airline_powerline_fonts=1
+" let g:airline_left_sep=""
+" let g:airline_right_sep=""
+set fillchars+=stl:\ ,stlnc:\
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" ZoomWin Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <Leader>zw :ZoomWin<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cheat Sheet
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"#NERDCommenter:
+"- All commands can be prefixed with a count
+    " - <Leader>cc      -) comment out current line or selected text
+    " - <Leader>c<space -> toggle comment state of selected line
+    " - <Leader>cs      -> comment out sexily
+    " - <Leader>cy      -> comment and yank line
+    " - <Leader>cA      -> add comment to the end of the line
+    " - <Leader>cu      -> uncomment selected lines
+"#NERDTree:
+    " -Toggle with <Leader>nt
+    " - o     -> open selected file
+    " - go    -> open selected file but leave cursor in NERDTree
+    " - t     -> open node in new tab
+    " - T     -> same as t but keep focus in current tab
+    " - i     -> open in split window
+    " - gi    -> same as i but leave cursor in NERDTree
+    " - s     -> open in vertical split
+    " - gs    -> I think you can figure this one out
+    " - x     -> close the current node's parent
+    " - X     -> recursively close all children of the current node
+    " - e     -> edit the current dir
+    " - D     -> delete the current bookmark
+    " - P     -> jump to the root node
+    " - p     -> jump to the current node's parent
+    " - <C-J> -> jump to next sibling of current dir
+    " - <C-K> -> jump to prev sibling of current dir
+    " - C     -> change tree root to selected dir
+    " - u     -> move tree root up one dir
+    " - cd    -> change the current working directory to the dir of the selected node
+    " - CD    -> change tree root to the current working directory
+    " - I     -> toggle hidden files display
+"#Unimpaired:
+    " - [<Space> -> add newline before cursor line
+    " - ]<Space> -> add newline after cursor line
+"#EasyMotion:
+    " - <Leader><Leader>motion to search for char
+    " - Motions are: f, F, t, T, w, b, e, ge, W, B, E, gE
+"#Fugitive:
+    " - <Leader>gs - Gstatus
+    "     - Type - on any file to stage or unstage it
+    "     - Type p on any file to enter and stage specific hunks in the file
+    " - <Leader>gb - Gblame
+    " - <Leader>gd - Gdiff
+    " - <Leader>gl - Glog
+    " - <Leader>gc - Gcommit
+    " - <Leader>gp - Gpush
+"#Multiple-Cursors
+    " - <c-n> -> select next
+    " - <c-p> -> undo selection and move to previous
+    " - <c-x> -> skip current selection
+"#Paredit
+    " - [[             -> go to start of current/previous defn
+    " - ]]             -> go to start of next defn
+    " - <Leader><      -> if standing on a delimiter moves the delimeter to the left
+    "                 -> either slurping or barfing depending on delimeter
+    " - <Leader>>      -> if standing on a delimiter moves the delimiter to the right
+    " - <Leader>J      -> join two subsequent lists or strings
+"     - <Leader>O      -> split ("open") current list or string
+    "                 -> Opposite of <Leader>J command
+    " - <Leader>w(     -> wrap current symbol in parantheses
+    "                 -> Can also use <Leader>W
+"                     -> Can use other delimiters instead of (, i.e. [{"
+    " - <Leader>S      -> splice the current list into the outer list
+    "                 -> Opposite of wrap
+    " - <Leader><Up>   -> splice killing backward in inner list
+    "                 -> (aaa (bbb |ccc) ddd) ===> (aaa |ccc ddd)
+    " - <Leader><Down> -> splice killing forward in inner list
+    "                 -> (aaa (bbb| ccc) ddd) ===> (aaa |bbb ddd)
+    " - <Leader>I      -> raise current symbol by splicing and killing all other symbols in inner list
+    "                 -> (aaa (b|bb ccc) ddd) ===> (aaa |bbb ddd)
+"#NrrwRgn
+    " - :NarrowRegion -> export currently selected region to scratch buffer
+"#Fireplace
+    " - K           -> look up docs for keyword under cursor
+    " - [d or ]d    -> show source for keyword under cursor
+    " - <C-W>d      -> jump to source for keyword under cursor in split
+    " - gf          -> go to file for the namespace under the cursor
+    " - <Leader>fdj -> jump to symbol definition
+    " - <Leader>fds -> jump to symbol definition in split
+    " - cp{motion}  -> eval/print the code indicated by {motion}
+    " - cpp         -> eval/print the outermost form at the cursor
+    " - cpr         -> eval a require :reload form
+    " - c!{motion}  -> eval/replace the code indicated by {motion}
+    " - c!!         -> eval/replace the innermost form at the cursor
+    " - cm{motion}  -> fully macroexpand the macro indicated by {motion}
+    " - cmm         -> fully macroexpand the innermost form at the cursor
+    " - c1m{motion} -> macroexpand once the code indicated by {motion}
+    " - c1mm        -> macroexpand the innermost form at the cursor once
+    " - cqp         -> bring up a prompt for code to eval/print
+    " - cqc         -> bring up a command-line-window for code to eval/print
+    " - cq{motion}  -> bring up a command-line-window with prepopulated text
+    "              -> indicated by {motion}
+    " - <C-R>(      -> evaluate the given expression and insert the result
+"#TComment
+    " - gc{motion} -> toggle comments for small inline comments
+    " - gcc        -> toggle comments for current line
+    " - gC{motion} -> comment region
+"#Emmet
+    " - <C-y>, -> expand/wrap with css-style abbreviation
+    " - <C-y>n -> go to next edit point (N for previous)
+    " - <C-y>k -> kill tag in block
+    " - <C-y>/ -> toggle comment for tag
+    " - <C-y>a -> make anchor from URL
+    " - <C-y>A -> make quoted text from URL
+    " - <C-y>c -> pretty code formatting
+"#Yankstack
+    " - <M-p> -> cycle backward through yank history
+    " - <M-P> -> cycle forward through yank history
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Abbreviations
+""""""""""""""""""""""""""""""""""""""""""""""""""
+iabbrev teh the
+iabbrev retrun return
+iabbrev retunr return
