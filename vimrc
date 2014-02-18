@@ -5,7 +5,7 @@ if has('vim_starting')
     set nocompatible
     set encoding=utf-8
     "I don't know why people always use the ',' key...
-    let g:mapleader="'"
+    let g:mapleader="\<Space>"
     filetype off
 
     let neobundle_installed=1
@@ -100,6 +100,7 @@ NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'Lokaltog/powerline-fonts'
 NeoBundleLazy 'skammer/vim-css-color', {'autoload':
      \ {'filetypes' : 'css'}}
+"NeoBundle 'flazz/vim-colorschemes'
 
 "Language Modes
 NeoBundleLazy 'klen/python-mode', {'autoload':
@@ -213,6 +214,7 @@ set ttyfast
 if has("unix")
     set shell=bash
 else
+    "need shell when not on linux
     "set shell=ksh.exe
 endif
 
@@ -294,34 +296,35 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap hd <Esc>l
 cnoremap hd <Esc>l
 onoremap hd <Esc>l
 vnoremap hd <Esc>l
 inoremap hd <Esc>l
 
-nnoremap \ '
-vnoremap \ '
+nnoremap j gj
+nnoremap k gk
 
 nnoremap n nzz
 nnoremap N Nzz
 
-vnoremap < <gv
-vnoremap > >gv
-
 nnoremap Y y$
 
 nnoremap * *N
-nnoremap # #n
+nnoremap # #N
 
+"Source a line of vimscript
+"Good for small changes made to vimrc
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
 
-nmap <silent> <Leader>l :nohls<CR>
+nnoremap <silent> <Leader>l :nohls<CR>
+
+nnoremap <silent> <Leader>bp :b#<CR>
+nnoremap <silent> <Leader>bd :BD<CR>
 
 inoremap <C-U> <C-G>u<C-U>
 
 "make current file executable
-nmap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
+nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
 
 "Window navigation commands
 nnoremap <Leader>wv <C-w>v
@@ -335,24 +338,24 @@ nnoremap <Leader>wq <C-w>q
 nnoremap <Leader>wc <C-w>c
 nnoremap <Leader>wo <C-w>o
 nnoremap <Leader>w= <C-w>=
-noremap <silent> <F3> :vertical resize -10<CR>
-noremap <silent> <F4> :vertical resize +10<CR>
-noremap <silent> <F7> :resize -10<CR>
-noremap <silent> <F8> :resize +10<CR>
+noremap <silent> <Left> :vertical resize -10<CR>
+noremap <silent> <Right> :vertical resize +10<CR>
+noremap <silent> <Down> :resize -10<CR>
+noremap <silent> <Up> :resize +10<CR>
 
-nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
-nmap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
-nmap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
-nmap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
+nnoremap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
 
 " cd to the directory containing the file in the buffer
-nmap <silent> <leader>cd :lcd %:h<CR>
+nnoremap <silent> <leader>cd :lcd %:h<CR>
 
 " Create the directory containing the file in the buffer
-nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
+nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
 " find merge conflict markers
-nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 function! NumberToggle()
     if(&relativenumber==1)
@@ -369,8 +372,8 @@ function! SaveAbbrev()
     let g:ab_correction = input("Please enter the correct spelling: ")
     execute "normal ciw" . g:ab_correction
     execute "edit $MYVIMRC"
-    execute "normal Goiabbrev" g:ab_mistake g:ab_correction
-    execute "iabbrev" g:ab_mistake g:ab_correction
+    execute "normal GoAbolish" g:ab_mistake g:ab_correction
+    execute "Abolish" g:ab_mistake g:ab_correction
     write
     bnext
 endfunction
@@ -421,16 +424,16 @@ call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep,outl
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-nnoremap <Leader>uf :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file file_mru<CR>
-nnoremap <Leader>ur :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file_rec/async:~/Projects
-nnoremap <Leader>up :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file_rec/async:!<CR>
-nnoremap <Leader>ud :<C-u>Unite -no-split -resume -buffer-name=files -start-insert file:
+nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files -start-insert file file_mru<CR>
+nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=files -start-insert file:
+nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:~/Projects
+nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<CR>
 
-nnoremap <Leader>ub :<C-u>Unite -no-split -resume -buffer-name=buffers -quick-match buffer<CR>
+nnoremap <Leader>ub :<C-u>Unite -resume -buffer-name=buffers -no-start-insert buffer<CR>
 
-nnoremap <Leader>uo :<C-u>Unite -resume -buffer-name=outline -start-insert outline<CR>
 nnoremap <Leader>uy :<C-u>Unite -resume -buffer-name=yanks -quick-match history/yank<CR>
-nnoremap <Leader>ug :<C-u>Unite -resume -buffer-name=grep grep:.<CR>
+nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
+nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
 
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
