@@ -5,7 +5,7 @@ if has('vim_starting')
     set nocompatible
     set encoding=utf-8
     "I don't know why people always use the ',' key...
-    let g:mapleader="\<Space>"
+    let mapleader="\<Space>"
     filetype off
 
     let neobundle_installed=1
@@ -35,6 +35,8 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimfiler.vim'
+NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':
+    \ {'commands' : 'NeoCompleteEnable'}}
 
 "Clojure
 NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
@@ -60,9 +62,9 @@ NeoBundle 'tpope/vim-abolish'
 "NeoBundle 'tpope/vim-sensible'
 
 "File Search and Navigation
-NeoBundle 'mileszs/ack.vim'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'vim-scripts/bufkill.vim'
+"NeoBundle 'mileszs/ack.vim'
 "NeoBundle 'Lokaltog/vim-easymotion'
 "NeoBundle 'kien/ctrlp.vim'
 "NeoBundle 'scrooloose/nerdtree'
@@ -74,7 +76,6 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundleLazy 'sjl/gundo.vim', {'autoload':
@@ -89,6 +90,7 @@ NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
 "NeoBundle 'MarcWeber/vim-addon-mw-utils'
 "NeoBundle 'garbas/vim-snipmate'
 "NeoBundle 'honza/vim-snippets'
+"NeoBundle 'thinca/vim-visualstar'
 
 "Screen Enhancements/Colors
 NeoBundle 'bling/vim-airline'
@@ -101,6 +103,7 @@ NeoBundle 'Lokaltog/powerline-fonts'
 NeoBundleLazy 'skammer/vim-css-color', {'autoload':
      \ {'filetypes' : 'css'}}
 "NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'ap/vim-css-color'
 
 "Language Modes
 NeoBundleLazy 'klen/python-mode', {'autoload':
@@ -123,8 +126,8 @@ NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
 "Tooling
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mattn/gist-vim'
-NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
-\ {'filetypes' : 'markdown'}}
+" NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
+" \ {'filetypes' : 'markdown'}}
 "NeoBundle 'kballenegger/vim-autoreadwatch'
 
 "Misc
@@ -175,7 +178,7 @@ if has("gui_running")
     set lines=999 columns=999
 else
     set t_Co=256
-"    let g:solarized_termcolors=256
+    let g:solarized_termcolors=256
 endif
 
 "change background color based on time of day
@@ -190,7 +193,8 @@ set number
 set relativenumber
 set ruler
 set history=300
-set timeoutlen=1000
+set ttimeout
+set ttimeoutlen=50
 syntax enable
 filetype plugin indent on
 
@@ -209,6 +213,7 @@ set textwidth=80
 set nrformats-=octal
 set fileformats+=mac
 
+set mouse=""
 set shellslash
 set ttyfast
 if has("unix")
@@ -283,6 +288,8 @@ au FocusLost *.{html,css} w
 autocmd InsertEnter * set norelativenumber
 autocmd InsertLeave * set relativenumber
 
+autocmd BufEnter * set cursorline
+
 "open help in vsplit
 augroup helpfiles
     au!
@@ -303,6 +310,8 @@ inoremap hd <Esc>l
 
 nnoremap j gj
 nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 nnoremap n nzz
 nnoremap N Nzz
@@ -316,12 +325,19 @@ nnoremap # #N
 "Good for small changes made to vimrc
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
 
+nmap <Leader>cb o<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
+
 nnoremap <silent> <Leader>l :nohls<CR>
 
 nnoremap <silent> <Leader>bp :b#<CR>
 nnoremap <silent> <Leader>bd :BD<CR>
 
+nnoremap <Leader>fw :FixWhitespace<CR>
+
 inoremap <C-U> <C-G>u<C-U>
+
+nnoremap <Leader>tc :set <C-R>=&cursorline ? 'nocursorline' : 'cursorline'<CR><CR>
+nnoremap <Leader>tb :set background=<C-R>=&background=='light' ? 'dark' : 'light'<CR><CR>
 
 "make current file executable
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
@@ -368,14 +384,23 @@ endfunc
 nnoremap <silent> <Leader>nu :call NumberToggle()<CR>
 
 function! SaveAbbrev()
+    let l:after = $HOME . '/.vim/after/plugin/'
+    let l:abbrevs = l:after . 'abolish.vim'
+    if !isdirectory(l:after)
+        silent !mkdir -p ~/.vim/after/plugin
+    endif
+    if !filereadable(l:abbrevs)
+        silent !touch ~/.vim/after/plugin/abolish.vim
+    endif
+
     let g:ab_mistake = expand("<cword>")
     let g:ab_correction = input("Please enter the correct spelling: ")
     execute "normal ciw" . g:ab_correction
-    execute "edit $MYVIMRC"
+    execute "edit ~/.vim/after/plugin/abolish.vim"
     execute "normal GoAbolish" g:ab_mistake g:ab_correction
     execute "Abolish" g:ab_mistake g:ab_correction
     write
-    bnext
+    BD
 endfunction
 
 nnoremap <Leader>ab :call SaveAbbrev()<CR>
@@ -389,6 +414,7 @@ NeoBundleClean
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VimShell Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimshell_prompt = '$'
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 nmap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
@@ -399,6 +425,37 @@ nmap <silent> <Leader>vx :VimShellExecute
 nmap <silent> <Leader>ve :VimShellSendString<CR>
 vmap <silent> <Leader>ve :VimShellSendString<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" NeoComplete Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_camel_case = 1
+let g:neocomplete#enable_fuzzy_completion = 1
+
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME . '/.cache/vimshell/command-history'}
+let g:neocomplete#sources#vim#complete_functions = {
+    \ 'Ref' : 'ref#complete',
+    \ 'Unite' : 'unite#complete_source',
+    \ 'VimShellExecute' : 'vimshell#vimshell_execute_complete',
+    \ 'VimShellInteractive' : 'vimshell#vimshell_execute_complete',
+    \ 'VimShellTerminal' : 'vimshell#vimshell_execute_complete',
+    \ 'VimShell' : 'vimshell#complete',
+    \ 'VimFiler' : 'vimfiler#complete'}
+
+autocmd BufEnter vimshell call s:neocomplete_enter()
+autocmd BufLeave vimshell call s:neocomplete_leave()
+function! s:neocomplete_enter()
+    NeoCompleteEnable
+    inoremap <buffer> <expr> <Tab> pumVisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <buffer> <expr> <S-Tab> pumVisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <buffer> <expr> <Space> pumVisible() ? neocomplete#close_popup() : "\<Space>"
+endfunction
+
+function!s:neocomplete_leave()
+    NeoCompleteDisable
+endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Unite Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -676,10 +733,3 @@ nmap <silent> <Leader>zw :ZoomWin<CR>
 "#Yankstack
     " - <M-p> -> cycle backward through yank history
     " - <M-P> -> cycle forward through yank history
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Abbreviations
-""""""""""""""""""""""""""""""""""""""""""""""""""
-iabbrev teh the
-iabbrev retrun return
-iabbrev retunr return
