@@ -100,8 +100,8 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'Lokaltog/powerline-fonts'
-NeoBundleLazy 'skammer/vim-css-color', {'autoload':
-     \ {'filetypes' : 'css'}}
+"NeoBundleLazy 'skammer/vim-css-color', {'autoload':
+     "\ {'filetypes' : 'css'}}
 "NeoBundle 'flazz/vim-colorschemes'
 "NeoBundle 'ap/vim-css-color'
 
@@ -414,7 +414,7 @@ NeoBundleClean
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VimShell Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimshell_prompt = '$'
+let g:vimshell_prompt = '$ '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 nmap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
@@ -444,13 +444,12 @@ let g:neocomplete#sources#vim#complete_functions = {
     \ 'VimShell' : 'vimshell#complete',
     \ 'VimFiler' : 'vimfiler#complete'}
 
-autocmd BufEnter vimshell call s:neocomplete_enter()
-autocmd BufLeave vimshell call s:neocomplete_leave()
+autocmd BufEnter *vimshell* call s:neocomplete_enter()
+autocmd BufLeave *vimshell* call s:neocomplete_leave()
 function! s:neocomplete_enter()
     NeoCompleteEnable
-    inoremap <buffer> <expr> <Tab> pumVisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <buffer> <expr> <S-Tab> pumVisible() ? "\<C-p>" : "\<S-Tab>"
-    inoremap <buffer> <expr> <Space> pumVisible() ? neocomplete#close_popup() : "\<Space>"
+    inoremap <buffer> <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <buffer> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 endfunction
 
 function!s:neocomplete_leave()
