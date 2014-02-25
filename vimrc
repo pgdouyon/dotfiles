@@ -441,6 +441,7 @@ let g:neocomplete#sources#vim#complete_functions = {
     \ 'VimFiler' : 'vimfiler#complete'}
 
 augroup neocomplete
+    au!
     autocmd BufEnter *vimshell* call s:neocomplete_enter()
     autocmd BufLeave *vimshell* call s:neocomplete_leave()
 augroup END
@@ -491,6 +492,7 @@ nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
 
 augroup unite
+    au!
     autocmd FileType unite call s:unite_settings()
 augroup END
 
