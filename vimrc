@@ -86,10 +86,6 @@ NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
     \ {'commands' : 'NarrowRegion'}}
 "NeoBundle 'sk1418/Join'
 "NeoBundle 'maxbrunsfeld/vim-yankstack'
-"NeoBundle 'tomtom/tlib_vim'
-"NeoBundle 'MarcWeber/vim-addon-mw-utils'
-"NeoBundle 'garbas/vim-snipmate'
-"NeoBundle 'honza/vim-snippets'
 "NeoBundle 'thinca/vim-visualstar'
 
 "Screen Enhancements/Colors
@@ -100,10 +96,8 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'Lokaltog/powerline-fonts'
-"NeoBundleLazy 'skammer/vim-css-color', {'autoload':
-     "\ {'filetypes' : 'css'}}
+NeoBundle 'ap/vim-css-color'
 "NeoBundle 'flazz/vim-colorschemes'
-"NeoBundle 'ap/vim-css-color'
 
 "Language Modes
 NeoBundleLazy 'klen/python-mode', {'autoload':
@@ -189,9 +183,15 @@ else
 endif
 colorscheme solarized
 
+"Buffers
 set number
 set relativenumber
 set ruler
+set lazyredraw
+set cursorline
+set autowrite       " automatically save before commands like :next and :make
+set autoread        " automatically read a file if it's been changed on disk
+set hidden          " hide buffers when they are abandoned
 set history=300
 set ttimeout
 set ttimeoutlen=50
@@ -223,6 +223,7 @@ else
     "set shell=ksh.exe
 endif
 
+"List for trailing whitespace
 set list
 set listchars=""                  " Reset the listchars
 set listchars=tab:\ \             " a tab should display as ' ', trailing whitespace as .
@@ -237,11 +238,6 @@ set ignorecase      " do case insensitive matching
 set smartcase       " do smart case matching
 set incsearch       " incremental search
 set showmatch       " show matching brackets.
-
-set autowrite       " automatically save before commands like :next and :make
-set autoread        " automatically read a file if it's been changed on disk
-set hidden          " hide buffers when they are abandoned
-set lazyredraw
 
 "Window/menu
 set splitbelow
@@ -276,19 +272,16 @@ set backupdir^=~/.vim/_backup//    " where to put backup files.
 set directory^=~/.vim/_temp//      " where to put swap files.
 set shortmess+=A
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-au BufRead,BufNewFile *.json set ft=javascript
-
-au FocusLost *.{html,css} w
-
-autocmd InsertEnter * set norelativenumber
-autocmd InsertLeave * set relativenumber
-
-autocmd BufEnter * set cursorline
+augroup mycommands
+    au!
+    "Jump to the last position when reopening a file
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au FocusLost *.{html,css} w
+    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+    au BufRead,BufNewFile *.json set ft=javascript
+    autocmd InsertEnter * set norelativenumber
+    autocmd InsertLeave * set relativenumber
+augroup END
 
 "open help in vsplit
 augroup helpfiles
@@ -324,7 +317,9 @@ nnoremap # #N
 "Source a line of vimscript
 "Good for small changes made to vimrc
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
+nnoremap <Leader>sv :source $MYVIMRC<CR>
 
+"make comment box using tcomment
 nmap <Leader>cb o<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
 
 nnoremap <silent> <Leader>l :nohls<CR>
@@ -336,6 +331,7 @@ nnoremap <Leader>fw :FixWhitespace<CR>
 
 inoremap <C-U> <C-G>u<C-U>
 
+"toggle cursorline and toggle background color
 nnoremap <Leader>tc :set <C-R>=&cursorline ? 'nocursorline' : 'cursorline'<CR><CR>
 nnoremap <Leader>tb :set background=<C-R>=&background=='light' ? 'dark' : 'light'<CR><CR>
 
@@ -421,7 +417,7 @@ nmap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
 nmap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
 nmap <silent> <Leader>py :VimShellInteractive python3.3<CR>
 nmap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
-nmap <silent> <Leader>vx :VimShellExecute 
+nmap <silent> <Leader>vx :VimShellExecute
 nmap <silent> <Leader>ve :VimShellSendString<CR>
 vmap <silent> <Leader>ve :VimShellSendString<CR>
 
@@ -444,8 +440,11 @@ let g:neocomplete#sources#vim#complete_functions = {
     \ 'VimShell' : 'vimshell#complete',
     \ 'VimFiler' : 'vimfiler#complete'}
 
-autocmd BufEnter *vimshell* call s:neocomplete_enter()
-autocmd BufLeave *vimshell* call s:neocomplete_leave()
+augroup neocomplete
+    autocmd BufEnter *vimshell* call s:neocomplete_enter()
+    autocmd BufLeave *vimshell* call s:neocomplete_leave()
+augroup END
+
 function! s:neocomplete_enter()
     NeoCompleteEnable
     inoremap <buffer> <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -491,7 +490,10 @@ nnoremap <Leader>uy :<C-u>Unite -resume -buffer-name=yanks -quick-match history/
 nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
 
-autocmd FileType unite call s:unite_settings()
+augroup unite
+    autocmd FileType unite call s:unite_settings()
+augroup END
+
 function! s:unite_settings()
     let b:SuperTabDisabled=1
     nmap <silent><buffer><expr> s unite#do_action('split')
@@ -585,7 +587,7 @@ vmap <silent> <Leader>ta :Tabularize /
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <Leader>fdj yiw:Djump <C-r>0<CR>
 nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
-nnoremap <silent> <Leader>fev :%Eval<CR>
+nnoremap <silent> <Leader>fe :%Eval<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive Settings
@@ -595,8 +597,8 @@ nmap <silent> <Leader>gs :Gstatus<CR>
 nmap <silent> <Leader>gd :Gdiff<CR>
 nmap <silent> <Leader>gl :Glog<CR>
 nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>gpo :Git push origin master<CR>
-nmap <silent> <Leader>gph :Git push heroku master<CR>
+nmap <silent> <Leader>gp :Git push origin master<CR>
+nmap <silent> <Leader>gh :Git push heroku master<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Airline Settings
@@ -624,43 +626,6 @@ nmap <silent> <Leader>zw :ZoomWin<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"#NERDCommenter:
-"- All commands can be prefixed with a count
-    " - <Leader>cc      -) comment out current line or selected text
-    " - <Leader>c<space -> toggle comment state of selected line
-    " - <Leader>cs      -> comment out sexily
-    " - <Leader>cy      -> comment and yank line
-    " - <Leader>cA      -> add comment to the end of the line
-    " - <Leader>cu      -> uncomment selected lines
-"#NERDTree:
-    " -Toggle with <Leader>nt
-    " - o     -> open selected file
-    " - go    -> open selected file but leave cursor in NERDTree
-    " - t     -> open node in new tab
-    " - T     -> same as t but keep focus in current tab
-    " - i     -> open in split window
-    " - gi    -> same as i but leave cursor in NERDTree
-    " - s     -> open in vertical split
-    " - gs    -> I think you can figure this one out
-    " - x     -> close the current node's parent
-    " - X     -> recursively close all children of the current node
-    " - e     -> edit the current dir
-    " - D     -> delete the current bookmark
-    " - P     -> jump to the root node
-    " - p     -> jump to the current node's parent
-    " - <C-J> -> jump to next sibling of current dir
-    " - <C-K> -> jump to prev sibling of current dir
-    " - C     -> change tree root to selected dir
-    " - u     -> move tree root up one dir
-    " - cd    -> change the current working directory to the dir of the selected node
-    " - CD    -> change tree root to the current working directory
-    " - I     -> toggle hidden files display
-"#Unimpaired:
-    " - [<Space> -> add newline before cursor line
-    " - ]<Space> -> add newline after cursor line
-"#EasyMotion:
-    " - <Leader><Leader>motion to search for char
-    " - Motions are: f, F, t, T, w, b, e, ge, W, B, E, gE
 "#Fugitive:
     " - <Leader>gs - Gstatus
     "     - Type - on any file to stage or unstage it
@@ -729,6 +694,3 @@ nmap <silent> <Leader>zw :ZoomWin<CR>
     " - <C-y>a -> make anchor from URL
     " - <C-y>A -> make quoted text from URL
     " - <C-y>c -> pretty code formatting
-"#Yankstack
-    " - <M-p> -> cycle backward through yank history
-    " - <M-P> -> cycle forward through yank history
