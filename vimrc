@@ -38,28 +38,16 @@ NeoBundle 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':
     \ {'commands' : 'NeoCompleteEnable'}}
 
-"Clojure
-NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'tpope/vim-classpath', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'vim-scripts/paredit.vim', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'kien/rainbow_parentheses.vim', {'autoload':
-    \ {'filetypes' : ['clojure', 'javascript', 'html']}}
-
 "Tim Pope
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
-NeoBundleLazy 'tpope/vim-eunuch', {'autoload':
-    \ {'commands' : ['SudoWrite', 'Locate', 'Find', 'Chmod', 'Move', 'Remove']}}
 NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-abolish'
 "NeoBundle 'tpope/vim-dispatch'
 "NeoBundle 'tpope/vim-sensible'
+" NeoBundleLazy 'tpope/vim-eunuch', {'autoload':
+"     \ {'commands' : ['SudoWrite', 'Locate', 'Find', 'Chmod', 'Move', 'Remove']}}
 
 "File Search and Navigation
 NeoBundle 'goldfeld/vim-seek'
@@ -75,9 +63,9 @@ NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'vim-scripts/ZoomWin'
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundleLazy 'sjl/gundo.vim', {'autoload':
     \ {'commands' : 'GundoToggle'}}
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':
@@ -87,35 +75,60 @@ NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
 "NeoBundle 'sk1418/Join'
 "NeoBundle 'maxbrunsfeld/vim-yankstack'
 "NeoBundle 'thinca/vim-visualstar'
+" NeoBundle 'bronson/vim-trailing-whitespace'
 
 "Screen Enhancements/Colors
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'Lokaltog/powerline-fonts'
 NeoBundle 'ap/vim-css-color'
 "NeoBundle 'flazz/vim-colorschemes'
 
-"Language Modes
+"Clojure
+NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'tpope/vim-classpath', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'vim-scripts/paredit.vim', {'autoload':
+    \ {'filetypes' : 'clojure'}}
+NeoBundleLazy 'kien/rainbow_parentheses.vim', {'autoload':
+    \ {'filetypes' : ['clojure', 'javascript', 'html']}}
+
+"Python
 NeoBundleLazy 'klen/python-mode', {'autoload':
 \ {'filetypes' : 'python'}}
-NeoBundleLazy 'pangloss/vim-javascript', {'autoload':
-\ {'filetypes' : ['javascript', 'html']}}
+
+"JavaScript
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':
+\ {'filetypes' : 'javascript'}}
+NeoBundleLazy 'moll/vim-node', {'autoload':
+\ {'filetypes' : 'javascript'}}
 NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':
 \ {'filetypes' : 'coffee'}}
 NeoBundleLazy 'elzr/vim-json', {'autoload':
-\ {'filetypes' : ['javascript', 'json']}}
+\ {'filetypes' : 'json'}}
+" NeoBundleLazy 'pangloss/vim-javascript', {'autoload':
+" \ {'filetypes' : ['javascript', 'html']}}
+
+"HTML
 NeoBundleLazy 'othree/html5.vim', {'autoload':
 \ {'filetypes' : 'html'}}
-NeoBundleLazy 'tpope/vim-markdown', {'autoload':
-\ {'filetypes' : 'markdown'}}
+"NeoBundleLazy 'vim-scripts/indenthtml.vim'
+"NeoBundleLazy 'mustache/vim-mustache-handlebars'
+" NeoBundleLazy 'tpope/vim-markdown', {'autoload':
+" \ {'filetypes' : 'markdown'}}
+
+"LaTeX
 NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
 \ {'filetypes' : 'tex'}}
-"NeoBundleLazy 'mustache/vim-mustache-handlebars'
-"NeoBundleLazy 'vim-scripts/indenthtml.vim'
+
 
 "Tooling
 NeoBundle 'scrooloose/syntastic'
@@ -187,6 +200,7 @@ colorscheme solarized
 set number
 set relativenumber
 set ruler
+set title
 set lazyredraw
 set cursorline
 set autowrite       " automatically save before commands like :next and :make
@@ -223,15 +237,6 @@ else
     "set shell=ksh.exe
 endif
 
-"List for trailing whitespace
-set list
-set listchars=""                  " Reset the listchars
-set listchars=tab:\ \             " a tab should display as ' ', trailing whitespace as .
-set listchars+=trail:.            " show trailing spaces as dots
-set listchars+=extends:>          " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the right of the screen
-set listchars+=precedes:<         " The character to show in the last column when wrap is
-                                  " off and the line continues beyond the left of the screen
 "Search
 set hlsearch
 set ignorecase      " do case insensitive matching
@@ -243,6 +248,7 @@ set showmatch       " show matching brackets.
 set splitbelow
 set splitright
 set wildmenu
+set wildmode=longest:full
 set laststatus=2
 set guioptions-=T
 set clipboard+=unnamed
@@ -254,31 +260,25 @@ set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 " Disable archive files
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 
-" Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Ignore librarian-chef, vagrant, test-kitchen and Berkshelf cache
-set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
-
-" Ignore rails temporary asset caches
-set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
-
 " Disable temp and backup files
-set wildignore+=*.swp,*~,._*
-set wildignore+=*.exe,*/tmp/*,*\\tmp\\*
+set wildignore+=*.exe,*/tmp/*,*\\tmp\\*,*.swp,*~,._*
+
+" Disable non-text files
+set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf,*/node_modules/*
 
 "Swap files
 set backupdir^=~/.vim/_backup//    " where to put backup files.
 set directory^=~/.vim/_temp//      " where to put swap files.
 set shortmess+=A
 
+set grepprg=ack\ --smart-case\ --column\ --nogroup\ --nocolor\ --follow
+
 augroup mycommands
     au!
     "Jump to the last position when reopening a file
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     au FocusLost *.{html,css} w
-    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-    au BufRead,BufNewFile *.json set ft=javascript
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
 augroup END
@@ -326,8 +326,6 @@ nnoremap <silent> <Leader>l :nohls<CR>
 
 nnoremap <silent> <Leader>bp :b#<CR>
 nnoremap <silent> <Leader>bd :BD<CR>
-
-nnoremap <Leader>fw :FixWhitespace<CR>
 
 inoremap <C-U> <C-G>u<C-U>
 
@@ -400,6 +398,14 @@ function! SaveAbbrev()
 endfunction
 
 nnoremap <Leader>ab :call SaveAbbrev()<CR>
+
+function! FixTrailingSpaces()
+    let l:save_cursor = getpos(".")
+    silent! execute ":%s/\s\+$//"
+    call setpos(".", l:save_cursor)
+endfunction
+
+nnoremap <Leader>fw call FixTrailingSpaces()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Finish NeoBundle Setup
@@ -538,25 +544,6 @@ nmap <silent> <F5> :GundoToggle<CR>
 let g:netrw_liststyle=3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"nmap <silent> <Leader>nt :NERDTree<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ctrlp_by_filename = 1
-"let g:ctrlp_regexp = 1
-"let g:ctrlp_match_window_bottom = 0
-"let g:ctrlp_match_window_reversed = 0
-"let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_open_new_file = 'r'
-"let g:ctrlp_open_multiple_files = '1ijr'
-"let g:ctrlp_arg_map = 1
-"let g:ctrlp_cmd = 'CtrlPMixed'
-"let g:ctrlp_show_hidden = 1
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""
 " Rainbow Parentheses Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let bundle = neobundle#get('rainbow_parentheses.vim')
@@ -579,6 +566,8 @@ if exists(":Tabularize")
     vmap <silent> <Leader>t= :Tabularize /=<CR>
     nmap <silent> <Leader>t: :Tabularize /:\zs<CR>
     vmap <silent> <Leader>t: :Tabularize /:\zs<CR>
+    nmap <silent> <Leader>t| :Tabularize /<Bar><CR>
+    vmap <silent> <Leader>t| :Tabularize /<Bar><CR>
 endif
 
 nmap <silent> <Leader>ta :Tabularize /
