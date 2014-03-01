@@ -401,12 +401,12 @@ endfunction
 nnoremap <Leader>ab :call SaveAbbrev()<CR>
 
 function! FixTrailingSpaces()
-    let l:save_cursor = getpos(".")
-    silent! execute ":%s/\s\+$//"
-    call setpos(".", l:save_cursor)
+    let l:save_cursor = getpos('.')
+    silent! execute ":%s/\\s\\+$//"
+    call setpos('.', l:save_cursor)
 endfunction
 
-nnoremap <Leader>fw call FixTrailingSpaces()<CR>
+nnoremap <Leader>fw :call FixTrailingSpaces()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Finish NeoBundle Setup
@@ -589,6 +589,8 @@ nmap <silent> <Leader>gs :Gstatus<CR>
 nmap <silent> <Leader>gd :Gdiff<CR>
 nmap <silent> <Leader>gl :Glog<CR>
 nmap <silent> <Leader>gc :Gcommit<CR>
+nmap <silent> <Leader>ga :Gwrite<CR>
+nmap <silent> <Leader>gr :Gremove!<CR>
 nmap <silent> <Leader>gp :Git push origin master<CR>
 nmap <silent> <Leader>gh :Git push heroku master<CR>
 
