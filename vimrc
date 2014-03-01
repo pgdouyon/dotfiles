@@ -248,7 +248,7 @@ set showmatch       " show matching brackets.
 set splitbelow
 set splitright
 set wildmenu
-set wildmode=longest:full
+set wildmode=longest,list,full
 set laststatus=2
 set guioptions-=T
 set clipboard+=unnamed
@@ -279,6 +279,7 @@ augroup mycommands
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     au FocusLost *.{html,css} w
     autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.html syntax enable
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
 augroup END
@@ -481,7 +482,7 @@ endif
 
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
     \ 'ignore_pattern', join(['\.git/', '\.pptx$', '\.docx$', '\.jpg$',
-    \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/'], '\|'))
+    \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/', '.config/*'], '\|'))
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
