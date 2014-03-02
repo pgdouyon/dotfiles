@@ -191,10 +191,11 @@ endif
 "change background color based on time of day
 if strftime('%H') > 6 && strftime("%H") < 18
     set background=light
+    colorscheme solarized
 else
     set background=dark
+    colorscheme hybrid
 endif
-colorscheme solarized
 
 "Buffers
 set number
@@ -253,6 +254,7 @@ set wildmenu
 set wildmode=longest,list,full
 set laststatus=2
 set guioptions-=T
+set guioptions+=c
 set clipboard+=unnamed
 set display+=lastline
 "set guitablabel=\[%N\]\ %t\ %M
@@ -277,10 +279,10 @@ set shortmess+=A
 set grepprg=ack\ --smart-case\ --column\ --nogroup\ --nocolor\ --follow
 
 augroup vimrc
-    au!
+    autocmd!
     "Jump to the last position when reopening a file
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    au FocusLost *.{html,css} w
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    autocmd FocusLost *.{html,css} w
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.html syntax enable
     autocmd InsertEnter * set norelativenumber
@@ -322,7 +324,7 @@ nnoremap # #N
 "Source a line of vimscript
 "Good for small changes made to vimrc
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
-nnoremap <Leader>sv :source $MYVIMRC<CR>
+nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 "make comment box using tcomment
 nmap <Leader>cb o<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
@@ -335,8 +337,15 @@ nnoremap <silent> <Leader>bd :BD<CR>
 inoremap <C-U> <C-G>u<C-U>
 
 "toggle cursorline and toggle background color
-nnoremap <Leader>tc :set <C-R>=&cursorline ? 'nocursorline' : 'cursorline'<CR><CR>
-nnoremap <Leader>tb :set background=<C-R>=&background=='light' ? 'dark' : 'light'<CR><CR>
+nnoremap <silent> <Leader>tc :set <C-R>=&cursorline ? 'nocursorline' : 'cursorline'<CR><CR>
+nnoremap <silent> <Leader>tb :call ColorToggle()<CR>
+
+function! ColorToggle()
+    if(&background == 'dark') | let l:background = 'light' | else | let l:background = 'dark' | endif
+    if(g:colors_name == 'hybrid') | let l:colorscheme = 'solarized' | else | let l:colorscheme = 'hybrid' | endif
+    execute "set background=" . l:background
+    execute "colorscheme " . l:colorscheme
+endfunction
 
 "make current file executable
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
@@ -378,7 +387,7 @@ function! NumberToggle()
     else
         set relativenumber
     endif
-endfunc
+endfunction
 
 nnoremap <silent> <Leader>nu :call NumberToggle()<CR>
 
