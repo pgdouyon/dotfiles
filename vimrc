@@ -226,6 +226,7 @@ set textwidth=80
 
 set nrformats-=octal
 set fileformats+=mac
+set iskeyword+=-
 
 set mouse=""
 set shellslash
@@ -238,6 +239,7 @@ else
 endif
 
 "Search
+set gdefault
 set hlsearch
 set ignorecase      " do case insensitive matching
 set smartcase       " do smart case matching
@@ -253,6 +255,7 @@ set laststatus=2
 set guioptions-=T
 set clipboard+=unnamed
 set display+=lastline
+"set guitablabel=\[%N\]\ %t\ %M
 
 " Disable output and VCS files
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
@@ -273,7 +276,7 @@ set shortmess+=A
 
 set grepprg=ack\ --smart-case\ --column\ --nogroup\ --nocolor\ --follow
 
-augroup mycommands
+augroup vimrc
     au!
     "Jump to the last position when reopening a file
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -282,6 +285,7 @@ augroup mycommands
     autocmd BufRead,BufNewFile *.html syntax enable
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
+    autocmd ColorScheme * AirlineTheme base16
 augroup END
 
 "open help in vsplit
@@ -608,6 +612,11 @@ endif
 
 let g:airline_symbols.space="\ua0"
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline_theme = 'base16'
 " let g:airline_left_sep=""
 " let g:airline_right_sep=""
 set fillchars+=stl:\ ,stlnc:\
