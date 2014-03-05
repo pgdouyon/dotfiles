@@ -44,43 +44,26 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-abolish'
-"NeoBundle 'tpope/vim-dispatch'
-"NeoBundle 'tpope/vim-sensible'
-" NeoBundleLazy 'tpope/vim-eunuch', {'autoload':
-"     \ {'commands' : ['SudoWrite', 'Locate', 'Find', 'Chmod', 'Move', 'Remove']}}
+NeoBundle 'tpope/vim-commentary'
 
 "File Search and Navigation
-NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'vim-scripts/bufkill.vim'
-"NeoBundle 'mileszs/ack.vim'
-"NeoBundle 'Lokaltog/vim-easymotion'
-"NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'scrooloose/nerdtree'
 
 "Editing Enhancements
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'coderifous/textobj-word-column.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'vim-scripts/ZoomWin'
-NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundleLazy 'sjl/gundo.vim', {'autoload':
-    \ {'commands' : 'GundoToggle'}}
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':
     \ {'filetypes' : ['html', 'xhtml', 'xml']}}
-NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
-    \ {'commands' : 'NarrowRegion'}}
-"NeoBundle 'sk1418/Join'
-"NeoBundle 'maxbrunsfeld/vim-yankstack'
-"NeoBundle 'thinca/vim-visualstar'
-" NeoBundle 'bronson/vim-trailing-whitespace'
 
 "Screen Enhancements/Colors
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'tomasr/molokai'
@@ -114,16 +97,10 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':
 \ {'filetypes' : 'coffee'}}
 NeoBundleLazy 'elzr/vim-json', {'autoload':
 \ {'filetypes' : 'json'}}
-" NeoBundleLazy 'pangloss/vim-javascript', {'autoload':
-" \ {'filetypes' : ['javascript', 'html']}}
 
 "HTML
 NeoBundleLazy 'othree/html5.vim', {'autoload':
 \ {'filetypes' : 'html'}}
-"NeoBundleLazy 'vim-scripts/indenthtml.vim'
-"NeoBundleLazy 'mustache/vim-mustache-handlebars'
-" NeoBundleLazy 'tpope/vim-markdown', {'autoload':
-" \ {'filetypes' : 'markdown'}}
 
 "LaTeX
 NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
@@ -132,14 +109,26 @@ NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
 
 "Tooling
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
-" NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
-" \ {'filetypes' : 'markdown'}}
-"NeoBundle 'kballenegger/vim-autoreadwatch'
 
 "Misc
 NeoBundle 'vim-scripts/scratch.vim'
+
+"Deprecated
+"NeoBundle 'thinca/vim-visualstar'
+"NeoBundle 'vim-scripts/ZoomWin'
+" NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
+"     \ {'commands' : 'NarrowRegion'}}
+" NeoBundleLazy 'pangloss/vim-javascript', {'autoload':
+" \ {'filetypes' : ['javascript', 'html']}}
+"NeoBundleLazy 'mustache/vim-mustache-handlebars'
+" NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
+" \ {'filetypes' : 'markdown'}}
+"NeoBundle 'kballenegger/vim-autoreadwatch'
 "NeoBundle 'papanikge/vim-voogle'
+" NeoBundleLazy 'sjl/gundo.vim', {'autoload':
+"     \ {'commands' : 'GundoToggle'}}
 
 call neobundle#config('vimproc', {
 \ 'build' : {
@@ -207,7 +196,7 @@ set cursorline
 set autowrite       " automatically save before commands like :next and :make
 set autoread        " automatically read a file if it's been changed on disk
 set hidden          " hide buffers when they are abandoned
-set history=300
+set history=1000
 set ttimeout
 set ttimeoutlen=50
 syntax enable
@@ -234,14 +223,10 @@ set shellslash
 set ttyfast
 if has("unix")
     set shell=bash
-else
-    "need shell when not on linux
-    "set shell=ksh.exe
 endif
 
 "Search
 set gdefault
-set hlsearch
 set ignorecase      " do case insensitive matching
 set smartcase       " do smart case matching
 set incsearch       " incremental search
@@ -252,10 +237,11 @@ set splitbelow
 set splitright
 set wildmenu
 set wildmode=longest,list,full
+set completeopt+=longest
 set laststatus=2
 set guioptions-=T
 set guioptions+=c
-set clipboard+=unnamed
+set clipboard=unnamedplus
 set display+=lastline
 "set guitablabel=\[%N\]\ %t\ %M
 
@@ -292,7 +278,7 @@ augroup END
 
 "open help in vsplit
 augroup helpfiles
-    au!
+    autocmd!
     au BufRead,BufEnter */doc/* wincmd L
 augroup END
 
@@ -312,14 +298,32 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+vnoremap j gj
+vnoremap k gk
+vnoremap gj j
+vnoremap gk k
 
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
 
 nnoremap Y y$
 
 nnoremap * *N
 nnoremap # #N
+
+nnoremap & :&&<CR>
+
+nnoremap gV `[v`]
+
+cnoremap w!! w !sudo tee % > /dev/null<CR>
+
+"allows incsearch highlighting for range commands
+"stole from reddit - does anyone use easymotion
+cnoremap $t <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d''<CR>
 
 "Source a line of vimscript
 "Good for small changes made to vimrc
@@ -337,7 +341,7 @@ nnoremap <silent> <Leader>bd :BD<CR>
 inoremap <C-U> <C-G>u<C-U>
 
 "toggle cursorline and toggle background color
-nnoremap <silent> <Leader>tc :set <C-R>=&cursorline ? 'nocursorline' : 'cursorline'<CR><CR>
+nnoremap <silent> <Leader>tc :set cursorline!<CR>
 nnoremap <silent> <Leader>tb :call ColorToggle()<CR>
 
 function! ColorToggle()
@@ -381,15 +385,7 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-function! NumberToggle()
-    if(&relativenumber==1)
-        set norelativenumber
-    else
-        set relativenumber
-    endif
-endfunction
-
-nnoremap <silent> <Leader>nu :call NumberToggle()<CR>
+nnoremap <silent> <Leader>nu :set relativenumber!<CR>
 
 function! SaveAbbrev()
     let l:after = $HOME . '/.vim/after/plugin/'
@@ -461,20 +457,23 @@ let g:neocomplete#sources#vim#complete_functions = {
     \ 'VimFiler' : 'vimfiler#complete'}
 
 augroup neocomplete
-    au!
+    autocmd!
     autocmd BufEnter *vimshell* call s:neocomplete_enter()
     autocmd BufLeave *vimshell* call s:neocomplete_leave()
 augroup END
 
 function! s:neocomplete_enter()
     NeoCompleteEnable
-    inoremap <buffer> <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <buffer> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    inoremap <buffer> <expr> <Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+    inoremap <buffer> <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<S-Tab>"
+    inoremap <buffer> <expr> <Space> pumvisible() ? neocomplete#close_popup() . "\<Space>" : "\<Space>"
+    inoremap <buffer> <expr> <CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
 function!s:neocomplete_leave()
     NeoCompleteDisable
 endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Unite Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -512,7 +511,7 @@ nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
 
 augroup unite
-    au!
+    autocmd!
     autocmd FileType unite call s:unite_settings()
 augroup END
 
@@ -539,18 +538,21 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 " endfunction
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Vim Seek Settings
+" Vim Sneak Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-let g:seek_enable_jumps = 1
-"r - remote iw
-"p - jump iw
-"u - remote aw
-"o - jump aw
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Gundo Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <F5> :GundoToggle<CR>
+" let g:sneak#streak = 1
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw Settings
@@ -629,11 +631,6 @@ let g:airline_theme = 'base16'
 " let g:airline_left_sep=""
 " let g:airline_right_sep=""
 set fillchars+=stl:\ ,stlnc:\
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" ZoomWin Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <Leader>zw :ZoomWin<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
