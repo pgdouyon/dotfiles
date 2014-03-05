@@ -280,7 +280,7 @@ augroup END
 "open help in vsplit
 augroup helpfiles
     autocmd!
-    au BufRead,BufEnter */doc/* wincmd L
+    autocmd BufRead,BufEnter */doc/* wincmd L
 augroup END
 
 if !exists('g:loaded_matchit')
@@ -333,6 +333,7 @@ nnoremap <silent> <Leader>l :nohls<CR>
 nnoremap <silent> <Leader>bp :b#<CR>
 nnoremap <silent> <Leader>bd :BD<CR>
 
+"break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
 
 "toggle cursorline and toggle background color
@@ -493,8 +494,6 @@ nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=files -start-insert file:
 nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:~/Projects
 nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<CR>
 
-nnoremap <Leader>ub :<C-u>Unite -resume -buffer-name=buffers -no-start-insert buffer<CR>
-
 nnoremap <Leader>uy :<C-u>Unite -resume -buffer-name=yanks -quick-match history/yank<CR>
 nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
@@ -547,14 +546,14 @@ let g:netrw_liststyle=3
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let bundle = neobundle#get('rainbow_parentheses.vim')
 function! bundle.hooks.on_source(bundle)
-    au VimEnter * RainbowParenthesesActivate
-    au BufEnter * RainbowParenthesesActivate
-    au ColorScheme * RainbowParenthesesActivate
+    autocmd VimEnter * RainbowParenthesesActivate
+    autocmd BufEnter * RainbowParenthesesActivate
+    autocmd ColorScheme * RainbowParenthesesActivate
 
-    au Syntax * RainbowParenthesesLoadBraces
-    au Syntax * RainbowParenthesesLoadChevrons
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
+    autocmd Syntax * RainbowParenthesesLoadChevrons
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
