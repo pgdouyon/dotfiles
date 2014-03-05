@@ -114,6 +114,7 @@ NeoBundle 'mattn/gist-vim'
 
 "Misc
 NeoBundle 'vim-scripts/scratch.vim'
+NeoBundle 'kana/vim-arpeggio'
 
 "Deprecated
 "NeoBundle 'thinca/vim-visualstar'
@@ -289,10 +290,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-cnoremap hd <Esc>l
-onoremap hd <Esc>l
-vnoremap hd <Esc>l
-inoremap hd <Esc>l
+call arpeggio#map('covi','', 0, 'tn', '<Esc>')
 
 nnoremap j gj
 nnoremap k gk
@@ -309,9 +307,6 @@ nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
 nnoremap Y y$
-
-nnoremap * *N
-nnoremap # #N
 
 nnoremap & :&&<CR>
 
@@ -330,8 +325,8 @@ cnoremap $d <CR>:d''<CR>
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
-"make comment box using tcomment
-nmap <Leader>cb o<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
+"make comment box using vim-commentary
+nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
 
 nnoremap <silent> <Leader>l :nohls<CR>
 
@@ -370,11 +365,6 @@ noremap <silent> <Left> :vertical resize -10<CR>
 noremap <silent> <Right> :vertical resize +10<CR>
 noremap <silent> <Down> :resize -10<CR>
 noremap <silent> <Up> :resize +10<CR>
-
-nnoremap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
-nnoremap <leader>es :sp <C-R>=expand('%:h').'/'<cr>
-nnoremap <leader>ev :vsp <C-R>=expand('%:h').'/'<cr>
-nnoremap <leader>et :tabe <C-R>=expand('%:h').'/'<cr>
 
 " cd to the directory containing the file in the buffer
 nnoremap <silent> <leader>cd :lcd %:h<CR>
@@ -477,7 +467,6 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Unite Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"let g:unite_force_overwrite_statusline = 0
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_rec_max_cache_files = 5000
 
@@ -526,17 +515,11 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" set rtp+=~/.vim/bundle/vim-snippets/
 let g:UltiSnipsSnippetDirectories = ["UltiSnips", "mysnippets"]
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
-" let bundle = neobundle#get('ultisnips')
-" function! bundle.hooks.on_source(bundle)
-"     let g:UltiSnips.always_use_first_snippet = 1
-" endfunction
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Sneak Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -597,6 +580,15 @@ nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
 nnoremap <silent> <Leader>fe :%Eval<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
+" GitGutter Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_map_keys = 0
+nnoremap ]h <Plug>GitGutterNextHunk
+nnoremap [h <Plug>GitGutterPrevHunk
+nnoremap <Leader>ha <Plug>GitGutterStageHunk
+nnoremap <Leader>hr <Plug>GitGutterRevertHunk
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <Leader>gb :Gblame<CR>
@@ -628,8 +620,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_theme = 'base16'
-" let g:airline_left_sep=""
-" let g:airline_right_sep=""
 set fillchars+=stl:\ ,stlnc:\
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
