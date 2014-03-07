@@ -164,6 +164,7 @@ if neobundle_installed == 0
     echo "Installing NeoBundles..."
     echo ""
     NeoBundleInstall
+    source $MYVIMRC
 endif
 
 
@@ -420,13 +421,13 @@ NeoBundleClean
 let g:vimshell_prompt = '$ '
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
-nmap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
-nmap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
-nmap <silent> <Leader>py :VimShellInteractive python3.3<CR>
-nmap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
-nmap <silent> <Leader>vx :VimShellExecute
-nmap <silent> <Leader>ve :VimShellSendString<CR>
-vmap <silent> <Leader>ve :VimShellSendString<CR>
+nnoremap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
+nnoremap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
+nnoremap <silent> <Leader>py :VimShellInteractive python3.3<CR>
+nnoremap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
+nnoremap <silent> <Leader>vx :VimShellExecute
+nnoremap <silent> <Leader>ve :VimShellSendString<CR>
+vnoremap <silent> <Leader>ve :VimShellSendString<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " NeoComplete Settings
@@ -505,10 +506,10 @@ augroup END
 
 function! s:unite_settings()
     let b:SuperTabDisabled=1
-    nmap <silent><buffer><expr> s unite#do_action('split')
-    nmap <silent><buffer><expr> v unite#do_action('vsplit')
-    imap <silent><buffer><expr> <C-s> unite#do_action('split')
-    imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+    nnoremap <silent><buffer><expr> s unite#do_action('split')
+    nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
+    inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
+    inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -522,19 +523,24 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Sneak Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
+"I hate when people claim they have a feature that isn't actually
+"implemented properly.  Don't put this on your readme as a feature if Sneak_t
+"only works in operator pending and Sneak_f only *doesn't* work in operator
+"pending
+"Whale guts...
 " let g:sneak#streak = 1
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
+"nmap t <Plug>Sneak_f
+"nmap T <Plug>Sneak_F
+"xmap t <Plug>Sneak_f
+"xmap T <Plug>Sneak_F
+"omap t <Plug>Sneak_f
+"omap T <Plug>Sneak_F
+"nmap f <Plug>Sneak_t
+"nmap F <Plug>Sneak_T
+"xmap f <Plug>Sneak_t
+"xmap F <Plug>Sneak_T
+"omap f <Plug>Sneak_t
+"omap F <Plug>Sneak_T
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw Settings
@@ -560,16 +566,15 @@ endfunction
 " Tabular Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 if exists(":Tabularize")
-    nmap <silent> <Leader>t= :Tabularize /=<CR>
-    vmap <silent> <Leader>t= :Tabularize /=<CR>
-    nmap <silent> <Leader>t: :Tabularize /:\zs<CR>
-    vmap <silent> <Leader>t: :Tabularize /:\zs<CR>
-    nmap <silent> <Leader>t| :Tabularize /<Bar><CR>
-    vmap <silent> <Leader>t| :Tabularize /<Bar><CR>
+    nnoremap <silent> <Leader>t= :Tabularize /=<CR>
+    vnoremap <silent> <Leader>t= :Tabularize /=<CR>
+    nnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
+    vnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
+    nnoremap <silent> <Leader>t| :Tabularize /<Bar><CR>
+    vnoremap <silent> <Leader>t| :Tabularize /<Bar><CR>
+    nnoremap <silent> <Leader>ta :Tabularize /
+    vnoremap <silent> <Leader>ta :Tabularize /
 endif
-
-nmap <silent> <Leader>ta :Tabularize /
-vmap <silent> <Leader>ta :Tabularize /
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fireplace Settings
@@ -590,15 +595,15 @@ nnoremap <Leader>hr <Plug>GitGutterRevertHunk
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <Leader>gb :Gblame<CR>
-nmap <silent> <Leader>gs :Gstatus<CR>
-nmap <silent> <Leader>gd :Gdiff<CR>
-nmap <silent> <Leader>gl :Glog<CR>
-nmap <silent> <Leader>gc :Gcommit<CR>
-nmap <silent> <Leader>ga :Gwrite<CR>
-nmap <silent> <Leader>gr :Gremove!<CR>
-nmap <silent> <Leader>gp :Git push origin master<CR>
-nmap <silent> <Leader>gh :Git push heroku master<CR>
+nnoremap <silent> <Leader>gb :Gblame<CR>
+nnoremap <silent> <Leader>gs :Gstatus<CR>
+nnoremap <silent> <Leader>gd :Gdiff<CR>
+nnoremap <silent> <Leader>gl :Glog<CR>
+nnoremap <silent> <Leader>gc :Gcommit<CR>
+nnoremap <silent> <Leader>ga :Gwrite<CR>
+nnoremap <silent> <Leader>gr :Gremove!<CR>
+nnoremap <silent> <Leader>gp :Git push origin master<CR>
+nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Airline Settings
