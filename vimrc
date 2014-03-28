@@ -73,13 +73,12 @@ NeoBundle 'ap/vim-css-color'
 "NeoBundle 'flazz/vim-colorschemes'
 
 "Clojure
+NeoBundle 'vim-scripts/paredit.vim'
 NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
     \ {'filetypes' : 'clojure'}}
 NeoBundleLazy 'tpope/vim-classpath', {'autoload':
     \ {'filetypes' : 'clojure'}}
 NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'vim-scripts/paredit.vim', {'autoload':
     \ {'filetypes' : 'clojure'}}
 NeoBundleLazy 'kien/rainbow_parentheses.vim', {'autoload':
     \ {'filetypes' : ['clojure', 'javascript', 'html']}}
@@ -273,6 +272,10 @@ augroup vimrc
     autocmd FocusLost *.{html,css} w
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.html syntax enable
+    autocmd BufRead,BufNewFile *.html set syntax=html
+    autocmd BufRead,BufNewFile *.handlebars, *.hbs set filetype=html
+    "stupid paredit mapping...
+    autocmd BufRead,BufNewFile *.clj nunmap <buffer> s
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
     autocmd ColorScheme * AirlineTheme base16
@@ -309,6 +312,8 @@ nnoremap <C-i> <C-i>zz
 
 nnoremap Y y$
 
+nnoremap yp "0p
+
 nnoremap & :&&<CR>
 
 nnoremap gV `[v`]
@@ -326,9 +331,6 @@ cnoremap $d <CR>:d''<CR>
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
-"make comment box using vim-commentary
-nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
-
 nnoremap <silent> <Leader>l :nohls<CR>
 
 nnoremap <silent> <Leader>bp :b#<CR>
@@ -336,6 +338,19 @@ nnoremap <silent> <Leader>bd :BD<CR>
 
 "break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
+
+"make comment box using vim-commentary
+nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
+nnoremap <Leader>cl :call MakeSectionTitle()<CR>
+inoremap <C-t> <Esc>:call MakeSectionTitle()<CR>A
+
+function! MakeSectionTitle()
+    let l:section_title = getline(".")
+    let l:length = strlen(l:section_title)
+    let l:offset = 34 - (l:length / 2)
+    execute "normal! 070R#\<Esc>0" . l:offset . "lR " . l:section_title . " \<Esc>"
+    execute "normal gcc"
+endfunction
 
 "toggle cursorline and toggle background color
 nnoremap <silent> <Leader>tc :set cursorline!<CR>
@@ -391,9 +406,9 @@ function! SaveAbbrev()
 
     let g:ab_mistake = expand("<cword>")
     let g:ab_correction = input("Please enter the correct spelling: ")
-    execute "normal ciw" . g:ab_correction
+    execute "normal! ciw" . g:ab_correction
     execute "edit ~/.vim/after/plugin/abolish.vim"
-    execute "normal GoAbolish" g:ab_mistake g:ab_correction
+    execute "normal! GoAbolish" g:ab_mistake g:ab_correction
     execute "Abolish" g:ab_mistake g:ab_correction
     write
     BD
@@ -423,6 +438,7 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 nnoremap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
 nnoremap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
+nnoremap <silent> <Leader>js :VimShellInteractive node<CR>
 nnoremap <silent> <Leader>py :VimShellInteractive python3.3<CR>
 nnoremap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
 nnoremap <silent> <Leader>vx :VimShellExecute
@@ -625,6 +641,9 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_theme = 'base16'
 set fillchars+=stl:\ ,stlnc:\
+
+" ================ Paredit Settings ================
+let g:paredit_leader="<Space>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
