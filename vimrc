@@ -284,6 +284,8 @@ augroup END
 "open help in vsplit
 augroup helpfiles
     autocmd!
+    autocmd BufRead,BufEnter */doc/* set number
+    autocmd BufRead,BufEnter */doc/* set relativenumber
     autocmd BufRead,BufEnter */doc/* wincmd L
 augroup END
 
@@ -478,7 +480,7 @@ function! s:neocomplete_enter()
     inoremap <buffer> <expr> <CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
-function!s:neocomplete_leave()
+function! s:neocomplete_leave()
     NeoCompleteDisable
 endfunction
 
@@ -499,21 +501,23 @@ elseif executable('ack')
 endif
 
 
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
+call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
     \ 'ignore_pattern', join(['\.git/', '\.pptx$', '\.docx$', '\.jpg$',
     \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/', '.config/*'], '\|'))
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files -start-insert file file_mru<CR>
-nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=files -start-insert file:
-nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:~/Projects
-nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<CR>
+nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files -start-insert file_mru file<CR>
+nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:~/Projects<CR>
+nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files -start-insert file_rec/async:!<CR>
+nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory -start-insert directory:~<CR>
 
 nnoremap <Leader>uy :<C-u>Unite -resume -buffer-name=yanks -quick-match history/yank<CR>
 nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
+
+nnoremap <Leader>ps :<C-u>Unite -buffer-name=processes -start-insert process<CR>
 
 augroup unite
     autocmd!
@@ -522,6 +526,8 @@ augroup END
 
 function! s:unite_settings()
     let b:SuperTabDisabled=1
+    set number
+    set relativenumber
     nnoremap <silent><buffer><expr> s unite#do_action('split')
     nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
     inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
