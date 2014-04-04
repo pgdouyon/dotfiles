@@ -545,24 +545,19 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Sneak Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"I hate when people claim they have a feature that isn't actually
-"implemented properly.  Don't put this on your readme as a feature if Sneak_t
-"only works in operator pending and Sneak_f only *doesn't* work in operator
-"pending
-"Whale guts...
-" let g:sneak#streak = 1
-"nmap t <Plug>Sneak_f
-"nmap T <Plug>Sneak_F
-"xmap t <Plug>Sneak_f
-"xmap T <Plug>Sneak_F
-"omap t <Plug>Sneak_f
-"omap T <Plug>Sneak_F
-"nmap f <Plug>Sneak_t
-"nmap F <Plug>Sneak_T
-"xmap f <Plug>Sneak_t
-"xmap F <Plug>Sneak_T
-"omap f <Plug>Sneak_t
-"omap F <Plug>Sneak_T
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+highlight SneakPluginTarget None
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Netrw Settings
