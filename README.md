@@ -3,10 +3,22 @@
 Just a repository to store my config files.
 
 I have my emacs config on here in case of emergency, but I use Vim primarily and
-don't keep the emacs config up to date.
+don't really keep the emacs config up to date.
 
-Feel free to clone and/or take whatever parts seem most interesting to you.
+I'm just an amateur Clojure/Python/JavaScript hacker so my environment is geared
+mostly towards those languages.  Feel free to clone and/or take whatever parts
+seem most interesting to you.
 
-Personally I recommend using the help docs (:h) liberally, they helped me pare down
-my vimrc a lot from all the cruft I had picked up sampling other vimrcs.
-(yes this is the pared down version....don't judge me....)
+My Vim setup makes heavy use of a family of plugins by
+[Shougo](http://github.com/Shougo), I highly recommend checking his stuff out.
+Particularly the [VimShell](http://github.com/Shougo/vimshell.vim) plugin (live
+terminal/repl/interpreter inside Vim) and the
+[Unite](http://github.com/Shougo/unite.vim) plugin (unified interface for a
+variety of search operations: file system, running processes, yank history,
+etc.).
+
+##Install
+
+The vimrc is configured to bootstrap itself (to be honest I haven't wiped out my
+.vim to test this yet), so installation should be as simple as copying it to the
+home directory and firing up Vim.
