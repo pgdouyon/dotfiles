@@ -13,9 +13,16 @@ if has('vim_starting')
     if !filereadable(neobundle_script)
         echo "Installing NeoBundle..."
         echo ""
-        silent !mkdir -p ~/.vim/bundle
-        silent !mkdir -p ~/.vim/_backup
-        silent !mkdir -p ~/.vim/_temp
+        call mkdir($HOME . "/.vim/bundle", "p")
+        call mkdir($HOME . "/.vim/_backup", "p")
+        call mkdir($HOME . "/.vim/_temp", "p")
+
+        let git_installed = executable("git")
+        if !git_installed
+            echo "Git must be installed to finish setup..."
+            finish
+        endif
+
         silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
         let neobundle_installed=0
     endif
@@ -34,6 +41,10 @@ NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-help'
+NeoBundle 'Shougo/junkfile.vim'
+NeoBundle 'Shougo/unite-session'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':
     \ {'commands' : 'NeoCompleteEnable'}}
@@ -54,7 +65,7 @@ NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'coderifous/textobj-word-column.vim'
-NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'kris89/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'airblade/vim-gitgutter'
@@ -71,6 +82,7 @@ NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'Lokaltog/powerline-fonts'
 NeoBundle 'ap/vim-css-color'
 "NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'zhaocai/GoldenView.Vim'
 
 "Clojure
 NeoBundle 'vim-scripts/paredit.vim'
@@ -112,7 +124,6 @@ NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 
 "Misc
-NeoBundle 'vim-scripts/scratch.vim'
 NeoBundle 'kana/vim-arpeggio'
 
 "Deprecated
@@ -129,6 +140,8 @@ NeoBundle 'kana/vim-arpeggio'
 "NeoBundle 'papanikge/vim-voogle'
 " NeoBundleLazy 'sjl/gundo.vim', {'autoload':
 "     \ {'commands' : 'GundoToggle'}}
+"NeoBundle 'terryma/vim-multiple-cursors'
+"NeoBundle 'vim-scripts/scratch.vim'
 
 call neobundle#config('vimproc', {
 \ 'build' : {
@@ -179,12 +192,20 @@ else
 endif
 
 "change background color based on time of day
+function! SetBackgroundTheme(theme)
+    if (a:theme == 'light')
+        set background=light
+        colorscheme solarized
+    else
+        set background=dark
+        colorscheme hybrid
+    endif
+endfunction
+
 if strftime('%H') > 6 && strftime("%H") < 18
-    set background=light
-    colorscheme solarized
+    call SetBackgroundTheme('light')
 else
-    set background=dark
-    colorscheme hybrid
+    call SetBackgroundTheme('dark')
 endif
 
 "Buffers
@@ -307,6 +328,8 @@ vnoremap k gk
 vnoremap gj j
 vnoremap gk k
 
+nnoremap * *zz
+nnoremap # #zz
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-o> <C-o>zz
@@ -326,7 +349,7 @@ cnoremap w!! w !sudo tee % > /dev/null<CR>
 "stole from reddit - does anyone use easymotion
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d''<CR>
+cnoremap $d <CR>:d<CR>``
 
 "Source a line of vimscript
 "Good for small changes made to vimrc
@@ -343,7 +366,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 "make comment box using vim-commentary
 nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
-nnoremap <Leader>cl :call MakeSectionTitle()<CR>
+nnoremap <Leader>ct :call MakeSectionTitle()<CR>
 inoremap <C-t> <Esc>:call MakeSectionTitle()<CR>A
 
 function! MakeSectionTitle()
@@ -359,10 +382,11 @@ nnoremap <silent> <Leader>tc :set cursorline!<CR>
 nnoremap <silent> <Leader>tb :call ColorToggle()<CR>
 
 function! ColorToggle()
-    if(&background == 'dark') | let l:background = 'light' | else | let l:background = 'dark' | endif
-    if(g:colors_name == 'hybrid') | let l:colorscheme = 'solarized' | else | let l:colorscheme = 'hybrid' | endif
-    execute "set background=" . l:background
-    execute "colorscheme " . l:colorscheme
+    if (&background == 'dark')
+        call SetBackgroundTheme('light')
+    else
+        call SetBackgroundTheme('dark')
+    endif
 endfunction
 
 "make current file executable
@@ -436,7 +460,9 @@ NeoBundleClean
 " VimShell Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimshell_prompt = '$ '
+let g:vimshell_right_prompt = 'getcwd()'
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_editor_command = 'vim'
 
 nnoremap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
 nnoremap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
@@ -487,8 +513,11 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Unite Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
+let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_rec_max_cache_files = 5000
+
+let g:junkfile#directory=expand("~/.vim/.cache/junk")
 
 if executable('ack-grep')
     let g:unite_source_grep_command = "ack-grep"
@@ -508,16 +537,20 @@ call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep,outl
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files -start-insert file_mru file<CR>
-nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:~/Projects<CR>
-nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files -start-insert file_rec/async:!<CR>
-nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory -start-insert directory:~<CR>
+nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files file_mru file<CR>
+nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files file_rec/async:~/Projects<CR>
+nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files file_rec/async:!<CR>
+nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~<CR>
 
-nnoremap <Leader>uy :<C-u>Unite -resume -buffer-name=yanks -quick-match history/yank<CR>
-nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
-nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<CR>
+nnoremap <Leader>uy :<C-u>Unite -buffer-name=yanks history/yank<CR>
+nnoremap <Leader>ug :<C-u>Unite -auto-resize -buffer-name=grep grep:.<CR>
+nnoremap <Leader>ub :<C-u>Unite -auto-resize -buffer-name=buffers buffer<CR>
+nnoremap <Leader>uj :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<CR>
+nnoremap <Leader>uh :<C-u>Unite -auto-resize -buffer-name=help help<CR>
 
-nnoremap <Leader>ps :<C-u>Unite -buffer-name=processes -start-insert process<CR>
+nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
+nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
+nnoremap <Leader>us :<C-u>Unite -no-split -buffer-name=session  session session/new<CR>
 
 augroup unite
     autocmd!
@@ -528,10 +561,14 @@ function! s:unite_settings()
     let b:SuperTabDisabled=1
     set number
     set relativenumber
+    silent! iunmap <C-g>s
+    silent! iunmap <C-g>S
     nnoremap <silent><buffer><expr> s unite#do_action('split')
     nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
+    nnoremap <silent><buffer><expr> r unite#do_action('rec/async')
     inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
     inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+    inoremap <silent><buffer><expr> <C-r> unite#do_action('rec/async')
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -604,10 +641,10 @@ nnoremap <silent> <Leader>fe :%Eval<CR>
 " GitGutter Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_map_keys = 0
-nnoremap ]h <Plug>GitGutterNextHunk
-nnoremap [h <Plug>GitGutterPrevHunk
-nnoremap <Leader>ha <Plug>GitGutterStageHunk
-nnoremap <Leader>hr <Plug>GitGutterRevertHunk
+nnoremap ]h :GitGutterNextHunk<CR>
+nnoremap [h :GitGutterPrevHunk<CR>
+nnoremap <Leader>ha :GitGutterStageHunk<CR>
+nnoremap <Leader>hr :GitGutterRevertHunk<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive Settings
@@ -705,7 +742,7 @@ let g:paredit_leader="<Space>"
     " - cq{motion}  -> bring up a command-line-window with prepopulated text
     "              -> indicated by {motion}
     " - <C-R>(      -> evaluate the given expression and insert the result
-"#TComment
+"#Vim-Commentary
     " - gc{motion} -> toggle comments for small inline comments
     " - gcc        -> toggle comments for current line
     " - gC{motion} -> comment region
