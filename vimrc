@@ -6,22 +6,22 @@ if has('vim_starting')
     set encoding=utf-8
     "I don't know why people always use the ',' key...
     let mapleader="\<Space>"
+    let maplocalleader="\<CR>"
     filetype off
 
     let neobundle_installed=1
     let neobundle_script=expand('~/.vim/bundle/neobundle.vim/autoload/neobundle.vim')
     if !filereadable(neobundle_script)
+        if !executable("git")
+            echo "Git must be installed to finish setup..."
+            finish
+        endif
+
         echo "Installing NeoBundle..."
         echo ""
         call mkdir($HOME . "/.vim/bundle", "p")
         call mkdir($HOME . "/.vim/_backup", "p")
         call mkdir($HOME . "/.vim/_temp", "p")
-
-        let git_installed = executable("git")
-        if !git_installed
-            echo "Git must be installed to finish setup..."
-            finish
-        endif
 
         silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
         let neobundle_installed=0
@@ -56,6 +56,7 @@ NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
+" NeoBundle 'tpope/timl'
 
 "File Search and Navigation
 NeoBundle 'justinmk/vim-sneak'
@@ -69,8 +70,6 @@ NeoBundle 'kris89/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundleLazy 'mattn/emmet-vim', {'autoload':
-    \ {'filetypes' : ['html', 'xhtml', 'xml']}}
 
 "Screen Enhancements/Colors
 NeoBundle 'bling/vim-airline'
@@ -112,6 +111,14 @@ NeoBundleLazy 'elzr/vim-json', {'autoload':
 "HTML
 NeoBundleLazy 'othree/html5.vim', {'autoload':
 \ {'filetypes' : 'html'}}
+NeoBundleLazy 'mattn/emmet-vim', {'autoload':
+    \ {'filetypes' : ['html', 'xhtml', 'xml']}}
+
+"Markdown
+NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
+\ {'filetypes' : ['markdown', 'tex']}}
+" NeoBundleLazy 'vim-pandoc/vim-pandoc', {'autoload':
+" \ {'filetypes' : 'markdown'}}
 
 "LaTeX
 NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
@@ -140,7 +147,6 @@ NeoBundle 'kana/vim-arpeggio'
 "NeoBundle 'papanikge/vim-voogle'
 " NeoBundleLazy 'sjl/gundo.vim', {'autoload':
 "     \ {'commands' : 'GundoToggle'}}
-"NeoBundle 'terryma/vim-multiple-cursors'
 "NeoBundle 'vim-scripts/scratch.vim'
 
 call neobundle#config('vimproc', {
@@ -175,7 +181,7 @@ call neobundle#config('vimfiler', {
 if neobundle_installed == 0
     echo "Installing NeoBundles..."
     echo ""
-    NeoBundleInstall
+    NeoBundleInstall!
     source $MYVIMRC
 endif
 
@@ -191,7 +197,6 @@ else
     let g:solarized_termcolors=256
 endif
 
-"change background color based on time of day
 function! SetBackgroundTheme(theme)
     if (a:theme == 'light')
         set background=light
@@ -202,6 +207,7 @@ function! SetBackgroundTheme(theme)
     endif
 endfunction
 
+"change background color based on time of day
 if strftime('%H') > 6 && strftime("%H") < 18
     call SetBackgroundTheme('light')
 else
@@ -226,29 +232,29 @@ filetype plugin indent on
 
 "Tab/indent
 set autoindent
-set expandtab
-set smarttab
-set shiftround
-set softtabstop=4
-set shiftwidth=4
-set scrolloff=8
-set sidescrolloff=5
+set expandtab       " use spaces instead of tab characters
+set smarttab        " make tab at the beginning of line use shiftwidth, instead of tabstop
+set shiftround      " indent to multiple of tabstop value
+set softtabstop=4   " number of spaces a <Tab> inserts when expandtab is set
+set shiftwidth=4    " number of spaces to use for >> and auto indent
+set scrolloff=8     " leave 8 lines visible at the top/bottom of the screen
+set sidescrolloff=5 " leave 5 colums visible at the left/right side
 set backspace=indent,eol,start
 set textwidth=80
 
-set nrformats-=octal
+set nrformats-=octal    " octal is the devil, don't allow it
 set fileformats+=mac
 set iskeyword+=-
 
-set mouse=""
-set shellslash
-set ttyfast
+set mouse=""            " the mouse is the devil, don't allow it
+set shellslash          " use forward slashes for file names
+set ttyfast             " demand better performance when in terminal
 if has("unix")
     set shell=bash
 endif
 
 "Search
-set gdefault
+set gdefault        " all substiutions have 'g' flag on by default
 set ignorecase      " do case insensitive matching
 set smartcase       " do smart case matching
 set incsearch       " incremental search
@@ -258,13 +264,13 @@ set showmatch       " show matching brackets.
 set splitbelow
 set splitright
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
 set completeopt+=longest
-set laststatus=2
-set guioptions-=T
-set guioptions+=c
-set clipboard=unnamedplus
-set display+=lastline
+set laststatus=2                " always show status line
+set guioptions-=T               " turn off Toolbar
+set guioptions+=c               " use console dialogs instead of popup dialogs
+set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
+set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
 "set guitablabel=\[%N\]\ %t\ %M
 
 " Disable output and VCS files
@@ -280,9 +286,9 @@ set wildignore+=*.exe,*/tmp/*,*\\tmp\\*,*.swp,*~,._*
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf,*/node_modules/*
 
 "Swap files
-set backupdir^=~/.vim/_backup//    " where to put backup files.
-set directory^=~/.vim/_temp//      " where to put swap files.
-set shortmess+=A
+set backupdir^=~/.vim/_backup//     " where to put backup files.
+set directory^=~/.vim/_temp//       " where to put swap files.
+set shortmess+=A                    " no 'existing swap file found' messages
 
 set grepprg=ack\ --smart-case\ --column\ --nogroup\ --nocolor\ --follow
 
@@ -299,6 +305,7 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.clj nunmap <buffer> s
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
+    "reload AirlineTheme because the tab bar gets effed up
     autocmd ColorScheme * AirlineTheme base16
 augroup END
 
@@ -315,10 +322,11 @@ if !exists('g:loaded_matchit')
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
+" Vimrc Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 call arpeggio#map('covi','', 0, 'tn', '<Esc>')
 
+" make j and k operate over display lines
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
@@ -328,6 +336,7 @@ vnoremap k gk
 vnoremap gj j
 vnoremap gk k
 
+" center the jump on screen
 nnoremap * *zz
 nnoremap # #zz
 nnoremap n nzz
@@ -335,14 +344,25 @@ nnoremap N Nzz
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
+" simplify inline navigation
+nnoremap H ^
+nnoremap L $
+nnoremap ^ H
+nnoremap $ L
+
+" make Y play nice like C and D do
 nnoremap Y y$
 
+" yank-paste -> paste the last yank
 nnoremap yp "0p
 
+" reuse flags when repeating substitute command with &
 nnoremap & :&&<CR>
 
+" highlight last inserted text
 nnoremap gV `[v`]
 
+" write file with super user privileges
 cnoremap w!! w !sudo tee % > /dev/null<CR>
 
 "allows incsearch highlighting for range commands
@@ -358,6 +378,7 @@ nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 nnoremap <silent> <Leader>l :nohls<CR>
 
+" switch to alternate buffer and delete buffer using BufKill plugin to keep window
 nnoremap <silent> <Leader>bp :b#<CR>
 nnoremap <silent> <Leader>bd :BD<CR>
 
@@ -377,8 +398,7 @@ function! MakeSectionTitle()
     execute "normal gcc"
 endfunction
 
-"toggle cursorline and toggle background color
-nnoremap <silent> <Leader>tc :set cursorline!<CR>
+"toggle background color
 nnoremap <silent> <Leader>tb :call ColorToggle()<CR>
 
 function! ColorToggle()
@@ -404,10 +424,11 @@ nnoremap <Leader>wq <C-w>q
 nnoremap <Leader>wc <C-w>c
 nnoremap <Leader>wo <C-w>o
 nnoremap <Leader>w= <C-w>=
-noremap <silent> <Left> :vertical resize -10<CR>
-noremap <silent> <Right> :vertical resize +10<CR>
-noremap <silent> <Down> :resize -10<CR>
-noremap <silent> <Up> :resize +10<CR>
+nnoremap <silent> <Leader>tc :tabc<CR>
+nnoremap <silent> <Left> :vertical resize -10<CR>
+nnoremap <silent> <Right> :vertical resize +10<CR>
+nnoremap <silent> <Down> :resize -10<CR>
+nnoremap <silent> <Up> :resize +10<CR>
 
 " cd to the directory containing the file in the buffer
 nnoremap <silent> <leader>cd :lcd %:h<CR>
@@ -430,6 +451,7 @@ function! SaveAbbrev()
         silent !touch ~/.vim/after/plugin/abolish.vim
     endif
 
+    " get word under cursor and get correct spelling as input
     let g:ab_mistake = expand("<cword>")
     let g:ab_correction = input("Please enter the correct spelling: ")
     execute "normal! ciw" . g:ab_correction
@@ -454,13 +476,13 @@ nnoremap <Leader>fw :call FixTrailingSpaces()<CR>
 " Finish NeoBundle Setup
 """"""""""""""""""""""""""""""""""""""""""""""""""
 NeoBundleCheck
-NeoBundleClean
+NeoBundleClean!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VimShell Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimshell_prompt = '$ '
-let g:vimshell_right_prompt = 'getcwd()'
+let g:vimshell_right_prompt = 'strftime("%a %b %d  %H:%M %p")'
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_editor_command = 'vim'
 
@@ -469,6 +491,7 @@ nnoremap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
 nnoremap <silent> <Leader>js :VimShellInteractive node<CR>
 nnoremap <silent> <Leader>py :VimShellInteractive python3.3<CR>
 nnoremap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
+nnoremap <silent> <Leader>lu :VimShellInteractive lua<CR>
 nnoremap <silent> <Leader>vx :VimShellExecute
 nnoremap <silent> <Leader>ve :VimShellSendString<CR>
 vnoremap <silent> <Leader>ve :VimShellSendString<CR>
@@ -517,6 +540,9 @@ let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_rec_max_cache_files = 5000
 
+if !isdirectory($HOME . "/.vim/.cache/junk")
+    call mkdir($HOME . "/.vim/.cache/junk", "p")
+endif
 let g:junkfile#directory=expand("~/.vim/.cache/junk")
 
 if executable('ack-grep')
@@ -537,10 +563,10 @@ call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep,outl
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
-nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files file_mru file<CR>
+nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files file_mru file file/new<CR>
 nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files file_rec/async:~/Projects<CR>
 nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files file_rec/async:!<CR>
-nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~<CR>
+nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~ directory/new<CR>
 
 nnoremap <Leader>uy :<C-u>Unite -buffer-name=yanks history/yank<CR>
 nnoremap <Leader>ug :<C-u>Unite -auto-resize -buffer-name=grep grep:.<CR>
@@ -582,18 +608,10 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Sneak Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 highlight SneakPluginTarget None
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -619,16 +637,14 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-if exists(":Tabularize")
-    nnoremap <silent> <Leader>t= :Tabularize /=<CR>
-    vnoremap <silent> <Leader>t= :Tabularize /=<CR>
-    nnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
-    vnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
-    nnoremap <silent> <Leader>t| :Tabularize /<Bar><CR>
-    vnoremap <silent> <Leader>t| :Tabularize /<Bar><CR>
-    nnoremap <silent> <Leader>ta :Tabularize /
-    vnoremap <silent> <Leader>ta :Tabularize /
-endif
+nnoremap <silent> <Leader>t= :Tabularize /=<CR>
+vnoremap <silent> <Leader>t= :Tabularize /=<CR>
+nnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
+vnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
+nnoremap <silent> <Leader>t<Bar> :Tabularize /<Bar><CR>
+vnoremap <silent> <Leader>t<Bar> :Tabularize /<Bar><CR>
+nnoremap <silent> <Leader>ta :Tabularize /
+vnoremap <silent> <Leader>ta :Tabularize /
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fireplace Settings
@@ -641,10 +657,10 @@ nnoremap <silent> <Leader>fe :%Eval<CR>
 " GitGutter Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let g:gitgutter_map_keys = 0
-nnoremap ]h :GitGutterNextHunk<CR>
-nnoremap [h :GitGutterPrevHunk<CR>
-nnoremap <Leader>ha :GitGutterStageHunk<CR>
-nnoremap <Leader>hr :GitGutterRevertHunk<CR>
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+nmap <Leader>ha <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterRevertHunk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive Settings
