@@ -610,18 +610,6 @@ augroup rainbow
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" Tabular Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <Leader>t= :Tabularize /=<CR>
-vnoremap <silent> <Leader>t= :Tabularize /=<CR>
-nnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
-vnoremap <silent> <Leader>t: :Tabularize /:\zs<CR>
-nnoremap <silent> <Leader>t<Bar> :Tabularize /<Bar><CR>
-vnoremap <silent> <Leader>t<Bar> :Tabularize /<Bar><CR>
-nnoremap <silent> <Leader>ta :Tabularize /
-vnoremap <silent> <Leader>ta :Tabularize /
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fireplace Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <Leader>fdj yiw:Djump <C-r>0<CR>
