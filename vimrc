@@ -187,6 +187,8 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
+"maximize gvim on open, set terminal to 256 colors
+""""""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
 filetype plugin indent on
 syntax on
@@ -599,17 +601,17 @@ let g:netrw_liststyle=3
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Rainbow Parentheses Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-let bundle = neobundle#get('rainbow_parentheses.vim')
-function! bundle.hooks.on_source(bundle)
-    autocmd VimEnter * RainbowParenthesesActivate
-    autocmd BufEnter * RainbowParenthesesActivate
-    autocmd ColorScheme * RainbowParenthesesActivate
+augroup rainbow
+    autocmd!
+    autocmd BufEnter *.{clj,html,js} RainbowParenthesesActivate
+    autocmd BufLeave *.{clj,html,js} RainbowParenthesesToggleAll
+    autocmd ColorScheme *.{clj,html,js} RainbowParenthesesActivate
 
-    autocmd Syntax * RainbowParenthesesLoadBraces
-    autocmd Syntax * RainbowParenthesesLoadChevrons
-    autocmd Syntax * RainbowParenthesesLoadRound
-    autocmd Syntax * RainbowParenthesesLoadSquare
-endfunction
+    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadBraces
+    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadChevrons
+    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadRound
+    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadSquare
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular Settings
@@ -636,8 +638,8 @@ nnoremap <silent> <Leader>fe :%Eval<CR>
 let g:gitgutter_map_keys = 0
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-nmap <Leader>ha <Plug>GitGutterStageHunk
-nmap <Leader>hr <Plug>GitGutterRevertHunk
+nmap gha <Plug>GitGutterStageHunk
+nmap ghr <Plug>GitGutterRevertHunk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Fugitive Settings
@@ -679,41 +681,10 @@ let g:paredit_leader="<Space>"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"#Fugitive:
-    " - <Leader>gs - Gstatus
-    "     - Type - on any file to stage or unstage it
-    "     - Type p on any file to enter and stage specific hunks in the file
-    " - <Leader>gb - Gblame
-    " - <Leader>gd - Gdiff
-    " - <Leader>gl - Glog
-    " - <Leader>gc - Gcommit
-    " - <Leader>gp - Gpush
 "#Multiple-Cursors
     " - <c-n> -> select next
     " - <c-p> -> undo selection and move to previous
     " - <c-x> -> skip current selection
-"#Paredit
-    " - [[             -> go to start of current/previous defn
-    " - ]]             -> go to start of next defn
-    " - <Leader><      -> if standing on a delimiter moves the delimeter to the left
-    "                 -> either slurping or barfing depending on delimeter
-    " - <Leader>>      -> if standing on a delimiter moves the delimiter to the right
-    " - <Leader>J      -> join two subsequent lists or strings
-"     - <Leader>O      -> split ("open") current list or string
-    "                 -> Opposite of <Leader>J command
-    " - <Leader>w(     -> wrap current symbol in parantheses
-    "                 -> Can also use <Leader>W
-"                     -> Can use other delimiters instead of (, i.e. [{"
-    " - <Leader>S      -> splice the current list into the outer list
-    "                 -> Opposite of wrap
-    " - <Leader><Up>   -> splice killing backward in inner list
-    "                 -> (aaa (bbb |ccc) ddd) ===> (aaa |ccc ddd)
-    " - <Leader><Down> -> splice killing forward in inner list
-    "                 -> (aaa (bbb| ccc) ddd) ===> (aaa |bbb ddd)
-    " - <Leader>I      -> raise current symbol by splicing and killing all other symbols in inner list
-    "                 -> (aaa (b|bb ccc) ddd) ===> (aaa |bbb ddd)
-"#NrrwRgn
-    " - :NarrowRegion -> export currently selected region to scratch buffer
 "#Fireplace
     " - K           -> look up docs for keyword under cursor
     " - [d or ]d    -> show source for keyword under cursor
