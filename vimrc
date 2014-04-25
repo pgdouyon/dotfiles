@@ -197,7 +197,7 @@ else
     let g:solarized_termcolors=256
 endif
 
-function! SetBackgroundTheme(theme)
+function! s:SetBackgroundTheme(theme)
     if (a:theme == 'light')
         set background=light
         colorscheme solarized
@@ -209,9 +209,9 @@ endfunction
 
 "change background color based on time of day
 if strftime('%H') > 6 && strftime("%H") < 18
-    call SetBackgroundTheme('light')
+    call <SID>SetBackgroundTheme('light')
 else
-    call SetBackgroundTheme('dark')
+    call <SID>SetBackgroundTheme('dark')
 endif
 
 "Buffers
@@ -227,8 +227,6 @@ set hidden          " hide buffers when they are abandoned
 set history=1000
 set ttimeout
 set ttimeoutlen=50
-syntax enable
-filetype plugin indent on
 
 "Tab/indent
 set autoindent
@@ -387,10 +385,10 @@ inoremap <C-U> <C-G>u<C-U>
 
 "make comment box using vim-commentary
 nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
-nnoremap <Leader>ct :call MakeSectionTitle()<CR>
-inoremap <C-t> <Esc>:call MakeSectionTitle()<CR>A
+nnoremap <Leader>ct :call <SID>MakeSectionTitle()<CR>
+inoremap <C-t> <Esc>:call <SID>MakeSectionTitle()<CR>A
 
-function! MakeSectionTitle()
+function! s:MakeSectionTitle()
     let l:section_title = getline(".")
     let l:length = strlen(l:section_title)
     let l:offset = 34 - (l:length / 2)
@@ -399,13 +397,13 @@ function! MakeSectionTitle()
 endfunction
 
 "toggle background color
-nnoremap <silent> <Leader>tb :call ColorToggle()<CR>
+nnoremap <silent> <Leader>tb :call <SID>ColorToggle()<CR>
 
-function! ColorToggle()
+function! s:ColorToggle()
     if (&background == 'dark')
-        call SetBackgroundTheme('light')
+        call <SID>SetBackgroundTheme('light')
     else
-        call SetBackgroundTheme('dark')
+        call <SID>SetBackgroundTheme('dark')
     endif
 endfunction
 
@@ -441,7 +439,7 @@ nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>nu :set relativenumber!<CR>
 
-function! SaveAbbrev()
+function! s:SaveAbbrev()
     let l:after = $HOME . '/.vim/after/plugin/'
     let l:abbrevs = l:after . 'abolish.vim'
     if !isdirectory(l:after)
@@ -462,15 +460,15 @@ function! SaveAbbrev()
     BD
 endfunction
 
-nnoremap <Leader>ab :call SaveAbbrev()<CR>
+nnoremap <Leader>ab :call <SID>SaveAbbrev()<CR>
 
-function! FixTrailingSpaces()
+function! s:FixTrailingSpaces()
     let l:save_cursor = getpos('.')
     silent! execute ":%s/\\s\\+$//"
     call setpos('.', l:save_cursor)
 endfunction
 
-nnoremap <Leader>fw :call FixTrailingSpaces()<CR>
+nnoremap <Leader>fw :call <SID>FixTrailingSpaces()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Finish NeoBundle Setup
@@ -517,20 +515,14 @@ let g:neocomplete#sources#vim#complete_functions = {
 
 augroup neocomplete
     autocmd!
-    autocmd BufEnter *vimshell* call s:neocomplete_enter()
-    autocmd BufLeave *vimshell* call s:neocomplete_leave()
+    autocmd BufEnter *vimshell* call <SID>neocomplete_enter()
 augroup END
 
 function! s:neocomplete_enter()
-    NeoCompleteEnable
-    inoremap <buffer> <expr> <Tab> pumvisible() ? "\<C-p>" : "\<Tab>"
+    NeoCompleteUnlock
     inoremap <buffer> <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<S-Tab>"
     inoremap <buffer> <expr> <Space> pumvisible() ? neocomplete#close_popup() . "\<Space>" : "\<Space>"
     inoremap <buffer> <expr> <CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-
-function! s:neocomplete_leave()
-    NeoCompleteDisable
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -580,7 +572,7 @@ nnoremap <Leader>us :<C-u>Unite -no-split -buffer-name=session  session session/
 
 augroup unite
     autocmd!
-    autocmd FileType unite call s:unite_settings()
+    autocmd FileType unite call <SID>unite_settings()
 augroup END
 
 function! s:unite_settings()
