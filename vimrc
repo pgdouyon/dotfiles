@@ -188,8 +188,9 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"maximize gvim on open, set terminal to 256 colors
+filetype plugin indent on
+syntax on
+
 if has("gui_running")
     set lines=999 columns=999
 else
@@ -296,11 +297,7 @@ augroup vimrc
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd FocusLost *.{html,css} w
     autocmd BufRead,BufNewFile *.md set filetype=markdown
-    autocmd BufRead,BufNewFile *.html syntax enable
-    autocmd BufRead,BufNewFile *.html set syntax=html
     autocmd BufRead,BufNewFile *.handlebars, *.hbs set filetype=html
-    "stupid paredit mapping...
-    autocmd BufRead,BufNewFile *.clj nunmap <buffer> s
     autocmd InsertEnter * set norelativenumber
     autocmd InsertLeave * set relativenumber
     "reload AirlineTheme because the tab bar gets effed up
@@ -339,8 +336,8 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap <C-o> <C-o>zz
-nnoremap <C-i> <C-i>zz
+nnoremap <C-o> <C-o>zt
+nnoremap <C-i> <C-i>zt
 
 " simplify inline navigation
 nnoremap H ^
@@ -411,18 +408,9 @@ endfunction
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
 
 "Window navigation commands
-nnoremap <Leader>wv <C-w>v
-nnoremap <Leader>ws <C-w>s
-nnoremap <Leader>ww <C-w>w
-nnoremap <Leader>wh <C-w>h
-nnoremap <Leader>wj <C-w>j
-nnoremap <Leader>wk <C-w>k
-nnoremap <Leader>wl <C-w>l
-nnoremap <Leader>wq <C-w>q
-nnoremap <Leader>wc <C-w>c
-nnoremap <Leader>wo <C-w>o
-nnoremap <Leader>w= <C-w>=
+nnoremap gw <C-w>
 nnoremap <silent> <Leader>tc :tabc<CR>
+nnoremap <silent> <Leader>to :tabe<CR>
 nnoremap <silent> <Left> :vertical resize -10<CR>
 nnoremap <silent> <Right> :vertical resize +10<CR>
 nnoremap <silent> <Down> :resize -10<CR>
@@ -490,6 +478,7 @@ nnoremap <silent> <Leader>js :VimShellInteractive node<CR>
 nnoremap <silent> <Leader>py :VimShellInteractive python3.3<CR>
 nnoremap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
 nnoremap <silent> <Leader>lu :VimShellInteractive lua<CR>
+nnoremap <silent> <Leader>ms :VimShellInteractive mit-scheme<CR>
 nnoremap <silent> <Leader>vx :VimShellExecute
 nnoremap <silent> <Leader>ve :VimShellSendString<CR>
 vnoremap <silent> <Leader>ve :VimShellSendString<CR>
@@ -600,10 +589,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Sneak Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
 highlight SneakPluginTarget None
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
