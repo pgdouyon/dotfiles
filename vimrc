@@ -23,13 +23,13 @@ if has('vim_starting')
         call mkdir($HOME . "/.vim/_backup", "p")
         call mkdir($HOME . "/.vim/_temp", "p")
 
-        silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+        execute "silent !git clone https://github.com/Shougo/neobundle.vim " . $HOME . "/bundle/neobundle.vim"
         let neobundle_installed=0
     endif
 
-    set rtp+=~/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " NeoBundle Bundles
@@ -46,100 +46,97 @@ NeoBundle 'Shougo/unite-help'
 NeoBundle 'Shougo/junkfile.vim'
 NeoBundle 'Shougo/unite-session'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundleLazy 'Shougo/neocomplete.vim', {'autoload':
-    \ {'commands' : 'NeoCompleteEnable'}}
+NeoBundle 'Shougo/neocomplete.vim'
 
-"Tim Pope
+" Tim Pope
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 " NeoBundle 'tpope/timl'
 
-"File Search and Navigation
+" Editing Enhancements (IDE features)
 NeoBundle 'justinmk/vim-sneak'
-NeoBundle 'vim-scripts/bufkill.vim'
-
-"Editing Enhancements
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'coderifous/textobj-word-column.vim'
 NeoBundle 'kris89/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'airblade/vim-gitgutter'
 
-"Screen Enhancements/Colors
+" Text Objects
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'coderifous/textobj-word-column.vim'
+
+" Window/Buffer Management
+NeoBundle 'vim-scripts/bufkill.vim'
+NeoBundle 'zhaocai/GoldenView.Vim'
+
+" GUI Plugins
 NeoBundle 'bling/vim-airline'
-NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'Lokaltog/powerline-fonts'
+
+" ColorSchemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'Lokaltog/powerline-fonts'
-NeoBundle 'ap/vim-css-color'
-"NeoBundle 'flazz/vim-colorschemes'
-"NeoBundle 'zhaocai/GoldenView.Vim'
+
+" Tool Integration
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/gist-vim'
+
+" Misc
+NeoBundle 'kana/vim-arpeggio'
 
 "Clojure
-NeoBundle 'vim-scripts/paredit.vim'
+NeoBundle 'guns/vim-sexp'
+NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
     \ {'filetypes' : 'clojure'}}
 NeoBundleLazy 'tpope/vim-classpath', {'autoload':
     \ {'filetypes' : 'clojure'}}
 NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
     \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'kien/rainbow_parentheses.vim', {'autoload':
-    \ {'filetypes' : ['clojure', 'javascript', 'html']}}
 
 "Python
 NeoBundleLazy 'klen/python-mode', {'autoload':
-\ {'filetypes' : 'python'}}
+    \ {'filetypes' : 'python'}}
 
 "JavaScript
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':
-\ {'filetypes' : 'javascript'}}
+    \ {'filetypes' : 'javascript'}}
 NeoBundleLazy 'moll/vim-node', {'autoload':
-\ {'filetypes' : 'javascript'}}
+    \ {'filetypes' : 'javascript'}}
 NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':
-\ {'filetypes' : 'coffee'}}
+    \ {'filetypes' : 'coffee'}}
 NeoBundleLazy 'elzr/vim-json', {'autoload':
-\ {'filetypes' : 'json'}}
+    \ {'filetypes' : 'json'}}
 
 "HTML
 NeoBundleLazy 'othree/html5.vim', {'autoload':
-\ {'filetypes' : 'html'}}
+    \ {'filetypes' : 'html'}}
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':
     \ {'filetypes' : ['html', 'xhtml', 'xml']}}
 
+" CSS
+NeoBundleLazy 'ap/vim-css-color', {'autoload':
+    \ {'filetypes' : 'css'}}
+"NeoBundle 'flazz/vim-colorschemes'
+
 "Markdown
 NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
-\ {'filetypes' : ['markdown', 'tex']}}
-" NeoBundleLazy 'vim-pandoc/vim-pandoc', {'autoload':
-" \ {'filetypes' : 'markdown'}}
+    \ {'filetypes' : ['markdown', 'tex']}}
 
 "LaTeX
 NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
-\ {'filetypes' : 'tex'}}
-
-
-"Tooling
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
-
-"Misc
-NeoBundle 'kana/vim-arpeggio'
+    \ {'filetypes' : 'tex'}}
 
 "Deprecated
-"NeoBundle 'thinca/vim-visualstar'
 "NeoBundle 'vim-scripts/ZoomWin'
-" NeoBundleLazy 'chrisbra/NrrwRgn', {'autoload':
-"     \ {'commands' : 'NarrowRegion'}}
-" NeoBundleLazy 'pangloss/vim-javascript', {'autoload':
-" \ {'filetypes' : ['javascript', 'html']}}
 "NeoBundleLazy 'mustache/vim-mustache-handlebars'
 " NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
 " \ {'filetypes' : 'markdown'}}
@@ -147,36 +144,34 @@ NeoBundle 'kana/vim-arpeggio'
 "NeoBundle 'papanikge/vim-voogle'
 " NeoBundleLazy 'sjl/gundo.vim', {'autoload':
 "     \ {'commands' : 'GundoToggle'}}
-"NeoBundle 'vim-scripts/scratch.vim'
+" NeoBundle 'godlygeek/tabular'
 
-call neobundle#config('vimproc', {
-\ 'build' : {
-\       'windows' : 'make -f make_mingw64.mak',
-\       'cygwin' : 'make -f make_cygwin.mak',
-\       'mac' : 'make -f make_mac.mak',
-\       'unix' : 'make -f make_unix.mak',
-\   },
-\ })
+call neobundle#config('vimproc.vim', {
+    \ 'build' : {
+        \       'windows' : 'make -f make_mingw64.mak',
+        \       'cygwin' : 'make -f make_cygwin.mak',
+        \       'mac' : 'make -f make_mac.mak',
+        \       'unix' : 'make -f make_unix.mak',
+        \   }})
 
-call neobundle#config('vimfiler', {
-\ 'lazy' : 1,
-\ 'depends' : 'Shougo/unite.vim',
-\ 'autoload' : {
-\       'commands' : [
-\           {'name' : 'VimFiler',
-\           'complete' : 'customlist,vimfiler#complete'},
-\           {'name' : 'VimFilerTab',
-\           'complete' : 'customlist,vimfiler#complete'},
-\           {'name' : 'VimFilerExplorer',
-\           'complete' : 'customlist,vimfiler#complete'},
-\           {'name' : 'Edit',
-\           'complete' : 'customlist,vimfiler#complete'},
-\           {'name' : 'Write',
-\           'complete' : 'customlist,vimfiler#complete'},
-\           'Read', 'Source'],
-\       'mappings' : '<Plug>vimfiler_',
-\       'explorer' : 1,
-\}})
+call neobundle#config('vimfiler.vim', {
+    \ 'lazy' : 1,
+    \ 'depends' : 'Shougo/unite.vim',
+    \ 'autoload' : {
+    \       'commands' : [
+    \           {'name' : 'VimFiler',
+    \           'complete' : 'customlist,vimfiler#complete'},
+    \           {'name' : 'VimFilerTab',
+    \           'complete' : 'customlist,vimfiler#complete'},
+    \           {'name' : 'VimFilerExplorer',
+    \           'complete' : 'customlist,vimfiler#complete'},
+    \           {'name' : 'Edit',
+    \           'complete' : 'customlist,vimfiler#complete'},
+    \           {'name' : 'Write',
+    \           'complete' : 'customlist,vimfiler#complete'},
+    \           'Read', 'Source'],
+    \       'mappings' : '<Plug>vimfiler_',
+    \       'explorer' : 1}})
 
 if neobundle_installed == 0
     echo "Installing NeoBundles..."
@@ -185,11 +180,12 @@ if neobundle_installed == 0
     source $MYVIMRC
 endif
 
+call neobundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"maximize gvim on open, set terminal to 256 colors
-""""""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"maximize gvim on open, set terminal to 256 colors
 filetype plugin indent on
 syntax on
 
@@ -675,8 +671,14 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_theme = 'base16'
 set fillchars+=stl:\ ,stlnc:\
 
-" ================ Paredit Settings ================
-let g:paredit_leader="<Space>"
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" GoldenView Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:goldenview__enable_at_startup = 0
+let g:goldenview__enable_default_mapping = 0
+nmap <silent> <F5> <Plug>GoldenViewSplit
+nmap <silent> <F6> <Plug>GoldenViewSwitchMain
+nmap <silent> <F7> <Plug>GoldenViewSwitchToggle
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
