@@ -545,27 +545,29 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
-let g:unite_source_rec_max_cache_files = 5000
+let g:unite_source_history_yank_save_clipboard = 1
 
 if !isdirectory($HOME . "/.vim/.cache/junk")
     call mkdir($HOME . "/.vim/.cache/junk", "p")
 endif
 let g:junkfile#directory=expand("~/.vim/.cache/junk")
 
-if executable('ack-grep')
-    let g:unite_source_grep_command = "ack-grep"
-    let g:unite_source_grep_default_opts = '--line-numbers --nogroup -a -w'
-    let g:unite_source_grep_recursive_opt = ''
-elseif executable('ack')
-    let g:unite_source_grep_command = "ack"
-    let g:unite_source_grep_default_opts = '--line-numbers --nogroup -a -w'
-    let g:unite_source_grep_recursive_opt = ''
+if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --follow --smart-case -t'
+    let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --follow --hidden --smart-case -t -g ""'
+elseif executable('ack-grep')
+    let g:unite_source_grep_command = 'ack-grep'
+    let g:unite_source_grep_default_opts = '--line-numbers --noheading --column --follow --smart-case -a'
+    let g:unite_source_rec_async_command = 'ack --nocolor --nogroup --smart-case -f --nofilter'
 endif
 
 
+call unite#custom#source('file_rec,file_rec/async,grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
     \ 'ignore_pattern', join(['\.git/', '\.pptx$', '\.docx$', '\.jpg$',
-    \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/', '.config/*'], '\|'))
+    \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/', '\.config/*',
+    \ '/\.meteor/*', '/packages/'], '\|'))
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
@@ -576,14 +578,15 @@ nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files file_rec/as
 nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~ directory/new<CR>
 
 nnoremap <Leader>uy :<C-u>Unite -buffer-name=yanks history/yank<CR>
-nnoremap <Leader>ug :<C-u>Unite -auto-resize -buffer-name=grep grep:.<CR>
-nnoremap <Leader>ub :<C-u>Unite -auto-resize -buffer-name=buffers buffer<CR>
-nnoremap <Leader>uj :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<CR>
-nnoremap <Leader>uh :<C-u>Unite -auto-resize -buffer-name=help help<CR>
+nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
+nnoremap <Leader>ub :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
+nnoremap <Leader>uj :<C-u>Unite -no-split -buffer-name=junk junkfile junkfile/new<CR>
+nnoremap <Leader>uh :<C-u>Unite -no-split -buffer-name=help help<CR>
 
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
 nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
 nnoremap <Leader>us :<C-u>Unite -no-split -buffer-name=session  session session/new<CR>
+nnoremap <Leader>uu :<C-u>Unite -no-split<Space>
 
 augroup unite
     autocmd!
