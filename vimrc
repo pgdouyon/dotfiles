@@ -307,7 +307,13 @@ set backupdir^=~/.vim/_backup//     " where to put backup files.
 set directory^=~/.vim/_temp//       " where to put swap files.
 set shortmess+=A                    " no 'existing swap file found' messages
 
-set grepprg=ack\ --smart-case\ --column\ --nogroup\ --nocolor\ --follow
+if executable('ag')
+    set grepprg=ag\ --noheading\ --nocolor\ --column\ --follow\ --smart-case\ -t
+    set grepformat=%f:%l:%c:%m
+elseif executable('ack-grep')
+    set grepprg=ack\ --noheading\ --nocolor\ --column\ --follow\ --smart-case
+    set grepformat=%f:%l:%c:%m
+endif
 
 augroup vimrc
     autocmd!
