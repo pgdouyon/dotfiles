@@ -94,7 +94,7 @@ NeoBundle 'mattn/gist-vim'
 " Misc
 NeoBundle 'kana/vim-arpeggio'
 
-"Clojure
+" Clojure
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
@@ -104,7 +104,7 @@ NeoBundleLazy 'tpope/vim-classpath', {'autoload':
 NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
     \ {'filetypes' : 'clojure'}}
 
-"Python
+" Python
 NeoBundleLazy 'klen/python-mode', {'autoload':
     \ {'filetypes' : 'python'}}
 
@@ -118,7 +118,7 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':
 NeoBundleLazy 'elzr/vim-json', {'autoload':
     \ {'filetypes' : 'json'}}
 
-"HTML
+" HTML
 NeoBundleLazy 'othree/html5.vim', {'autoload':
     \ {'filetypes' : 'html'}}
 NeoBundleLazy 'mattn/emmet-vim', {'autoload':
@@ -127,25 +127,25 @@ NeoBundleLazy 'mattn/emmet-vim', {'autoload':
 " CSS
 NeoBundleLazy 'ap/vim-css-color', {'autoload':
     \ {'filetypes' : 'css'}}
-"NeoBundle 'flazz/vim-colorschemes'
+" NeoBundle 'flazz/vim-colorschemes'
 
-"Markdown
+" Markdown
 NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
     \ {'filetypes' : ['markdown', 'tex']}}
 
-"LaTeX
+" LaTeX
 NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
     \ {'filetypes' : 'tex'}}
 
-"Deprecated
-"NeoBundle 'vim-scripts/ZoomWin'
-"NeoBundleLazy 'mustache/vim-mustache-handlebars'
+" Deprecated
+" NeoBundle 'vim-scripts/ZoomWin'
+" NeoBundleLazy 'mustache/vim-mustache-handlebars'
 " NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
-" \ {'filetypes' : 'markdown'}}
-"NeoBundle 'kballenegger/vim-autoreadwatch'
-"NeoBundle 'papanikge/vim-voogle'
+    " \ {'filetypes' : 'markdown'}}
+" NeoBundle 'kballenegger/vim-autoreadwatch'
+" NeoBundle 'papanikge/vim-voogle'
 " NeoBundleLazy 'sjl/gundo.vim', {'autoload':
-"     \ {'commands' : 'GundoToggle'}}
+    " \ {'commands' : 'GundoToggle'}}
 " NeoBundle 'godlygeek/tabular'
 
 call neobundle#config('vimproc.vim', {
