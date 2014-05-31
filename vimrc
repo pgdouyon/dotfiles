@@ -365,6 +365,9 @@ nnoremap L $
 nnoremap ^ H
 nnoremap $ L
 
+" global substitution
+nnoremap gs :%s/
+
 " make Y play nice like C and D do
 nnoremap Y y$
 
