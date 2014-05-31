@@ -72,6 +72,7 @@ NeoBundle 'coderifous/textobj-word-column.vim'
 " Window/Buffer Management
 NeoBundle 'vim-scripts/bufkill.vim'
 NeoBundle 'zhaocai/GoldenView.Vim'
+NeoBundle 'chrisbra/NrrwRgn'
 
 " GUI Plugins
 NeoBundle 'bling/vim-airline'
@@ -667,6 +668,12 @@ let g:goldenview__enable_default_mapping = 0
 nmap <silent> <F5> <Plug>GoldenViewSplit
 nmap <silent> <F6> <Plug>GoldenViewSwitchMain
 nmap <silent> <F7> <Plug>GoldenViewSwitchToggle
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" Narrow Region
+""""""""""""""""""""""""""""""""""""""""""""""""""
+xmap <silent> <Leader>nr <Plug>NrrwrgnBangDo
+xmap <silent> <Leader>ns <Plug>NrrwrgnDo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
