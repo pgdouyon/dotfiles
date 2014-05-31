@@ -495,6 +495,9 @@ let g:vimshell_right_prompt = 'strftime("%a %b %d  %H:%M %p")'
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_editor_command = 'vim'
 
+autocmd BufEnter *vimshell* nnoremap <silent><buffer> q :bd<CR>
+autocmd BufEnter *vimshell* inoremap <silent><buffer> <C-G> <Esc>:bd<CR>
+
 nnoremap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
 nnoremap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
 nnoremap <silent> <Leader>js :VimShellInteractive node<CR>
