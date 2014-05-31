@@ -321,9 +321,7 @@ augroup vimrc
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd FocusLost *.{html,css} w
     autocmd BufRead,BufNewFile *.md set filetype=markdown
-    autocmd BufRead,BufNewFile *.handlebars, *.hbs set filetype=html
-    autocmd InsertEnter * set norelativenumber
-    autocmd InsertLeave * set relativenumber
+    autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     "reload AirlineTheme because the tab bar gets effed up
     autocmd ColorScheme * AirlineTheme base16
 augroup END
