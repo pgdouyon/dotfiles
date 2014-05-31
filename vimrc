@@ -70,7 +70,6 @@ NeoBundle 'coderifous/textobj-word-column.vim'
 
 " Window/Buffer Management
 NeoBundle 'vim-scripts/bufkill.vim'
-NeoBundle 'zhaocai/GoldenView.Vim'
 NeoBundle 'chrisbra/NrrwRgn'
 
 " GUI Plugins
@@ -147,6 +146,7 @@ NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
     " \ {'commands' : 'GundoToggle'}}
 " NeoBundle 'godlygeek/tabular'
 " NeoBundle 'SirVer/ultisnips'
+" NeoBundle 'zhaocai/GoldenView.Vim'
 
 call neobundle#config('vimproc.vim', {
     \ 'build' : {
@@ -680,15 +680,6 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_theme = 'base16'
 set fillchars+=stl:\ ,stlnc:\
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" GoldenView Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:goldenview__enable_at_startup = 0
-let g:goldenview__enable_default_mapping = 0
-nmap <silent> <F5> <Plug>GoldenViewSplit
-nmap <silent> <F6> <Plug>GoldenViewSwitchMain
-nmap <silent> <F7> <Plug>GoldenViewSwitchToggle
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Narrow Region
