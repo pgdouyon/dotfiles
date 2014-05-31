@@ -202,10 +202,25 @@ function! s:SetBackgroundTheme(theme)
     if (a:theme == 'light')
         set background=light
         colorscheme solarized
+        call s:FixGitGutterSignColumn()
     else
         set background=dark
         colorscheme hybrid
     endif
+endfunction
+
+function! s:FixGitGutterSignColumn()
+    let oldz = @z
+    redir @z
+    silent highlight LineNr
+    redir END
+
+    let guibg = matchstr(@z, '\vguibg\=%(\a+|\#\x+)')
+    execute "silent! highlight SignColumn " . guibg
+    execute "silent! highlight GitGutterAddDefault " . guibg
+    execute "silent! highlight GitGutterChangeDefault " . guibg
+    execute "silent! highlight GitGutterDeleteDefault " . guibg
+    let @z = oldz
 endfunction
 
 "change background color based on time of day
