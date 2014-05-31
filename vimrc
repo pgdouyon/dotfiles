@@ -358,8 +358,6 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap <C-o> <C-o>zt
-nnoremap <C-i> <C-i>zt
 
 " simplify inline navigation
 nnoremap H ^
