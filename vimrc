@@ -77,6 +77,7 @@ NeoBundle 'chrisbra/NrrwRgn'
 " GUI Plugins
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Lokaltog/powerline-fonts'
+NeoBundle 'mikewest/vimroom'
 
 " ColorSchemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -674,6 +675,12 @@ nmap <silent> <F7> <Plug>GoldenViewSwitchToggle
 """"""""""""""""""""""""""""""""""""""""""""""""""
 xmap <silent> <Leader>nr <Plug>NrrwrgnBangDo
 xmap <silent> <Leader>ns <Plug>NrrwrgnDo
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" VimRoom
+""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimroom_width = 120
+nmap <silent> <Leader>vr <Plug>VimroomToggle
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Cheat Sheet
