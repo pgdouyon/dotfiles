@@ -63,7 +63,6 @@ NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'kris89/vim-multiple-cursors'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'SirVer/ultisnips'
 
 " Text Objects
 NeoBundle 'michaeljsmith/vim-indent-object'
@@ -147,6 +146,7 @@ NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
 " NeoBundleLazy 'sjl/gundo.vim', {'autoload':
     " \ {'commands' : 'GundoToggle'}}
 " NeoBundle 'godlygeek/tabular'
+" NeoBundle 'SirVer/ultisnips'
 
 call neobundle#config('vimproc.vim', {
     \ 'build' : {
@@ -606,14 +606,6 @@ function! s:unite_settings()
     inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
     inoremap <silent><buffer><expr> <C-r> unite#do_action('rec/async')
 endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" UltiSnips Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsSnippetDirectories = ["UltiSnips", "mysnippets"]
-let g:UltiSnipsExpandTrigger="<Tab>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Sneak Settings
