@@ -133,8 +133,8 @@ NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
     \ {'filetypes' : ['markdown', 'tex']}}
 
 " LaTeX
-NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
-    \ {'filetypes' : 'tex'}}
+" NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
+"     \ {'filetypes' : 'tex'}}
 
 " Deprecated
 " NeoBundle 'vim-scripts/ZoomWin'
