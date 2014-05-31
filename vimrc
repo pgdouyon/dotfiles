@@ -228,9 +228,9 @@ endfunction
 
 "change background color based on time of day
 if strftime('%H') > 6 && strftime("%H") < 18
-    call <SID>SetBackgroundTheme('light')
+    call s:SetBackgroundTheme('light')
 else
-    call <SID>SetBackgroundTheme('dark')
+    call s:SetBackgroundTheme('dark')
 endif
 
 "Buffers
@@ -416,9 +416,9 @@ nnoremap <silent> <Leader>tb :call <SID>ColorToggle()<CR>
 
 function! s:ColorToggle()
     if (&background == 'dark')
-        call <SID>SetBackgroundTheme('light')
+        call s:SetBackgroundTheme('light')
     else
-        call <SID>SetBackgroundTheme('dark')
+        call s:SetBackgroundTheme('dark')
     endif
 endfunction
 
