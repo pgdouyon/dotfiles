@@ -207,6 +207,9 @@ function! s:SetBackgroundTheme(theme)
         set background=dark
         colorscheme hybrid
     endif
+    " make comments more visible
+    highlight clear Comment
+    highlight link Comment Todo
 endfunction
 
 function! s:FixGitGutterSignColumn()
