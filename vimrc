@@ -665,7 +665,6 @@ nnoremap <silent> <Leader>gd :Gdiff<CR>
 nnoremap <silent> <Leader>gl :Glog<CR>
 nnoremap <silent> <Leader>gc :Gcommit<CR>
 nnoremap <silent> <Leader>ga :Gwrite<CR>
-nnoremap <silent> <Leader>gr :Gremove!<CR>
 nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 
