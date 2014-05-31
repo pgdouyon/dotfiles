@@ -46,7 +46,6 @@ NeoBundle 'Shougo/unite-help'
 NeoBundle 'Shougo/junkfile.vim'
 NeoBundle 'Shougo/unite-session'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/neocomplete.vim'
 
 " Tim Pope
 NeoBundle 'tpope/vim-repeat'
@@ -508,37 +507,6 @@ nnoremap <silent> <Leader>ms :VimShellInteractive mit-scheme<CR>
 nnoremap <silent> <Leader>vx :VimShellExecute
 nnoremap <silent> <Leader>ve :VimShellSendString<CR>
 vnoremap <silent> <Leader>ve :VimShellSendString<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" NeoComplete Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_camel_case = 1
-let g:neocomplete#enable_fuzzy_completion = 1
-
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME . '/.cache/vimshell/command-history'}
-let g:neocomplete#sources#vim#complete_functions = {
-    \ 'Ref' : 'ref#complete',
-    \ 'Unite' : 'unite#complete_source',
-    \ 'VimShellExecute' : 'vimshell#vimshell_execute_complete',
-    \ 'VimShellInteractive' : 'vimshell#vimshell_execute_complete',
-    \ 'VimShellTerminal' : 'vimshell#vimshell_execute_complete',
-    \ 'VimShell' : 'vimshell#complete',
-    \ 'VimFiler' : 'vimfiler#complete'}
-
-augroup neocomplete
-    autocmd!
-    autocmd BufEnter *vimshell* call <SID>neocomplete_enter()
-augroup END
-
-function! s:neocomplete_enter()
-    NeoCompleteUnlock
-    inoremap <buffer> <expr> <S-Tab> pumvisible() ? "\<C-n>" : "\<S-Tab>"
-    inoremap <buffer> <expr> <Space> pumvisible() ? neocomplete#close_popup() . "\<Space>" : "\<Space>"
-    inoremap <buffer> <expr> <CR> pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Unite Settings
