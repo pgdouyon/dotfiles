@@ -515,6 +515,7 @@ vnoremap <silent> <Leader>ve :VimShellSendString<CR>
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_history_yank_save_clipboard = 1
+let g:unite_source_rec_max_cache_files = 2000
 
 if !isdirectory($HOME . "/.vim/.cache/junk")
     call mkdir($HOME . "/.vim/.cache/junk", "p")
@@ -532,7 +533,6 @@ elseif executable('ack-grep')
 endif
 
 
-call unite#custom#source('file_rec,file_rec/async,grep', 'max_candidates', 0)
 call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
     \ 'ignore_pattern', join(['\.git/', '\.pptx$', '\.docx$', '\.jpg$',
     \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/', '\.config/*',
