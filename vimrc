@@ -52,7 +52,6 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
@@ -449,29 +448,6 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>nu :set relativenumber!<CR>
-
-function! s:SaveAbbrev()
-    let l:after = $HOME . '/.vim/after/plugin/'
-    let l:abbrevs = l:after . 'abolish.vim'
-    if !isdirectory(l:after)
-        silent !mkdir -p ~/.vim/after/plugin
-    endif
-    if !filereadable(l:abbrevs)
-        silent !touch ~/.vim/after/plugin/abolish.vim
-    endif
-
-    " get word under cursor and get correct spelling as input
-    let g:ab_mistake = expand("<cword>")
-    let g:ab_correction = input("Please enter the correct spelling: ")
-    execute "normal! ciw" . g:ab_correction
-    execute "edit ~/.vim/after/plugin/abolish.vim"
-    execute "normal! GoAbolish" g:ab_mistake g:ab_correction
-    execute "Abolish" g:ab_mistake g:ab_correction
-    write
-    BD
-endfunction
-
-nnoremap <Leader>ab :call <SID>SaveAbbrev()<CR>
 
 function! s:FixTrailingSpaces()
     let l:save_cursor = getpos('.')
