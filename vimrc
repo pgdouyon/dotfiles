@@ -36,7 +36,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 """"""""""""""""""""""""""""""""""""""""""""""""""
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-"Shougo - Unite plugins OMFG this stuff is awesome!!!!!!!!!
+" Shougo - Unite plugins OMFG this stuff is awesome!!!!!!!!!
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/unite.vim'
