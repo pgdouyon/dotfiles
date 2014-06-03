@@ -605,7 +605,7 @@ xmap <silent> <Leader>ns <Plug>NrrwrgnDo
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VimRoom
 """"""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimroom_width = 120
+let g:vimroom_width = 100
 nmap <silent> <Leader>vr <Plug>VimroomToggle
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
