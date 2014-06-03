@@ -281,17 +281,11 @@ set clipboard=unnamedplus       " system clipboard uses unnamed register (don't 
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
 "set guitablabel=\[%N\]\ %t\ %M
 
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Disable archive files
+" Files to ignore
+set wildignore+=*.o,*.out,*.obj,.exe,.git,*.rbc,*.rbo,*.class,.svn,*.gem,*/node_modules/*
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
-" Disable temp and backup files
-set wildignore+=*.exe,*/tmp/*,*\\tmp\\*,*.swp,*~,._*
-
-" Disable non-text files
-set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf,*/node_modules/*
+set wildignore+=**/tmp/*,*\\tmp\\*,*.swp,*~,._*
+set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
 
 "Swap files
 set backupdir^=~/.vim/_backup//     " where to put backup files.
