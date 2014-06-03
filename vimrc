@@ -317,14 +317,6 @@ augroup vimrc
     autocmd ColorScheme * AirlineTheme base16
 augroup END
 
-"open help in vsplit
-augroup helpfiles
-    autocmd!
-    autocmd BufRead,BufEnter */doc/* set number
-    autocmd BufRead,BufEnter */doc/* set relativenumber
-    autocmd BufRead,BufEnter */doc/* wincmd L
-augroup END
-
 if !exists('g:loaded_matchit')
   runtime! macros/matchit.vim
 endif
