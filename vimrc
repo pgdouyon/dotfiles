@@ -74,7 +74,7 @@ NeoBundle 'chrisbra/NrrwRgn'
 " GUI Plugins
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Lokaltog/powerline-fonts'
-NeoBundle 'mikewest/vimroom'
+NeoBundle 'pgdouyon/vimroom'
 
 " ColorSchemes
 NeoBundle 'altercation/vim-colors-solarized'
