@@ -42,7 +42,6 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/unite-help'
 NeoBundle 'Shougo/junkfile.vim'
 NeoBundle 'Shougo/unite-session'
 NeoBundle 'Shougo/vimfiler.vim'
@@ -496,7 +495,6 @@ nnoremap <Leader>uy :<C-u>Unite -buffer-name=yanks history/yank<CR>
 nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>ub :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
 nnoremap <Leader>uj :<C-u>Unite -no-split -buffer-name=junk junkfile junkfile/new<CR>
-nnoremap <Leader>uh :<C-u>Unite -no-split -buffer-name=help help<CR>
 
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
 nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
