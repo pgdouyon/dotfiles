@@ -134,17 +134,10 @@ NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
 "     \ {'filetypes' : 'tex'}}
 
 " Deprecated
-" NeoBundle 'vim-scripts/ZoomWin'
-" NeoBundleLazy 'mustache/vim-mustache-handlebars'
 " NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
     " \ {'filetypes' : 'markdown'}}
-" NeoBundle 'kballenegger/vim-autoreadwatch'
-" NeoBundle 'papanikge/vim-voogle'
-" NeoBundleLazy 'sjl/gundo.vim', {'autoload':
-    " \ {'commands' : 'GundoToggle'}}
 " NeoBundle 'godlygeek/tabular'
 " NeoBundle 'SirVer/ultisnips'
-" NeoBundle 'zhaocai/GoldenView.Vim'
 
 call neobundle#config('vimproc.vim', {
     \ 'build' : {
