@@ -65,7 +65,6 @@ NeoBundle 'ervandew/supertab'
 
 " Text Objects
 NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'coderifous/textobj-word-column.vim'
 
 " Window/Buffer Management
 NeoBundle 'vim-scripts/bufkill.vim'
