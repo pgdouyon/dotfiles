@@ -441,14 +441,6 @@ nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>nu :set relativenumber!<CR>
 
-function! s:FixTrailingSpaces()
-    let l:save_cursor = getpos('.')
-    silent! execute ":%s/\\s\\+$//"
-    call setpos('.', l:save_cursor)
-endfunction
-
-nnoremap <Leader>fw :call <SID>FixTrailingSpaces()<CR>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Finish NeoBundle Setup
 """"""""""""""""""""""""""""""""""""""""""""""""""
