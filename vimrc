@@ -86,9 +86,6 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 
-" Misc
-NeoBundle 'kana/vim-arpeggio'
-
 " Clojure
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'kien/rainbow_parentheses.vim'
@@ -317,7 +314,10 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Vimrc Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-call arpeggio#map('covi','', 0, 'tn', '<Esc>')
+inoremap <C-j> <Esc>
+xnoremap <C-j> <Esc>
+onoremap <C-j> <Esc>
+cnoremap <C-j> <C-c>
 
 " make j and k operate over display lines
 nnoremap j gj
