@@ -98,10 +98,10 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""
-"maximize gvim on open, set terminal to 256 colors
 filetype plugin indent on
 syntax on
 
+"maximize gvim on open, set terminal to 256 colors
 if has("gui_running")
     set lines=999 columns=999
 else
@@ -113,14 +113,10 @@ function! s:SetBackgroundTheme(theme)
     if (a:theme == 'light')
         set background=light
         colorscheme solarized
-        call s:FixGitGutterSignColumn()
     else
         set background=dark
         colorscheme hybrid
     endif
-    " make comments more visible
-    highlight clear Comment
-    highlight link Comment Todo
 endfunction
 
 function! s:FixGitGutterSignColumn()
@@ -229,6 +225,9 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     "reload AirlineTheme because the tab bar gets effed up
     autocmd ColorScheme * AirlineTheme base16
+    " make comments more visible
+    autocmd ColorScheme * highlight clear Comment | highlight link Comment Todo
+    autocmd ColorScheme * call s:FixGitGutterSignColumn()
 augroup END
 
 if !exists('g:loaded_matchit')
