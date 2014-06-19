@@ -404,13 +404,11 @@ nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files file_rec/async:~/Pr
 nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files file_rec/async:!<CR>
 nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~ directory/new<CR>
 
-nnoremap <Leader>uy :<C-u>Unite -buffer-name=yanks history/yank<CR>
 nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>ub :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
 
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
 nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
-nnoremap <Leader>uu :<C-u>Unite -no-split<Space>
 
 augroup unite
     autocmd!
