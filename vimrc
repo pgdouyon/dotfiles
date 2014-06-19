@@ -1,175 +1,102 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" NeoBundle Setup
+" Initial Setup
 """"""""""""""""""""""""""""""""""""""""""""""""""
-if has('vim_starting')
-    set nocompatible
-    set encoding=utf-8
-    "I don't know why people always use the ',' key...
-    let mapleader="\<Space>"
-    let maplocalleader="\<CR>"
-    filetype off
-
-    let neobundle_installed=1
-    let neobundle_script=expand('~/.vim/bundle/neobundle.vim/autoload/neobundle.vim')
-    if !filereadable(neobundle_script)
-        if !executable("git")
-            echo "Git must be installed to finish setup..."
-            finish
-        endif
-
-        echo "Installing NeoBundle..."
-        echo ""
-        call mkdir($HOME . "/.vim/bundle", "p")
-        call mkdir($HOME . "/.vim/_backup", "p")
-        call mkdir($HOME . "/.vim/_temp", "p")
-
-        execute "silent !git clone https://github.com/Shougo/neobundle.vim " . $HOME . "/bundle/neobundle.vim"
-        let neobundle_installed=0
-    endif
-
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
+set nocompatible
+set encoding=utf-8
+let mapleader="\<Space>"
+let maplocalleader="\<CR>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" NeoBundle Bundles
+" Vim-Plug Bundles
 """"""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/bundle')
 
 " Shougo - Unite plugins OMFG this stuff is awesome!!!!!!!!!
-NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/junkfile.vim'
-NeoBundle 'Shougo/unite-session'
-NeoBundle 'Shougo/vimfiler.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimshell.vim'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/junkfile.vim'
+Plug 'Shougo/unite-session'
+Plug 'Shougo/vimfiler.vim'
 
 " Tim Pope
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive', {'augroup' : 'fugitive'}
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
-" NeoBundle 'tpope/timl'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+" Plug 'tpope/timl'
 
 " Editing Enhancements (IDE features)
-NeoBundle 'justinmk/vim-sneak'
-NeoBundle 'bkad/CamelCaseMotion'
-NeoBundle 'kris89/vim-multiple-cursors'
-NeoBundle 'ervandew/supertab'
+Plug 'justinmk/vim-sneak'
+Plug 'bkad/CamelCaseMotion'
+Plug 'kris89/vim-multiple-cursors'
+Plug 'ervandew/supertab'
 
 " Text Objects
-NeoBundle 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
 
 " Window/Buffer Management
-NeoBundle 'vim-scripts/bufkill.vim'
-NeoBundle 'chrisbra/NrrwRgn'
+Plug 'vim-scripts/bufkill.vim'
+Plug 'chrisbra/NrrwRgn'
 
 " GUI Plugins
-NeoBundle 'bling/vim-airline'
-NeoBundle 'Lokaltog/powerline-fonts'
-NeoBundle 'pgdouyon/vimroom'
+Plug 'bling/vim-airline'
+Plug 'Lokaltog/powerline-fonts'
+Plug 'pgdouyon/vimroom'
 
 " ColorSchemes
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'w0ng/vim-hybrid'
+Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
 
 " Tool Integration
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/gist-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 
 " Clojure
-NeoBundle 'guns/vim-sexp'
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundleLazy 'tpope/vim-fireplace', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'tpope/vim-classpath', {'autoload':
-    \ {'filetypes' : 'clojure'}}
-NeoBundleLazy 'guns/vim-clojure-static', {'autoload':
-    \ {'filetypes' : 'clojure'}}
+Plug 'guns/vim-sexp'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'tpope/vim-classpath', {'for': 'clojure'}
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 
 " Python
-NeoBundleLazy 'klen/python-mode', {'autoload':
-    \ {'filetypes' : 'python'}}
+Plug 'klen/python-mode', {'for': 'python'}
 
 "JavaScript
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':
-    \ {'filetypes' : 'javascript'}}
-NeoBundleLazy 'moll/vim-node', {'autoload':
-    \ {'filetypes' : 'javascript'}}
-NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload':
-    \ {'filetypes' : 'coffee'}}
-NeoBundleLazy 'elzr/vim-json', {'autoload':
-    \ {'filetypes' : 'json'}}
+Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
+Plug 'moll/vim-node', {'for': 'javascript'}
+Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
+Plug 'elzr/vim-json', {'for': 'json'}
 
 " HTML
-NeoBundleLazy 'othree/html5.vim', {'autoload':
-    \ {'filetypes' : 'html'}}
-NeoBundleLazy 'mattn/emmet-vim', {'autoload':
-    \ {'filetypes' : ['html', 'xhtml', 'xml']}}
+Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml']}
 
 " CSS
-NeoBundleLazy 'ap/vim-css-color', {'autoload':
-    \ {'filetypes' : 'css'}}
-" NeoBundle 'flazz/vim-colorschemes'
+Plug 'ap/vim-css-color', {'for': 'css'}
+" Plug 'flazz/vim-colorschemes'
 
 " Markdown
-NeoBundleLazy 'vim-pandoc/vim-pandoc-syntax', {'autoload':
-    \ {'filetypes' : ['markdown', 'tex']}}
+Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['markdown', 'tex']}
 
 " LaTeX
-" NeoBundleLazy 'LaTeX-Box-Team/LaTeX-Box', {'autoload':
-"     \ {'filetypes' : 'tex'}}
+" Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 
 " Deprecated
-" NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload':
-    " \ {'filetypes' : 'markdown'}}
-" NeoBundle 'godlygeek/tabular'
-" NeoBundle 'SirVer/ultisnips'
+" Plug 'matthias-guenther/hammer.vim', {'for': 'markdown'}
+" Plug 'godlygeek/tabular'
+" Plug 'SirVer/ultisnips'
 
-call neobundle#config('vimproc.vim', {
-    \ 'build' : {
-        \       'windows' : 'make -f make_mingw64.mak',
-        \       'cygwin' : 'make -f make_cygwin.mak',
-        \       'mac' : 'make -f make_mac.mak',
-        \       'unix' : 'make -f make_unix.mak',
-        \   }})
-
-call neobundle#config('vimfiler.vim', {
-    \ 'lazy' : 1,
-    \ 'depends' : 'Shougo/unite.vim',
-    \ 'autoload' : {
-    \       'commands' : [
-    \           {'name' : 'VimFiler',
-    \           'complete' : 'customlist,vimfiler#complete'},
-    \           {'name' : 'VimFilerTab',
-    \           'complete' : 'customlist,vimfiler#complete'},
-    \           {'name' : 'VimFilerExplorer',
-    \           'complete' : 'customlist,vimfiler#complete'},
-    \           {'name' : 'Edit',
-    \           'complete' : 'customlist,vimfiler#complete'},
-    \           {'name' : 'Write',
-    \           'complete' : 'customlist,vimfiler#complete'},
-    \           'Read', 'Source'],
-    \       'mappings' : '<Plug>vimfiler_',
-    \       'explorer' : 1}})
-
-if neobundle_installed == 0
-    echo "Installing NeoBundles..."
-    echo ""
-    NeoBundleInstall!
-    source $MYVIMRC
-endif
-
-call neobundle#end()
+call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " Settings
@@ -425,12 +352,6 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>nu :set relativenumber!<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Finish NeoBundle Setup
-""""""""""""""""""""""""""""""""""""""""""""""""""
-NeoBundleCheck
-NeoBundleClean!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " VimShell Settings
