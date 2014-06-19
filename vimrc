@@ -36,6 +36,7 @@ Plug 'ervandew/supertab'
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'wellle/targets.vim'
 
 " Window/Buffer Management
 Plug 'vim-scripts/bufkill.vim'
