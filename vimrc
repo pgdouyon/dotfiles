@@ -17,7 +17,6 @@ Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/neomru.vim'
-Plug 'Shougo/junkfile.vim'
 Plug 'Shougo/unite-session'
 Plug 'Shougo/vimfiler.vim'
 
@@ -383,11 +382,6 @@ let g:unite_source_history_yank_enable = 1
 let g:unite_source_history_yank_save_clipboard = 1
 let g:unite_source_rec_max_cache_files = 2000
 
-if !isdirectory($HOME . "/.vim/.cache/junk")
-    call mkdir($HOME . "/.vim/.cache/junk", "p")
-endif
-let g:junkfile#directory=expand("~/.vim/.cache/junk")
-
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
     let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --follow --smart-case -t'
@@ -415,7 +409,6 @@ nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~ dir
 nnoremap <Leader>uy :<C-u>Unite -buffer-name=yanks history/yank<CR>
 nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
 nnoremap <Leader>ub :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
-nnoremap <Leader>uj :<C-u>Unite -no-split -buffer-name=junk junkfile junkfile/new<CR>
 
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
 nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
