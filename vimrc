@@ -17,7 +17,6 @@ Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-session'
 Plug 'Shougo/vimfiler.vim'
 
 " Tim Pope
@@ -412,7 +411,6 @@ nnoremap <Leader>ub :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
 
 nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
 nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
-nnoremap <Leader>us :<C-u>Unite -no-split -buffer-name=session  session session/new<CR>
 nnoremap <Leader>uu :<C-u>Unite -no-split<Space>
 
 augroup unite
