@@ -17,7 +17,6 @@ Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimfiler.vim'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
