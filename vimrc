@@ -334,7 +334,23 @@ endfunction
 
 nnoremap <silent> <Leader>tb :call <SID>ColorToggle()<CR>
 
+" ----------------------------------------------------------------------
+" Scratch Buffer
+" ----------------------------------------------------------------------
+function! s:Scratch()
+    let bufname = "__Scratch__"
+    if buflisted(bufname)
+        execute "buffer " . bufname
+    else
+        execute "edit " . bufname
+    endif
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+    setlocal buflisted
+endfunction
 
+nnoremap <Leader>sc :call <SID>Scratch()<CR>
 
 
 " ======================================================================
