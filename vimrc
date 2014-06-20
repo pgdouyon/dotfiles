@@ -1,17 +1,10 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Initial Setup
-""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-set encoding=utf-8
-let mapleader="\<Space>"
-let maplocalleader="\<CR>"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ======================================================================
 " Vim-Plug Bundles
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ======================================================================
+
 call plug#begin('~/.vim/bundle')
 
-" Shougo - Unite plugins OMFG this stuff is awesome!!!!!!!!!
+" Shougo
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/unite.vim'
@@ -54,6 +47,7 @@ Plug 'tomasr/molokai'
 Plug 'chriskempson/base16-vim'
 Plug 'Pychimp/vim-luna'
 Plug 'Pychimp/vim-sol'
+" Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
 Plug 'airblade/vim-gitgutter'
@@ -83,7 +77,6 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml']}
 
 " CSS
 Plug 'ap/vim-css-color', {'for': 'css'}
-" Plug 'flazz/vim-colorschemes'
 
 " Markdown
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['markdown', 'tex']}
@@ -98,50 +91,18 @@ Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['markdown', 'tex']}
 
 call plug#end()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ======================================================================
 " Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ======================================================================
+
+set nocompatible
+set encoding=utf-8
 filetype plugin indent on
 syntax on
 
-"maximize gvim on open, set terminal to 256 colors
-if has("gui_running")
-    set lines=999 columns=999
-else
-    set t_Co=256
-    let g:solarized_termcolors=256
-endif
-
-function! s:SetBackgroundTheme(theme)
-    if (a:theme == 'light')
-        set background=light
-        colorscheme solarized
-    else
-        set background=dark
-        colorscheme hybrid
-    endif
-endfunction
-
-function! s:FixGitGutterSignColumn()
-    let oldz = @z
-    redir @z
-    silent highlight LineNr
-    redir END
-
-    let guibg = matchstr(@z, '\vguibg\=%(\a+|\#\x+)')
-    execute "silent! highlight SignColumn " . guibg
-    execute "silent! highlight GitGutterAddDefault " . guibg
-    execute "silent! highlight GitGutterChangeDefault " . guibg
-    execute "silent! highlight GitGutterDeleteDefault " . guibg
-    let @z = oldz
-endfunction
-
-"change background color based on time of day
-if strftime('%H') > 6 && strftime("%H") < 18
-    call s:SetBackgroundTheme('light')
-else
-    call s:SetBackgroundTheme('dark')
-endif
+let mapleader="\<Space>"
+let maplocalleader="\<CR>"
 
 "Buffers
 set number
@@ -219,27 +180,40 @@ elseif executable('ack-grep')
     set grepformat=%f:%l:%c:%m
 endif
 
-augroup vimrc
-    autocmd!
-    "Jump to the last position when reopening a file
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    autocmd FocusLost *.{html,css} w
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
-    autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
-    "reload AirlineTheme because the tab bar gets effed up
-    autocmd ColorScheme * AirlineTheme base16
-    " make comments more visible
-    autocmd ColorScheme * highlight clear Comment | highlight link Comment Todo
-    autocmd ColorScheme * call s:FixGitGutterSignColumn()
-augroup END
-
-if !exists('g:loaded_matchit')
-  runtime! macros/matchit.vim
+" ----------------------------------------------------------------------
+" Background Settings
+" ----------------------------------------------------------------------
+"maximize gvim on open, set terminal to 256 colors
+if has("gui_running")
+    set lines=999 columns=999
+else
+    set t_Co=256
+    let g:solarized_termcolors=256
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vimrc Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:SetBackgroundTheme(theme)
+    if (a:theme == 'light')
+        set background=light
+        colorscheme solarized
+    else
+        set background=dark
+        colorscheme hybrid
+    endif
+endfunction
+
+
+"change background color based on time of day
+if strftime('%H') > 6 && strftime("%H") < 18
+    call s:SetBackgroundTheme('light')
+else
+    call s:SetBackgroundTheme('dark')
+endif
+
+
+" ======================================================================
+" Mappings
+" ======================================================================
+
 inoremap <C-j> <Esc>
 xnoremap <C-j> <Esc>
 onoremap <C-j> <Esc>
@@ -296,38 +270,12 @@ cnoremap $d <CR>:d<CR>``
 nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
-nnoremap <silent> <Leader>l :nohls<CR>
-
 " switch to alternate buffer and delete buffer using BufKill plugin to keep window
 nnoremap <silent> <Leader>bp :b#<CR>
 nnoremap <silent> <Leader>bd :BD<CR>
 
 "break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
-
-"make comment box using vim-commentary
-nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
-nnoremap <Leader>ct :call <SID>MakeSectionTitle()<CR>
-inoremap <C-t> <Esc>:call <SID>MakeSectionTitle()<CR>A
-
-function! s:MakeSectionTitle()
-    let l:section_title = getline(".")
-    let l:length = strlen(l:section_title)
-    let l:offset = 34 - (l:length / 2)
-    execute "normal! 070R#\<Esc>0" . l:offset . "lR " . l:section_title . " \<Esc>"
-    execute "normal gcc"
-endfunction
-
-"toggle background color
-nnoremap <silent> <Leader>tb :call <SID>ColorToggle()<CR>
-
-function! s:ColorToggle()
-    if (&background == 'dark')
-        call s:SetBackgroundTheme('light')
-    else
-        call s:SetBackgroundTheme('dark')
-    endif
-endfunction
 
 "make current file executable
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
@@ -352,9 +300,57 @@ nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>nu :set relativenumber!<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ======================================================================
+" Functions
+" ======================================================================
+
+" ----------------------------------------------------------------------
+" Section Title
+" ----------------------------------------------------------------------
+function! s:MakeSectionTitle()
+    let l:section_title = getline(".")
+    let l:length = strlen(l:section_title)
+    let l:offset = 34 - (l:length / 2)
+    execute "normal! 070R#\<Esc>0" . l:offset . "lR " . l:section_title . " \<Esc>"
+    execute "normal gcc"
+endfunction
+
+"make comment box using vim-commentary
+nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
+nnoremap <Leader>ct :call <SID>MakeSectionTitle()<CR>
+inoremap <C-t> <Esc>:call <SID>MakeSectionTitle()<CR>A
+
+" ----------------------------------------------------------------------
+" Toggle Background Color
+" ----------------------------------------------------------------------
+function! s:ColorToggle()
+    if (&background == 'dark')
+        call s:SetBackgroundTheme('light')
+    else
+        call s:SetBackgroundTheme('dark')
+    endif
+endfunction
+
+nnoremap <silent> <Leader>tb :call <SID>ColorToggle()<CR>
+
+
+
+
+" ======================================================================
+" Plugins
+" ======================================================================
+
+" ----------------------------------------------------------------------
+" Matchit
+" ----------------------------------------------------------------------
+if !exists('g:loaded_matchit')
+  runtime! macros/matchit.vim
+endif
+
+" ----------------------------------------------------------------------
 " VimShell Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 let g:vimshell_prompt = '$ '
 let g:vimshell_right_prompt = 'strftime("%a %b %d  %H:%M %p")'
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -374,9 +370,9 @@ nnoremap <silent> <Leader>vx :VimShellExecute
 nnoremap <silent> <Leader>ve :VimShellSendString<CR>
 vnoremap <silent> <Leader>ve :VimShellSendString<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Unite Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_history_yank_save_clipboard = 1
@@ -431,19 +427,19 @@ function! s:unite_settings()
     inoremap <silent><buffer><expr> <C-r> unite#do_action('rec/async')
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Vim Sneak Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 highlight SneakPluginTarget None
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Netrw Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 let g:netrw_liststyle=3
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Rainbow Parentheses Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 augroup rainbow
     autocmd!
     autocmd BufEnter *.{clj,html,js} RainbowParenthesesActivate
@@ -456,25 +452,25 @@ augroup rainbow
     autocmd Syntax clojure,html,javascript RainbowParenthesesLoadSquare
 augroup END
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Fireplace Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 nnoremap <silent> <Leader>fdj yiw:Djump <C-r>0<CR>
 nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
 nnoremap <silent> <Leader>fe :%Eval<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " GitGutter Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 let g:gitgutter_map_keys = 0
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 nmap gha <Plug>GitGutterStageHunk
 nmap ghr <Plug>GitGutterRevertHunk
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Fugitive Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gdiff<CR>
@@ -484,9 +480,9 @@ nnoremap <silent> <Leader>ga :Gwrite<CR>
 nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Airline Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 if !exists('g:airline_symbols')
     let g:airline_symbols={}
 endif
@@ -505,21 +501,21 @@ let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline_theme = 'base16'
 set fillchars+=stl:\ ,stlnc:\
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " Narrow Region
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 xmap <silent> <Leader>nr <Plug>NrrwrgnBangDo
 xmap <silent> <Leader>ns <Plug>NrrwrgnDo
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " VimRoom
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 let g:vimroom_width = 100
 nmap <silent> <Leader>vr <Plug>VimroomToggle
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 " CamelCaseMotion
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -533,9 +529,42 @@ xmap <silent> ib <Plug>CamelCaseMotion_ib
 omap <silent> ie <Plug>CamelCaseMotion_ie
 xmap <silent> ie <Plug>CamelCaseMotion_ie
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ======================================================================
+" Autocmds
+" ======================================================================
+
+augroup vimrc
+    autocmd!
+    "Jump to the last position when reopening a file
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    autocmd FocusLost *.{html,css} w
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
+    "reload AirlineTheme because the tab bar gets effed up
+    autocmd ColorScheme * AirlineTheme base16
+    " make comments more visible
+    autocmd ColorScheme * highlight clear Comment | highlight link Comment Todo
+    autocmd ColorScheme * call s:FixGitGutterSignColumn()
+augroup END
+
+function! s:FixGitGutterSignColumn()
+    let oldz = @z
+    redir @z
+    silent highlight LineNr
+    redir END
+
+    let guibg = matchstr(@z, '\vguibg\=%(\a+|\#\x+)')
+    execute "silent! highlight SignColumn " . guibg
+    execute "silent! highlight GitGutterAddDefault " . guibg
+    execute "silent! highlight GitGutterChangeDefault " . guibg
+    execute "silent! highlight GitGutterDeleteDefault " . guibg
+    let @z = oldz
+endfunction
+
+" ----------------------------------------------------------------------
 " Cheat Sheet
-""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------------------
 "#Multiple-Cursors
     " - <c-n> -> select next
     " - <c-p> -> undo selection and move to previous
