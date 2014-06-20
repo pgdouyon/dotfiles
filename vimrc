@@ -18,6 +18,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Plug 'tpope/timl'
 
@@ -451,7 +452,8 @@ highlight SneakPluginTarget None
 " ----------------------------------------------------------------------
 " Netrw Settings
 " ----------------------------------------------------------------------
-let g:netrw_liststyle=3
+let g:netrw_liststyle=1
+let g:netrw_browsex_viewer="gnome-open"
 
 " ----------------------------------------------------------------------
 " Rainbow Parentheses Settings
