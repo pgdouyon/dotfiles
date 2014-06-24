@@ -11,8 +11,8 @@ seem most interesting to you.
 
 ##Install
 
-My Vim setup is managed using [Vim-Plug][Vim-Plug], a minimalistic package
+My Vim setup is managed using [Vim-Plug][], a minimalistic package
 manager for Vim.  Follow the instructions on the repository for how to install
 Vim-Plug.  Actual install script coming eventually...
 
-[Vim-Plug]: <http://github.com/junegunn/vim-plug>
+[Vim-Plug]: http://github.com/junegunn/vim-plug
