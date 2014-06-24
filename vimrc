@@ -34,7 +34,7 @@ Plug 'wellle/targets.vim'
 
 " Window/Buffer Management
 Plug 'vim-scripts/bufkill.vim'
-Plug 'chrisbra/NrrwRgn'
+Plug 'pgdouyon/vim-mazda'
 
 " GUI Plugins
 Plug 'bling/vim-airline'
