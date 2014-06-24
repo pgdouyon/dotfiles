@@ -449,8 +449,6 @@ function! s:unite_settings()
     let b:SuperTabDisabled=1
     set number
     set relativenumber
-    silent! iunmap <C-g>s
-    silent! iunmap <C-g>S
     nnoremap <silent><buffer><expr> s unite#do_action('split')
     nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
     nnoremap <silent><buffer><expr> r unite#do_action('rec/async')
@@ -512,6 +510,12 @@ nnoremap <silent> <Leader>gc :Gcommit<CR>
 nnoremap <silent> <Leader>ga :Gwrite<CR>
 nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
+
+" ----------------------------------------------------------------------
+" Surround Settings
+" ----------------------------------------------------------------------
+let g:surround_no_insert_mappings = 1
+imap <C-S> <Plug>Isurround
 
 " ----------------------------------------------------------------------
 " Airline Settings
