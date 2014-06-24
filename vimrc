@@ -283,6 +283,7 @@ nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
 
 "Window navigation commands
 nnoremap gw <C-w>
+nnoremap <C-Q> <C-w>q
 nnoremap <silent> <Leader>tc :tabc<CR>
 nnoremap <silent> <Leader>to :tabe<CR>
 nnoremap <silent> <Left> :vertical resize -10<CR>
