@@ -318,10 +318,24 @@ function! s:MakeSectionTitle()
     execute "normal gcc"
 endfunction
 
-"make comment box using vim-commentary
-nmap <Leader>cb O<Esc>50i=<Esc>yypOblah<Esc>kV2jgcj0wciw
-nnoremap <Leader>ct :call <SID>MakeSectionTitle()<CR>
 inoremap <C-t> <Esc>:call <SID>MakeSectionTitle()<CR>A
+
+" ----------------------------------------------------------------------
+" Section Box
+" ----------------------------------------------------------------------
+function! s:MakeSectionBox(border)
+    " remove indentation
+    call setline(".", substitute(getline("."), '\v^\s*', '', ''))
+    execute "normal! O\<Esc>70a" . a:border
+    execute "normal! jo\<Esc>70a" . a:border
+    " use vim-commentary mapping
+    normal! 2k
+    normal 3gcc
+    normal! 3j^
+endfunction
+
+inoremap <C-b>= <Esc>:call <SID>MakeSectionBox("=")<CR>
+inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 
 " ----------------------------------------------------------------------
 " Toggle Background Color
