@@ -539,6 +539,15 @@ let g:airline_theme = 'base16'
 set fillchars+=stl:\ ,stlnc:\
 
 " ----------------------------------------------------------------------
+" Mazda
+" ----------------------------------------------------------------------
+nmap <Leader>zi <Plug>MazdaZoomIn
+vmap <Leader>zi <Plug>MazdaZoomIn
+nmap <Leader>zo <Plug>MazdaZoomOut
+nmap <Leader>zd <Plug>MazdaDiscard
+nmap <Leader>zr <Plug>MazdaReselect
+
+" ----------------------------------------------------------------------
 " VimRoom
 " ----------------------------------------------------------------------
 let g:vimroom_width = 100
