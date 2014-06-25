@@ -606,17 +606,19 @@ function! s:MakeCommentsProminent()
 endfunction
 
 function! s:FixGitGutterSignColumn()
-    let oldz = @z
-    redir @z
-    silent highlight LineNr
-    redir END
+    if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
+        let oldz = @z
+        redir @z
+        silent highlight LineNr
+        redir END
 
-    let guibg = matchstr(@z, '\vguibg\=%(\a+|\#\x+)')
-    execute "silent! highlight SignColumn " . guibg
-    execute "silent! highlight GitGutterAddDefault " . guibg
-    execute "silent! highlight GitGutterChangeDefault " . guibg
-    execute "silent! highlight GitGutterDeleteDefault " . guibg
-    let @z = oldz
+        let guibg = matchstr(@z, '\vguibg\=%(\a+|\#\x+)')
+        execute "silent! highlight SignColumn " . guibg
+        execute "silent! highlight GitGutterAddDefault " . guibg
+        execute "silent! highlight GitGutterChangeDefault " . guibg
+        execute "silent! highlight GitGutterDeleteDefault " . guibg
+        let @z = oldz
+    endif
 endfunction
 
 " ----------------------------------------------------------------------
