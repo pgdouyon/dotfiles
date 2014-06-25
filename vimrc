@@ -360,6 +360,7 @@ function! s:Scratch()
     else
         execute "edit " . bufname
     endif
+    set filetype=pandoc
     setlocal buftype=nofile
     setlocal bufhidden=hide
     setlocal noswapfile
@@ -581,7 +582,7 @@ augroup vimrc
     "Jump to the last position when reopening a file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd FocusLost *.{html,css} w
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.md set filetype=pandoc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     "reload AirlineTheme because the tab bar gets effed up
     autocmd ColorScheme * AirlineTheme base16
