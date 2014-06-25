@@ -563,9 +563,9 @@ augroup END
 
 function! s:ChangeAirlineTheme()
     if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
-        AirlineTheme base16
+        silent! AirlineTheme base16
     elseif g:colors_name ==# 'seoul256'
-        AirlineTheme luna
+        silent! AirlineTheme luna
     endif
 endfunction
 
