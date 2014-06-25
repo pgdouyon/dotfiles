@@ -4,9 +4,6 @@
 /tmp/
 /log/
 /logs/
-/.config/
-/.meteor/
-*.pdf
 *.log
 *.tar.gz
 *.zip
