@@ -584,17 +584,15 @@ endfunction
 
 function! s:FixGitGutterSignColumn()
     if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
-        let oldz = @z
-        redir @z
+        redir => hl
         silent highlight LineNr
         redir END
 
-        let guibg = matchstr(@z, '\vguibg\=%(\a+|\#\x+)')
+        let guibg = matchstr(hl, '\vguibg\=%(\a+|\#\x+)')
         execute "silent! highlight SignColumn " . guibg
         execute "silent! highlight GitGutterAddDefault " . guibg
         execute "silent! highlight GitGutterChangeDefault " . guibg
         execute "silent! highlight GitGutterDeleteDefault " . guibg
-        let @z = oldz
     endif
 endfunction
 
