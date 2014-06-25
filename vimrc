@@ -180,35 +180,6 @@ elseif executable('ack-grep')
     set grepformat=%f:%l:%c:%m
 endif
 
-" ----------------------------------------------------------------------
-" Background Settings
-" ----------------------------------------------------------------------
-"maximize gvim on open, set terminal to 256 colors
-if has("gui_running")
-    set lines=999 columns=999
-else
-    set t_Co=256
-    let g:solarized_termcolors=256
-endif
-
-function! s:SetBackgroundTheme(theme)
-    if (a:theme == 'light')
-        set background=light
-        colorscheme solarized
-    else
-        set background=dark
-        colorscheme hybrid
-    endif
-endfunction
-
-
-"change background color based on time of day
-if strftime('%H') > 6 && strftime("%H") < 18
-    call s:SetBackgroundTheme('light')
-else
-    call s:SetBackgroundTheme('dark')
-endif
-
 
 " ======================================================================
 " Mappings
@@ -620,6 +591,36 @@ function! s:FixGitGutterSignColumn()
         let @z = oldz
     endif
 endfunction
+
+" ----------------------------------------------------------------------
+" Background Settings
+" ----------------------------------------------------------------------
+"maximize gvim on open, set terminal to 256 colors
+if has("gui_running")
+    set lines=999 columns=999
+else
+    set t_Co=256
+    let g:solarized_termcolors=256
+endif
+
+function! s:SetBackgroundTheme(theme)
+    if (a:theme == 'light')
+        set background=light
+        colorscheme solarized
+    else
+        set background=dark
+        colorscheme hybrid
+    endif
+endfunction
+
+
+"change background color based on time of day
+if strftime('%H') > 6 && strftime("%H") < 18
+    call s:SetBackgroundTheme('light')
+else
+    call s:SetBackgroundTheme('dark')
+endif
+
 
 " ----------------------------------------------------------------------
 " Cheat Sheet
