@@ -586,7 +586,7 @@ augroup vimrc
     "reload AirlineTheme because the tab bar gets effed up
     autocmd ColorScheme * call s:ChangeAirlineTheme()
     " make comments more visible
-    autocmd ColorScheme * highlight clear Comment | highlight link Comment Todo
+    autocmd ColorScheme * call s:MakeCommentsProminent()
     autocmd ColorScheme * call s:FixGitGutterSignColumn()
 augroup END
 
@@ -595,6 +595,13 @@ function! s:ChangeAirlineTheme()
         AirlineTheme base16
     elseif g:colors_name ==# 'seoul256'
         AirlineTheme luna
+    endif
+endfunction
+
+function! s:MakeCommentsProminent()
+    if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
+        highlight clear Comment
+        highlight link Comment Todo
     endif
 endfunction
 
