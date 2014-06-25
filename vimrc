@@ -392,11 +392,6 @@ elseif executable('ack-grep')
 endif
 
 
-call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep,outline,yank',
-    \ 'ignore_pattern', join(['\.git/', '\.pptx$', '\.docx$', '\.jpg$',
-    \ '\.png$', '\.pdf$', '\.gif$', '\.tar\.gz$', '\.zip$', '\.deb$', '/node_modules/', '\.config/*',
-    \ '/\.meteor/*', '/packages/'], '\|'))
-
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 
