@@ -10,7 +10,7 @@
         ap = add -p
         br = branch --color
         ba = branch -a --color
-        cm = commit
+        ci = commit
         co = checkout
         d = diff --color
         dc = diff --cached --color
