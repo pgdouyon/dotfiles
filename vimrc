@@ -46,8 +46,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'w0ng/vim-hybrid'
 Plug 'tomasr/molokai'
 Plug 'chriskempson/base16-vim'
-Plug 'Pychimp/vim-luna'
-Plug 'Pychimp/vim-sol'
+Plug 'junegunn/seoul256.vim'
 " Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
