@@ -584,11 +584,19 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.md set filetype=pandoc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     "reload AirlineTheme because the tab bar gets effed up
-    autocmd ColorScheme * AirlineTheme base16
+    autocmd ColorScheme * call s:ChangeAirlineTheme()
     " make comments more visible
     autocmd ColorScheme * highlight clear Comment | highlight link Comment Todo
     autocmd ColorScheme * call s:FixGitGutterSignColumn()
 augroup END
+
+function! s:ChangeAirlineTheme()
+    if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
+        AirlineTheme base16
+    elseif g:colors_name ==# 'seoul256'
+        AirlineTheme luna
+    endif
+endfunction
 
 function! s:FixGitGutterSignColumn()
     let oldz = @z
