@@ -204,9 +204,13 @@ nnoremap Y y$
 
 " yank-paste -> paste the last yank
 nnoremap yp "0p
+nnoremap yP "0P
 
 " reuse flags when repeating substitute command with &
 nnoremap & :&&<CR>
+
+" qq to record, Q to replay
+nnoremap Q @q
 
 " highlight last inserted text
 nnoremap gV `[v`]
@@ -222,7 +226,7 @@ cnoremap $d <CR>:d<CR>``
 
 "Source a line of vimscript
 "Good for small changes made to vimrc
-nnoremap <Leader><Leader>s yy:<C-r>0<BS><CR>
+nnoremap <Leader>ss yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 " switch to alternate buffer and delete buffer using BufKill plugin to keep window
@@ -250,7 +254,8 @@ nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
 nnoremap gw <C-w>
 nnoremap <C-Q> <C-w>q
 nnoremap <silent> <Leader>tc :tabc<CR>
-nnoremap <silent> <Leader>to :tabe<CR>
+nnoremap <silent> <Leader>te :tabe<CR>
+nnoremap <silent> <Leader>to :tabo<CR>
 nnoremap <silent> <Left> :vertical resize -10<CR>
 nnoremap <silent> <Right> :vertical resize +10<CR>
 nnoremap <silent> <Down> :resize -10<CR>
