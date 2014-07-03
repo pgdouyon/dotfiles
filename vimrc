@@ -232,6 +232,17 @@ nnoremap <silent> <Leader>bd :BD<CR>
 "break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
 
+" emacs keybindings
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
 "make current file executable
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
 
