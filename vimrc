@@ -76,7 +76,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml']}
 Plug 'ap/vim-css-color', {'for': 'css'}
 
 " Markdown
-Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['markdown', 'tex']}
+Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['pandoc', 'markdown', 'tex']}
 
 " LaTeX
 " Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
