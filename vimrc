@@ -51,8 +51,6 @@ Plug 'junegunn/seoul256.vim'
 " Tool Integration
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
 
 " Clojure
 Plug 'guns/vim-sexp'
