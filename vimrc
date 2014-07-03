@@ -26,7 +26,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'justinmk/vim-sneak'
 Plug 'bkad/CamelCaseMotion'
 Plug 'kris89/vim-multiple-cursors'
-Plug 'ervandew/supertab'
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
@@ -234,6 +233,11 @@ nnoremap <silent> <Leader>bp :buffer #<CR>
 "break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
 
+" insert mode completion
+inoremap <C-]> <C-x><C-]>
+inoremap <C-K> <C-x><C-K>
+inoremap <C-F> <C-x><C-F>
+
 " emacs keybindings
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -359,6 +363,20 @@ endfunction
 
 nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
 
+" ----------------------------------------------------------------------
+" MegaTab
+" ----------------------------------------------------------------------
+function! s:MegaTab()
+    let line = getline(".")
+    let col = col(".")
+    if (strpart(line, 0, col - 1) =~ '^\s*$') || (line[col - 1] !~ '\k')
+        return "\<Tab>"
+    else
+        return "\<C-N>"
+    endif
+endfunction
+
+inoremap <expr> <Tab> <SID>MegaTab()
 
 " ======================================================================
 " Plugins
@@ -432,7 +450,6 @@ augroup unite
 augroup END
 
 function! s:unite_settings()
-    let b:SuperTabDisabled=1
     set number
     nnoremap <silent><buffer><expr> s unite#do_action('split')
     nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
