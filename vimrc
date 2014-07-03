@@ -44,7 +44,6 @@ Plug 'pgdouyon/vimroom'
 " ColorSchemes
 Plug 'altercation/vim-colors-solarized'
 Plug 'w0ng/vim-hybrid'
-Plug 'tomasr/molokai'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 " Plug 'flazz/vim-colorschemes'
