@@ -84,7 +84,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['markdown', 'tex']}
 " Deprecated
 " Plug 'matthias-guenther/hammer.vim', {'for': 'markdown'}
 " Plug 'godlygeek/tabular'
-" Plug 'SirVer/ultisnips'
 
 call plug#end()
 
