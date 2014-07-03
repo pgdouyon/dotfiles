@@ -102,7 +102,6 @@ let maplocalleader="\<CR>"
 
 "Buffers
 set number
-set relativenumber
 set ruler
 set title
 set lazyredraw
@@ -266,7 +265,7 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-nnoremap <silent> <Leader>nu :set relativenumber!<CR>
+nnoremap <silent> <Leader>nu :set number!<CR>
 
 
 " ======================================================================
@@ -411,7 +410,6 @@ augroup END
 function! s:unite_settings()
     let b:SuperTabDisabled=1
     set number
-    set relativenumber
     nnoremap <silent><buffer><expr> s unite#do_action('split')
     nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
     nnoremap <silent><buffer><expr> r unite#do_action('rec/async')
