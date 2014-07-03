@@ -109,7 +109,6 @@ set cursorline
 set autowrite       " automatically save before commands like :next and :make
 set autoread        " automatically read a file if it's been changed on disk
 set hidden          " hide buffers when they are abandoned
-set history=1000
 set ttimeout
 set ttimeoutlen=50
 
@@ -126,9 +125,6 @@ set backspace=indent,eol,start
 set textwidth=80
 
 set nrformats-=octal    " octal is the devil, don't allow it
-set fileformats+=mac
-set iskeyword+=-
-
 set mouse=""            " the mouse is the devil, don't allow it
 set shellslash          " use forward slashes for file names
 set ttyfast             " demand better performance when in terminal
@@ -150,16 +146,15 @@ set wildmenu
 set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
 set completeopt+=longest
 set laststatus=2                " always show status line
-set guioptions-=T               " turn off Toolbar
-set guioptions+=c               " use console dialogs instead of popup dialogs
+set guioptions="cegmt"
 set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
 "set guitablabel=\[%N\]\ %t\ %M
 
 " Files to ignore
-set wildignore+=*.o,*.out,*.obj,.exe,.git,*.rbc,*.rbo,*.class,.svn,*.gem,*/node_modules/*
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=**/tmp/*,*\\tmp\\*,*.swp,*~,._*
+set wildignore+=*.o,*.out,*.obj,.exe,.git,*.pyc,*.rbc,*.rbo,*.gem,*/node_modules/*
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar
+set wildignore+=**/tmp/*,*.swp,*~
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
 
 "Swap files
