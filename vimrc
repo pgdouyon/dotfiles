@@ -33,7 +33,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
 
 " Window/Buffer Management
-Plug 'vim-scripts/bufkill.vim'
 Plug 'pgdouyon/vim-mazda'
 
 " GUI Plugins
@@ -230,8 +229,7 @@ nnoremap <Leader>ss yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 " switch to alternate buffer and delete buffer using BufKill plugin to keep window
-nnoremap <silent> <Leader>bp :b#<CR>
-nnoremap <silent> <Leader>bd :BD<CR>
+nnoremap <silent> <Leader>bp :buffer #<CR>
 
 "break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
@@ -339,6 +337,27 @@ function! s:Scratch()
 endfunction
 
 nnoremap <Leader>sc :call <SID>Scratch()<CR>
+
+" ----------------------------------------------------------------------
+" BufKill
+" ----------------------------------------------------------------------
+function! s:BufKill()
+    let buf_to_kill = bufname("%")
+    let orig_win = winnr()
+    let orig_tab = tabpagenr()
+    for i in range(tabpagenr("$"))
+        execute "tabnext " . (i + 1)
+        while bufwinnr(buf_to_kill) != -1
+            execute bufwinnr(buf_to_kill) . "wincmd w"
+            buffer #
+        endwhile
+    endfor
+    execute "tabnext " . orig_tab
+    execute orig_win . "wincmd w"
+    execute "bdelete " . buf_to_kill
+endfunction
+
+nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
 
 
 " ======================================================================
