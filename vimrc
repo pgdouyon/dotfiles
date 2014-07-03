@@ -190,12 +190,6 @@ vnoremap k gk
 vnoremap gj j
 vnoremap gk k
 
-" center the jump on screen
-nnoremap * *zz
-nnoremap # #zz
-nnoremap n nzz
-nnoremap N Nzz
-
 " simplify inline navigation
 nnoremap H ^
 nnoremap L $
