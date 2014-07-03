@@ -60,7 +60,7 @@ Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 " Python
 Plug 'klen/python-mode', {'for': 'python'}
 
-"JavaScript
+" JavaScript
 Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 Plug 'moll/vim-node', {'for': 'javascript'}
 Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
@@ -98,7 +98,7 @@ syntax on
 let mapleader="\<Space>"
 let maplocalleader="\<CR>"
 
-"Buffers
+" Buffers
 set number
 set ruler
 set title
@@ -110,7 +110,7 @@ set hidden          " hide buffers when they are abandoned
 set ttimeout
 set ttimeoutlen=50
 
-"Tab/indent
+" Tab/indent
 set autoindent
 set expandtab       " use spaces instead of tab characters
 set smarttab        " make tab at the beginning of line use shiftwidth, instead of tabstop
@@ -130,14 +130,14 @@ if has("unix")
     set shell=bash
 endif
 
-"Search
+" Search
 set gdefault        " all substiutions have 'g' flag on by default
 set ignorecase      " do case insensitive matching
 set smartcase       " do smart case matching
 set incsearch       " incremental search
 set showmatch       " show matching brackets.
 
-"Window/menu
+" Window/menu
 set splitbelow
 set splitright
 set wildmenu
@@ -147,7 +147,7 @@ set laststatus=2                " always show status line
 set guioptions="cegmt"
 set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
-"set guitablabel=\[%N\]\ %t\ %M
+" set guitablabel=\[%N\]\ %t\ %M
 
 " Files to ignore
 set wildignore+=*.o,*.out,*.obj,.exe,.git,*.pyc,*.rbc,*.rbo,*.gem,*/node_modules/*
@@ -155,7 +155,7 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar
 set wildignore+=**/tmp/*,*.swp,*~
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
 
-"Swap files
+" Swap files
 set backupdir^=~/.vim/_backup//     " where to put backup files.
 set directory^=~/.vim/_temp//       " where to put swap files.
 set shortmess+=A                    " no 'existing swap file found' messages
@@ -216,21 +216,21 @@ nnoremap gV `[v`]
 " write file with super user privileges
 cnoremap w!! w !sudo tee % > /dev/null<CR>
 
-"allows incsearch highlighting for range commands
-"stole from reddit - does anyone use easymotion
+" allows incsearch highlighting for range commands
+" stole from reddit - does anyone use easymotion
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
 cnoremap $d <CR>:d<CR>``
 
-"Source a line of vimscript
-"Good for small changes made to vimrc
+" Source a line of vimscript
+" Good for small changes made to vimrc
 nnoremap <Leader>ss yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
-" switch to alternate buffer and delete buffer using BufKill plugin to keep window
+" switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
 
-"break undo sequence when deleting a line in insert mode
+" break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
 
 " insert mode completion
@@ -249,10 +249,10 @@ cnoremap <C-p> <Up>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
-"make current file executable
+" make current file executable
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
 
-"Window navigation commands
+" Window navigation commands
 nnoremap gw <C-w>
 nnoremap <C-Q> <C-w>q
 nnoremap <silent> <Leader>tc :tabc<CR>
@@ -630,7 +630,7 @@ endfunction
 " ----------------------------------------------------------------------
 " Background Settings
 " ----------------------------------------------------------------------
-"maximize gvim on open, set terminal to 256 colors
+" maximize gvim on open, set terminal to 256 colors
 if has("gui_running")
     set lines=999 columns=999
 else
@@ -649,7 +649,7 @@ function! s:SetBackgroundTheme(theme)
 endfunction
 
 
-"change background color based on time of day
+" change background color based on time of day
 if strftime('%H') > 6 && strftime("%H") < 18
     call s:SetBackgroundTheme('light')
 else
@@ -660,11 +660,11 @@ endif
 " ----------------------------------------------------------------------
 " Cheat Sheet
 " ----------------------------------------------------------------------
-"#Multiple-Cursors
+" #Multiple-Cursors
     " - <c-n> -> select next
     " - <c-p> -> undo selection and move to previous
     " - <c-x> -> skip current selection
-"#Fireplace
+" #Fireplace
     " - K           -> look up docs for keyword under cursor
     " - [d or ]d    -> show source for keyword under cursor
     " - <C-W>d      -> jump to source for keyword under cursor in split
@@ -685,11 +685,11 @@ endif
     " - cq{motion}  -> bring up a command-line-window with prepopulated text
     "              -> indicated by {motion}
     " - <C-R>(      -> evaluate the given expression and insert the result
-"#Vim-Commentary
+" #Vim-Commentary
     " - gc{motion} -> toggle comments for small inline comments
     " - gcc        -> toggle comments for current line
     " - gC{motion} -> comment region
-"#Emmet
+" #Emmet
     " - <C-y>, -> expand/wrap with css-style abbreviation
     " - <C-y>n -> go to next edit point (N for previous)
     " - <C-y>k -> kill tag in block
