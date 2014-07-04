@@ -522,11 +522,6 @@ set runtimepath+=~/.fzf
 nnoremap <Leader>fz :FZF -x<CR>
 
 " ----------------------------------------------------------------------
-" Vim Sneak Settings
-" ----------------------------------------------------------------------
-highlight SneakPluginTarget None
-
-" ----------------------------------------------------------------------
 " Netrw Settings
 " ----------------------------------------------------------------------
 let g:netrw_liststyle=1
@@ -700,6 +695,7 @@ function! s:FixGitGutterSignColumn()
 endfunction
 
 function! s:SetCustomHL()
+    highlight link SneakPluginTarget None
     highlight link Snip Structure
     highlight ExtraWhitespace ctermbg=red guibg=red
     match ExtraWhitespace /\s\+$/
