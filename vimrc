@@ -659,6 +659,7 @@ function! s:SetupColorScheme()
     call s:ChangeAirlineTheme()
     call s:MakeCommentsProminent()
     call s:FixGitGutterSignColumn()
+    call s:SetCustomHL()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
     endif
@@ -696,6 +697,12 @@ function! s:FixGitGutterSignColumn()
         highlight link GitGutterChange GitGutterChangeDefault
         highlight link GitGutterDelete GitGutterDeleteDefault
     endif
+endfunction
+
+function! s:SetCustomHL()
+    highlight link Snip Structure
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
 endfunction
 
 function! s:SetSnippetSynHL()
