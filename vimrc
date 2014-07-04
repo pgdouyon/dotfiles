@@ -375,17 +375,19 @@ nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
 " ----------------------------------------------------------------------
 " MegaTab
 " ----------------------------------------------------------------------
-function! s:MegaTab()
+function! s:MegaTab(complete, tab)
     let line = getline(".")
-    let col = col(".")
-    if (strpart(line, 0, col - 1) =~ '^\s*$') || (line[col - 1] !~ '\k')
-        return "\<Tab>"
+    let col = col(".") - 1
+    let bol = strpart(line, 0, col) =~ '^\s*$'
+    if bol || (line[col] =~ '\k' && line[col + 1] !~ '\k')
+        return a:tab
     else
-        return "\<C-N>"
+        return a:complete
     endif
 endfunction
 
-inoremap <expr> <Tab> <SID>MegaTab()
+inoremap <expr> <Tab> <SID>MegaTab("\<C-n>", "\<Tab>")
+inoremap <expr> <S-Tab> <SID>MegaTab("\<C-p>", "\<S-Tab>")
 
 " ======================================================================
 " Plugins
