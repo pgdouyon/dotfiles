@@ -390,6 +390,27 @@ inoremap <expr> <Tab> <SID>MegaTab("\<C-n>", "\<Tab>")
 inoremap <expr> <S-Tab> <SID>MegaTab("\<C-p>", "\<S-Tab>")
 
 " ----------------------------------------------------------------------
+" Snippet Syntax Highlighting
+" ----------------------------------------------------------------------
+function! s:SnippetSyntax(lang)
+    let syns = split(globpath(&rtp, "syntax/".a:lang.".vim"), "\n")
+    if empty(syns)
+        return
+    endif
+    if exists("b:current_syntax")
+        let csyn = b:current_syntax
+        unlet b:current_syntax
+    endif
+    silent! execute printf("syntax include @%s %s", a:lang, syns[0])
+    execute printf('syntax region %sSnip matchgroup=Snip start="```%s" end="```" ' .
+                    \ 'contains=@%s containedin=ALL', a:lang, a:lang, a:lang)
+
+    if exists("csyn")
+        let b:current_syntax = csyn
+    endif
+endfunction
+
+" ----------------------------------------------------------------------
 " Next Indent Level
 " ----------------------------------------------------------------------
 function! s:NextIndent(count, dir)
@@ -632,6 +653,7 @@ augroup vimrc
     " make comments more visible
     autocmd ColorScheme * call s:MakeCommentsProminent()
     autocmd ColorScheme * call s:FixGitGutterSignColumn()
+    autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
 augroup END
 
 function! s:ChangeAirlineTheme()
@@ -665,6 +687,13 @@ function! s:FixGitGutterSignColumn()
         highlight link GitGutterChange GitGutterChangeDefault
         highlight link GitGutterDelete GitGutterDeleteDefault
     endif
+endfunction
+
+function! s:SetSnippetSynHL()
+    let langmap = ["c", "cpp", "java", "go", "haskell", "python", "ruby", "lua", "clojure", "scala", "vim", "javascript"]
+    for lang in langmap
+        call s:SnippetSyntax(lang)
+    endfor
 endfunction
 
 " ----------------------------------------------------------------------
