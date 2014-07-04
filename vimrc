@@ -656,10 +656,14 @@ function! s:FixGitGutterSignColumn()
         redir END
 
         let guibg = matchstr(hl, '\vguibg\=%(\a+|\#\x+)')
-        execute "silent! highlight SignColumn " . guibg
         execute "silent! highlight GitGutterAddDefault " . guibg
         execute "silent! highlight GitGutterChangeDefault " . guibg
         execute "silent! highlight GitGutterDeleteDefault " . guibg
+        highlight clear SignColumn
+        highlight link SignColumn LineNr
+        highlight link GitGutterAdd GitGutterAddDefault
+        highlight link GitGutterChange GitGutterChangeDefault
+        highlight link GitGutterDelete GitGutterDeleteDefault
     endif
 endfunction
 
