@@ -547,10 +547,11 @@ nmap ghr <Plug>GitGutterRevertHunk
 " ----------------------------------------------------------------------
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gd :Gdiff<CR>
-nnoremap <silent> <Leader>gl :Glog --oneline --decorate<CR>
+nnoremap <silent> <Leader>gd :Gvdiff<CR>
+nnoremap <silent> <Leader>gl :Glog --oneline --decorate --<CR>
 nnoremap <silent> <Leader>gc :Gcommit<CR>
 nnoremap <silent> <Leader>ga :Gwrite<CR>
+nnoremap <silent> <Leader>gr :Gread<CR>
 nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 
