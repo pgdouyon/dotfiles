@@ -643,20 +643,29 @@ let g:targets_nlNL = 'nl  '
 
 augroup vimrc
     autocmd!
-    "Jump to the last position when reopening a file
+    " Jump to the last position when reopening a file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd FocusLost *.{html,css} w
     autocmd BufRead,BufNewFile *.md set filetype=pandoc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
-    "reload AirlineTheme because the tab bar gets effed up
-    autocmd ColorScheme * call s:ChangeAirlineTheme()
-    " make comments more visible
-    autocmd ColorScheme * call s:MakeCommentsProminent()
-    autocmd ColorScheme * call s:FixGitGutterSignColumn()
+    autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
 augroup END
 
+" ----------------------------------------------------------------------
+" Colorscheme Settings
+" ----------------------------------------------------------------------
+function! s:SetupColorScheme()
+    call s:ChangeAirlineTheme()
+    call s:MakeCommentsProminent()
+    call s:FixGitGutterSignColumn()
+    if &filetype ==? "pandoc" || &filetype ==? "markdown"
+        call s:SetSnippetSynHL()
+    endif
+endfunction
+
 function! s:ChangeAirlineTheme()
+    " reload AirlineTheme because the tab bar gets effed up
     if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
         silent! AirlineTheme base16
     elseif g:colors_name ==# 'seoul256'
