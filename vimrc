@@ -275,6 +275,15 @@ nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>nu :set number!<CR>
 
+" ----------------------------------------------------------------------
+" Markdown Headings
+" ----------------------------------------------------------------------
+inoremap <M-1> <Esc>yypVr=A
+inoremap <M-2> <Esc>yypVr-A
+inoremap <M-3> <Esc>I### <End>
+inoremap <M-4> <Esc>I#### <End>
+inoremap <M-5> <Esc>I##### <End>
+
 
 " ======================================================================
 " Functions
