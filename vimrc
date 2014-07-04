@@ -174,6 +174,7 @@ endif
 " Mappings
 " ======================================================================
 
+" <Esc> mappings
 inoremap <C-j> <Esc>
 xnoremap <C-j> <Esc>
 onoremap <C-j> <Esc>
@@ -189,24 +190,14 @@ vnoremap k gk
 vnoremap gj j
 vnoremap gk k
 
+" ----------------------------------------------------------------------
+" Normal Mode
+" ----------------------------------------------------------------------
 " simplify inline navigation
 nnoremap H ^
 nnoremap L $
 nnoremap ^ H
 nnoremap $ L
-
-" global substitution
-nnoremap gs :%s/
-
-" make Y play nice like C and D do
-nnoremap Y y$
-
-" yank-paste -> paste the last yank
-nnoremap yp "0p
-nnoremap yP "0P
-
-" reuse flags when repeating substitute command with &
-nnoremap & :&&<CR>
 
 " qq to record, Q to replay
 nnoremap Q @q
@@ -214,55 +205,15 @@ nnoremap Q @q
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" write file with super user privileges
-cnoremap w!! w !sudo tee % > /dev/null<CR>
-
-" allows incsearch highlighting for range commands
-" stole from reddit - does anyone use easymotion
-cnoremap $t <CR>:t''<CR>
-cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d<CR>``
-
 " Source a line of vimscript
-" Good for small changes made to vimrc
 nnoremap <Leader>ss yy:<C-r>0<BS><CR>
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 " switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
 
-" break undo sequence when deleting a line in insert mode
-inoremap <C-U> <C-G>u<C-U>
-
-" insert mode completion
-inoremap <C-]> <C-x><C-]>
-inoremap <C-K> <C-x><C-K>
-inoremap <C-F> <C-x><C-F>
-
-" emacs keybindings
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
-
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
-
 " make current file executable
 nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
-
-" Window navigation commands
-nnoremap gw <C-w>
-nnoremap <C-Q> <C-w>q
-nnoremap <silent> <Leader>tc :tabc<CR>
-nnoremap <silent> <Leader>te :tabe<CR>
-nnoremap <silent> <Leader>to :tabo<CR>
-nnoremap <silent> <Left> :vertical resize -10<CR>
-nnoremap <silent> <Right> :vertical resize +10<CR>
-nnoremap <silent> <Down> :resize -10<CR>
-nnoremap <silent> <Up> :resize +10<CR>
 
 " cd to the directory containing the file in the buffer
 nnoremap <silent> <leader>cd :lcd %:h<CR>
@@ -273,16 +224,82 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
+" toggle line numbers
 nnoremap <silent> <Leader>nu :set number!<CR>
 
 " ----------------------------------------------------------------------
-" Markdown Headings
+" Yanking
 " ----------------------------------------------------------------------
+" make Y play nice like C and D do
+nnoremap Y y$
+
+" yank-paste -> paste the last yank
+nnoremap yp "0p
+nnoremap yP "0P
+
+" ----------------------------------------------------------------------
+" Substitution
+" ----------------------------------------------------------------------
+" global substitution
+nnoremap gs :%s/
+
+" reuse flags when repeating substitute command with &
+nnoremap & :&&<CR>
+
+" ----------------------------------------------------------------------
+" Window Navigation
+" ----------------------------------------------------------------------
+nnoremap gw <C-w>
+nnoremap <C-Q> <C-w>q
+nnoremap <silent> <Leader>tc :tabc<CR>
+nnoremap <silent> <Leader>te :tabe<CR>
+nnoremap <silent> <Leader>to :tabo<CR>
+nnoremap <silent> <Left> :vertical resize -10<CR>
+nnoremap <silent> <Right> :vertical resize +10<CR>
+nnoremap <silent> <Down> :resize -10<CR>
+nnoremap <silent> <Up> :resize +10<CR>
+
+" ----------------------------------------------------------------------
+" Insert Mode
+" ----------------------------------------------------------------------
+" break undo sequence when deleting a line in insert mode
+inoremap <C-U> <C-G>u<C-U>
+
+" insert mode completion
+inoremap <C-]> <C-x><C-]>
+inoremap <C-K> <C-x><C-K>
+inoremap <C-F> <C-x><C-F>
+
+" markdown headings
 inoremap <M-1> <Esc>yypVr=A
 inoremap <M-2> <Esc>yypVr-A
 inoremap <M-3> <Esc>I### <End>
 inoremap <M-4> <Esc>I#### <End>
 inoremap <M-5> <Esc>I##### <End>
+
+" emacs keybindings
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
+" ----------------------------------------------------------------------
+" Command Line
+" ----------------------------------------------------------------------
+" write file with super user privileges
+cnoremap w!! w !sudo tee % > /dev/null<CR>
+
+" allows incsearch highlighting for range commands
+" stole from reddit - does anyone use easymotion
+cnoremap $t <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d<CR>``
+
+" emacs keybindings
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
 
 
 " ======================================================================
