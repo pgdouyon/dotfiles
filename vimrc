@@ -347,7 +347,6 @@ function! s:Scratch()
     setlocal bufhidden=hide
     setlocal noswapfile
     setlocal buflisted
-    nnoremap <buffer> q :bd!<CR>
 endfunction
 
 nnoremap <Leader>sc :call <SID>Scratch()<CR>
