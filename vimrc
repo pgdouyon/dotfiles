@@ -389,6 +389,30 @@ endfunction
 inoremap <expr> <Tab> <SID>MegaTab("\<C-n>", "\<Tab>")
 inoremap <expr> <S-Tab> <SID>MegaTab("\<C-p>", "\<S-Tab>")
 
+" ----------------------------------------------------------------------
+" Next Indent Level
+" ----------------------------------------------------------------------
+function! s:NextIndent(count, dir)
+    let lnum = line(".")
+    for _ in range(a:count)
+        let indent = indent(lnum)
+        while lnum > 1 && lnum < line("$")
+            let lnum += a:dir
+            let next_indent = indent(lnum)
+            let empty = empty(getline(lnum))
+            if !empty && next_indent != indent
+                break
+            endif
+        endwhile
+    endfor
+    execute "normal! " . lnum . "G^"
+endfunction
+
+noremap zi gi
+noremap gi :<C-u>call <SID>NextIndent(v:count1, 1)<CR>
+noremap gI :<C-u>call <SID>NextIndent(v:count1, -1)<CR>
+
+
 " ======================================================================
 " Plugins
 " ======================================================================
