@@ -143,6 +143,7 @@ set splitright
 set wildmenu
 set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
 set completeopt+=longest
+set diffopt="filler,vertical"
 set laststatus=2                " always show status line
 set guioptions="cegmt"
 set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
