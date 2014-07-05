@@ -690,21 +690,12 @@ augroup END
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    call s:ChangeAirlineTheme()
+    AirlineRefresh
     call s:MakeCommentsProminent()
     call s:FixGitGutterSignColumn()
     call s:SetCustomHL()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
-    endif
-endfunction
-
-function! s:ChangeAirlineTheme()
-    " reload AirlineTheme because the tab bar gets effed up
-    if (g:colors_name ==# 'solarized')
-        silent! AirlineTheme tomorrow
-    elseif g:colors_name =~ 'seoul256'
-        silent! AirlineTheme tomorrow
     endif
 endfunction
 
