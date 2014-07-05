@@ -343,7 +343,7 @@ function! s:ColorToggle()
     endif
 endfunction
 
-nnoremap <silent> <Leader>tb :call <SID>ColorToggle()<CR>
+nnoremap <silent> cob :call <SID>ColorToggle()<CR>
 
 " ----------------------------------------------------------------------
 " Scratch Buffer
@@ -658,6 +658,7 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
+    autocmd SourceCmd *unimpaired.vim source <afile> | nnoremap <silent> cob :call <SID>ColorToggle()<CR>
 augroup END
 
 " ----------------------------------------------------------------------
