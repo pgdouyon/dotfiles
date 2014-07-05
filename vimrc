@@ -41,7 +41,6 @@ Plug 'pgdouyon/vimroom'
 
 " ColorSchemes
 Plug 'altercation/vim-colors-solarized'
-Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 " Plug 'flazz/vim-colorschemes'
@@ -676,22 +675,22 @@ endfunction
 
 function! s:ChangeAirlineTheme()
     " reload AirlineTheme because the tab bar gets effed up
-    if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
+    if (g:colors_name ==# 'solarized')
         silent! AirlineTheme base16
-    elseif g:colors_name ==# 'seoul256'
+    elseif g:colors_name =~ 'seoul256'
         silent! AirlineTheme luna
     endif
 endfunction
 
 function! s:MakeCommentsProminent()
-    if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
+    if (g:colors_name ==# 'solarized')
         highlight clear Comment
         highlight link Comment Todo
     endif
 endfunction
 
 function! s:FixGitGutterSignColumn()
-    if (g:colors_name ==# 'solarized') || (g:colors_name ==# 'hybrid')
+    if (g:colors_name ==# 'solarized')
         redir => hl
         silent highlight LineNr
         redir END
@@ -735,11 +734,11 @@ endif
 
 function! s:SetBackgroundTheme(theme)
     if (a:theme == 'light')
-        set background=light
         colorscheme solarized
+        set background=light
     else
+        colorscheme seoul256
         set background=dark
-        colorscheme hybrid
     endif
 endfunction
 
