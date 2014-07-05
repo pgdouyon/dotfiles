@@ -46,6 +46,7 @@ Plug 'junegunn/seoul256.vim'
 " Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
+Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 
@@ -577,12 +578,36 @@ nmap ghr <Plug>GitGutterRevertHunk
 nnoremap <silent> <Leader>gb :Gblame<CR>
 nnoremap <silent> <Leader>gs :Gstatus<CR>
 nnoremap <silent> <Leader>gd :Gvdiff<CR>
-nnoremap <silent> <Leader>gl :Glog --oneline --decorate --<CR>
 nnoremap <silent> <Leader>gc :Gcommit<CR>
 nnoremap <silent> <Leader>ga :Gwrite<CR>
 nnoremap <silent> <Leader>gr :Gread<CR>
 nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
+
+" ----------------------------------------------------------------------
+" Gitv Settings
+" ----------------------------------------------------------------------
+nnoremap <silent> <Leader>gv :Gitv<CR>
+nnoremap <silent> <Leader>gV :Gitv!<CR>
+
+function! s:FixGitvAirlineTheme(theme)
+    if g:colors_name !=? "solarized"
+        return
+    endif
+
+    for buf in tabpagebuflist()
+        let gitv = (bufname(buf) =~? "gitv") && (getbufvar(buf, '&filetype') ==?  "gitv")
+        let preview = (getwinvar(bufwinnr(buf), '&previewwindow') == 1)
+        if gitv && !preview
+            execute "AirlineTheme " . a:theme
+        endif
+    endfor
+endfunction
+
+augroup gitv
+    autocmd BufEnter *gitv* call s:FixGitvAirlineTheme("zenburn")
+    autocmd TabLeave * call s:FixGitvAirlineTheme("tomorrow")
+augroup END
 
 " ----------------------------------------------------------------------
 " Surround Settings
