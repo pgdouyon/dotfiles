@@ -608,7 +608,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline_theme = 'base16'
+let g:airline_theme = 'tomorrow'
 set fillchars+=stl:\ ,stlnc:\
 
 " ----------------------------------------------------------------------
@@ -676,9 +676,9 @@ endfunction
 function! s:ChangeAirlineTheme()
     " reload AirlineTheme because the tab bar gets effed up
     if (g:colors_name ==# 'solarized')
-        silent! AirlineTheme base16
+        silent! AirlineTheme tomorrow
     elseif g:colors_name =~ 'seoul256'
-        silent! AirlineTheme luna
+        silent! AirlineTheme tomorrow
     endif
 endfunction
 
