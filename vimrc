@@ -224,9 +224,6 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
-" toggle line numbers
-nnoremap <silent> <Leader>nu :set number!<CR>
-
 " ----------------------------------------------------------------------
 " Yanking
 " ----------------------------------------------------------------------
