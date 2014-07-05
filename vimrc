@@ -284,12 +284,6 @@ inoremap <C-e> <End>
 " write file with super user privileges
 cnoremap w!! w !sudo tee % > /dev/null<CR>
 
-" allows incsearch highlighting for range commands
-" stole from reddit - does anyone use easymotion
-cnoremap $t <CR>:t''<CR>
-cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d<CR>``
-
 " emacs keybindings
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
