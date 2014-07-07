@@ -583,25 +583,6 @@ nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 nnoremap <silent> <Leader>gv :Gitv<CR>
 nnoremap <silent> <Leader>gV :Gitv!<CR>
 
-function! s:FixGitvAirlineTheme(theme)
-    if g:colors_name !=? "solarized"
-        return
-    endif
-
-    for buf in tabpagebuflist()
-        let gitv = (bufname(buf) =~? "gitv") && (getbufvar(buf, '&filetype') ==?  "gitv")
-        let preview = (getwinvar(bufwinnr(buf), '&previewwindow') == 1)
-        if gitv && !preview
-            execute "AirlineTheme " . a:theme
-        endif
-    endfor
-endfunction
-
-augroup gitv
-    autocmd BufEnter *gitv* call s:FixGitvAirlineTheme("zenburn")
-    autocmd TabLeave * call s:FixGitvAirlineTheme("tomorrow")
-augroup END
-
 " ----------------------------------------------------------------------
 " Surround Settings
 " ----------------------------------------------------------------------
