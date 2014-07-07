@@ -664,7 +664,7 @@ augroup END
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    AirlineRefresh
+    silent! AirlineRefresh
     call s:MakeCommentsProminent()
     call s:SetCustomHL()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
