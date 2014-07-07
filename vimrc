@@ -666,7 +666,6 @@ augroup END
 function! s:SetupColorScheme()
     AirlineRefresh
     call s:MakeCommentsProminent()
-    call s:FixGitGutterSignColumn()
     call s:SetCustomHL()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
@@ -676,24 +675,6 @@ endfunction
 function! s:MakeCommentsProminent()
     highlight clear Comment
     highlight link Comment Exception
-endfunction
-
-function! s:FixGitGutterSignColumn()
-    if (g:colors_name ==# 'solarized')
-        redir => hl
-        silent highlight LineNr
-        redir END
-
-        let guibg = matchstr(hl, '\vguibg\=%(\a+|\#\x+)')
-        execute "silent! highlight GitGutterAddDefault " . guibg
-        execute "silent! highlight GitGutterChangeDefault " . guibg
-        execute "silent! highlight GitGutterDeleteDefault " . guibg
-        highlight clear SignColumn
-        highlight link SignColumn LineNr
-        highlight link GitGutterAdd GitGutterAddDefault
-        highlight link GitGutterChange GitGutterChangeDefault
-        highlight link GitGutterDelete GitGutterDeleteDefault
-    endif
 endfunction
 
 function! s:SetCustomHL()
