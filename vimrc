@@ -40,9 +40,8 @@ Plug 'Lokaltog/powerline-fonts'
 Plug 'pgdouyon/vimroom'
 
 " ColorSchemes
-Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'chriskempson/base16-vim'
 " Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
@@ -694,10 +693,8 @@ function! s:SetupColorScheme()
 endfunction
 
 function! s:MakeCommentsProminent()
-    if (g:colors_name ==# 'solarized')
-        highlight clear Comment
-        highlight link Comment Todo
-    endif
+    highlight clear Comment
+    highlight link Comment Exception
 endfunction
 
 function! s:FixGitGutterSignColumn()
@@ -745,9 +742,11 @@ endif
 
 function! s:SetBackgroundTheme(theme)
     if (a:theme == 'light')
-        colorscheme solarized
+        let g:seoul256_background=256
+        colorscheme seoul256
         set background=light
     else
+        let g:seoul256_background=235
         colorscheme seoul256
         set background=dark
     endif
