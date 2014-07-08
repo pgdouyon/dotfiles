@@ -173,12 +173,6 @@ endif
 " Mappings
 " ======================================================================
 
-" <Esc> mappings
-inoremap <C-j> <Esc>
-xnoremap <C-j> <Esc>
-onoremap <C-j> <Esc>
-cnoremap <C-j> <C-c>
-
 " make j and k operate over display lines
 nnoremap j gj
 nnoremap k gk
