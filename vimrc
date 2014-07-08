@@ -274,7 +274,7 @@ inoremap <C-e> <End>
 " Command Line
 " ----------------------------------------------------------------------
 " write file with super user privileges
-cnoremap w!! w !sudo tee % > /dev/null<CR>
+cabbrev w!! w !sudo tee % > /dev/null
 
 " emacs keybindings
 cnoremap <C-a> <Home>
