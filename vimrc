@@ -198,8 +198,7 @@ nnoremap Q @q
 " highlight last inserted text
 nnoremap gV `[v`]
 
-" Source a line of vimscript
-nnoremap <Leader>ss yy:<C-r>0<BS><CR>
+" Source vimrc
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 " switch to alternate buffer
