@@ -379,7 +379,7 @@ function! s:MegaTab(complete, tab)
     let line = getline(".")
     let col = col(".") - 1
     let bol = strpart(line, 0, col) =~ '^\s*$'
-    if bol || (line[col] =~ '\k' && line[col + 1] !~ '\k')
+    if bol || line[col - 1] =~ '\s'
         return a:tab
     else
         return a:complete
