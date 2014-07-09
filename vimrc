@@ -384,6 +384,18 @@ function! s:MegaTab(complete, tab)
     let bol = strpart(line, 0, col) =~ '^\s*$'
     if bol || line[col - 1] =~ '\s'
         return a:tab
+    endif
+
+    let skip_file_completion = ["clojure"]
+    for ft in skip_file_completion
+        if &filetype ==? ft
+            return a:complete
+        endif
+    endfor
+
+    let keyword = matchstr(strpart(getline("."), 0, col), '\S*$')
+    if match(keyword, '\/') != -1
+        return "\<C-x>\<C-f>"
     else
         return a:complete
     endif
