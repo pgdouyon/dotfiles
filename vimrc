@@ -376,6 +376,9 @@ nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
 " MegaTab
 " ----------------------------------------------------------------------
 function! s:MegaTab(complete, tab)
+    if pumvisible()
+        return a:complete
+    endif
     let line = getline(".")
     let col = col(".") - 1
     let bol = strpart(line, 0, col) =~ '^\s*$'
