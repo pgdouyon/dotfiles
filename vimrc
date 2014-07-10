@@ -255,9 +255,10 @@ nnoremap <silent> <Up> :resize +10<CR>
 inoremap <C-U> <C-G>u<C-U>
 
 " insert mode completion
-inoremap <C-]> <C-x><C-]>
-inoremap <C-K> <C-x><C-K>
-inoremap <C-F> <C-x><C-F>
+inoremap <C-]> <C-X><C-]>
+inoremap <C-K> <C-X><C-K>
+inoremap <C-F> <C-X><C-F>
+inoremap <C-L> <C-X><C-L>
 
 " markdown headings
 inoremap <M-1> <Esc>yypVr=A
