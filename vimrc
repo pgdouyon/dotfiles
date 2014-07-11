@@ -402,8 +402,8 @@ function! s:MegaTab(complete, tab)
     endif
 endfunction
 
-inoremap <expr> <Tab> <SID>MegaTab("\<C-p>", "\<Tab>")
-inoremap <expr> <S-Tab> <SID>MegaTab("\<C-n>", "\<S-Tab>")
+inoremap <expr> <Tab> <SID>MegaTab("\<C-n>", "\<Tab>")
+inoremap <expr> <S-Tab> <SID>MegaTab("\<C-p>", "\<S-Tab>")
 
 " ----------------------------------------------------------------------
 " Snippet Syntax Highlighting
