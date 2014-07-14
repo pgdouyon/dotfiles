@@ -4,6 +4,11 @@
 
 call plug#begin('~/.vim/bundle')
 
+" Personal Plugins
+Plug 'pgdouyon/vim-niffler'
+Plug 'pgdouyon/vim-mazda'
+Plug 'pgdouyon/vimroom'
+
 " Shougo
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/vimshell.vim'
@@ -31,13 +36,9 @@ Plug 'kris89/vim-multiple-cursors'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
 
-" Window/Buffer Management
-Plug 'pgdouyon/vim-mazda'
-
-" GUI Plugins
+" Statusline Plugins
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/powerline-fonts'
-Plug 'pgdouyon/vimroom'
 
 " ColorSchemes
 Plug 'junegunn/seoul256.vim'
