@@ -315,7 +315,8 @@ function! s:MakeSectionBox(border)
     " use vim-commentary mapping
     normal! 2k
     normal 3gcc
-    normal! 3j^
+    normal! 3jO
+    startinsert!
 endfunction
 
 inoremap <C-b>= <Esc>:call <SID>MakeSectionBox("=")<CR>
