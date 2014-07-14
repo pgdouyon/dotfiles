@@ -533,10 +533,10 @@ function! s:unite_settings()
 endfunction
 
 " ----------------------------------------------------------------------
-" FZF
+" Niffler Settings
 " ----------------------------------------------------------------------
-set runtimepath+=~/.fzf
-nnoremap <Leader>fz :FZF -x<CR>
+nnoremap <silent> ghf :Niffler<CR>
+nnoremap <silent> ghg :Niffler!<CR>
 
 " ----------------------------------------------------------------------
 " Netrw Settings
