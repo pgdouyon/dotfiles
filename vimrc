@@ -437,13 +437,16 @@ function! s:NextIndent(count, dir)
         while lnum > 1 && lnum < line("$")
             let lnum += a:dir
             let next_indent = indent(lnum)
-            let empty = empty(getline(lnum))
-            if !empty && next_indent != indent
+            let line = getline(lnum)
+            let empty = empty(line)
+            let end_statement = (line =~# 'end' && line !~ '(' && line !~ '=')
+            let end_brace = (line =~ '}' && line !~ '{')
+            if !empty && !end_statement && !end_brace && next_indent != indent
                 break
             endif
         endwhile
     endfor
-    execute "normal! " . lnum . "G^"
+    execute "normal! ".lnum."G^"
 endfunction
 
 noremap zi gi
