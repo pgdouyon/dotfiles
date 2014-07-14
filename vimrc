@@ -536,7 +536,7 @@ endfunction
 " Niffler Settings
 " ----------------------------------------------------------------------
 nnoremap <silent> ghf :Niffler<CR>
-nnoremap <silent> ghg :Niffler!<CR>
+nnoremap <silent> ghg :NifflerVCS<CR>
 
 " ----------------------------------------------------------------------
 " Netrw Settings
