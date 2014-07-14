@@ -453,6 +453,40 @@ noremap zi gi
 noremap gi :<C-u>call <SID>NextIndent(v:count1, 1)<CR>
 noremap gI :<C-u>call <SID>NextIndent(v:count1, -1)<CR>
 
+" ----------------------------------------------------------------------
+" Skip Indents
+" ----------------------------------------------------------------------
+function! s:SkipIndent(count, dir)
+    let lnum = line(".")
+    let indent = indent(lnum)
+    for _ in range(a:count)
+        while lnum > 1 && lnum < line("$")
+            let lnum += a:dir
+            let next_indent = indent(lnum)
+            if next_indent != indent
+                break
+            endif
+        endwhile
+        while lnum > 1 && lnum < line("$")
+            let lnum += a:dir
+            let next_indent = indent(lnum)
+            let line = getline(lnum)
+            let empty = empty(line)
+            let end_statement = (line =~# 'end' && line !~ '(' && line !~ '=')
+            let end_brace = (line =~ '}' && line !~ '{')
+            if !empty && !end_statement && !end_brace && next_indent == indent
+                break
+            endif
+        endwhile
+    endfor
+    execute "normal! ".lnum."G^"
+endfunction
+
+noremap <Leader>gt gt
+noremap <Leader>gT gT
+noremap gt :<C-u>call <SID>SkipIndent(v:count1, 1)<CR>
+noremap gT :<C-u>call <SID>SkipIndent(v:count1, -1)<CR>
+
 
 " ======================================================================
 " Plugins
