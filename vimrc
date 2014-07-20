@@ -199,6 +199,9 @@ nnoremap gV `[v`]
 " Source vimrc
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
+" change buffer
+nnoremap <silent> gb :buffer<Space>
+
 " switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
 
