@@ -12,9 +12,6 @@ Plug 'pgdouyon/vimroom'
 " Shougo
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/vimshell.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/neomru.vim'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -521,54 +518,6 @@ nnoremap <silent> <Leader>ms :VimShellInteractive mit-scheme<CR>
 nnoremap <silent> <Leader>vx :VimShellExecute
 nnoremap <silent> <Leader>ve :VimShellSendString<CR>
 vnoremap <silent> <Leader>ve :VimShellSendString<CR>
-
-" ----------------------------------------------------------------------
-" Unite Settings
-" ----------------------------------------------------------------------
-let g:unite_enable_start_insert = 1
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_history_yank_save_clipboard = 1
-let g:unite_source_rec_max_cache_files = 2000
-
-if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nocolor --nogroup --column --follow --smart-case -t'
-    let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --follow --hidden --smart-case -t -g ""'
-elseif executable('ack-grep')
-    let g:unite_source_grep_command = 'ack-grep'
-    let g:unite_source_grep_default_opts = '--line-numbers --noheading --column --follow --smart-case -a'
-    let g:unite_source_rec_async_command = 'ack --nocolor --nogroup --smart-case -f --nofilter'
-endif
-
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-
-nnoremap <Leader>uf :<C-u>Unite -no-split -buffer-name=files file_mru file file/new<CR>
-nnoremap <Leader>ur :<C-u>Unite -no-split -buffer-name=files file_rec/async:~/Projects<CR>
-nnoremap <Leader>up :<C-u>Unite -no-split -buffer-name=project_files file_rec/async:!<CR>
-nnoremap <Leader>ud :<C-u>Unite -no-split -buffer-name=directory directory:~ directory/new<CR>
-
-nnoremap <Leader>ug :<C-u>Unite -no-split -buffer-name=grep grep:.<CR>
-nnoremap <Leader>ub :<C-u>Unite -no-split -buffer-name=buffers buffer<CR>
-
-nnoremap <Leader>uo :<C-u>Unite -no-split -buffer-name=outline outline<CR>
-nnoremap <Leader>ps :<C-u>Unite -no-split -buffer-name=processes  process<CR>
-
-augroup unite
-    autocmd!
-    autocmd FileType unite call <SID>unite_settings()
-augroup END
-
-function! s:unite_settings()
-    set number
-    nnoremap <silent><buffer><expr> s unite#do_action('split')
-    nnoremap <silent><buffer><expr> v unite#do_action('vsplit')
-    nnoremap <silent><buffer><expr> r unite#do_action('rec/async')
-    inoremap <silent><buffer><expr> <C-s> unite#do_action('split')
-    inoremap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-    inoremap <silent><buffer><expr> <C-r> unite#do_action('rec/async')
-endfunction
 
 " ----------------------------------------------------------------------
 " Niffler Settings
