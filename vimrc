@@ -522,8 +522,11 @@ vnoremap <silent> <Leader>ve :VimShellSendString<CR>
 " ----------------------------------------------------------------------
 " Niffler Settings
 " ----------------------------------------------------------------------
-nnoremap <silent> ghf :Niffler<CR>
-nnoremap <silent> ghg :NifflerVCS<CR>
+nnoremap <silent> znf :Niffler<CR>
+nnoremap <silent> zng :NifflerVCS<CR>
+nnoremap <silent> znm :NifflerMRU<CR>
+nnoremap <silent> znN :NifflerNew<CR>
+nnoremap <silent> znn :NifflerNewVCS<CR>
 
 " ----------------------------------------------------------------------
 " Netrw Settings
