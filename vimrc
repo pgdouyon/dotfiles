@@ -242,10 +242,10 @@ nnoremap <Leader>q <C-w>q
 nnoremap <silent> <Leader>tc :tabc<CR>
 nnoremap <silent> <Leader>te :tabe<CR>
 nnoremap <silent> <Leader>to :tabo<CR>
-nnoremap <silent> <Left> :vertical resize -10<CR>
-nnoremap <silent> <Right> :vertical resize +10<CR>
-nnoremap <silent> <Down> :resize -10<CR>
-nnoremap <silent> <Up> :resize +10<CR>
+nnoremap <silent> <Left> :vertical resize -5<CR>
+nnoremap <silent> <Right> :vertical resize +5<CR>
+nnoremap <silent> <Down> :resize -5<CR>
+nnoremap <silent> <Up> :resize +5<CR>
 
 " ----------------------------------------------------------------------
 " Insert Mode
