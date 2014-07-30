@@ -17,6 +17,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Plug 'tpope/timl'
 
@@ -236,7 +238,7 @@ nnoremap & :&&<CR>
 " Window Navigation
 " ----------------------------------------------------------------------
 nnoremap gw <C-w>
-nnoremap <C-Q> <C-w>q
+nnoremap <Leader>q <C-w>q
 nnoremap <silent> <Leader>tc :tabc<CR>
 nnoremap <silent> <Leader>te :tabe<CR>
 nnoremap <silent> <Leader>to :tabo<CR>
@@ -258,11 +260,11 @@ inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 
 " markdown headings
-inoremap <M-1> <Esc>yypVr=A
-inoremap <M-2> <Esc>yypVr-A
-inoremap <M-3> <Esc>I### <End>
-inoremap <M-4> <Esc>I#### <End>
-inoremap <M-5> <Esc>I##### <End>
+inoremap <C-H>1 <Esc>yypVr=A
+inoremap <C-H>2 <Esc>yypVr-A
+inoremap <C-H>3 <Esc>I### <End>
+inoremap <C-H>4 <Esc>I#### <End>
+inoremap <C-H>5 <Esc>I##### <End>
 
 " emacs keybindings
 inoremap <C-a> <Home>
@@ -286,6 +288,30 @@ cnoremap <C-p> <Up>
 " ======================================================================
 " Functions
 " ======================================================================
+
+" ----------------------------------------------------------------------
+" Tmux Navigation
+" ----------------------------------------------------------------------
+function! s:TmuxSwitchWindows(direction)
+    let old_win = winnr()
+    silent execute "wincmd ".a:direction
+    if old_win == winnr()
+        if a:direction ==? "h"
+            call system("tmux select-pane -L")
+        elseif a:direction ==? "j"
+            call system("tmux select-pane -D")
+        elseif a:direction ==? "k"
+            call system("tmux select-pane -U")
+        elseif a:direction ==? "l"
+            call system("tmux select-pane -R")
+        endif
+    endif
+endfunction
+
+nnoremap <silent> <C-H> :<C-u>call <SID>TmuxSwitchWindows("h")<CR>
+nnoremap <silent> <C-J> :<C-u>call <SID>TmuxSwitchWindows("j")<CR>
+nnoremap <silent> <C-K> :<C-u>call <SID>TmuxSwitchWindows("k")<CR>
+nnoremap <silent> <C-L> :<C-u>call <SID>TmuxSwitchWindows("l")<CR>
 
 " ----------------------------------------------------------------------
 " Section Title
@@ -495,6 +521,23 @@ noremap gT :<C-u>call <SID>SkipIndent(v:count1, -1)<CR>
 if !exists('g:loaded_matchit')
   runtime! macros/matchit.vim
 endif
+
+" ----------------------------------------------------------------------
+" Dispatch and Tbone Settings
+" ----------------------------------------------------------------------
+nnoremap <F8> :Make<CR>
+nnoremap <silent> <Leader>tw :Twrite right<CR>
+vnoremap <silent> <Leader>tw :Twrite right<CR>
+nnoremap <silent> <Leader>js :call <SID>StartRepl("node")<CR>
+nnoremap <silent> <Leader>py :call <SID>StartRepl("python3.3")<CR>
+nnoremap <silent> <Leader>fr :call <SID>StartRepl("lein repl")<CR>
+nnoremap <silent> <Leader>lu :call <SID>StartRepl("lua")<CR>
+nnoremap <silent> <Leader>ms :call <SID>StartRepl("mit-scheme")<CR>
+
+function! s:StartRepl(repl)
+    execute "Start! ".a:repl
+    call system("tmux join-pane -h -p 30 -s ".a:repl)
+endfunction
 
 " ----------------------------------------------------------------------
 " Niffler Settings
