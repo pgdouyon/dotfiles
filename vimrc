@@ -9,10 +9,6 @@ Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-mazda'
 Plug 'pgdouyon/vimroom'
 
-" Shougo
-Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/vimshell.vim'
-
 " Tim Pope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -499,28 +495,6 @@ noremap gT :<C-u>call <SID>SkipIndent(v:count1, -1)<CR>
 if !exists('g:loaded_matchit')
   runtime! macros/matchit.vim
 endif
-
-" ----------------------------------------------------------------------
-" VimShell Settings
-" ----------------------------------------------------------------------
-let g:vimshell_prompt = '$ '
-let g:vimshell_right_prompt = 'strftime("%a %b %d  %H:%M %p")'
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_editor_command = 'vim'
-
-autocmd BufEnter *vimshell* nnoremap <silent><buffer> q :bd<CR>
-autocmd BufEnter *vimshell* inoremap <silent><buffer> <C-G> <Esc>:bd<CR>
-
-nnoremap <silent> <Leader>vsv :vsp<CR>:VimShell<CR>
-nnoremap <silent> <Leader>vst :tabe<CR>:VimShell<CR>
-nnoremap <silent> <Leader>js :VimShellInteractive node<CR>
-nnoremap <silent> <Leader>py :VimShellInteractive python3.3<CR>
-nnoremap <silent> <Leader>fr :VimShellInteractive lein repl<CR>
-nnoremap <silent> <Leader>lu :VimShellInteractive lua<CR>
-nnoremap <silent> <Leader>ms :VimShellInteractive mit-scheme<CR>
-nnoremap <silent> <Leader>vx :VimShellExecute
-nnoremap <silent> <Leader>ve :VimShellSendString<CR>
-vnoremap <silent> <Leader>ve :VimShellSendString<CR>
 
 " ----------------------------------------------------------------------
 " Niffler Settings
