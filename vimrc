@@ -20,7 +20,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-" Plug 'tpope/timl'
 
 " Editing Enhancements (IDE features)
 Plug 'justinmk/vim-sneak'
@@ -536,7 +535,8 @@ nnoremap <silent> <Leader>ms :call <SID>StartRepl("mit-scheme")<CR>
 
 function! s:StartRepl(repl)
     execute "Start! ".a:repl
-    call system("tmux join-pane -h -p 30 -s ".a:repl)
+    let last_win = len(split(system("tmux list-windows"), "\n"))
+    call system("tmux join-pane -h -p 30 -s ".last_win)
 endfunction
 
 " ----------------------------------------------------------------------
