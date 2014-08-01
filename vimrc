@@ -6,6 +6,7 @@ call plug#begin('~/.vim/bundle')
 
 " Personal Plugins
 Plug 'pgdouyon/vim-niffler'
+Plug 'pgdouyon/vim-firebolt'
 Plug 'pgdouyon/vim-mazda'
 Plug 'pgdouyon/vimroom'
 
@@ -22,7 +23,6 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements (IDE features)
-Plug 'justinmk/vim-sneak'
 Plug 'bkad/CamelCaseMotion'
 Plug 'kris89/vim-multiple-cursors'
 
@@ -698,7 +698,6 @@ function! s:MakeCommentsProminent()
 endfunction
 
 function! s:SetCustomHL()
-    highlight link SneakPluginTarget None
     highlight link Snip Structure
     highlight ExtraWhitespace ctermbg=red guibg=red
     match ExtraWhitespace /\s\+$/
