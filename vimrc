@@ -7,8 +7,8 @@ call plug#begin('~/.vim/bundle')
 " Personal Plugins
 Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-firebolt'
-Plug 'pgdouyon/vim-mazda'
-Plug 'pgdouyon/vimroom'
+Plug 'pgdouyon/vim-mazda', {'on': ['<Plug>MazdaZoomIn', '<Plug>MazdaToggle']}
+Plug 'pgdouyon/vimroom', {'on': '<Plug>VimroomToggle'}
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -17,10 +17,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'tpope/vim-vinegar', {'on': '<Plug>VinegarUp', 'for': 'netrw'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 
 " Editing Enhancements (IDE features)
 Plug 'bkad/CamelCaseMotion'
@@ -40,13 +40,13 @@ Plug 'chriskempson/base16-vim'
 " Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
-Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
+Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " Clojure
-Plug 'guns/vim-sexp'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-classpath', {'for': 'clojure'}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
