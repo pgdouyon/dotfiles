@@ -625,7 +625,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols={}
 endif
 if has("gui_running")
-    set guifont=Ubuntu\ Mono\ 11
+    set guifont=Ubuntu\ Mono\ 12
 else
     let g:airline_right_sep=""
 endif
