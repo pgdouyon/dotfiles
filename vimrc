@@ -487,38 +487,33 @@ noremap <silent> gi :<C-u>call <SID>NextIndent(v:count1, "/")<CR>
 noremap <silent> gI :<C-u>call <SID>NextIndent(v:count1, "?")<CR>
 
 " ----------------------------------------------------------------------
-" Skip Indents
+" Skip Indent Object
 " ----------------------------------------------------------------------
 function! s:SkipIndent(count, dir)
-    let lnum = line(".")
-    let indent = indent(lnum)
-    for _ in range(a:count)
-        while lnum > 1 && lnum < line("$")
-            let lnum += a:dir
-            let next_indent = indent(lnum)
-            if next_indent != indent
-                break
-            endif
-        endwhile
-        while lnum > 1 && lnum < line("$")
-            let lnum += a:dir
-            let next_indent = indent(lnum)
-            let line = getline(lnum)
-            let empty = empty(line)
-            let end_statement = (line =~# 'end' && line !~ '(' && line !~ '=')
-            let end_brace = (line =~ '}' && line !~ '{')
-            if !empty && !end_statement && !end_brace && next_indent == indent
-                break
-            endif
-        endwhile
+    " count is ignored for now, still need to figure out how that would
+    " be intuitively used
+    let start = line(".")
+    let eof = line("$") + 1
+    let indent = indent(start)
+    let lines = (a:dir ==? "/" ? range(start, eof) : range(start, 0, -1))
+    for lnum in lines
+        if indent(lnum) > indent
+            let start = lnum
+            break
+        endif
     endfor
-    execute "normal! ".lnum."G^"
+
+    let lines = (a:dir ==? "/" ? range(start, eof) : range(start, 0, -1))
+    for lnum in lines
+        if indent(lnum) <= indent
+            execute "normal! ".lnum."G^"
+            return
+        endif
+    endfor
 endfunction
 
-noremap <Leader>gt gt
-noremap <Leader>gT gT
-noremap gt :<C-u>call <SID>SkipIndent(v:count1, 1)<CR>
-noremap gT :<C-u>call <SID>SkipIndent(v:count1, -1)<CR>
+noremap <silent> gb :<C-u>call <SID>SkipIndent(v:count1, "/")<CR>
+noremap <silent> gB :<C-u>call <SID>SkipIndent(v:count1, "?")<CR>
 
 
 " ======================================================================
