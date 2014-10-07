@@ -119,11 +119,14 @@ set shiftwidth=4    " number of spaces to use for >> and auto indent
 set scrolloff=8     " leave 8 lines visible at the top/bottom of the screen
 set sidescrolloff=5 " leave 5 colums visible at the left/right side
 set backspace=indent,eol,start
-set textwidth=80
+set textwidth=0
+set linebreak
+set nowrap
 
 set nrformats-=octal    " octal is the devil, don't allow it
 set mouse=""            " the mouse is the devil, don't allow it
 set shellslash          " use forward slashes for file names
+set noshelltemp         " use pipes instead of temporary files
 set ttyfast             " demand better performance when in terminal
 if has("unix")
     set shell=bash
@@ -141,8 +144,9 @@ set splitbelow
 set splitright
 set wildmenu
 set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
+set complete=.,w,t,i
 set completeopt+=longest
-set diffopt="filler,vertical"
+set diffopt=filler,vertical
 set laststatus=2                " always show status line
 set guioptions="cegmt"
 set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
@@ -164,7 +168,7 @@ if executable('ag')
     set grepprg=ag\ --noheading\ --nocolor\ --column\ --follow\ --smart-case\ -t
     set grepformat=%f:%l:%c:%m
 elseif executable('ack-grep')
-    set grepprg=ack\ --noheading\ --nocolor\ --column\ --follow\ --smart-case
+    set grepprg=ack-grep\ --noheading\ --nocolor\ --column\ --follow\ --smart-case
     set grepformat=%f:%l:%c:%m
 endif
 
@@ -202,7 +206,7 @@ nnoremap gV `[v`]
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
 
 " change buffer
-nnoremap <silent> gb :buffer<Space>
+" nnoremap gb :ls<CR>:buffer<Space>
 
 " switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
@@ -378,7 +382,7 @@ function! s:Scratch()
     setlocal buflisted
 endfunction
 
-nnoremap <Leader>sc :call <SID>Scratch()<CR>
+nnoremap zs :call <SID>Scratch()<CR>
 
 " ----------------------------------------------------------------------
 " BufKill
