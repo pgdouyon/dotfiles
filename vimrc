@@ -534,15 +534,17 @@ nnoremap <F8> :Make<CR>
 nnoremap <silent> <Leader>tw :Twrite right<CR>
 vnoremap <silent> <Leader>tw :Twrite right<CR>
 nnoremap <silent> <Leader>js :call <SID>StartRepl("node")<CR>
-nnoremap <silent> <Leader>py :call <SID>StartRepl("python3.3")<CR>
+nnoremap <silent> <Leader>hs :call <SID>StartRepl("ghci")<CR>
+nnoremap <silent> <Leader>sc :call <SID>StartRepl("scala")<CR>
+nnoremap <silent> <Leader>py :call <SID>StartRepl("python3.4")<CR>
 nnoremap <silent> <Leader>fr :call <SID>StartRepl("lein repl")<CR>
 nnoremap <silent> <Leader>lu :call <SID>StartRepl("lua")<CR>
 nnoremap <silent> <Leader>ms :call <SID>StartRepl("mit-scheme")<CR>
 
 function! s:StartRepl(repl)
-    execute "Start! ".a:repl
-    let last_win = len(split(system("tmux list-windows"), "\n"))
-    call system("tmux join-pane -h -p 30 -s ".last_win)
+    let title = get(split(a:repl), 0)
+    execute "Start! -title=".title." ".a:repl
+    call system("tmux join-pane -h -p 30 -s ".title)
 endfunction
 
 " ----------------------------------------------------------------------
