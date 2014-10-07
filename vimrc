@@ -462,27 +462,29 @@ endfunction
 " Next Indent Level
 " ----------------------------------------------------------------------
 function! s:NextIndent(count, dir)
-    let lnum = line(".")
-    for _ in range(a:count)
-        let indent = indent(lnum)
-        while lnum > 1 && lnum < line("$")
-            let lnum += a:dir
-            let next_indent = indent(lnum)
-            let line = getline(lnum)
-            let empty = empty(line)
-            let end_statement = (line =~# 'end' && line !~ '(' && line !~ '=')
-            let end_brace = (line =~ '}' && line !~ '{')
-            if !empty && !end_statement && !end_brace && next_indent != indent
-                break
-            endif
-        endwhile
+    let start = line(".")
+    let eof = line("$") + 1
+    let lines = (a:dir ==? "/" ? range(start, eof) : range(start, 0, -1))
+    let indent = indent(start)
+    let counter = a:count
+    for lnum in lines
+        let line = getline(lnum)
+        let empty = empty(line)
+        let end_statement = (line =~# '^\s*}') || (line =~# '^\s*end')
+        let nextIndent = (indent(lnum) != indent) && !empty && !end_statement
+        if nextIndent && counter > 1
+            let indent = indent(lnum)
+            let counter = counter - 1
+        elseif nextIndent
+            execute "normal! ".lnum."G^"
+            return
+        endif
     endfor
-    execute "normal! ".lnum."G^"
 endfunction
 
 noremap zi gi
-noremap gi :<C-u>call <SID>NextIndent(v:count1, 1)<CR>
-noremap gI :<C-u>call <SID>NextIndent(v:count1, -1)<CR>
+noremap <silent> gi :<C-u>call <SID>NextIndent(v:count1, "/")<CR>
+noremap <silent> gI :<C-u>call <SID>NextIndent(v:count1, "?")<CR>
 
 " ----------------------------------------------------------------------
 " Skip Indents
