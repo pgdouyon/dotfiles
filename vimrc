@@ -553,6 +553,7 @@ endfunction
 nnoremap <silent> znf :Niffler<CR>
 nnoremap <silent> zng :NifflerVCS<CR>
 nnoremap <silent> znm :NifflerMRU<CR>
+nnoremap <silent> znb :NifflerBuffer<CR>
 nnoremap <silent> znN :NifflerNew<CR>
 nnoremap <silent> znn :NifflerNewVCS<CR>
 
