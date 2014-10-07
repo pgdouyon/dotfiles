@@ -675,6 +675,7 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
+    autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | nnoremap <silent> cob :call <SID>ColorToggle()<CR>
 augroup END
 
