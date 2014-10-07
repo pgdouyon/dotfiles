@@ -20,7 +20,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-vinegar', {'on': '<Plug>VinegarUp', 'for': 'netrw'}
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 
 " Editing Enhancements (IDE features)
@@ -48,8 +48,13 @@ Plug 'gregsexton/gitv', {'on': 'Gitv'}
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'tpope/vim-leiningen', {'for': 'clojure'}
+Plug 'tpope/vim-projectionist', {'for': 'clojure'}
 Plug 'tpope/vim-classpath', {'for': 'clojure'}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+
+" Scala
+Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 " Python
 Plug 'klen/python-mode', {'for': 'python'}
