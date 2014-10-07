@@ -698,7 +698,10 @@ endfunction
 function! s:SetCustomHL()
     highlight link Snip Structure
     highlight ExtraWhitespace ctermbg=red guibg=red
+    highlight clear ColorColumn
+    highlight link ColorColumn Error
     match ExtraWhitespace /\s\+$/
+    call matchadd("ColorColumn", '\%81v', 100)
 endfunction
 
 function! s:SetSnippetSynHL()
