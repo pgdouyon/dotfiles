@@ -654,17 +654,6 @@ nmap <Leader>zr <Plug>MazdaReselect
 let g:vimroom_width = 100
 nmap <silent> <Leader>vr <Plug>VimroomToggle
 
-" ----------------------------------------------------------------------
-" CamelCaseMotion
-" ----------------------------------------------------------------------
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-sunmap w
-sunmap b
-sunmap e
-omap <silent> iw <Plug>CamelCaseMotion_iw
-xmap <silent> iw <Plug>CamelCaseMotion_iw
 
 " ----------------------------------------------------------------------
 " Targets.vim
