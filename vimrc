@@ -651,6 +651,8 @@ set fillchars+=stl:\ ,stlnc:\
 " ----------------------------------------------------------------------
 nmap <Leader>zi <Plug>MazdaZoomIn
 vmap <Leader>zi <Plug>MazdaZoomIn
+nmap <Leader>zt <Plug>MazdaToggle
+vmap <Leader>zt <Plug>MazdaToggle
 nmap <Leader>zo <Plug>MazdaZoomOut
 nmap <Leader>zd <Plug>MazdaDiscard
 nmap <Leader>zr <Plug>MazdaReselect
