@@ -29,6 +29,7 @@ Plug 'kris89/vim-multiple-cursors'
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim'
+Plug 'junegunn/vim-after-object'
 
 " Statusline Plugins
 Plug 'bling/vim-airline'
@@ -669,6 +670,13 @@ nmap <silent> <Leader>vr <Plug>VimroomToggle
 " ----------------------------------------------------------------------
 let g:targets_aiAI = 'ai  '
 let g:targets_nlNL = 'nl  '
+
+" ----------------------------------------------------------------------
+" Vim-After-Object
+" ----------------------------------------------------------------------
+augroup after_object
+    autocmd VimEnter * call after_object#enable(['a', 'A'], '=', ':', '-', '#', ' ')
+augroup END
 
 
 " ======================================================================
