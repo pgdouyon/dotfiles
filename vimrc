@@ -25,6 +25,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 
 " Editing Enhancements (IDE features)
 Plug 'kris89/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
@@ -677,6 +678,12 @@ let g:targets_nlNL = 'nl  '
 augroup after_object
     autocmd VimEnter * call after_object#enable(['a', 'A'], '=', ':', '-', '#', ' ')
 augroup END
+
+" ----------------------------------------------------------------------
+" Vim-Easy-Align
+" ----------------------------------------------------------------------
+nmap <Leader>a <Plug>(EasyAlign)
+vmap <Leader>a <Plug>(EasyAlign)
 
 
 " ======================================================================
