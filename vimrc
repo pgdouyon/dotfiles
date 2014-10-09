@@ -23,7 +23,7 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 
-" Editing Enhancements (IDE features)
+" Editing Enhancements
 Plug 'kris89/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 Plug 'wellle/tmux-complete.vim'
@@ -53,7 +53,7 @@ Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-leiningen', {'for': 'clojure'}
 Plug 'tpope/vim-projectionist', {'for': 'clojure'}
-Plug 'tpope/vim-classpath', {'for': 'clojure'}
+Plug 'tpope/vim-classpath', {'for': ['clojure', 'scala']}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 
 " Scala
@@ -80,10 +80,6 @@ Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['pandoc', 'markdown', 'tex']}
 
 " LaTeX
 " Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
-
-" Deprecated
-" Plug 'matthias-guenther/hammer.vim', {'for': 'markdown'}
-" Plug 'godlygeek/tabular'
 
 call plug#end()
 
@@ -666,7 +662,6 @@ nmap <Leader>zr <Plug>MazdaReselect
 let g:vimroom_width = 100
 nmap <silent> <Leader>vr <Plug>VimroomToggle
 
-
 " ----------------------------------------------------------------------
 " Targets.vim
 " ----------------------------------------------------------------------
@@ -762,7 +757,7 @@ endfunction
 
 
 " change background color based on time of day
-if strftime('%H') > 6 && strftime("%H") < 18
+if strftime('%H') > 8 && strftime("%H") < 18
     call s:SetBackgroundTheme('light')
 else
     call s:SetBackgroundTheme('dark')
@@ -772,10 +767,6 @@ endif
 " ----------------------------------------------------------------------
 " Cheat Sheet
 " ----------------------------------------------------------------------
-" #Multiple-Cursors
-    " - <c-n> -> select next
-    " - <c-p> -> undo selection and move to previous
-    " - <c-x> -> skip current selection
 " #Fireplace
     " - K           -> look up docs for keyword under cursor
     " - [d or ]d    -> show source for keyword under cursor
@@ -797,10 +788,6 @@ endif
     " - cq{motion}  -> bring up a command-line-window with prepopulated text
     "              -> indicated by {motion}
     " - <C-R>(      -> evaluate the given expression and insert the result
-" #Vim-Commentary
-    " - gc{motion} -> toggle comments for small inline comments
-    " - gcc        -> toggle comments for current line
-    " - gC{motion} -> comment region
 " #Emmet
     " - <C-y>, -> expand/wrap with css-style abbreviation
     " - <C-y>n -> go to next edit point (N for previous)
