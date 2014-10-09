@@ -711,7 +711,7 @@ function! s:SetCustomHL()
     highlight clear ColorColumn
     highlight link ColorColumn Error
     match ExtraWhitespace /\s\+$/
-    call matchadd("ColorColumn", '\%81v', 100)
+    silent! call matchadd("ColorColumn", '\%>80v', 100, 33)
 endfunction
 
 function! s:SetSnippetSynHL()
