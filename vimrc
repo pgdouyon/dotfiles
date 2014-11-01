@@ -560,11 +560,11 @@ endfunction
 " Niffler Settings
 " ----------------------------------------------------------------------
 nnoremap <silent> znf :Niffler<CR>
-nnoremap <silent> zng :NifflerVCS<CR>
+nnoremap <silent> zng :Niffler -vcs<CR>
 nnoremap <silent> znm :NifflerMRU<CR>
 nnoremap <silent> znb :NifflerBuffer<CR>
-nnoremap <silent> znN :NifflerNew<CR>
-nnoremap <silent> znn :NifflerNewVCS<CR>
+nnoremap <silent> znN :Niffler -new<CR>
+nnoremap <silent> znn :Niffler -vcs -new<CR>
 
 " ----------------------------------------------------------------------
 " Netrw Settings
