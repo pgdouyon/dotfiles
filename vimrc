@@ -190,10 +190,10 @@ vnoremap gk k
 " Normal Mode
 " ----------------------------------------------------------------------
 " simplify inline navigation
-nnoremap H ^
-nnoremap L $
-nnoremap ^ H
-nnoremap $ L
+noremap H ^
+noremap L $
+noremap ^ H
+noremap $ L
 
 " qq to record, Q to replay
 nnoremap Q @q
