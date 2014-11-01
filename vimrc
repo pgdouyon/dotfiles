@@ -426,12 +426,7 @@ function! s:MegaTab(complete, tab)
         return a:tab
     endif
 
-    let complete = a:complete
-    if !empty(&omnifunc)
-        let complete = "\<C-O>"
-    elseif !empty(&completefunc)
-        let complete = "\<C-U>"
-    endif
+    let complete = empty(&omnifunc) ? a:complete : "\<C-O>"
 
     let skip_file_completion = ["clojure"]
     for ft in skip_file_completion
