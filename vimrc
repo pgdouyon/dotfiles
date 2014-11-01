@@ -20,7 +20,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 
 " Editing Enhancements
@@ -36,6 +35,7 @@ Plug 'junegunn/vim-after-object'
 " Statusline Plugins
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/powerline-fonts'
+Plug 'jeetsukumaran/vim-filebeagle'
 
 " ColorSchemes
 Plug 'junegunn/seoul256.vim'
@@ -681,6 +681,44 @@ augroup END
 nmap <Leader>a <Plug>(EasyAlign)
 vmap <Leader>a <Plug>(EasyAlign)
 
+" ----------------------------------------------------------------------
+" FileBeagle
+" ----------------------------------------------------------------------
+function! s:FileBeagleMappings()
+    nnoremap <silent><buffer> d :<C-U>call <SID>FileBeagleDelete()<CR>
+    nnoremap <silent><buffer> ; :<C-U>call <SID>FileBeagleCommand()<CR>
+    nnoremap <silent><buffer> ! :<C-U>call <SID>FileBeagleShell()<CR>
+    nnoremap <silent><buffer> ~ :<C-U>call <SID>FileBeagleHome()<CR>
+endfunction
+
+function! s:FileBeagleDelete()
+    let file = substitute(getline("."), '^\s*', '', '')
+    let dir = matchstr(FileBeagleStatusLineCurrentDirInfo(), '\s*"\zs.*\ze"\s*')
+    call system("rm ".dir.file)
+    call feedkeys("R", "t")
+endfunction
+
+function! s:FileBeagleCommand()
+    let file = substitute(getline("."), '^\s*', '', '')
+    let dir = matchstr(FileBeagleStatusLineCurrentDirInfo(), '\s*"\zs.*\ze"\s*')
+    call feedkeys(": ".dir.file."\<Home>", "nt")
+endfunction
+
+function! s:FileBeagleShell()
+    let file = substitute(getline("."), '^\s*', '', '')
+    let dir = matchstr(FileBeagleStatusLineCurrentDirInfo(), '\s*"\zs.*\ze"\s*')
+    call feedkeys(": ".dir.file."\<Home>!", "nt")
+endfunction
+
+function! s:FileBeagleHome()
+    normal q
+    execute "FileBeagle " . expand("~")
+endfunction
+
+augroup filebeagle
+    autocmd!
+    autocmd BufEnter *filebeagle* call <SID>FileBeagleMappings()
+augroup END
 
 " ======================================================================
 " Autocmds
