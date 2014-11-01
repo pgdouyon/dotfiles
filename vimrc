@@ -802,7 +802,7 @@ function! s:SetBackgroundTheme(theme)
         colorscheme seoul256
         set background=light
     else
-        let g:seoul256_background=235
+        let g:seoul256_background=236
         colorscheme seoul256
         set background=dark
     endif
@@ -810,7 +810,7 @@ endfunction
 
 
 " change background color based on time of day
-if strftime('%H') > 8 && strftime("%H") < 18
+if strftime('%H') > 5 && strftime("%H") < 18
     call s:SetBackgroundTheme('light')
 else
     call s:SetBackgroundTheme('dark')
