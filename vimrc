@@ -365,6 +365,14 @@ endfunction
 nnoremap <silent> cob :call <SID>ColorToggle()<CR>
 
 " ----------------------------------------------------------------------
+" ColorColumnToggle
+" ----------------------------------------------------------------------
+function! s:ColorColumnToggle()
+    let w:enableColorcolumn = !w:enableColorcolumn
+    call s:SetColorColumn()
+endfunction
+
+" ----------------------------------------------------------------------
 " Scratch Buffer
 " ----------------------------------------------------------------------
 function! s:Scratch()
@@ -735,6 +743,7 @@ augroup vimrc
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | nnoremap <silent> cob :call <SID>ColorToggle()<CR>
+    autocmd SourceCmd *unimpaired.vim source <afile> | nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 augroup END
 
 " ----------------------------------------------------------------------
@@ -760,7 +769,18 @@ function! s:SetCustomHL()
     highlight clear ColorColumn
     highlight link ColorColumn Error
     match ExtraWhitespace /\s\+$/
-    silent! call matchadd("ColorColumn", '\%>80v', 100, 33)
+    call s:SetColorColumn()
+endfunction
+
+function! s:SetColorColumn()
+    if !exists("w:enableColorcolumn")
+        let w:enableColorcolumn = 1
+    endif
+    if w:enableColorcolumn
+        silent! call matchadd("ColorColumn", '\%>80v', 100, 954)
+    else
+        silent! call matchdelete(954)
+    endif
 endfunction
 
 function! s:SetSnippetSynHL()
