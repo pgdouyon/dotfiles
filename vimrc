@@ -237,6 +237,12 @@ nnoremap yP "0P
 " ----------------------------------------------------------------------
 " global substitution
 nnoremap gs :%s/
+xnoremap gs :s/
+
+" search/replace
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
+xnoremap <Leader>r "vy:%s/\<<C-r>v\>/
+
 
 " reuse flags when repeating substitute command with &
 nnoremap & :&&<CR>
