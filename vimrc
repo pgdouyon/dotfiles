@@ -28,7 +28,6 @@ Plug 'wellle/tmux-complete.vim'
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-after-object'
 
 " Statusline Plugins
@@ -529,6 +528,90 @@ endfunction
 noremap <silent> gb :<C-u>call <SID>SkipIndent(v:count1, "/")<CR>
 noremap <silent> gB :<C-u>call <SID>SkipIndent(v:count1, "?")<CR>
 
+" ======================================================================
+" Targets
+" ======================================================================
+function! s:TargetsPairs(inclusive, direction, delimiter)
+    let save_pos = getpos(".")
+    let direction = (a:direction ==# "n") ? "" : "b"
+    let tr_set = (a:direction ==# "n") ? "({[<" : ")}]>"
+    let delimiter = tr(a:delimiter, "bBra", tr_set)
+    for _ in range(v:count1)
+        call search('\V'.delimiter, 'W'.direction)
+    endfor
+    execute "normal! v".a:inclusive.delimiter
+    call setpos("''", save_pos)
+endfunction
+
+function! s:TargetsSeparators(inclusive, separator)
+    let save_pos = getpos(".")
+    let on_first_sep_re = printf('\V\^\[^%s]\*\%%%dc%s', a:separator, col("."), a:separator)
+    let on_last_sep_re = printf('\V\%%%dc%s\[^%s]\*\$', col("."), a:separator, a:separator)
+    let inside_seps_re = printf('\V%s\.\*\%%%dc\.\*%s', a:separator, col("."), a:separator)
+
+    let on_first_sep = (getline(".") =~# on_first_sep_re)
+    let on_last_sep = (getline(".") =~# on_last_sep_re)
+    let inside_seps = (getline(".") =~# inside_seps_re)
+    if on_first_sep
+        call search(".", 'W')
+    elseif on_last_sep
+        call search(".", 'bW')
+    elseif !inside_seps
+        return
+    endif
+
+    let inclusive_pat = (a:inclusive ==# "i") ? '\zs' : ''
+    let end = searchpos('\V\.\ze'.a:separator, 'cW', line("."))
+    let start = searchpos('\V'.a:separator.inclusive_pat, 'bW', line("."))
+    call setpos("'[", [0, start[0], start[1], 0])
+    call setpos("']", [0, end[0], end[1], 0])
+    normal! `[v`]
+    call setpos("''", save_pos)
+endfunction
+
+function! s:TargetsSeparatorsNL(inclusive, direction, separator)
+    let save_pos = getpos(".")
+    let direction = (a:direction ==# "n") ? "" : "b"
+    for _ in range(v:count1)
+        call search('\V'.a:separator, 'W'.direction, line("."))
+    endfor
+    call s:TargetsSeparators(a:inclusive, a:separator)
+    call setpos("''", save_pos)
+endfunction
+
+for pair in ["b","B","r","a","(","{","[","<","t","'", "`", '"']
+    execute printf("onoremap <silent> in%s :<C-U>call <SID>TargetsPairs('i','n','%s')<CR>", pair, pair)
+    execute printf("onoremap <silent> il%s :<C-U>call <SID>TargetsPairs('i','l','%s')<CR>", pair, pair)
+    execute printf("onoremap <silent> an%s :<C-U>call <SID>TargetsPairs('a','n','%s')<CR>", pair, pair)
+    execute printf("onoremap <silent> al%s :<C-U>call <SID>TargetsPairs('a','l','%s')<CR>", pair, pair)
+endfor
+
+for sep in [",", ".", ";", ":", "+", "-", "~", "_", "*", "/", "&", "$"]
+    execute printf("onoremap <silent> i%s :<C-U>call <SID>TargetsSeparators('i', '%s')<CR>", sep, sep)
+    execute printf("onoremap <silent> a%s :<C-U>call <SID>TargetsSeparators('a', '%s')<CR>", sep, sep)
+endfor
+
+for sep in [",", ".", ";", ":", "+", "-", "~", "_", "*", "/", "&", "$"]
+    execute printf("onoremap <silent> in%s :<C-U>call <SID>TargetsSeparatorsNL('i', 'n', '%s')<CR>", sep, sep)
+    execute printf("onoremap <silent> il%s :<C-U>call <SID>TargetsSeparatorsNL('i', 'l', '%s')<CR>", sep, sep)
+    execute printf("onoremap <silent> an%s :<C-U>call <SID>TargetsSeparatorsNL('a', 'n', '%s')<CR>", sep, sep)
+    execute printf("onoremap <silent> al%s :<C-U>call <SID>TargetsSeparatorsNL('a', 'l', '%s')<CR>", sep, sep)
+endfor
+
+onoremap <silent> i\| :<C-U>call <SID>TargetsSeparators("i", "\|")<CR>
+onoremap <silent> a\| :<C-U>call <SID>TargetsSeparators("a", "\|")<CR>
+onoremap <silent> in\| :<C-U>call <SID>TargetsSeparatorsNL("i", "n", "\|")<CR>
+onoremap <silent> an\| :<C-U>call <SID>TargetsSeparatorsNL("a", "n", "\|")<CR>
+onoremap <silent> il\| :<C-U>call <SID>TargetsSeparatorsNL("i", "l", "\|")<CR>
+onoremap <silent> al\| :<C-U>call <SID>TargetsSeparatorsNL("a", "l", "\|")<CR>
+
+onoremap <silent> i\ :<C-U>call <SID>TargetsSeparators('i', '\\')<CR>
+onoremap <silent> a\ :<C-U>call <SID>TargetsSeparators('a', '\\')<CR>
+onoremap <silent> in\ :<C-U>call <SID>TargetsSeparatorsNL('i', 'n', '\\')<CR>
+onoremap <silent> an\ :<C-U>call <SID>TargetsSeparatorsNL('a', 'n', '\\')<CR>
+onoremap <silent> il\ :<C-U>call <SID>TargetsSeparatorsNL('i', 'l', '\\')<CR>
+onoremap <silent> al\ :<C-U>call <SID>TargetsSeparatorsNL('a', 'l', '\\')<CR>
+
 
 " ======================================================================
 " Plugins
@@ -664,16 +747,10 @@ let g:vimroom_width = 100
 nmap <silent> <Leader>vr <Plug>VimroomToggle
 
 " ----------------------------------------------------------------------
-" Targets.vim
-" ----------------------------------------------------------------------
-let g:targets_aiAI = 'ai  '
-let g:targets_nlNL = 'nl  '
-
-" ----------------------------------------------------------------------
 " Vim-After-Object
 " ----------------------------------------------------------------------
 augroup after_object
-    autocmd VimEnter * call after_object#enable(['a', 'A'], '=', ':', '-', '#', ' ')
+    autocmd VimEnter * call after_object#enable(['a', 'A'], '=', '#', ' ')
 augroup END
 
 " ----------------------------------------------------------------------
