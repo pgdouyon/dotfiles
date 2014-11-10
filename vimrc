@@ -525,6 +525,38 @@ noremap <silent> gb :<C-u>call <SID>SkipIndent(v:count1, "/")<CR>
 noremap <silent> gB :<C-u>call <SID>SkipIndent(v:count1, "?")<CR>
 
 " ======================================================================
+" Todo
+" ======================================================================
+function! s:TodoList(include_tag)
+    let vcs_dir = finddir(".git", expand("%:p:h").";".expand("$HOME"))
+    let dir = fnamemodify(vcs_dir, ":h")
+    let todo_tag = escape(g:todo_tag, '()[]{}<>!@#$%^&*-_+=\|?.')
+    let todo = "TODO|FIXME|XXX"
+    let todo_tagged = join(map(split(todo, '|'), "v:val.' '.'".todo_tag."'"), '|')
+    let todo_str = a:include_tag ? todo_tagged : todo
+    let ag_args = "--noheading --nobreak --nocolor --follow -s -t"
+    let ag =  printf("ag %s '%s' %s 2> /dev/null", ag_args, todo_str, dir)
+
+    let todos = []
+    let lines = split(system(ag), '\n')
+    for line in lines
+        let [fname, lnum, text] = matchlist(line, '\v^([^:]*):([^:]*):(.*)$')[1:3]
+        call add(todos, {'filename': fname, 'lnum': lnum, 'text': text})
+    endfor
+    if !empty(todos)
+        call setqflist(todos)
+        copen
+    endif
+endfunction
+
+let g:todo_tag = "<PGD>"
+command! -bang TodoList call <SID>TodoList(<bang>1)
+
+nnoremap <Leader>td OTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>A
+nnoremap <Leader>fx OFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>A
+nnoremap <Leader>xx OXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>A
+
+" ======================================================================
 " Targets
 " ======================================================================
 function! s:TargetsPairs(inclusive, direction, delimiter)
