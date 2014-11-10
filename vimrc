@@ -160,7 +160,7 @@ set directory^=~/.vim/_temp//       " where to put swap files.
 set shortmess+=A                    " no 'existing swap file found' messages
 
 if executable('ag')
-    set grepprg=ag\ --noheading\ --nocolor\ --column\ --follow\ --smart-case\ -t
+    set grepprg=ag\ --noheading\ --nocolor\ --nobreak\ --column\ --follow\ --smart-case\ -t
     set grepformat=%f:%l:%c:%m
 elseif executable('ack-grep')
     set grepprg=ack-grep\ --noheading\ --nocolor\ --column\ --follow\ --smart-case
