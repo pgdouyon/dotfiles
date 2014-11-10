@@ -428,12 +428,10 @@ function! s:MegaTab(complete, tab)
         return a:tab
     endif
 
-    let complete = empty(&omnifunc) ? a:complete : "\<C-O>"
-
     let skip_file_completion = ["clojure"]
     for ft in skip_file_completion
         if &filetype ==? ft
-            return "\<C-x>".complete
+            return "\<C-x>".a:complete
         endif
     endfor
 
@@ -441,7 +439,7 @@ function! s:MegaTab(complete, tab)
     if match(keyword, '\/') != -1
         return "\<C-x>\<C-f>"
     else
-        return "\<C-x>".complete
+        return "\<C-x>".a:complete
     endif
 endfunction
 
