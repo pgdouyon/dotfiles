@@ -30,14 +30,12 @@ Plug 'wellle/tmux-complete.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'junegunn/vim-after-object'
 
-" Statusline Plugins
+" Appearance
+Plug 'junegunn/seoul256.vim'
+Plug 'tomasr/molokai'
 Plug 'bling/vim-airline'
 Plug 'Lokaltog/powerline-fonts'
 Plug 'jeetsukumaran/vim-filebeagle'
-
-" ColorSchemes
-Plug 'junegunn/seoul256.vim'
-Plug 'chriskempson/base16-vim'
 " Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
