@@ -47,7 +47,7 @@ Plug 'scrooloose/syntastic'
 Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " Clojure
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-leiningen', {'for': 'clojure'}
@@ -582,14 +582,7 @@ let g:netrw_browsex_viewer="gnome-open"
 " ----------------------------------------------------------------------
 augroup rainbow
     autocmd!
-    autocmd BufEnter *.{clj,html,js} RainbowParenthesesActivate
-    autocmd BufLeave *.{clj,html,js} RainbowParenthesesToggleAll
-    autocmd ColorScheme *.{clj,html,js} RainbowParenthesesActivate
-
-    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadBraces
-    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadChevrons
-    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadRound
-    autocmd Syntax clojure,html,javascript RainbowParenthesesLoadSquare
+    autocmd FileType clojure,html,javascript RainbowParentheses
 augroup END
 
 " ----------------------------------------------------------------------
