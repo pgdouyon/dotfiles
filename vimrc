@@ -851,6 +851,7 @@ function! s:SetupColorScheme()
     silent! AirlineRefresh
     call s:MakeCommentsProminent()
     call s:SetCustomHL()
+    call s:SetColorColumn()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
     endif
@@ -867,7 +868,6 @@ function! s:SetCustomHL()
     highlight clear ColorColumn
     highlight link ColorColumn Error
     match ExtraWhitespace /\s\+$/
-    call s:SetColorColumn()
 endfunction
 
 function! s:SetColorColumn()
@@ -875,7 +875,7 @@ function! s:SetColorColumn()
         let w:enableColorcolumn = 1
     endif
     if w:enableColorcolumn
-        silent! call matchadd("ColorColumn", '\%>80v', 100, 954)
+        silent! call matchadd("ColorColumn", '\%>80v.', 100, 954)
     else
         silent! call matchdelete(954)
     endif
