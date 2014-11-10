@@ -5,7 +5,6 @@
 call plug#begin('~/.vim/bundle')
 
 " Personal Plugins
-Plug 'pgdouyon/vim-b2k'
 Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-firebolt'
 Plug 'pgdouyon/vim-mazda', {'on': ['<Plug>MazdaZoomIn', '<Plug>MazdaToggle']}
