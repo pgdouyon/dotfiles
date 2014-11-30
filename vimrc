@@ -853,7 +853,7 @@ nmap <silent> <Leader>vr <Plug>VimroomToggle
 " Vim-After-Object
 " ----------------------------------------------------------------------
 augroup after_object
-    autocmd VimEnter * call after_object#enable(['a', 'A'], '=', '#', ' ')
+    autocmd VimEnter * call after_object#enable(['a', 'aa'], '=', '#', ' ')
 augroup END
 
 " ----------------------------------------------------------------------
