@@ -33,8 +33,6 @@ Plug 'junegunn/vim-after-object'
 " Appearance
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
-Plug 'bling/vim-airline'
-Plug 'Lokaltog/powerline-fonts'
 Plug 'jeetsukumaran/vim-filebeagle'
 " Plug 'flazz/vim-colorschemes'
 
@@ -143,9 +141,12 @@ set complete=.,w,t,i
 set completeopt+=longest
 set diffopt=filler,vertical
 set laststatus=2                " always show status line
+set showtabline=2               " always show tab line
 set guioptions="cegmt"
 set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
+set tabline=%!SchmexyTabLine()
+set statusline=%!SchmexyStatusLine()
 " set guitablabel=\[%N\]\ %t\ %M
 
 " Files to ignore
@@ -166,6 +167,94 @@ elseif executable('ack-grep')
     set grepprg=ack-grep\ --noheading\ --nocolor\ --column\ --follow\ --smart-case
     set grepformat=%f:%l:%c:%m
 endif
+
+
+function! SchmexyTabLine()
+    if tabpagenr("$") == 1
+        redir => buffers
+        silent ls
+        redir END
+
+        let tabline_list = []
+        let bufnrs = map(split(buffers, "\n"), 'matchstr(v:val, ''^\s*\zs\d\+'')')
+        for nr in bufnrs
+            let active_buf = (bufnr("%") ==# nr)
+            let tab_hl = (active_buf ? "%#TabLineSel#" : "%#TabLine#")
+            let tab_entry = tab_hl.' %{GetBufTabEntry('.nr.')} '
+            call add(tabline_list, tab_entry)
+        endfor
+        let tabline = join(tabline_list, "")
+        let tabline .= " %#TabLineFill#%=%#TabLine# buffers "
+        return tabline
+    else
+        let tabline_list = []
+        for tabnr in range(tabpagenr("$"))
+            let active_tab = (tabpagenr() == tabnr + 1)
+            let tab_hl = (active_tab ? "%#TabLineSel#" : "%#TabLine#")
+            let tab_nr = " %".(tabnr + 1)."T".(tabnr + 1)
+            let tab_entry = tab_hl.tab_nr.' %{GetTabEntry('.(tabnr + 1).')} '
+            call add(tabline_list, tab_entry)
+        endfor
+        let tabline = join(tabline_list, "")
+        let tabline .= " %#TablineFill#%T%=%#TabLine# tabs "
+        return tabline
+    endif
+endfunction
+
+function! GetBufTabEntry(nr)
+    let modified = getbufvar(a:nr, "&modified")
+    let bufname = bufname(a:nr)
+    let bufname_tail = fnamemodify(bufname, ":t")
+    let tab_entry = (modified ? bufname_tail."+" : bufname_tail)
+    return tab_entry
+endfunction
+
+function! GetTabEntry(tabnr)
+    let tab_buflist = tabpagebuflist(a:tabnr)
+    let tab_winnr = tabpagewinnr(a:tabnr)
+    let bufname = bufname(tab_buflist[tab_winnr - 1])
+    let bufname_tail = fnamemodify(bufname, ":t")
+    let modified = getbufvar(bufname, "&modified")
+    let tab_entry = "%" . a:tabnr . "T"
+    let tab_entry = (modified ? bufname_tail."+" : bufname_tail)
+    return tab_entry
+endfunction
+
+function! SchmexyStatusLine()
+    let left_status = "%(%{GetBuftypeText()} %f%m%r%)"
+    let right_status = "%{&filetype} |%4l:%3v %3p%% "
+    let syntastic_status = "%#WarningMsg#%{ SyntasticStatuslineFlag() }%*"
+    return left_status . syntastic_status . "  %=  " . right_status
+endfunction
+
+function! GetBuftypeText()
+    let buftype = (exists("g:loaded_fugitive") ? fugitive#statusline() : "")
+    let buftype = (&buftype ==# "help" ? "Help" : buftype)
+    let buftype = (&buftype ==# "quickfix" ? GetQuickfixText() : buftype)
+    let buftype = (&previewwindow ? "Preview" : buftype)
+    return (empty(buftype) ? "" : buftype)
+endfunction
+
+function! GetQuickfixText()
+    let grepprg = matchstr(&grepprg, '^\w*')
+    let quickfix_title = (exists("w:quickfix_title") ? w:quickfix_title : "")
+    let quickfix_title = substitute(quickfix_title, '\V:'.&grepprg, '', '')
+    redir => buffers
+    silent ls
+    redir END
+
+    let bufnr = bufnr("%")
+    for buf in split(buffers, "\n")
+        if (buf =~# '^\s*'.bufnr)
+            if (buf =~# '\[Quickfix List\]')
+                return "Quickfix [".grepprg.quickfix_title."]"
+            else
+                return "Location [".grepprg.quickfix_title."]"
+            endif
+        endif
+    endfor
+    return ""
+endfunction
 
 
 " ======================================================================
@@ -198,7 +287,7 @@ nnoremap Q @q
 nnoremap gV `[v`]
 
 " Source vimrc
-nnoremap <silent> <Leader>sv :silent source $MYVIMRC \| AirlineRefresh<CR>
+nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
 
 " change buffer
 " nnoremap gb :ls<CR>:buffer<Space>
@@ -737,27 +826,6 @@ let g:surround_no_insert_mappings = 1
 imap <C-S> <Plug>Isurround
 
 " ----------------------------------------------------------------------
-" Airline Settings
-" ----------------------------------------------------------------------
-if !exists('g:airline_symbols')
-    let g:airline_symbols={}
-endif
-if has("gui_running")
-    set guifont=Ubuntu\ Mono\ 12
-else
-    let g:airline_right_sep=""
-endif
-
-let g:airline_symbols.space="\ua0"
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline_theme = 'tomorrow'
-set fillchars+=stl:\ ,stlnc:\
-
-" ----------------------------------------------------------------------
 " Mazda
 " ----------------------------------------------------------------------
 nmap <Leader>zi <Plug>MazdaZoomIn
@@ -848,7 +916,6 @@ augroup END
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    silent! AirlineRefresh
     call s:MakeCommentsProminent()
     call s:SetCustomHL()
     call s:SetColorColumn()
@@ -863,6 +930,13 @@ function! s:MakeCommentsProminent()
 endfunction
 
 function! s:SetCustomHL()
+    if (g:colors_name =~# "seoul")
+        highlight clear StatusLine
+        highlight clear StatusLineNC
+        highlight link StatusLine LineNr
+        let nc_bg = (&background ==? "light" ? "Gray" : "DarkGray")
+        execute "highlight StatusLineNC ctermfg=".nc_bg." guifg=".nc_bg
+    endif
     highlight link Snip Structure
     highlight ExtraWhitespace ctermbg=red guibg=red
     highlight clear ColorColumn
