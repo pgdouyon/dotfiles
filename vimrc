@@ -328,7 +328,6 @@ xnoremap gs :s/
 nnoremap <Leader>r :%s/\<<C-r><C-w>\>/
 xnoremap <Leader>r "vy:%s/\<<C-r>v\>/
 
-
 " reuse flags when repeating substitute command with &
 nnoremap & :&&<CR>
 
@@ -826,6 +825,14 @@ let g:surround_no_insert_mappings = 1
 imap <C-S> <Plug>Isurround
 
 " ----------------------------------------------------------------------
+" Unimpaired Settings
+" ----------------------------------------------------------------------
+function! s:UnimpairedMappings()
+    nnoremap <silent> cob :call <SID>ColorToggle()<CR>
+    nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
+endfunction
+
+" ----------------------------------------------------------------------
 " Mazda
 " ----------------------------------------------------------------------
 nmap <Leader>zi <Plug>MazdaZoomIn
@@ -908,8 +915,7 @@ augroup vimrc
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
     autocmd Filetype pandoc,markdown setlocal spell
-    autocmd SourceCmd *unimpaired.vim source <afile> | nnoremap <silent> cob :call <SID>ColorToggle()<CR>
-    autocmd SourceCmd *unimpaired.vim source <afile> | nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
+    autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
 augroup END
 
 " ----------------------------------------------------------------------
