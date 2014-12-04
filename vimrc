@@ -24,6 +24,8 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 " Editing Enhancements
 Plug 'kris89/vim-multiple-cursors'
 Plug 'wellle/tmux-complete.vim'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
@@ -862,6 +864,11 @@ augroup END
 " ----------------------------------------------------------------------
 nmap <Leader>a <Plug>(EasyAlign)
 vmap <Leader>a <Plug>(EasyAlign)
+
+" ----------------------------------------------------------------------
+" Vim-Oblique
+" ----------------------------------------------------------------------
+let g:oblique#incsearch_highlight_all = 1
 
 " ----------------------------------------------------------------------
 " FileBeagle
