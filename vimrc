@@ -871,6 +871,7 @@ nmap <silent> <Leader>vr <Plug>VimroomToggle
 " Vim-After-Object
 " ----------------------------------------------------------------------
 augroup after_object
+    autocmd!
     autocmd VimEnter * call after_object#enable(['a', 'aa'], '=', '#', ' ')
 augroup END
 
@@ -919,8 +920,7 @@ function! s:FileBeagleHome()
     execute "FileBeagle " . expand("~")
 endfunction
 
-augroup filebeagle
-    autocmd!
+augroup FileBeagle
     autocmd BufEnter *filebeagle* call <SID>FileBeagleMappings()
 augroup END
 
