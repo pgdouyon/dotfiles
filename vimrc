@@ -146,10 +146,14 @@ set diffopt=filler,vertical
 set laststatus=2                " always show status line
 set showtabline=2               " always show tab line
 set guioptions="cegmt"
-set clipboard=unnamedplus       " system clipboard uses unnamed register (don't ask why =unnamed didn't work....)
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
 set tabline=%!SchmexyTabLine()
 set statusline=%!SchmexyStatusLine()
+if has('nvim')
+    set unnamedclip             " system clipboard uses unnamed register for nvim
+else
+    set clipboard=unnamed       " system clipboard uses unnamed register
+endif
 " set guitablabel=\[%N\]\ %t\ %M
 
 " Files to ignore
