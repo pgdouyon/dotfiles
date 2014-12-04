@@ -795,6 +795,16 @@ nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
 nnoremap <silent> <Leader>fe :%Eval<CR>
 
 " ----------------------------------------------------------------------
+" Syntastic Settings
+" ----------------------------------------------------------------------
+let g:syntastic_check_on_open = 1
+let g:syntastic_cursor_column = 0
+let g:syntastic_enable_balloons = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+" ----------------------------------------------------------------------
 " Signify Settings
 " ----------------------------------------------------------------------
 let g:signify_vcs_list = ['git', 'svn']
