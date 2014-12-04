@@ -92,7 +92,7 @@ let mapleader="\<Space>"
 let maplocalleader="\<CR>"
 
 " Buffers
-set number
+set nonumber
 set ruler
 set title
 set lazyredraw
