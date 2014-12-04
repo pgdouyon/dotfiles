@@ -655,9 +655,9 @@ endfunction
 let g:todo_tag = "<PGD>"
 command! -bang TodoList call <SID>TodoList(<bang>1)
 
-nnoremap <Leader>td OTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>A
-nnoremap <Leader>fx OFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>A
-nnoremap <Leader>xx OXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>A
+nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
+nnoremap <Leader>fx O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
+nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 
 " ======================================================================
 " Targets
