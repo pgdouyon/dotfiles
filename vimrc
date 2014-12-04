@@ -370,6 +370,18 @@ inoremap <C-H>5 <Esc>I##### <End>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
+" autoclose braces
+inoremap <expr> <CR> <SID>AutocloseBraces()
+
+function! s:AutocloseBraces()
+    let prev_char = getline(".")[col(".") - 2]
+    if prev_char ==# "{"
+        return "\<CR>}\<Esc>==O"
+    else
+        return "\<CR>"
+    endif
+endfunction
+
 " ----------------------------------------------------------------------
 " Command Line
 " ----------------------------------------------------------------------
