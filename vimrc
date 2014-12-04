@@ -37,7 +37,7 @@ Plug 'jeetsukumaran/vim-filebeagle'
 " Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'scrooloose/syntastic'
 Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
@@ -792,13 +792,13 @@ nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
 nnoremap <silent> <Leader>fe :%Eval<CR>
 
 " ----------------------------------------------------------------------
-" GitGutter Settings
+" Signify Settings
 " ----------------------------------------------------------------------
-let g:gitgutter_map_keys = 0
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-nmap gha <Plug>GitGutterStageHunk
-nmap ghr <Plug>GitGutterRevertHunk
+let g:signify_vcs_list = ['git', 'svn']
+omap ic <Plug>(signify-motion-inner-pending)
+xmap ic <Plug>(signify-motion-inner-visual)
+omap ac <Plug>(signify-motion-outer-pending)
+xmap ac <Plug>(signify-motion-outer-visual)
 
 " ----------------------------------------------------------------------
 " Fugitive Settings
