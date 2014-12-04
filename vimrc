@@ -64,7 +64,8 @@ Plug 'elzr/vim-json', {'for': 'json'}
 
 " HTML
 Plug 'othree/html5.vim', {'for': 'html'}
-Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'xml']}
+Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml']}
 
 " CSS
 Plug 'ap/vim-css-color', {'for': 'css'}
