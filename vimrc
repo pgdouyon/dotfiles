@@ -23,8 +23,8 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 
 " Editing Enhancements
 Plug 'kris89/vim-multiple-cursors'
-Plug 'junegunn/vim-easy-align'
 Plug 'wellle/tmux-complete.vim'
+Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
