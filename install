@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# cd to dotfiles directory
+cd $(dirname $BASH_SOURCE)
+BASE=$(pwd)
+
+# link RC files
+mkdir -pv bak
+for rc in *rc *aliases tmux.conf; do
+    [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
+    ln -sfv $BASE/$rc ~/.$rc
+done
+
+# git-prompt
+if [ ! -e ~/.git-prompt.sh ]; then
+    curl https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh \
+        -o ~/.git-prompt.sh
+fi
+
+# FZF
+git clone https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# OS X
+if [ $(uname -s) = 'Darwin' ]; then
+    # Homebrew
+    [ -z "$(which brew)" ] &&
+        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
+    brew update
+    brew install \
+        ag coreutils ctags git libgit2 \
+        macvim maven python reattach-to-user-namespace \
+        tmux tree vim wget
+    # Neovim
+    brew tap neovim/homebrew-neovim
+    brew install --HEAD neovim
+    pip install neovim
+fi
+
+tmux source-file ~/.tmux.conf
