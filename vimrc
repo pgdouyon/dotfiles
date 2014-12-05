@@ -949,12 +949,13 @@ augroup vimrc
     autocmd!
     " Jump to the last position when reopening a file
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    autocmd FocusLost *.{html,css} w
+    autocmd FocusLost *.{html,css} write
     autocmd BufRead,BufNewFile *.md set filetype=pandoc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
     autocmd Filetype pandoc,markdown setlocal spell
+    autocmd Filetype qf nnoremap <buffer><silent> q :cclose<CR>
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
 augroup END
 
