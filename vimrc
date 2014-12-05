@@ -861,6 +861,21 @@ nnoremap <silent> <Leader>gV :Gitv!<CR>
 let g:surround_no_insert_mappings = 1
 imap <C-S> <Plug>Isurround
 
+if has('nvim')
+    nnoremap <silent> ys :call <SID>NeovimBrokeSurround()<CR>
+endif
+
+function! s:NeovimBrokeSurround()
+    set nounnamedclip
+    let motion = nr2char(getchar())
+    if motion =~# "[iaftFTrR]"
+        let motion .= nr2char(getchar())
+    endif
+    let delim = nr2char(getchar())
+    call feedkeys("\<Plug>Ysurround".motion.delim, "m")
+    call feedkeys(":set unnamedclip\<CR>\<C-L>", "nt")
+endfunction
+
 " ----------------------------------------------------------------------
 " Unimpaired Settings
 " ----------------------------------------------------------------------
