@@ -382,7 +382,9 @@ function! s:AutocloseBraces()
     if prev_char ==# "{"
         return "\<CR>}\<Esc>==O"
     else
-        return "\<CR>"
+        call feedkeys("\<CR>", "nt")
+        call feedkeys("\<Plug>DiscretionaryEnd", "m")
+        return ""
     endif
 endfunction
 
