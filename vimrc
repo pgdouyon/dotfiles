@@ -432,19 +432,6 @@ nnoremap <silent> <C-K> :<C-u>call <SID>TmuxSwitchWindows("k")<CR>
 nnoremap <silent> <C-L> :<C-u>call <SID>TmuxSwitchWindows("l")<CR>
 
 " ----------------------------------------------------------------------
-" Section Title
-" ----------------------------------------------------------------------
-function! s:MakeSectionTitle()
-    let l:section_title = getline(".")
-    let l:length = strlen(l:section_title)
-    let l:offset = 34 - (l:length / 2)
-    execute "normal! 070R#\<Esc>0" . l:offset . "lR " . l:section_title . " \<Esc>"
-    execute "normal gcc"
-endfunction
-
-inoremap <C-t> <Esc>:call <SID>MakeSectionTitle()<CR>A
-
-" ----------------------------------------------------------------------
 " Section Box
 " ----------------------------------------------------------------------
 function! s:MakeSectionBox(border)
