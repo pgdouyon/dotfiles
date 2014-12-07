@@ -511,38 +511,6 @@ endfunction
 nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
 
 " ----------------------------------------------------------------------
-" MegaTab
-" ----------------------------------------------------------------------
-function! s:MegaTab(complete, tab)
-    if pumvisible()
-        return a:complete
-    endif
-    let line = getline(".")
-    let col = col(".") - 1
-    let bol = strpart(line, 0, col) =~ '^\s*$'
-    if bol || line[col - 1] =~ '\s'
-        return a:tab
-    endif
-
-    let skip_file_completion = ["clojure"]
-    for ft in skip_file_completion
-        if &filetype ==? ft
-            return "\<C-x>".a:complete
-        endif
-    endfor
-
-    let keyword = matchstr(strpart(getline("."), 0, col), '\S*$')
-    if match(keyword, '\/') != -1
-        return "\<C-x>\<C-f>"
-    else
-        return "\<C-x>".a:complete
-    endif
-endfunction
-
-inoremap <expr> <Tab> <SID>MegaTab("\<C-n>", "\<Tab>")
-inoremap <expr> <S-Tab> <SID>MegaTab("\<C-p>", "\<S-Tab>")
-
-" ----------------------------------------------------------------------
 " Snippet Syntax Highlighting
 " ----------------------------------------------------------------------
 function! s:SnippetSyntax(lang)
