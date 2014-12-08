@@ -5,6 +5,7 @@ images/
 tmp/
 log/
 logs/
+tags
 *.log
 *.tar.gz
 *.zip
