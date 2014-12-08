@@ -2,9 +2,9 @@ node_modules/
 packages/
 target/
 images/
-tmp/
-log/
 logs/
+log/
+tmp/
 tags
 *.log
 *.tar.gz
