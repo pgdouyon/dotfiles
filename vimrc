@@ -355,6 +355,16 @@ nnoremap <silent> <Down> :resize -5<CR>
 nnoremap <silent> <Up> :resize +5<CR>
 
 " ----------------------------------------------------------------------
+" Tags/Definition Search
+" ----------------------------------------------------------------------
+nnoremap g] g<C-]>
+nnoremap g<C-]> g]
+" nnoremap [i [<C-I>
+" nnoremap ]i ]<C-I>
+" nnoremap [<C-I> [i
+" nnoremap ]<C-I> ]i
+
+" ----------------------------------------------------------------------
 " Insert Mode
 " ----------------------------------------------------------------------
 " break undo sequence when deleting a line in insert mode
