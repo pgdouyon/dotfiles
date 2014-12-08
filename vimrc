@@ -299,9 +299,6 @@ nnoremap gV `[v`]
 " Source vimrc
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
 
-" change buffer
-" nnoremap gb :ls<CR>:buffer<Space>
-
 " switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
 
@@ -601,9 +598,9 @@ endfunction
 noremap <silent> gb :<C-u>call <SID>SkipIndent(v:count1, "/")<CR>
 noremap <silent> gB :<C-u>call <SID>SkipIndent(v:count1, "?")<CR>
 
-" ======================================================================
+" ----------------------------------------------------------------------
 " Todo
-" ======================================================================
+" ----------------------------------------------------------------------
 function! s:TodoList(include_tag)
     let vcs_dir = finddir(".git", expand("%:p:h").";".expand("$HOME"))
     let dir = fnamemodify(vcs_dir, ":h")
@@ -633,9 +630,9 @@ nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 nnoremap <Leader>fx O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 
-" ======================================================================
+" ----------------------------------------------------------------------
 " Targets
-" ======================================================================
+" ----------------------------------------------------------------------
 function! s:TargetsPairs(inclusive, direction, delimiter)
     let save_pos = getpos(".")
     let direction = (a:direction ==# "n") ? "" : "b"
@@ -925,6 +922,7 @@ endfunction
 augroup FileBeagle
     autocmd BufEnter *filebeagle* call <SID>FileBeagleMappings()
 augroup END
+
 
 " ======================================================================
 " Autocmds
