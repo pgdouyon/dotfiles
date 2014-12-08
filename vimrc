@@ -119,6 +119,9 @@ set textwidth=0
 set linebreak
 set nowrap
 
+" ctags
+set tags=./tags;/
+
 set nrformats-=octal    " octal is the devil, don't allow it
 set mouse=""            " the mouse is the devil, don't allow it
 set shellslash          " use forward slashes for file names
