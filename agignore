@@ -1,9 +1,9 @@
-/node_modules/
-/packages/
-/images/
-/tmp/
-/log/
-/logs/
+node_modules/
+packages/
+images/
+tmp/
+log/
+logs/
 *.log
 *.tar.gz
 *.zip
