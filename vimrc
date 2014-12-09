@@ -898,37 +898,3 @@ if strftime('%H') > 5 && strftime("%H") < 18
 else
     call s:SetBackgroundTheme('dark')
 endif
-
-
-" ----------------------------------------------------------------------
-" Cheat Sheet
-" ----------------------------------------------------------------------
-" #Fireplace
-    " - K           -> look up docs for keyword under cursor
-    " - [d or ]d    -> show source for keyword under cursor
-    " - <C-W>d      -> jump to source for keyword under cursor in split
-    " - gf          -> go to file for the namespace under the cursor
-    " - <Leader>fdj -> jump to symbol definition
-    " - <Leader>fds -> jump to symbol definition in split
-    " - cp{motion}  -> eval/print the code indicated by {motion}
-    " - cpp         -> eval/print the outermost form at the cursor
-    " - cpr         -> eval a require :reload form
-    " - c!{motion}  -> eval/replace the code indicated by {motion}
-    " - c!!         -> eval/replace the innermost form at the cursor
-    " - cm{motion}  -> fully macroexpand the macro indicated by {motion}
-    " - cmm         -> fully macroexpand the innermost form at the cursor
-    " - c1m{motion} -> macroexpand once the code indicated by {motion}
-    " - c1mm        -> macroexpand the innermost form at the cursor once
-    " - cqp         -> bring up a prompt for code to eval/print
-    " - cqc         -> bring up a command-line-window for code to eval/print
-    " - cq{motion}  -> bring up a command-line-window with prepopulated text
-    "              -> indicated by {motion}
-    " - <C-R>(      -> evaluate the given expression and insert the result
-" #Emmet
-    " - <C-y>, -> expand/wrap with css-style abbreviation
-    " - <C-y>n -> go to next edit point (N for previous)
-    " - <C-y>k -> kill tag in block
-    " - <C-y>/ -> toggle comment for tag
-    " - <C-y>a -> make anchor from URL
-    " - <C-y>A -> make quoted text from URL
-    " - <C-y>c -> pretty code formatting
