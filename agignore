@@ -1,5 +1,6 @@
 node_modules/
 packages/
+Library/
 target/
 images/
 logs/
