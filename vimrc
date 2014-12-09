@@ -7,7 +7,6 @@ call plug#begin('~/.vim/bundle')
 " Personal Plugins
 Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-firebolt'
-Plug 'pgdouyon/vim-mazda', {'on': ['<Plug>MazdaZoomIn', '<Plug>MazdaToggle']}
 Plug 'pgdouyon/vimroom', {'on': '<Plug>VimroomToggle'}
 
 " Tim Pope
@@ -848,17 +847,6 @@ function! s:UnimpairedMappings()
     nnoremap <silent> cob :call <SID>ColorToggle()<CR>
     nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 endfunction
-
-" ----------------------------------------------------------------------
-" Mazda
-" ----------------------------------------------------------------------
-nmap <Leader>zi <Plug>MazdaZoomIn
-vmap <Leader>zi <Plug>MazdaZoomIn
-nmap <Leader>zt <Plug>MazdaToggle
-vmap <Leader>zt <Plug>MazdaToggle
-nmap <Leader>zo <Plug>MazdaZoomOut
-nmap <Leader>zd <Plug>MazdaDiscard
-nmap <Leader>zr <Plug>MazdaReselect
 
 " ----------------------------------------------------------------------
 " VimRoom
