@@ -570,35 +570,6 @@ noremap <silent> gi :<C-u>call <SID>NextIndent(v:count1, "/")<CR>
 noremap <silent> gI :<C-u>call <SID>NextIndent(v:count1, "?")<CR>
 
 " ----------------------------------------------------------------------
-" Skip Indent Object
-" ----------------------------------------------------------------------
-function! s:SkipIndent(count, dir)
-    " count is ignored for now, still need to figure out how that would
-    " be intuitively used
-    let start = line(".")
-    let eof = line("$") + 1
-    let indent = indent(start)
-    let lines = (a:dir ==? "/" ? range(start, eof) : range(start, 0, -1))
-    for lnum in lines
-        if indent(lnum) > indent
-            let start = lnum
-            break
-        endif
-    endfor
-
-    let lines = (a:dir ==? "/" ? range(start, eof) : range(start, 0, -1))
-    for lnum in lines
-        if indent(lnum) <= indent
-            execute "normal! ".lnum."G^"
-            return
-        endif
-    endfor
-endfunction
-
-noremap <silent> gb :<C-u>call <SID>SkipIndent(v:count1, "/")<CR>
-noremap <silent> gB :<C-u>call <SID>SkipIndent(v:count1, "?")<CR>
-
-" ----------------------------------------------------------------------
 " Todo
 " ----------------------------------------------------------------------
 function! s:TodoList(include_tag)
