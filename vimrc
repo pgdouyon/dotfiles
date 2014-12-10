@@ -542,34 +542,6 @@ function! s:SnippetSyntax(lang)
 endfunction
 
 " ----------------------------------------------------------------------
-" Next Indent Level
-" ----------------------------------------------------------------------
-function! s:NextIndent(count, dir)
-    let start = line(".")
-    let eof = line("$") + 1
-    let lines = (a:dir ==? "/" ? range(start, eof) : range(start, 0, -1))
-    let indent = indent(start)
-    let counter = a:count
-    for lnum in lines
-        let line = getline(lnum)
-        let empty = empty(line)
-        let end_statement = (line =~# '^\s*}') || (line =~# '^\s*end')
-        let nextIndent = (indent(lnum) != indent) && !empty && !end_statement
-        if nextIndent && counter > 1
-            let indent = indent(lnum)
-            let counter = counter - 1
-        elseif nextIndent
-            execute "normal! ".lnum."G^"
-            return
-        endif
-    endfor
-endfunction
-
-noremap zi gi
-noremap <silent> gi :<C-u>call <SID>NextIndent(v:count1, "/")<CR>
-noremap <silent> gI :<C-u>call <SID>NextIndent(v:count1, "?")<CR>
-
-" ----------------------------------------------------------------------
 " Todo
 " ----------------------------------------------------------------------
 function! s:TodoList(include_tag)
