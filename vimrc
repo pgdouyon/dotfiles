@@ -170,15 +170,6 @@ set backupdir^=~/.vim/_backup//     " where to put backup files.
 set directory^=~/.vim/_temp//       " where to put swap files.
 set shortmess+=A                    " no 'existing swap file found' messages
 
-if executable('ag')
-    set grepprg=ag\ --noheading\ --nocolor\ --nobreak\ --column\ --follow\ --smart-case\ -t
-    set grepformat=%f:%l:%c:%m
-elseif executable('ack-grep')
-    set grepprg=ack-grep\ --noheading\ --nocolor\ --column\ --follow\ --smart-case
-    set grepformat=%f:%l:%c:%m
-endif
-
-
 function! SchmexyTabLine()
     if tabpagenr("$") == 1
         redir => buffers
@@ -572,6 +563,27 @@ command! -bang TodoList call <SID>TodoList(<bang>1)
 nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 nnoremap <Leader>fx O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
+
+" ----------------------------------------------------------------------
+" Ag
+" ----------------------------------------------------------------------
+function! s:Ag(cmd, args)
+    let old_grepprg = &grepprg
+    let old_grepfmt = &grepformat
+    let open_cmd = (a:cmd =~# '^l' ? "lopen" : "copen")
+    let grep_args = (empty(a:args) ? "-Q ".expand("<cword>") : a:args)
+    let &grepprg = 'ag --noheading --nocolor --nobreak --column --follow --smart-case -t -p ~/.agignore'
+    let &grepformat = '%f:%l:%c:%m'
+    execute a:cmd grep_args
+    execute open_cmd
+    let &grepprg = old_grepprg
+    let &grepformat = old_grepfmt
+endfunction
+
+command! -nargs=* -complete=file Ag call <SID>Ag('grep!', <q-args>)
+command! -nargs=* -complete=file AgAdd call <SID>Ag('grepadd!', <q-args>)
+command! -nargs=* -complete=file LAg call <SID>Ag('lgrep!', <q-args>)
+command! -nargs=* -complete=file LAgAdd call <SID>Ag('lgrepadd!', <q-args>)
 
 
 " ======================================================================
