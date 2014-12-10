@@ -786,9 +786,31 @@ augroup vimrc
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
     autocmd Filetype pandoc,markdown setlocal spell
-    autocmd Filetype qf nnoremap <buffer><silent> q :cclose<CR>
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
 augroup END
+
+augroup quickfix
+    " open file in a new horizontal split ("s"), vertical split ("v"), or tab page ("t")
+    autocmd Filetype qf nnoremap <buffer><silent> s <C-W><CR><C-W>p<C-W>J<C-W>p
+    autocmd Filetype qf nnoremap <buffer><silent> v <C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p
+    autocmd Filetype qf nnoremap <buffer><silent> t <C-W><CR><C-W>T
+    autocmd Filetype qf nnoremap <buffer><silent> q :call <SID>CloseQuickfix()<CR>
+augroup END
+
+function! s:CloseQuickfix()
+    redir => buffers
+    silent ls
+    redir END
+
+    let bufnr = bufnr("%")
+    for buf in split(buffers, "\n")
+        if (buf =~# '^\s*'.bufnr)
+            let close = (buf =~# '\[Quickfix List\]' ? "cclose" : "lclose")
+            execute close
+            return
+        endif
+    endfor
+endfunction
 
 " ----------------------------------------------------------------------
 " Colorscheme Settings
