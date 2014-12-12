@@ -616,6 +616,9 @@ endfunction
 " ----------------------------------------------------------------------
 " Niffler Settings
 " ----------------------------------------------------------------------
+let g:niffler_ignore_extensions = [".class"]
+let g:niffler_ignore_dirs = ["Library"]
+
 nnoremap <silent> znf :Niffler<CR>
 nnoremap <silent> zng :Niffler -vcs<CR>
 nnoremap <silent> znm :NifflerMRU<CR>
