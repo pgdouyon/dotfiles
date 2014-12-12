@@ -152,11 +152,7 @@ set guioptions="cegmt"
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
 set tabline=%!SchmexyTabLine()
 set statusline=%!SchmexyStatusLine()
-if has('nvim')
-    set unnamedclip             " system clipboard uses unnamed register for nvim
-else
-    set clipboard=unnamed       " system clipboard uses unnamed register
-endif
+set clipboard=unnamed
 " set guitablabel=\[%N\]\ %t\ %M
 
 " Files to ignore
@@ -696,21 +692,6 @@ nnoremap <silent> <Leader>gV :Gitv!<CR>
 " ----------------------------------------------------------------------
 let g:surround_no_insert_mappings = 1
 imap <C-S> <Plug>Isurround
-
-if has('nvim')
-    nnoremap <silent> ys :call <SID>NeovimBrokeSurround()<CR>
-endif
-
-function! s:NeovimBrokeSurround()
-    set nounnamedclip
-    let motion = nr2char(getchar())
-    if motion =~# "[iaftFTrR]"
-        let motion .= nr2char(getchar())
-    endif
-    let delim = nr2char(getchar())
-    call feedkeys("\<Plug>Ysurround".motion.delim, "m")
-    call feedkeys(":set unnamedclip\<CR>\<C-L>", "nt")
-endfunction
 
 " ----------------------------------------------------------------------
 " Unimpaired Settings
