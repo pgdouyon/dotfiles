@@ -94,16 +94,9 @@ let mapleader="\<Space>"
 let maplocalleader="\<CR>"
 
 " Buffers
-set nonumber
-set ruler
-set title
-set lazyredraw
-set cursorline
 set autowrite       " automatically save before commands like :next and :make
 set autoread        " automatically read a file if it's been changed on disk
 set hidden          " hide buffers when they are abandoned
-set ttimeout
-set ttimeoutlen=50
 
 " Tab/indent
 set autoindent
@@ -119,11 +112,10 @@ set textwidth=0
 set linebreak
 set nowrap
 
-" ctags
+" Ctags
 set tags=./tags;/
 
-set nrformats-=octal    " octal is the devil, don't allow it
-set mouse=""            " the mouse is the devil, don't allow it
+" Shell
 set shellslash          " use forward slashes for file names
 set noshelltemp         " use pipes instead of temporary files
 set ttyfast             " demand better performance when in terminal
@@ -138,22 +130,39 @@ set smartcase       " do smart case matching
 set incsearch       " incremental search
 set showmatch       " show matching brackets.
 
-" Window/menu
+" Display
+set nonumber
+set ruler
+set title
+set lazyredraw
+set cursorline
 set splitbelow
 set splitright
-set wildmenu
-set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
-set complete=.,w,t,i
-set completeopt+=longest
+set conceallevel=2
 set diffopt=filler,vertical
-set laststatus=2                " always show status line
-set showtabline=2               " always show tab line
 set guioptions="cegmt"
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
+set showtabline=2               " always show tab line
 set tabline=%!SchmexyTabLine()
-set statusline=%!SchmexyStatusLine()
-set clipboard=unnamed
 " set guitablabel=\[%N\]\ %t\ %M
+set laststatus=2                " always show status line
+set statusline=%!SchmexyStatusLine()
+
+" Completion
+set wildmenu
+set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
+set complete=.,w,b,t,i
+set completeopt+=longest
+
+" Misc
+set clipboard=unnamed
+set sessionoptions+=localoptions
+set nrformats-=octal    " octal is the devil, don't allow it
+set mouse=""            " the mouse is the devil, don't allow it
+
+" Mappings timeout
+set ttimeout
+set ttimeoutlen=50
 
 " Files to ignore
 set wildignore+=*.o,*.out,*.obj,.exe,.git,*.pyc,*.rbc,*.rbo,*.gem,*/node_modules/*
