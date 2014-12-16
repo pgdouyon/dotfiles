@@ -777,6 +777,11 @@ augroup FileBeagle
     autocmd BufEnter *filebeagle* call <SID>FileBeagleMappings()
 augroup END
 
+" ----------------------------------------------------------------------
+" Emmet
+" ----------------------------------------------------------------------
+let g:user_emmet_leader_key='<C-M>'
+
 
 " ======================================================================
 " Autocmds
