@@ -583,6 +583,16 @@ nnoremap <Leader>fx O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 
 " ----------------------------------------------------------------------
+" Toggle Trailing Whitespace
+" ----------------------------------------------------------------------
+function! s:ToggleTrailingWhitespace()
+    let w:enableTrailingWhitespace = !w:enableTrailingWhitespace
+    call s:SetTrailingWhitespace()
+endfunction
+
+nnoremap <silent> cot :call <SID>ToggleTrailingWhitespace()<CR>
+
+" ----------------------------------------------------------------------
 " Ag
 " ----------------------------------------------------------------------
 function! s:Ag(cmd, args)
@@ -822,6 +832,7 @@ function! s:SetupColorScheme()
     call s:MakeCommentsProminent()
     call s:SetCustomHL()
     call s:SetColorColumn()
+    call s:SetTrailingWhitespace()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
     endif
@@ -834,10 +845,9 @@ endfunction
 
 function! s:SetCustomHL()
     highlight link Snip Structure
-    highlight ExtraWhitespace ctermbg=red guibg=red
+    highlight TrailingWhitespace ctermbg=red guibg=red
     highlight clear ColorColumn
     highlight link ColorColumn Error
-    match ExtraWhitespace /\s\+$/
 endfunction
 
 function! s:SetColorColumn()
@@ -848,6 +858,17 @@ function! s:SetColorColumn()
         silent! call matchadd("ColorColumn", '\%>80v.', 100, 954)
     else
         silent! call matchdelete(954)
+    endif
+endfunction
+
+function! s:SetTrailingWhitespace()
+    if !exists("w:enableTrailingWhitespace")
+        let w:enableTrailingWhitespace = 1
+    endif
+    if w:enableTrailingWhitespace
+        silent! call matchadd("TrailingWhitespace", '\s\+$', 100, 955)
+    else
+        silent! call matchdelete(955)
     endif
 endfunction
 
