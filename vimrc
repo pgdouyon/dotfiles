@@ -40,7 +40,6 @@ Plug 'jeetsukumaran/vim-filebeagle'
 " Tool Integration
 Plug 'mhinz/vim-signify'
 Plug 'scrooloose/syntastic'
-Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " Clojure
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -691,12 +690,6 @@ nnoremap <silent> <Leader>ga :Gwrite<CR>
 nnoremap <silent> <Leader>gr :Gread<CR>
 nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
-
-" ----------------------------------------------------------------------
-" Gitv Settings
-" ----------------------------------------------------------------------
-nnoremap <silent> <Leader>gv :Gitv<CR>
-nnoremap <silent> <Leader>gV :Gitv!<CR>
 
 " ----------------------------------------------------------------------
 " Surround Settings
