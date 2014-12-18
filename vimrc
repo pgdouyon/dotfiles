@@ -8,7 +8,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-firebolt'
 Plug 'pgdouyon/vim-apparate'
-Plug 'pgdouyon/vimroom', {'on': '<Plug>VimroomToggle'}
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -713,12 +712,6 @@ function! s:UnimpairedMappings()
     nnoremap <silent> cob :call <SID>ColorToggle()<CR>
     nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 endfunction
-
-" ----------------------------------------------------------------------
-" VimRoom
-" ----------------------------------------------------------------------
-let g:vimroom_width = 100
-nmap <silent> <Leader>vr <Plug>VimroomToggle
 
 " ----------------------------------------------------------------------
 " Vim-After-Object
