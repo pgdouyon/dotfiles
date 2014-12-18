@@ -720,39 +720,13 @@ let g:oblique#incsearch_highlight_all = 1
 " ----------------------------------------------------------------------
 " FileBeagle
 " ----------------------------------------------------------------------
-function! s:FileBeagleMappings()
-    nnoremap <silent><buffer> d :<C-U>call <SID>FileBeagleDelete()<CR>
-    nnoremap <silent><buffer> ; :<C-U>call <SID>FileBeagleCommand()<CR>
-    nnoremap <silent><buffer> ! :<C-U>call <SID>FileBeagleShell()<CR>
-    nnoremap <silent><buffer> ~ :<C-U>call <SID>FileBeagleHome()<CR>
-endfunction
-
-function! s:FileBeagleDelete()
-    let file = substitute(getline("."), '^\s*', '', '')
-    let dir = matchstr(FileBeagleStatusLineCurrentDirInfo(), '\s*"\zs.*\ze"\s*')
-    call system("rm ".dir.file)
-    call feedkeys("R", "t")
-endfunction
-
-function! s:FileBeagleCommand()
-    let file = substitute(getline("."), '^\s*', '', '')
-    let dir = matchstr(FileBeagleStatusLineCurrentDirInfo(), '\s*"\zs.*\ze"\s*')
-    call feedkeys(": ".dir.file."\<Home>", "nt")
-endfunction
-
-function! s:FileBeagleShell()
-    let file = substitute(getline("."), '^\s*', '', '')
-    let dir = matchstr(FileBeagleStatusLineCurrentDirInfo(), '\s*"\zs.*\ze"\s*')
-    call feedkeys(": ".dir.file."\<Home>!", "nt")
-endfunction
-
 function! s:FileBeagleHome()
     normal q
     execute "FileBeagle " . expand("~")
 endfunction
 
 augroup FileBeagle
-    autocmd BufEnter *filebeagle* call <SID>FileBeagleMappings()
+    autocmd BufEnter *filebeagle* nnoremap <silent><buffer> ~ :<C-U>call <SID>FileBeagleHome()<CR>
 augroup END
 
 " ----------------------------------------------------------------------
