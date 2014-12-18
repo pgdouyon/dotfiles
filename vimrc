@@ -36,7 +36,6 @@ Plug 'junegunn/vim-after-object'
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
 Plug 'jeetsukumaran/vim-filebeagle'
-" Plug 'flazz/vim-colorschemes'
 
 " Tool Integration
 Plug 'mhinz/vim-signify'
