@@ -30,7 +30,6 @@ Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'junegunn/vim-after-object'
 
 " Appearance
 Plug 'junegunn/seoul256.vim'
@@ -703,14 +702,6 @@ function! s:UnimpairedMappings()
     nnoremap <silent> cob :call <SID>ColorToggle()<CR>
     nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 endfunction
-
-" ----------------------------------------------------------------------
-" Vim-After-Object
-" ----------------------------------------------------------------------
-augroup after_object
-    autocmd!
-    autocmd VimEnter * call after_object#enable(['a', 'aa'], '=', '#', ' ')
-augroup END
 
 " ----------------------------------------------------------------------
 " Vim-Easy-Align
