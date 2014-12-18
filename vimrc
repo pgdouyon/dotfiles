@@ -355,10 +355,6 @@ nnoremap & :&&<CR>
 " Window Navigation
 " ----------------------------------------------------------------------
 nnoremap gw <C-w>
-nnoremap <Leader>q <C-w>q
-nnoremap <silent> <Leader>tc :tabc<CR>
-nnoremap <silent> <Leader>te :tabe<CR>
-nnoremap <silent> <Leader>to :tabo<CR>
 nnoremap <silent> <Left> :vertical resize -5<CR>
 nnoremap <silent> <Right> :vertical resize +5<CR>
 nnoremap <silent> <Down> :resize -5<CR>
