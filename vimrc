@@ -59,7 +59,6 @@ Plug 'klen/python-mode', {'for': 'python'}
 " JavaScript
 Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 Plug 'moll/vim-node', {'for': 'javascript'}
-Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 Plug 'elzr/vim-json', {'for': 'json'}
 
 " HTML
