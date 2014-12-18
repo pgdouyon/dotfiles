@@ -176,51 +176,27 @@ set directory^=~/.vim/_temp//       " where to put swap files.
 set shortmess+=A                    " no 'existing swap file found' messages
 
 function! SchmexyTabLine()
-    if tabpagenr("$") == 1
-        redir => buffers
-        silent ls
-        redir END
-
-        let tabline_list = []
-        let bufnrs = map(split(buffers, "\n"), 'matchstr(v:val, ''^\s*\zs\d\+'')')
-        for nr in bufnrs
-            let active_buf = (bufnr("%") ==# nr)
-            let tab_hl = (active_buf ? "%#TabLineSel#" : "%#TabLine#")
-            let tab_entry = tab_hl.' %{GetBufTabEntry('.nr.')} '
-            call add(tabline_list, tab_entry)
-        endfor
-        let tabline = join(tabline_list, "")
-        let tabline .= " %#TabLineFill#%=%#TabLine# buffers "
-        return tabline
-    else
-        let tabline_list = []
-        for tabnr in range(tabpagenr("$"))
-            let active_tab = (tabpagenr() == tabnr + 1)
-            let tab_hl = (active_tab ? "%#TabLineSel#" : "%#TabLine#")
-            let tab_nr = " %".(tabnr + 1)."T".(tabnr + 1)
-            let tab_entry = tab_hl.tab_nr.' %{GetTabEntry('.(tabnr + 1).')} '
-            call add(tabline_list, tab_entry)
-        endfor
-        let tabline = join(tabline_list, "")
-        let tabline .= " %#TablineFill#%T%=%#TabLine# tabs "
-        return tabline
-    endif
-endfunction
-
-function! GetBufTabEntry(nr)
-    let modified = getbufvar(a:nr, "&modified")
-    let bufname = bufname(a:nr)
-    let bufname_tail = fnamemodify(bufname, ":t")
-    let tab_entry = (modified ? bufname_tail."+" : bufname_tail)
-    return tab_entry
+    let tabline_list = []
+    for tabnr in range(tabpagenr("$"))
+        let active_tab = (tabpagenr() == tabnr + 1)
+        let tab_hl = (active_tab ? "%#TabLineSel#" : "%#TabLine#")
+        let tab_nr = " %".(tabnr + 1)."T".(tabnr + 1)
+        let tab_entry = tab_hl.tab_nr.' %{GetTabEntry('.(tabnr + 1).')} '
+        call add(tabline_list, tab_entry)
+    endfor
+    let tabline = join(tabline_list, "")
+    let tabline .= " %#TablineFill#%T%=%#TabLine# tabs "
+    return tabline
 endfunction
 
 function! GetTabEntry(tabnr)
     let tab_buflist = tabpagebuflist(a:tabnr)
     let tab_winnr = tabpagewinnr(a:tabnr)
-    let bufname = bufname(tab_buflist[tab_winnr - 1])
+    let bufnr = tab_buflist[tab_winnr - 1]
+    let modified = getbufvar(bufnr, "&modified")
+    let filetype = getbufvar(bufnr, "&filetype")
+    let bufname = (filetype ==# "qf" ? GetQuickfixText() : bufname(bufnr))
     let bufname_tail = fnamemodify(bufname, ":t")
-    let modified = getbufvar(bufname, "&modified")
     let tab_entry = "%" . a:tabnr . "T"
     let tab_entry = (modified ? bufname_tail."+" : bufname_tail)
     return tab_entry
