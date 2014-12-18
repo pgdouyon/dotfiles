@@ -837,13 +837,6 @@ function! s:MakeCommentsProminent()
 endfunction
 
 function! s:SetCustomHL()
-    if (g:colors_name =~# "seoul")
-        highlight clear StatusLine
-        highlight clear StatusLineNC
-        highlight link StatusLine LineNr
-        let nc_bg = (&background ==? "light" ? "Gray" : "DarkGray")
-        execute "highlight StatusLineNC ctermfg=".nc_bg." guifg=".nc_bg
-    endif
     highlight link Snip Structure
     highlight ExtraWhitespace ctermbg=red guibg=red
     highlight clear ColorColumn
