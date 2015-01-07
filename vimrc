@@ -142,7 +142,6 @@ set guioptions="cegmt"
 set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
 set showtabline=2               " always show tab line
 set tabline=%!SchmexyTabLine()
-" set guitablabel=\[%N\]\ %t\ %M
 set laststatus=2                " always show status line
 set statusline=%!SchmexyStatusLine()
 
@@ -847,9 +846,6 @@ endfunction
 " maximize gvim on open, set terminal to 256 colors
 if has("gui_running")
     set lines=999 columns=999
-else
-    set t_Co=256
-    let g:solarized_termcolors=256
 endif
 
 function! s:SetBackgroundTheme(theme)
