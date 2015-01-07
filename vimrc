@@ -734,6 +734,11 @@ augroup END
 let g:user_emmet_leader_key='<C-M>'
 let g:user_emmet_mode = 'nv'
 
+" ----------------------------------------------------------------------
+" Pandoc Syntax
+" ----------------------------------------------------------------------
+let g:pandoc#syntax#conceal#blacklist = ['ellipses']
+
 
 " ======================================================================
 " Autocmds
