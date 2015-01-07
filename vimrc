@@ -6,7 +6,6 @@ call plug#begin('~/.vim/bundle')
 
 " Personal Plugins
 Plug 'pgdouyon/vim-niffler'
-Plug 'pgdouyon/vim-firebolt'
 Plug 'pgdouyon/vim-apparate'
 
 " Tim Pope
