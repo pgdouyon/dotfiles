@@ -146,7 +146,7 @@ set statusline=%!SchmexyStatusLine()
 " Completion
 set wildmenu
 set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
-set complete=.,w,b,t,i
+set complete=.,w,b,t
 set completeopt+=longest
 
 " Folding
@@ -155,7 +155,7 @@ set foldtext=SchmexyFoldText()
 
 " Misc
 set clipboard=unnamed
-set sessionoptions+=localoptions
+set sessionoptions-=options
 set nrformats-=octal    " octal is the devil, don't allow it
 set mouse=""            " the mouse is the devil, don't allow it
 
