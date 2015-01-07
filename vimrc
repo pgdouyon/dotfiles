@@ -48,7 +48,7 @@ Plug 'tpope/vim-classpath', {'for': ['clojure', 'scala']}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 
 " Scala
-Plug 'derekwyatt/vim-scala', {'for': 'scala'}
+Plug 'derekwyatt/vim-scala'
 
 " Python
 Plug 'klen/python-mode', {'for': 'python'}
