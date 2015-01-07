@@ -69,6 +69,9 @@ Plug 'ap/vim-css-color', {'for': 'css'}
 " Markdown
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['pandoc', 'markdown', 'tex']}
 
+" FreeMarker
+Plug 'chaquotay/ftl-vim-syntax'
+
 " LaTeX
 " Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 
@@ -751,6 +754,7 @@ augroup vimrc
     autocmd FocusLost *.{html,css} write
     autocmd BufRead,BufNewFile *.md set filetype=pandoc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
+    autocmd BufRead,BufNewFile *.ftl set filetype=ftl
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
     autocmd Filetype pandoc,markdown setlocal spell
