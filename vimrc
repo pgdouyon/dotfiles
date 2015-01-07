@@ -460,7 +460,7 @@ nnoremap <silent> cob :call <SID>ColorToggle()<CR>
 " ColorColumnToggle
 " ----------------------------------------------------------------------
 function! s:ColorColumnToggle()
-    let w:enableColorcolumn = !w:enableColorcolumn
+    let w:enableColorcolumn = !get(w:, "enableColorcolumn", 0)
     call s:SetColorColumn()
 endfunction
 
@@ -561,7 +561,7 @@ nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 " Toggle Trailing Whitespace
 " ----------------------------------------------------------------------
 function! s:ToggleTrailingWhitespace()
-    let w:enableTrailingWhitespace = !w:enableTrailingWhitespace
+    let w:enableTrailingWhitespace = !get(w:, "enableTrailingWhitespace", 0)
     call s:SetTrailingWhitespace()
 endfunction
 
@@ -780,8 +780,6 @@ endfunction
 function! s:SetupColorScheme()
     call s:MakeCommentsProminent()
     call s:SetCustomHL()
-    call s:SetColorColumn()
-    call s:SetTrailingWhitespace()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
     endif
