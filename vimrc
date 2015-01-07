@@ -7,6 +7,7 @@ call plug#begin('~/.vim/bundle')
 " Personal Plugins
 Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-apparate'
+Plug 'pgdouyon/vim-evanesco'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -23,8 +24,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 " Editing Enhancements
 Plug 'kris89/vim-multiple-cursors'
 Plug 'wellle/tmux-complete.vim'
-Plug 'junegunn/vim-pseudocl'
-Plug 'junegunn/vim-oblique'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
