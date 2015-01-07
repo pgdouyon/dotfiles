@@ -102,6 +102,7 @@ set shiftwidth=4    " number of spaces to use for >> and auto indent
 set scrolloff=8     " leave 8 lines visible at the top/bottom of the screen
 set sidescrolloff=5 " leave 5 colums visible at the left/right side
 set backspace=indent,eol,start
+set formatoptions=tcroq2lj
 set textwidth=0
 set linebreak
 set nowrap
