@@ -759,6 +759,7 @@ augroup END
 
 augroup quickfix
     " open file in a new horizontal split ("s"), vertical split ("v"), or tab page ("t")
+    autocmd!
     autocmd Filetype qf nnoremap <buffer><silent> s <C-W><CR><C-W>p<C-W>J<C-W>p
     autocmd Filetype qf nnoremap <buffer><silent> v <C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p
     autocmd Filetype qf nnoremap <buffer><silent> t <C-W><CR><C-W>T
