@@ -37,6 +37,7 @@ Plug 'jeetsukumaran/vim-filebeagle'
 " Tool Integration
 Plug 'mhinz/vim-signify'
 Plug 'scrooloose/syntastic'
+Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 
 " Clojure
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -740,6 +741,11 @@ let g:user_emmet_mode = 'nv'
 " Pandoc Syntax
 " ----------------------------------------------------------------------
 let g:pandoc#syntax#conceal#blacklist = ['ellipses']
+
+" ----------------------------------------------------------------------
+" Dash
+" ----------------------------------------------------------------------
+nmap dz <Plug>DashSearch
 
 
 " ======================================================================
