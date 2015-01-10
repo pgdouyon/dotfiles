@@ -305,6 +305,14 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
+" fix {,} motions in files with trailing whitespace
+nnoremap <silent> { :call search('^\s*$', 'bW')<CR>
+nnoremap <silent> } :call search('^\s*$', 'W')<CR>
+onoremap <silent> { :call search('^\s*$', 'bW')<CR>
+onoremap <silent> } :call search('^\s*$', 'W')<CR>
+xnoremap <silent> { :<C-U>execute "normal! gv" <Bar> call search('^\s*$', 'bW')<CR>
+xnoremap <silent> } :<C-U>execute "normal! gv" <Bar> call search('^\s*$', 'W')<CR>
+
 " ----------------------------------------------------------------------
 " Yanking
 " ----------------------------------------------------------------------
