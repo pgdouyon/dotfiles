@@ -92,19 +92,19 @@ let mapleader="\<Space>"
 let maplocalleader="\<CR>"
 
 " Buffers
-set autowrite       " automatically save before commands like :next and :make
-set autoread        " automatically read a file if it's been changed on disk
-set hidden          " hide buffers when they are abandoned
+set autowrite
+set autoread
+set hidden
 
 " Tab/indent
 set autoindent
-set expandtab       " use spaces instead of tab characters
-set smarttab        " make tab at the beginning of line use shiftwidth, instead of tabstop
-set shiftround      " indent to multiple of tabstop value
-set softtabstop=4   " number of spaces a <Tab> inserts when expandtab is set
-set shiftwidth=4    " number of spaces to use for >> and auto indent
-set scrolloff=8     " leave 8 lines visible at the top/bottom of the screen
-set sidescrolloff=5 " leave 5 colums visible at the left/right side
+set expandtab
+set smarttab
+set shiftround
+set softtabstop=4
+set shiftwidth=4
+set scrolloff=8
+set sidescrolloff=5
 set backspace=indent,eol,start
 set formatoptions=tcroq2lj
 set textwidth=0
@@ -115,19 +115,19 @@ set nowrap
 set tags=./tags;/
 
 " Shell
-set shellslash          " use forward slashes for file names
-set noshelltemp         " use pipes instead of temporary files
-set ttyfast             " demand better performance when in terminal
+set shellslash
+set noshelltemp
+set ttyfast
 if has("unix")
     set shell=bash
 endif
 
 " Search
-set gdefault        " all substiutions have 'g' flag on by default
-set ignorecase      " do case insensitive matching
-set smartcase       " do smart case matching
-set incsearch       " incremental search
-set showmatch       " show matching brackets.
+set gdefault
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
 
 " Display
 set nonumber
@@ -140,15 +140,15 @@ set splitright
 set conceallevel=2
 set diffopt=filler,vertical
 set guioptions="cegmt"
-set display+=lastline           " get rid of those ugly '@' that Vim puts after the last line in the window
-set showtabline=2               " always show tab line
+set display+=lastline
+set showtabline=2
 set tabline=%!SchmexyTabLine()
-set laststatus=2                " always show status line
+set laststatus=2
 set statusline=%!SchmexyStatusLine()
 
 " Completion
 set wildmenu
-set wildmode=longest,list,full  " first complete as much as possible, then show list, then select next match
+set wildmode=longest,list,full
 set complete=.,w,b,t
 set completeopt+=longest
 
@@ -159,8 +159,8 @@ set foldtext=SchmexyFoldText()
 " Misc
 set clipboard=unnamed
 set sessionoptions-=options
-set nrformats-=octal    " octal is the devil, don't allow it
-set mouse=""            " the mouse is the devil, don't allow it
+set nrformats-=octal
+set mouse=""
 
 " Mappings timeout
 set ttimeout
@@ -173,9 +173,9 @@ set wildignore+=**/tmp/*,*.swp,*~
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
 
 " Swap files
-set backupdir^=~/.vim/_backup//     " where to put backup files.
-set directory^=~/.vim/_temp//       " where to put swap files.
-set shortmess+=A                    " no 'existing swap file found' messages
+set noswapfile
+set directory^=~/.vim/_temp//
+set shortmess+=A
 
 function! SchmexyTabLine()
     let tabline_list = []
