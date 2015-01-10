@@ -19,7 +19,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
-Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements
 Plug 'kris89/vim-multiple-cursors'
@@ -54,20 +54,20 @@ Plug 'derekwyatt/vim-scala'
 Plug 'klen/python-mode', {'for': 'python'}
 
 " JavaScript
-Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
-Plug 'moll/vim-node', {'for': 'javascript'}
-Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'jelera/vim-javascript-syntax'
+Plug 'moll/vim-node'
+Plug 'elzr/vim-json'
 
 " HTML
-Plug 'othree/html5.vim', {'for': 'html'}
+Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml']}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml']}
 
 " CSS
-Plug 'ap/vim-css-color', {'for': 'css'}
+Plug 'ap/vim-css-color'
 
 " Markdown
-Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['pandoc', 'markdown', 'tex']}
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " FreeMarker
 Plug 'chaquotay/ftl-vim-syntax'
