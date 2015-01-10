@@ -736,7 +736,7 @@ function! s:FileBeagleHome()
 endfunction
 
 augroup FileBeagle
-    autocmd BufEnter *filebeagle* nnoremap <silent><buffer> ~ :<C-U>call <SID>FileBeagleHome()<CR>
+    autocmd BufEnter *filebeagle* nnoremap <silent><buffer><nowait> ~ :<C-U>call <SID>FileBeagleHome()<CR>
 augroup END
 
 " ----------------------------------------------------------------------
@@ -777,10 +777,10 @@ augroup END
 augroup quickfix
     " open file in a new horizontal split ("s"), vertical split ("v"), or tab page ("t")
     autocmd!
-    autocmd Filetype qf nnoremap <buffer><silent> s <C-W><CR><C-W>p<C-W>J<C-W>p
-    autocmd Filetype qf nnoremap <buffer><silent> v <C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p
-    autocmd Filetype qf nnoremap <buffer><silent> t <C-W><CR><C-W>T
-    autocmd Filetype qf nnoremap <buffer><silent> q :call <SID>CloseQuickfix()<CR>
+    autocmd Filetype qf nnoremap <silent><buffer><nowait> s <C-W><CR><C-W>p<C-W>J<C-W>p
+    autocmd Filetype qf nnoremap <silent><buffer><nowait> v <C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p
+    autocmd Filetype qf nnoremap <silent><buffer><nowait> t <C-W><CR><C-W>T
+    autocmd Filetype qf nnoremap <silent><buffer><nowait> q :call <SID>CloseQuickfix()<CR>
 augroup END
 
 function! s:CloseQuickfix()
