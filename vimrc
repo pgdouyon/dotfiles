@@ -36,7 +36,6 @@ Plug 'jeetsukumaran/vim-filebeagle'
 
 " Tool Integration
 Plug 'mhinz/vim-signify'
-Plug 'scrooloose/syntastic'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 
 " Clojure
@@ -207,8 +206,7 @@ endfunction
 function! SchmexyStatusLine()
     let left_status = "%(%{GetBuftypeText()} %f%m%r%)"
     let right_status = "%{&filetype} |%4l:%3v %3p%% "
-    let syntastic_status = "%#WarningMsg#%{ SyntasticStatuslineFlag() }%*"
-    return left_status . syntastic_status . "  %=  " . right_status
+    return left_status . "  %=  " . right_status
 endfunction
 
 function! GetBuftypeText()
@@ -669,16 +667,6 @@ nnoremap <silent> <Leader>fe :%Eval<CR>
 " Python-Mode
 " ----------------------------------------------------------------------
 let g:pymode_rope_complete_on_dot = 0
-
-" ----------------------------------------------------------------------
-" Syntastic Settings
-" ----------------------------------------------------------------------
-let g:syntastic_check_on_open = 1
-let g:syntastic_cursor_column = 0
-let g:syntastic_enable_balloons = 0
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 
 " ----------------------------------------------------------------------
 " Signify Settings
