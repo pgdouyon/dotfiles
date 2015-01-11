@@ -534,33 +534,34 @@ endfunction
 " ----------------------------------------------------------------------
 " Todo
 " ----------------------------------------------------------------------
-function! s:TodoList(include_tag)
-    let vcs_dir = finddir(".git", expand("%:p:h").";".expand("$HOME"))
-    let dir = fnamemodify(vcs_dir, ":h")
-    let todo_tag = escape(g:todo_tag, '()[]{}<>!@#$%^&*-_+=\|?.')
-    let todo = "TODO|FIXME|XXX"
-    let todo_tagged = join(map(split(todo, '|'), "v:val.' '.'".todo_tag."'"), '|')
-    let todo_str = a:include_tag ? todo_tagged : todo
-    let ag_args = "--noheading --nobreak --nocolor --follow -s -t"
-    let ag =  printf("ag %s '%s' %s 2> /dev/null", ag_args, todo_str, dir)
-
-    let todos = []
-    let lines = split(system(ag), '\n')
-    for line in lines
-        let [fname, lnum, text] = matchlist(line, '\v^([^:]*):([^:]*):(.*)$')[1:3]
-        call add(todos, {'filename': fname, 'lnum': lnum, 'text': text})
-    endfor
-    if !empty(todos)
-        call setqflist(todos)
-        copen
+function! s:TodoList(include_tag, search_dir)
+    let todo_dir = a:search_dir
+    if empty(todo_dir)
+        let git_dir = finddir(".git", expand("%:p:h").";".expand("$HOME"))
+        let svn_dir = finddir(".svn", expand("%:p:h").";".expand("$HOME"))
+        let hg_dir = finddir(".hg", expand("%:p:h").";".expand("$HOME"))
+        let default_dir = expand("%:p")
+        for dir in [git_dir, svn_dir, hg_dir, default_dir]
+            if !empty(dir)
+                let vcs_dir = dir
+                break
+            endif
+        endfor
+        let todo_dir = fnamemodify(vcs_dir, ":h")
     endif
+
+    let todo_tag = escape(g:todo_tag, '()[]{}<>!@#$%^&*-_+=\|?.')
+    let todo = 'TODO\|FIXME\|XXX'
+    let todo_tagged = join(map(split(todo, '\\|'), "v:val.' '.'".todo_tag."'"), '\|')
+    let todo_str = a:include_tag ? todo_tagged : todo
+    execute printf("LAg '%s' %s", todo_str, todo_dir)
 endfunction
 
 let g:todo_tag = "<PGD>"
-command! -bang TodoList call <SID>TodoList(<bang>1)
+command! -nargs=? -bang -complete=dir TodoList call <SID>TodoList(<bang>1, <q-args>)
 
 nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
-nnoremap <Leader>fx O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
+nnoremap <Leader>fm O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
 
 " ----------------------------------------------------------------------
