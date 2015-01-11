@@ -478,11 +478,7 @@ endfunction
 " ----------------------------------------------------------------------
 function! s:Scratch()
     let bufname = "__Scratch__"
-    if buflisted(bufname)
-        execute "buffer " . bufname
-    else
-        execute "edit " . bufname
-    endif
+    execute (buflisted(bufname) ? "buffer " : "edit ") . bufname
     set filetype=pandoc
     setlocal buftype=nofile
     setlocal bufhidden=hide
@@ -491,6 +487,7 @@ function! s:Scratch()
 endfunction
 
 nnoremap zs :call <SID>Scratch()<CR>
+command! -nargs=1 -complete=dir -bang Keep setlocal buftype= | saveas<bang> <args>
 
 " ----------------------------------------------------------------------
 " BufKill
