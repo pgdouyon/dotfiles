@@ -37,6 +37,7 @@ Plug 'jeetsukumaran/vim-filebeagle'
 " Tool Integration
 Plug 'mhinz/vim-signify'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 " Clojure
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -735,6 +736,11 @@ let g:pandoc#syntax#conceal#blacklist = ['ellipses']
 " Dash
 " ----------------------------------------------------------------------
 nmap dz <Plug>DashSearch
+
+" ----------------------------------------------------------------------
+" Tagbar
+" ----------------------------------------------------------------------
+nnoremap <F10> :TagbarToggle<CR>
 
 
 " ======================================================================
