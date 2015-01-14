@@ -797,16 +797,10 @@ endfunction
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    call s:MakeCommentsProminent()
     call s:SetCustomHL()
     if &filetype ==? "pandoc" || &filetype ==? "markdown"
         call s:SetSnippetSynHL()
     endif
-endfunction
-
-function! s:MakeCommentsProminent()
-    highlight clear Comment
-    highlight link Comment Exception
 endfunction
 
 function! s:SetCustomHL()
