@@ -862,13 +862,15 @@ function! s:SetBackgroundTheme(theme)
 endfunction
 
 
-" change background color based on time of day
-if strftime('%H') > 5 && strftime("%H") < 18
-    call s:SetBackgroundTheme('light')
-    silent call s:SetColorColumn()
-    silent call s:SetTrailingWhitespace()
-else
-    call s:SetBackgroundTheme('dark')
-    silent call s:SetColorColumn()
-    silent call s:SetTrailingWhitespace()
+if has('vim_starting')
+    " change background color based on time of day
+    if strftime('%H') > 6 && strftime('%H') < 19
+        call s:SetBackgroundTheme('light')
+        silent call s:SetColorColumn()
+        silent call s:SetTrailingWhitespace()
+    else
+        call s:SetBackgroundTheme('dark')
+        silent call s:SetColorColumn()
+        silent call s:SetTrailingWhitespace()
+    endif
 endif
