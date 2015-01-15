@@ -806,8 +806,6 @@ endfunction
 function! s:SetCustomHL()
     highlight link Snip Structure
     highlight TrailingWhitespace ctermbg=red guibg=red
-    highlight clear ColorColumn
-    highlight link ColorColumn Error
 endfunction
 
 function! s:SetColorColumn()
