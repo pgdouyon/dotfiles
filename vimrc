@@ -150,7 +150,6 @@ set statusline=%!SchmexyStatusLine()
 set wildmenu
 set wildmode=longest,list,full
 set complete=.,w,b,t
-set completeopt+=longest
 
 " Folding
 set foldopen=insert,jump,mark,percent,quickfix,search,tag,undo
