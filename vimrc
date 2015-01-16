@@ -303,6 +303,8 @@ nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
+nnoremap <silent> <Leader>r :redraw!<Esc>
+
 " faster scrolling
 nnoremap <C-E> 3<C-E>
 nnoremap <C-Y> 3<C-Y>
@@ -335,10 +337,6 @@ nnoremap cp "*p
 " global substitution
 nnoremap gs :%s/
 xnoremap gs :s/
-
-" search/replace
-nnoremap <Leader>r :%s/\C\<<C-r><C-w>\>/
-xnoremap <Leader>r "vy:%s/\C\<<C-r>v\>/
 
 " reuse flags when repeating substitute command with &
 nnoremap & :&&<CR>
