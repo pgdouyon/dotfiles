@@ -69,6 +69,7 @@ Plug 'ap/vim-css-color'
 
 " Markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tpope/vim-markdown'
 
 " FreeMarker
 Plug 'chaquotay/ftl-vim-syntax'
@@ -517,27 +518,6 @@ endfunction
 nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
 
 " ----------------------------------------------------------------------
-" Snippet Syntax Highlighting
-" ----------------------------------------------------------------------
-function! s:SnippetSyntax(lang)
-    let syns = split(globpath(&rtp, "syntax/".a:lang.".vim"), "\n")
-    if empty(syns)
-        return
-    endif
-    if exists("b:current_syntax")
-        let csyn = b:current_syntax
-        unlet b:current_syntax
-    endif
-    silent! execute printf("syntax include @%s %s", a:lang, syns[0])
-    execute printf('syntax region %sSnip matchgroup=Snip start="```%s" end="```" ' .
-                    \ 'contains=@%s containedin=ALL', a:lang, a:lang, a:lang)
-
-    if exists("csyn")
-        let b:current_syntax = csyn
-    endif
-endfunction
-
-" ----------------------------------------------------------------------
 " Todo
 " ----------------------------------------------------------------------
 function! s:TodoList(include_tag, search_dir)
@@ -738,6 +718,11 @@ let g:user_emmet_mode = 'nv'
 let g:pandoc#syntax#conceal#blacklist = ['ellipses']
 
 " ----------------------------------------------------------------------
+" Vim-Markdown
+" ----------------------------------------------------------------------
+let g:markdown_fenced_languages = ['vim', 'python', 'clojure', 'javascript']
+
+" ----------------------------------------------------------------------
 " Dash
 " ----------------------------------------------------------------------
 nmap dz <Plug>DashSearch
@@ -761,7 +746,6 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
     autocmd BufRead,BufNewFile *.ftl set filetype=ftl
     autocmd ColorScheme * call s:SetupColorScheme()
-    autocmd Filetype pandoc,markdown call s:SetSnippetSynHL()
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
 augroup END
@@ -794,14 +778,6 @@ endfunction
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    call s:SetCustomHL()
-    if &filetype ==? "pandoc" || &filetype ==? "markdown"
-        call s:SetSnippetSynHL()
-    endif
-endfunction
-
-function! s:SetCustomHL()
-    highlight link Snip Structure
     highlight TrailingWhitespace ctermbg=red guibg=red
 endfunction
 
@@ -829,13 +805,6 @@ function! s:SetTrailingWhitespace()
         silent! call matchdelete(955)
         echohl WarningMsg | echo "Trailing Whitespace disabled..." | echohl None
     endif
-endfunction
-
-function! s:SetSnippetSynHL()
-    let langmap = ["c", "cpp", "java", "go", "haskell", "python", "ruby", "lua", "clojure", "scala", "vim", "javascript"]
-    for lang in langmap
-        call s:SnippetSyntax(lang)
-    endfor
 endfunction
 
 " ----------------------------------------------------------------------
