@@ -674,7 +674,6 @@ nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 " Surround Settings
 " ----------------------------------------------------------------------
 let g:surround_no_insert_mappings = 1
-imap <C-S> <Plug>Isurround
 
 " ----------------------------------------------------------------------
 " Unimpaired Settings
