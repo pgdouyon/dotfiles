@@ -778,7 +778,11 @@ endfunction
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    highlight TrailingWhitespace ctermbg=red guibg=red
+    highlight clear TrailingWhitespace
+    highlight link TrailingWhitespace Error
+    if &background == "dark"
+        highlight DiffChange ctermbg=25
+    endif
 endfunction
 
 function! s:SetColorColumn()
@@ -817,7 +821,7 @@ endif
 
 function! s:SetBackgroundTheme(theme)
     if (a:theme == 'light')
-        let g:seoul256_background=256
+        let g:seoul256_background=255
         colorscheme seoul256
         set background=light
     else
