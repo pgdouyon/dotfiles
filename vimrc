@@ -356,10 +356,6 @@ nnoremap <silent> <Up> :resize +5<CR>
 " ----------------------------------------------------------------------
 nnoremap g] g<C-]>
 nnoremap g<C-]> g]
-" nnoremap [i [<C-I>
-" nnoremap ]i ]<C-I>
-" nnoremap [<C-I> [i
-" nnoremap ]<C-I> ]i
 
 " ----------------------------------------------------------------------
 " Insert Mode
