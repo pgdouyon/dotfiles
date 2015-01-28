@@ -706,14 +706,7 @@ if has("gui_running")
 endif
 
 if has('vim_starting')
-    " change background color based on time of day
-    if strftime('%H') > 6 && strftime('%H') < 19
-        colorscheme seoul256-light
-        silent call s:SetColorColumn()
-        silent call s:SetTrailingWhitespace()
-    else
-        colorscheme seoul256
-        silent call s:SetColorColumn()
-        silent call s:SetTrailingWhitespace()
-    endif
+    colorscheme seoul256
+    silent call s:SetColorColumn()
+    silent call s:SetTrailingWhitespace()
 endif
