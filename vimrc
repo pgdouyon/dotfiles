@@ -150,7 +150,7 @@ set foldopen=insert,jump,mark,percent,quickfix,search,tag,undo
 set foldtext=foldtext#schmexy_foldtext()
 
 " Misc
-" set clipboard=unnamed
+set clipboard=unnamed
 set sessionoptions-=options
 set nrformats-=octal
 set mouse=""
@@ -232,10 +232,6 @@ nnoremap Y y$
 " yank-paste -> paste the last yank
 nnoremap yp "0p
 nnoremap yP "0P
-
-" clipboard-yank and clipboard-paste
-nnoremap cy "*y
-nnoremap cp "*p
 
 " ----------------------------------------------------------------------
 " Substitution
