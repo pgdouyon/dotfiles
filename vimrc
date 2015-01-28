@@ -206,15 +206,6 @@ nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
 " switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
 
-" make current file executable
-nnoremap <silent> <Leader>x :w<CR>:!chmod 755 %<CR>:e<CR>
-
-" cd to the directory containing the file in the buffer
-nnoremap <silent> <leader>cd :lcd %:h<CR>
-
-" Create the directory containing the file in the buffer
-nnoremap <silent> <leader>md :!mkdir -p %:p:h<CR>
-
 " find merge conflict markers
 nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
