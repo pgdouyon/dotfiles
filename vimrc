@@ -84,8 +84,6 @@ call plug#end()
 " Settings
 " ======================================================================
 
-set nocompatible
-set encoding=utf-8
 filetype plugin indent on
 syntax enable
 
@@ -108,7 +106,6 @@ set scrolloff=8
 set sidescrolloff=5
 set backspace=indent,eol,start
 set formatoptions=tcroq2lj
-set textwidth=0
 set linebreak
 set nowrap
 
@@ -131,9 +128,7 @@ set incsearch
 set showmatch
 
 " Display
-set nonumber
 set ruler
-set title
 set lazyredraw
 set cursorline
 set splitbelow
