@@ -285,13 +285,6 @@ inoremap <C-K> <C-X><C-K>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 
-" markdown headings
-inoremap <C-H>1 <Esc>yypVr=A
-inoremap <C-H>2 <Esc>yypVr-A
-inoremap <C-H>3 <Esc>I### <End>
-inoremap <C-H>4 <Esc>I#### <End>
-inoremap <C-H>5 <Esc>I##### <End>
-
 " emacs keybindings
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
