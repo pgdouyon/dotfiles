@@ -36,6 +36,10 @@ if [ $(uname -s) = 'Darwin' ]; then
         ag coreutils ctags git libgit2 \
         macvim maven python reattach-to-user-namespace \
         tmux tree vim wget
+    # GNU utils to replace BSD findutils
+    brew tap homebrew/dupes
+    brew install grep --with-default-names
+    brew install findutils --with-default-names
     # Neovim
     brew tap neovim/homebrew-neovim
     brew install --HEAD neovim
