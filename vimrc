@@ -510,8 +510,8 @@ endfunction
 " ----------------------------------------------------------------------
 " Niffler Settings
 " ----------------------------------------------------------------------
-let g:niffler_ignore_extensions = [".class"]
-let g:niffler_ignore_dirs = ["Library"]
+let g:niffler_ignore_extensions = [".class", ".backup"]
+let g:niffler_ignore_dirs = ["Library", "Applications", "Downloads", "1Password"]
 
 nnoremap <silent> znf :Niffler<CR>
 nnoremap <silent> zng :Niffler -vcs<CR>
