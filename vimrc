@@ -654,30 +654,6 @@ augroup vimrc
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
 augroup END
 
-augroup quickfix
-    " open file in a new horizontal split ("s"), vertical split ("v"), or tab page ("t")
-    autocmd!
-    autocmd Filetype qf nnoremap <silent><buffer><nowait> s <C-W><CR><C-W>p<C-W>J<C-W>p
-    autocmd Filetype qf nnoremap <silent><buffer><nowait> v <C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p
-    autocmd Filetype qf nnoremap <silent><buffer><nowait> t <C-W><CR><C-W>T
-    autocmd Filetype qf nnoremap <silent><buffer><nowait> q :call <SID>CloseQuickfix()<CR>
-augroup END
-
-function! s:CloseQuickfix()
-    redir => buffers
-    silent ls
-    redir END
-
-    let bufnr = bufnr("%")
-    for buf in split(buffers, "\n")
-        if (buf =~# '^\s*'.bufnr)
-            let close = (buf =~# '\[Quickfix List\]' ? "cclose" : "lclose")
-            execute close
-            return
-        endif
-    endfor
-endfunction
-
 " ----------------------------------------------------------------------
 " Colorscheme Settings
 " ----------------------------------------------------------------------
