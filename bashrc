@@ -1,3 +1,4 @@
+shopt -s expand_aliases
 
 cdl() {
     cd $1
