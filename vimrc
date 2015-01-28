@@ -389,11 +389,13 @@ endfunction
 function! s:Scratch()
     let bufname = "__Scratch__"
     execute (buflisted(bufname) ? "buffer " : "edit ") . bufname
-    set filetype=pandoc
-    setlocal buftype=nofile
-    setlocal bufhidden=hide
-    setlocal noswapfile
-    setlocal buflisted
+    if !buflisted(bufname)
+        set filetype=pandoc
+        setlocal buftype=nofile
+        setlocal bufhidden=hide
+        setlocal noswapfile
+        setlocal buflisted
+    endif
 endfunction
 
 nnoremap zs :call <SID>Scratch()<CR>
