@@ -74,9 +74,6 @@ Plug 'tpope/vim-markdown'
 " FreeMarker
 Plug 'chaquotay/ftl-vim-syntax'
 
-" LaTeX
-" Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
-
 call plug#end()
 
 
