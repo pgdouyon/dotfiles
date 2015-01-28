@@ -33,7 +33,7 @@ if [ $(uname -s) = 'Darwin' ]; then
         ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
     brew update
     brew install \
-        ag coreutils ctags gibo git libgit2 \
+        ag coreutils ctags fasd gibo git libgit2 \
         leiningen lua luajit macvim maven python \
         reattach-to-user-namespace tmux tree vim wget
     # GNU utils to replace BSD findutils
