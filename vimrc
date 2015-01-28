@@ -375,8 +375,6 @@ function! s:ColorToggle()
     endif
 endfunction
 
-nnoremap <silent> cob :call <SID>ColorToggle()<CR>
-
 " ----------------------------------------------------------------------
 " ColorColumnToggle
 " ----------------------------------------------------------------------
