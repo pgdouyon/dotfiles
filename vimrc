@@ -369,9 +369,9 @@ inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 " ----------------------------------------------------------------------
 function! s:ColorToggle()
     if (&background == 'dark')
-        call s:SetBackgroundTheme('light')
+        colorscheme seoul256-light
     else
-        call s:SetBackgroundTheme('dark')
+        colorscheme seoul256
     endif
 endfunction
 
@@ -636,6 +636,12 @@ nmap K <Plug>DashSearch
 " ----------------------------------------------------------------------
 nnoremap <F10> :TagbarToggle<CR>
 
+" ----------------------------------------------------------------------
+" Seoul256
+" ----------------------------------------------------------------------
+let g:seoul256_background=236
+let g:seoul256_light_background=255
+
 
 " ======================================================================
 " Autocmds
@@ -699,27 +705,14 @@ if has("gui_running")
     set lines=999 columns=999
 endif
 
-function! s:SetBackgroundTheme(theme)
-    if (a:theme == 'light')
-        let g:seoul256_background=255
-        colorscheme seoul256
-        set background=light
-    else
-        let g:seoul256_background=236
-        colorscheme seoul256
-        set background=dark
-    endif
-endfunction
-
-
 if has('vim_starting')
     " change background color based on time of day
     if strftime('%H') > 6 && strftime('%H') < 19
-        call s:SetBackgroundTheme('light')
+        colorscheme seoul256-light
         silent call s:SetColorColumn()
         silent call s:SetTrailingWhitespace()
     else
-        call s:SetBackgroundTheme('dark')
+        colorscheme seoul256
         silent call s:SetColorColumn()
         silent call s:SetTrailingWhitespace()
     endif
