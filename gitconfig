@@ -8,6 +8,7 @@
 [alias]
         a = add
         ap = add -p
+        ae = add -e
         br = branch --color
         ba = branch -a --color
         ci = commit
