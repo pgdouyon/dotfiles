@@ -448,7 +448,7 @@ function! s:TodoList(include_tag, search_dir)
     execute printf("LAg '%s' %s", todo_str, todo_dir)
 endfunction
 
-let g:todo_tag = "<PGD>"
+let g:todo_tag = "[PGD]"
 command! -nargs=? -bang -complete=dir TodoList call <SID>TodoList(<bang>1, <q-args>)
 
 nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
