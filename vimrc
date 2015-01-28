@@ -20,6 +20,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements
@@ -44,7 +45,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-leiningen', {'for': 'clojure'}
-Plug 'tpope/vim-projectionist', {'for': 'clojure'}
 Plug 'tpope/vim-classpath', {'for': ['clojure', 'scala']}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 
