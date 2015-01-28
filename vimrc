@@ -665,7 +665,7 @@ function! s:SetColorColumn()
         let w:enableColorcolumn = 1
     endif
     if w:enableColorcolumn
-        silent! call matchadd("ColorColumn", '\%>80v.', 100, 954)
+        silent! call matchadd("ColorColumn", '\%>100v.', 0, 954)
         echohl WarningMsg | echo "ColorColumn enabled..." | echohl None
     else
         silent! call matchdelete(954)
@@ -678,7 +678,7 @@ function! s:SetTrailingWhitespace()
         let w:enableTrailingWhitespace = 1
     endif
     if w:enableTrailingWhitespace
-        silent! call matchadd("TrailingWhitespace", '\s\+$', 100, 955)
+        silent! call matchadd("TrailingWhitespace", '\s\+$', 0, 955)
         echohl WarningMsg | echo "Trailing Whitespace enabled..." | echohl None
     else
         silent! call matchdelete(955)
