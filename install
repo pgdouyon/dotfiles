@@ -6,9 +6,14 @@ BASE=$(pwd)
 
 # link RC files
 mkdir -pv bak
-for rc in *rc *aliases *profile tmux.conf; do
+for rc in *rc *aliases *profile *ignore *config tmux.conf; do
     [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
     ln -sfv $BASE/$rc ~/.$rc
+done
+
+# link config directories
+for dir in $(find * -maxdepth 0 -type d); do
+    ln -sfv $BASE/$dir ~/.$dir
 done
 
 # git-prompt
