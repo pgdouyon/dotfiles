@@ -115,6 +115,7 @@ set noshelltemp
 set ttyfast
 if has("unix")
     set shell=bash
+    let $BASH_ENV = "~/.bashrc"     " expand shell aliases/functions in vim
 endif
 
 " Search
