@@ -412,7 +412,7 @@ function! s:BufKill()
         execute "tabnext " . (i + 1)
         while bufwinnr(buf_to_kill) != -1
             execute bufwinnr(buf_to_kill) . "wincmd w"
-            silent! buffer #
+            execute bufname("%") ==# bufname("#") ? "wincmd q" : "buffer #"
         endwhile
     endfor
     execute "tabnext " . orig_tab
