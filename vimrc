@@ -374,7 +374,7 @@ endfunction
 function! s:Scratch()
     let bufname = "__Scratch__"
     execute (buflisted(bufname) ? "buffer " : "edit ") . bufname
-    if !buflisted(bufname)
+    if empty(&filetype)
         set filetype=pandoc
         setlocal buftype=nofile
         setlocal bufhidden=hide
