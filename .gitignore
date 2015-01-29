@@ -1,0 +1,6 @@
+### vim files
+.cache
+.netrwhist
+_temp
+spell
+bundle
