@@ -25,6 +25,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements
 Plug 'wellle/tmux-complete.vim'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
