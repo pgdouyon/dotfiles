@@ -52,9 +52,6 @@ Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 " Scala
 Plug 'derekwyatt/vim-scala'
 
-" Python
-Plug 'klen/python-mode', {'for': 'python'}
-
 " JavaScript
 Plug 'jelera/vim-javascript-syntax'
 Plug 'moll/vim-node'
@@ -537,11 +534,6 @@ augroup END
 nnoremap <silent> <Leader>fdj yiw:Djump <C-r>0<CR>
 nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
 nnoremap <silent> <Leader>fe :%Eval<CR>
-
-" ----------------------------------------------------------------------
-" Python-Mode
-" ----------------------------------------------------------------------
-let g:pymode_rope_complete_on_dot = 0
 
 " ----------------------------------------------------------------------
 " Signify Settings
