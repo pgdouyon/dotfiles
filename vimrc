@@ -508,11 +508,14 @@ let g:niffler_ignore_extensions = [".class", ".backup"]
 let g:niffler_ignore_dirs = ["Library", "Applications", "Downloads", "1Password"]
 
 nnoremap <silent> znf :Niffler<CR>
+nnoremap <silent> znh :Niffler %:h<CR>
 nnoremap <silent> zng :Niffler -vcs<CR>
+nnoremap <silent> znn :Niffler -new<CR>
+nnoremap <silent> znN :Niffler -vcs -new<CR>
 nnoremap <silent> znm :NifflerMRU<CR>
 nnoremap <silent> znb :NifflerBuffer<CR>
-nnoremap <silent> znN :Niffler -new<CR>
-nnoremap <silent> znn :Niffler -vcs -new<CR>
+nnoremap <silent> znT :NifflerTags<CR>
+nnoremap <silent> znt :NifflerTags %<CR>
 
 " ----------------------------------------------------------------------
 " Netrw Settings
