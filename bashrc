@@ -9,6 +9,10 @@ cpstat() {
     rsync -vrltD --stats --human-readable "$1" "$2" | pv -lep -s $((2 + $(find "$1" | wc -l)))
 }
 
+if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
 eval "$(fasd --init auto)"
 [ -f ~/.git-prompt.sh ] && source ~/.git-prompt.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
