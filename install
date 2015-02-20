@@ -34,7 +34,7 @@ if [ $(uname -s) = 'Darwin' ]; then
     brew update
     brew install \
         ag bash bash-completion coreutils ctags fasd gibo git ghi \
-        libgit2 leiningen lua luajit macvim maven python pv \
+        libgit2 leiningen lua luajit macvim maven python python3 pv \
         reattach-to-user-namespace tmux tree vim wget
     # GNU utils to replace BSD findutils
     brew tap homebrew/dupes
