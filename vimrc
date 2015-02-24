@@ -651,7 +651,7 @@ function! s:SetupColorScheme()
     highlight clear TrailingWhitespace
     highlight link TrailingWhitespace Error
     if &background == "dark"
-        highlight DiffChange ctermbg=25
+        highlight DiffChange ctermbg=25 guibg=#005faf
     endif
 endfunction
 
