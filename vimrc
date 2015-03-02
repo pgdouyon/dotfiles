@@ -543,7 +543,6 @@ omap ic <Plug>(signify-motion-inner-pending)
 xmap ic <Plug>(signify-motion-inner-visual)
 omap ac <Plug>(signify-motion-outer-pending)
 xmap ac <Plug>(signify-motion-outer-visual)
-nnoremap <silent> <F5> :SignifyRefresh<CR>
 
 " ----------------------------------------------------------------------
 " Fugitive Settings
