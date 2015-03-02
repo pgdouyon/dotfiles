@@ -106,6 +106,7 @@ set conceallevel=2
 set display+=lastline
 
 " Syntax/Highlighting
+set synmaxcol=500
 set cursorline
 
 " Multiple Windows
@@ -142,6 +143,7 @@ set backspace=indent,eol,start
 set formatoptions=tcroq2lj
 set complete=.,w,b,t
 set nrformats-=octal
+set matchpairs+=<:>
 
 " Tabs/Indenting
 set autoindent
@@ -177,6 +179,7 @@ set wildignore+=*.o,*.out,*.obj,.exe,.git,*.pyc,*.rbc,*.rbo,*.gem,*/node_modules
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar
 set wildignore+=**/tmp/*,*.swp,*~
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
+set cedit=<C-C>
 
 " Executing External Commands
 set shellslash
