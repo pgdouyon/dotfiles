@@ -1,3 +1,6 @@
+let s:save_cpo = &cpoptions
+set cpoptions&vim
+
 " ======================================================================
 " Foldtext
 " ======================================================================
@@ -17,3 +20,6 @@ function! foldtext#schmexy_foldtext()
     let expansionString = repeat('.', winwidth - strwidth(foldline.foldSizeText.foldPercentage.padding))
     return foldline . expansionString . foldSizeText . foldPercentage . padding
 endfunction
+
+let &cpoptions = s:save_cpo
+unlet s:save_cpo

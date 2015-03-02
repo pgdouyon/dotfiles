@@ -1,3 +1,6 @@
+let s:save_cpo = &cpoptions
+set cpoptions&vim
+
 " ======================================================================
 " Tabline
 " ======================================================================
@@ -69,3 +72,6 @@ function! statusline#get_quickfix_text()
     endfor
     return ""
 endfunction
+
+let &cpoptions = s:save_cpo
+unlet s:save_cpo
