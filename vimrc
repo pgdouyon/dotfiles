@@ -62,7 +62,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xml']}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml']}
 
 " CSS
-Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color', {'for': 'css'}
 
 " Markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'
