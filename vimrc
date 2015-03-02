@@ -572,8 +572,8 @@ endfunction
 " ----------------------------------------------------------------------
 " Vim-Easy-Align
 " ----------------------------------------------------------------------
-nmap <Leader>a <Plug>(EasyAlign)
-vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>ea <Plug>(EasyAlign)
+vmap <Leader>ea <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------
 " FileBeagle
