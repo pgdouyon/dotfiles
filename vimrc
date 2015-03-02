@@ -557,11 +557,6 @@ nnoremap <silent> <Leader>gp :Git push origin master<CR>
 nnoremap <silent> <Leader>gh :Git push heroku master<CR>
 
 " ----------------------------------------------------------------------
-" Surround Settings
-" ----------------------------------------------------------------------
-let g:surround_no_insert_mappings = 1
-
-" ----------------------------------------------------------------------
 " Unimpaired Settings
 " ----------------------------------------------------------------------
 function! s:UnimpairedMappings()
