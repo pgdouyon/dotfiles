@@ -76,97 +76,119 @@ call plug#end()
 
 
 " ======================================================================
-" Settings
+" Options
 " ======================================================================
 
 filetype plugin indent on
 syntax enable
 
+" Leader
 let mapleader="\<Space>"
 let maplocalleader="\<CR>"
 
-" Buffers
-set autowrite
-set autoread
-set hidden
-
-" Tab/indent
-set autoindent
-set expandtab
-set smarttab
-set shiftround
-set softtabstop=4
-set shiftwidth=4
-set scrolloff=8
-set sidescrolloff=5
-set backspace=indent,eol,start
-set formatoptions=tcroq2lj
-set linebreak
-set nowrap
-
-" Ctags
-set tags=./tags;/
-
-" Shell
-set shellslash
-set noshelltemp
-set ttyfast
-if has("unix")
-    set shell=bash
-    let $BASH_ENV = "~/.bashrc"     " expand shell aliases/functions in vim
-endif
-
-" Search
-set gdefault
+" Searching
+set incsearch
 set ignorecase
 set smartcase
-set incsearch
-set showmatch
 
-" Display
-set ruler
+" Tags
+set tags=./tags;/
+
+" Displaying text
+set nowrap
+set linebreak
 set lazyredraw
-set cursorline
-set splitbelow
-set splitright
+set lines=999
+set columns=999
+set scrolloff=8
+set sidescrolloff=5
 set conceallevel=2
-set diffopt=filler,vertical
-set guioptions="cegmt"
 set display+=lastline
-set showtabline=2
-set tabline=%!statusline#schmexy_tabline()
+
+" Syntax/Highlighting
+set cursorline
+
+" Multiple Windows
 set laststatus=2
 set statusline=%!statusline#schmexy_statusline()
+set hidden
+set splitbelow
+set splitright
 
-" Completion
-set wildmenu
-set wildmode=longest,list,full
+" Multiple Tab Pages
+set showtabline=2
+set tabline=%!statusline#schmexy_tabline()
+
+" Terminal
+set ttyfast
+
+" Mouse
+set mouse=""
+
+" GUI
+set guioptions="cegmt"
+silent! set fullscreen
+
+" Messages
+set shortmess+=A
+set ruler
+
+" Selecting Text
+set clipboard=unnamed
+
+" Editing Text
+set showmatch
+set backspace=indent,eol,start
+set formatoptions=tcroq2lj
 set complete=.,w,b,t
+set nrformats-=octal
+
+" Tabs/Indenting
+set autoindent
+set smarttab
+set expandtab
+set shiftround
+set shiftwidth=4
+set softtabstop=4
 
 " Folding
 set foldopen=insert,jump,mark,percent,quickfix,search,tag,undo
 set foldtext=foldtext#schmexy_foldtext()
 
-" Misc
-set clipboard=unnamed
-set sessionoptions-=options
-set nrformats-=octal
-set mouse=""
+" Diff Mode
+set diffopt=filler,vertical
 
-" Mappings timeout
+" Mapping
 set ttimeout
 set ttimeoutlen=50
 
-" Files to ignore
+" Reading/Writing Files
+set autowrite
+set autoread
+
+" Swap Files
+set noswapfile
+set directory^=~/.vim/_temp//
+
+" Command Line Editing
+set wildmenu
+set wildmode=longest,list,full
 set wildignore+=*.o,*.out,*.obj,.exe,.git,*.pyc,*.rbc,*.rbo,*.gem,*/node_modules/*
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar
 set wildignore+=**/tmp/*,*.swp,*~
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
 
-" Swap files
-set noswapfile
-set directory^=~/.vim/_temp//
-set shortmess+=A
+" Executing External Commands
+set shellslash
+set noshelltemp
+if has("unix")
+    set shell=bash
+    let $BASH_ENV = "~/.bashrc"     " expand shell aliases/functions in vim
+endif
+
+" Various
+set gdefault
+set sessionoptions-=options
 
 
 " ======================================================================
@@ -684,11 +706,6 @@ endfunction
 " ----------------------------------------------------------------------
 " Background Settings
 " ----------------------------------------------------------------------
-" maximize gvim on open, set terminal to 256 colors
-if has("gui_running")
-    set lines=999 columns=999
-endif
-
 if has('vim_starting')
     colorscheme seoul256
     silent call s:SetColorColumn()
