@@ -197,8 +197,6 @@ set sessionoptions-=options
 " ======================================================================
 " Mappings
 " ======================================================================
-
-" make j and k operate over display lines
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
@@ -211,30 +209,19 @@ vnoremap gk k
 " ----------------------------------------------------------------------
 " Normal Mode
 " ----------------------------------------------------------------------
-" simplify inline navigation
 noremap H ^
 noremap L $
 noremap ^ H
 noremap $ L
 
-" qq to record, Q to replay
 nnoremap Q @q
 
-" highlight last inserted text
-nnoremap gV `[v`]
-
-" Source vimrc
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
 
-" switch to alternate buffer
 nnoremap <silent> <Leader>bp :buffer #<CR>
-
-" find merge conflict markers
-nnoremap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 nnoremap <silent> <Leader>r :redraw!<Esc>
 
-" faster scrolling
 nnoremap <C-E> 3<C-E>
 nnoremap <C-Y> 3<C-Y>
 
@@ -287,13 +274,11 @@ nnoremap g<C-]> g]
 " break undo sequence when deleting a line in insert mode
 inoremap <C-U> <C-G>u<C-U>
 
-" insert mode completion
 inoremap <C-]> <C-X><C-]>
 inoremap <C-K> <C-X><C-K>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 
-" emacs keybindings
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 
@@ -303,7 +288,6 @@ inoremap <C-e> <End>
 " write file with super user privileges
 cabbrev w!! w !sudo tee % > /dev/null
 
-" emacs keybindings
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-b> <Left>
