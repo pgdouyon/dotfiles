@@ -66,7 +66,6 @@ Plug 'ap/vim-css-color', {'for': 'css'}
 
 " Markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'tpope/vim-markdown'
 
 " FreeMarker
 Plug 'chaquotay/ftl-vim-syntax'
@@ -581,11 +580,7 @@ let g:user_emmet_mode = 'nvi'
 " Pandoc Syntax
 " ----------------------------------------------------------------------
 let g:pandoc#syntax#conceal#blacklist = ['ellipses']
-
-" ----------------------------------------------------------------------
-" Vim-Markdown
-" ----------------------------------------------------------------------
-let g:markdown_fenced_languages = ['vim', 'python', 'clojure', 'javascript']
+let g:pandoc#syntax#codeblocks#embeds#langs = ["vim","python","clojure","javascript","bash=sh"]
 
 " ----------------------------------------------------------------------
 " Dash
