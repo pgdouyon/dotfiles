@@ -3,6 +3,10 @@ alias ls='ls -hFG'
 alias up='cd ..'
 alias list-aliases='cat ~/.bash_aliases'
 
+if [ "`uname -s`" = Darwin ]; then
+    alias locate='mdfind -name'
+fi
+
 # Fasd aliases
 alias v='f -e nvim'
 alias vv='f -i -e nvim'
