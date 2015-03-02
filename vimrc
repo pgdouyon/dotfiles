@@ -515,12 +515,6 @@ nnoremap <silent> znT :NifflerTags<CR>
 nnoremap <silent> znt :NifflerTags %<CR>
 
 " ----------------------------------------------------------------------
-" Netrw Settings
-" ----------------------------------------------------------------------
-let g:netrw_liststyle=1
-let g:netrw_browsex_viewer="gnome-open"
-
-" ----------------------------------------------------------------------
 " Rainbow Parentheses Settings
 " ----------------------------------------------------------------------
 augroup rainbow
@@ -573,13 +567,8 @@ vmap <Leader>ea <Plug>(EasyAlign)
 " ----------------------------------------------------------------------
 " FileBeagle
 " ----------------------------------------------------------------------
-function! s:FileBeagleHome()
-    normal q
-    execute "FileBeagle " . expand("~")
-endfunction
-
 augroup FileBeagle
-    autocmd BufEnter *filebeagle* nnoremap <silent><buffer><nowait> ~ :<C-U>call <SID>FileBeagleHome()<CR>
+    autocmd BufEnter *filebeagle* nmap <silent><buffer><nowait> ~ q:FileBeagle ~<CR>
 augroup END
 
 " ----------------------------------------------------------------------
