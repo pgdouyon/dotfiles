@@ -639,14 +639,19 @@ endfunction
 augroup vimrc
     autocmd!
     " Jump to the last position when reopening a file
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    autocmd BufReadPost * if &filetype != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd FocusLost *.{html,css} write
     autocmd BufRead,BufNewFile *.md set filetype=pandoc
-    autocmd BufRead,BufNewFile *.handlebars,*.hbs set filetype=html
-    autocmd BufRead,BufNewFile *.ftl set filetype=ftl
+    autocmd BufRead,BufNewFile *.{hbs,handlebars} set filetype=html
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
+augroup END
+
+augroup qf
+    autocmd!
+    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
+    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lcscope,lfile,lgetfile,laddfile lwindow
 augroup END
 
 " ----------------------------------------------------------------------
@@ -655,7 +660,7 @@ augroup END
 function! s:SetupColorScheme()
     highlight clear TrailingWhitespace
     highlight link TrailingWhitespace Error
-    if &background == "dark"
+    if g:colors_name =~# "seoul256" && &background == "dark"
         highlight DiffChange ctermbg=25 guibg=#005faf
     endif
 endfunction
