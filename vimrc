@@ -53,11 +53,9 @@ Plug 'derekwyatt/vim-scala'
 
 " JavaScript
 Plug 'jelera/vim-javascript-syntax'
-Plug 'moll/vim-node'
 Plug 'elzr/vim-json'
 
 " HTML
-Plug 'othree/html5.vim'
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml']}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml']}
 
