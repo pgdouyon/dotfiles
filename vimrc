@@ -208,6 +208,8 @@ noremap L $
 noremap ^ H
 noremap $ L
 
+noremap _ -
+
 nnoremap Q @q
 
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
