@@ -75,9 +75,6 @@ call plug#end()
 " Options
 " ======================================================================
 
-filetype plugin indent on
-syntax enable
-
 " Leader
 let mapleader="\<Space>"
 let maplocalleader="\<CR>"
