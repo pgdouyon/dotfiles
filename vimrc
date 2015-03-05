@@ -85,8 +85,6 @@ set tags=./tags;/
 set nowrap
 set linebreak
 set lazyredraw
-set lines=999
-set columns=999
 set scrolloff=8
 set sidescrolloff=5
 set conceallevel=2
