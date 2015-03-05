@@ -45,7 +45,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-leiningen', {'for': 'clojure'}
-Plug 'tpope/vim-classpath', {'for': ['clojure', 'scala']}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 
 " Scala
