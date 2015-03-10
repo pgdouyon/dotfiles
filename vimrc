@@ -481,7 +481,8 @@ let g:niffler_ignore_dirs = ["Library", "Applications", "Downloads", "1Password"
 
 nnoremap <silent> znf :Niffler<CR>
 nnoremap <silent> znh :Niffler %:h<CR>
-nnoremap <silent> zng :Niffler -vcs<CR>
+nnoremap <silent> zng :NifflerGlobal<CR>
+nnoremap <silent> znv :Niffler -vcs<CR>
 nnoremap <silent> znn :Niffler -new<CR>
 nnoremap <silent> znN :Niffler -vcs -new<CR>
 nnoremap <silent> znm :NifflerMRU<CR>
