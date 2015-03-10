@@ -619,7 +619,6 @@ augroup END
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    highlight clear TrailingWhitespace
     highlight link TrailingWhitespace Error
     if g:colors_name =~# "seoul256" && &background == "dark"
         highlight DiffChange ctermbg=25 guibg=#005faf
