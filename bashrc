@@ -1,3 +1,5 @@
+set -o vi
+
 shopt -s expand_aliases
 
 cdl() {
