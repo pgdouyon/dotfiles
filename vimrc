@@ -20,7 +20,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
@@ -470,11 +469,9 @@ if !exists('g:loaded_matchit')
 endif
 
 " ----------------------------------------------------------------------
-" Dispatch and Tbone Settings
+" Dispatch Settings
 " ----------------------------------------------------------------------
 nnoremap <F8> :Make<CR>
-nnoremap <silent> <Leader>tw :Twrite right<CR>
-vnoremap <silent> <Leader>tw :Twrite right<CR>
 
 " ----------------------------------------------------------------------
 " Niffler Settings
