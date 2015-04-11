@@ -34,6 +34,7 @@ Plug 'michaeljsmith/vim-indent-object'
 " Appearance
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
+Plug 'romainl/Apprentice'
 Plug 'jeetsukumaran/vim-filebeagle'
 
 " Tool Integration
@@ -657,7 +658,7 @@ endfunction
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
-    colorscheme seoul256
+    colorscheme apprentice
     silent call s:SetColorColumn()
     silent call s:SetTrailingWhitespace()
 endif
