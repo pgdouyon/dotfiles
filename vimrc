@@ -41,26 +41,16 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
-" Clojure
+" Languages
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-leiningen', {'for': 'clojure'}
-
-" Scala
 Plug 'derekwyatt/vim-scala'
-
-" JavaScript
 Plug 'elzr/vim-json'
-
-" HTML
-Plug 'mattn/emmet-vim', {'for': ['html', 'xml']}
-Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml']}
-
-" Markdown
+Plug 'mattn/emmet-vim', {'for': ['html', 'xml', 'ftl']}
+Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
 Plug 'vim-pandoc/vim-pandoc-syntax'
-
-" FreeMarker
 Plug 'chaquotay/ftl-vim-syntax'
 
 call plug#end()
