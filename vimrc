@@ -9,6 +9,7 @@ Plug 'pgdouyon/vim-niffler'
 Plug 'pgdouyon/vim-apparate'
 Plug 'pgdouyon/vim-evanesco'
 Plug 'pgdouyon/vim-protean'
+Plug 'pgdouyon/vim-accio'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
