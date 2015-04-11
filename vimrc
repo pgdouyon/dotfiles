@@ -34,7 +34,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
-Plug 'jeetsukumaran/vim-filebeagle'
 
 " Tool Integration
 Plug 'mhinz/vim-signify'
@@ -541,10 +540,13 @@ nmap <Leader>ea <Plug>(EasyAlign)
 vmap <Leader>ea <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------
-" FileBeagle
+" Netrw
 " ----------------------------------------------------------------------
-augroup FileBeagle
-    autocmd BufEnter *filebeagle* nmap <silent><buffer><nowait> ~ q:FileBeagle ~<CR>
+let g:netrw_altfile = 1
+nnoremap <silent> - :Explore %:h<CR>
+augroup netrw_vimrc
+    autocmd!
+    autocmd Filetype netrw setlocal bufhidden=wipe
 augroup END
 
 " ----------------------------------------------------------------------
