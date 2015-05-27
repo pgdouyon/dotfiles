@@ -178,10 +178,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
-vnoremap j gj
-vnoremap k gk
-vnoremap gj j
-vnoremap gk k
+xnoremap j gj
+xnoremap k gk
+xnoremap gj j
+xnoremap gk k
 
 " ----------------------------------------------------------------------
 " Normal Mode
@@ -522,7 +522,7 @@ endfunction
 " Vim-Easy-Align
 " ----------------------------------------------------------------------
 nmap <Leader>ea <Plug>(EasyAlign)
-vmap <Leader>ea <Plug>(EasyAlign)
+xmap <Leader>ea <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------
 " Netrw
