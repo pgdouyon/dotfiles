@@ -50,7 +50,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml', 'ftl']}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tpope/vim-markdown'
 Plug 'chaquotay/ftl-vim-syntax'
 
 call plug#end()
@@ -342,7 +342,7 @@ function! s:Scratch()
     let bufname = "__Scratch__"
     execute (buflisted(bufname) ? "buffer " : "edit ") . bufname
     if empty(&filetype)
-        set filetype=pandoc
+        set filetype=markdown
         setlocal buftype=nofile
         setlocal bufhidden=hide
         setlocal noswapfile
@@ -541,10 +541,9 @@ let g:user_emmet_leader_key='<C-P>'
 let g:user_emmet_mode = 'nvi'
 
 " ----------------------------------------------------------------------
-" Pandoc Syntax
+" Markdown Settings
 " ----------------------------------------------------------------------
-let g:pandoc#syntax#conceal#blacklist = ['ellipses']
-let g:pandoc#syntax#codeblocks#embeds#langs = ["vim","python","clojure","javascript","bash=sh"]
+let g:markdown_fenced_languages = ["vim","python","clojure","javascript","bash=sh"]
 
 " ----------------------------------------------------------------------
 " Dash
@@ -589,7 +588,7 @@ augroup vimrc
     " Jump to the last position when reopening a file
     autocmd BufReadPost * if &filetype != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd FocusLost *.{html,css} write
-    autocmd BufRead,BufNewFile *.md set filetype=pandoc
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.{hbs,handlebars} set filetype=html
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown setlocal spell
