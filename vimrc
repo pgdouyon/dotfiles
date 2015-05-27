@@ -326,10 +326,10 @@ inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 " Toggle Background Color
 " ----------------------------------------------------------------------
 function! s:ColorToggle()
-    if (&background == 'dark')
+    if (g:colors_name =~ "apprentice")
         colorscheme seoul256-light
     else
-        colorscheme seoul256
+        colorscheme apprentice
     endif
 endfunction
 
