@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 # cd to dotfiles directory
-cd $(dirname $BASH_SOURCE)
+cd "$(dirname "$BASH_SOURCE")"
 BASE=$(pwd)
 
 # link RC files
 mkdir -pv bak
 for rc in *rc *aliases *profile *ignore *config tmux.conf ctags; do
-    [ -e ~/.$rc ] && mv -v ~/.$rc bak/.$rc
-    ln -sfv $BASE/$rc ~/.$rc
+    [ -e ~/."$rc" ] && mv -v ~/."$rc" bak/."$rc"
+    ln -sfv "$BASE/$rc" ~/."$rc"
 done
 
 # link config directories
-for dir in $(find * -maxdepth 0 -type d); do
-    ln -sfv $BASE/$dir ~/.$dir
+for dir in $(find ./* -maxdepth 0 -type d); do
+    ln -sfv "$BASE/$dir" ~/."$dir"
 done
 
 # git-prompt
@@ -27,7 +27,7 @@ git clone https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 # OS X
-if [ $(uname -s) = 'Darwin' ]; then
+if [ "$(uname -s)" = 'Darwin' ]; then
     # Homebrew
     [ -z "$(which brew)" ] &&
         ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
