@@ -3,6 +3,7 @@ packages/
 Library/
 target/
 images/
+trash/
 logs/
 log/
 tmp/
@@ -11,3 +12,4 @@ tags
 *.tar.gz
 *.zip
 *.deb
+*.class
