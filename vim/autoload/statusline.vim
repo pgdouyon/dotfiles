@@ -39,7 +39,8 @@ endfunction
 function! statusline#schmexy_statusline()
     let left_status = "%(%{statusline#get_buftype_text()} %f%m%r%)"
     let right_status = "%{&filetype} |%4l:%3v %3p%% "
-    return left_status . "  %=  " . right_status
+    let accio_status = exists("*accio#statusline") ? ' %#WarningMsg#%{statusline#get_accio_text()}%*' : ""
+    return left_status . accio_status . "  %=  " . right_status
 endfunction
 
 
@@ -71,6 +72,15 @@ function! statusline#get_quickfix_text()
         endif
     endfor
     return ""
+endfunction
+
+
+function! statusline#get_accio_text()
+    if accio#statusline() !=# "Errors: 0"
+        return " " . accio#statusline() . " "
+    else
+        return ""
+    endif
 endfunction
 
 let &cpoptions = s:save_cpo
