@@ -35,3 +35,5 @@ alias vm='f -t -e nvim -b viminfo'
 alias j='fasd_cd -d'
 alias jj='fasd_cd -d -i'
 alias o='a -e open'
+
+[ -f ~/.bash_aliases.local ] && source ~/.bash_aliases.local
