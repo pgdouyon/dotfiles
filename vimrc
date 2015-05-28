@@ -48,6 +48,7 @@ Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-leiningen', {'for': 'clojure'}
 Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
+Plug 'vim-ruby/vim-ruby'
 Plug 'mattn/emmet-vim', {'for': ['html', 'xml', 'ftl']}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
 Plug 'tpope/vim-markdown'
