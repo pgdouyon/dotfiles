@@ -24,5 +24,6 @@
         st = status
 [core]
         editor = vim
+	excludesfile = ~/.gitignore
 [ghi]
 	token = !security find-internet-password -a pgdouyon -s github.com -l 'ghi token' -w
