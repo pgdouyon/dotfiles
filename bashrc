@@ -11,6 +11,22 @@ cpstat() {
     rsync -vrltD --stats --human-readable "$1" "$2" | pv -lep -s $((2 + $(find "$1" | wc -l)))
 }
 
+fgs() {
+    git show $(git log --oneline | fzf | awk '{print $1}')
+}
+
+fgfiles() {
+    git status --porcelain | sed -e 's/^ *[^ ]* *//' | fzf
+}
+
+fgd() {
+    git diff `git status --porcelain | sed -e 's/^ *[^ ]* *//' | fzf`
+}
+
+fgdc() {
+    git diff --cached `git status --porcelain | sed -e 's/^ *[^ ]* *//' | fzf`
+}
+
 if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
     . $(brew --prefix)/etc/bash_completion
 fi
