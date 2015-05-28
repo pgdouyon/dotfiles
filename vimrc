@@ -10,6 +10,7 @@ Plug 'pgdouyon/vim-apparate'
 Plug 'pgdouyon/vim-evanesco'
 Plug 'pgdouyon/vim-protean'
 Plug 'pgdouyon/vim-accio'
+Plug 'pgdouyon/vim-nim'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
