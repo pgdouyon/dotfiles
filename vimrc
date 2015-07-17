@@ -82,6 +82,7 @@ set scrolloff=8
 set sidescrolloff=5
 set conceallevel=2
 set display+=lastline
+set fillchars+=stl:\ ,stlnc:\ ,diff:-
 
 " Syntax/Highlighting
 set synmaxcol=500
