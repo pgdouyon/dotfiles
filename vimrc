@@ -524,6 +524,9 @@ nnoremap <silent> znb :NifflerBuffer<CR>
 nnoremap <silent> znT :NifflerTags<CR>
 nnoremap <silent> znt :NifflerTags %<CR>
 
+nnoremap <silent> g<C-]> :NifflerTselect<CR>
+nnoremap <silent> g] :NifflerTjump<CR>
+
 " ----------------------------------------------------------------------
 " Rainbow Parentheses Settings
 " ----------------------------------------------------------------------
