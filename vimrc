@@ -479,6 +479,19 @@ command! -nargs=* -complete=file LAgAdd call <SID>Ag(1, <q-args>)
 
 nnoremap <Leader>a :Ag<CR>
 
+" ----------------------------------------------------------------------
+" CToggle
+" ----------------------------------------------------------------------
+function! s:Ctoggle()
+    let window_count = winnr("$")
+    cclose
+    if window_count == winnr("$")
+        copen
+    endif
+endfunction
+
+nnoremap <silent> coq :call <SID>Ctoggle()<CR>
+
 
 " ======================================================================
 " Plugins
