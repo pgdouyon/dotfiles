@@ -282,6 +282,31 @@ cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
+" ----------------------------------------------------------------------
+" Terminal
+" ----------------------------------------------------------------------
+if has("nvim")
+    nnoremap <C-Q> <Esc>
+    nnoremap <M-Left> <Esc>gT
+    nnoremap <M-Right> <Esc>gt
+    tnoremap <C-H> <C-\><C-N><C-W>h
+    tnoremap <C-J> <C-\><C-N><C-W>j
+    tnoremap <C-K> <C-\><C-N><C-W>k
+    tnoremap <C-L> <C-\><C-N><C-W>l
+    tnoremap <M-Left> <C-\><C-N>gT
+    tnoremap <M-Right> <C-\><C-N>gt
+    tnoremap <silent> <C-Q> <C-\><C-N>:normal! G<CR>:call search('.\+', 'bcW')<CR>
+    nnoremap <silent> she :terminal<CR>
+    nnoremap <silent> shs :split \| terminal<CR>
+    nnoremap <silent> shv :vsplit \| terminal<CR>
+    nnoremap <silent> sht :tab split \| terminal<CR>
+    augroup terminal
+        autocmd!
+        autocmd BufEnter term://* startinsert!
+        autocmd BufLeave term://* stopinsert
+    augroup END
+endif
+
 
 " ======================================================================
 " Functions
@@ -292,7 +317,7 @@ cnoremap <C-p> <Up>
 " ----------------------------------------------------------------------
 function! s:TmuxSwitchWindows(direction)
     let old_win = winnr()
-    silent execute "wincmd ".a:direction
+    execute "wincmd ".a:direction
     if old_win == winnr()
         if a:direction ==? "h"
             call system("tmux select-pane -L")
