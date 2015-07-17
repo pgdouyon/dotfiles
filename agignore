@@ -2,12 +2,13 @@ node_modules/
 packages/
 Library/
 target/
-images/
 trash/
 logs/
 log/
 tmp/
 tags
+*.pdf
+*.dmp
 *.log
 *.tar.gz
 *.zip
