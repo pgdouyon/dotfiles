@@ -33,8 +33,8 @@ Plug 'michaeljsmith/vim-indent-object'
 
 " Appearance
 Plug 'junegunn/seoul256.vim'
-Plug 'tomasr/molokai'
 Plug 'romainl/Apprentice'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Tool Integration
 Plug 'mhinz/vim-signify'
