@@ -458,23 +458,24 @@ nnoremap <silent> cot :call <SID>ToggleTrailingWhitespace()<CR>
 " ----------------------------------------------------------------------
 " Ag
 " ----------------------------------------------------------------------
-function! s:Ag(cmd, args)
-    let old_grepprg = &grepprg
-    let old_grepfmt = &grepformat
-    let open_cmd = (a:cmd =~# '^l' ? "lopen" : "copen")
-    let grep_args = (empty(a:args) ? "-Q ".expand("<cword>") : a:args)
-    let &grepprg = 'ag --vimgrep --follow --smart-case $* 2>/dev/null'
-    let &grepformat = '%f:%l:%c:%m,%+I%.%#'
-    execute "silent " a:cmd grep_args
-    execute "silent " open_cmd
-    let &grepprg = old_grepprg
-    let &grepformat = old_grepfmt
+function! s:Ag(use_loclist, args)
+    let save_errorformat = &g:errorformat
+    let ag_args = (empty(a:args) ? printf('"\b%s\b"', expand("<cword>")) : a:args)
+    let ag_cmd = printf('ag --vimgrep --follow --smart-case %s 2>/dev/null', ag_args)
+    let ag_output = system(ag_cmd)
+    let &g:errorformat = '%f:%l:%c:%m,%f'
+    if a:use_loclist
+        silent lgetexpr ag_output | lopen
+    else
+        silent cgetexpr ag_output | copen
+    endif
+    let &g:errorformat = save_errorformat
 endfunction
 
-command! -nargs=* -complete=file Ag call <SID>Ag('grep!', <q-args>)
-command! -nargs=* -complete=file AgAdd call <SID>Ag('grepadd!', <q-args>)
-command! -nargs=* -complete=file LAg call <SID>Ag('lgrep!', <q-args>)
-command! -nargs=* -complete=file LAgAdd call <SID>Ag('lgrepadd!', <q-args>)
+command! -nargs=* -complete=file Ag call <SID>Ag(0, <q-args>)
+command! -nargs=* -complete=file AgAdd call <SID>Ag(0, <q-args>)
+command! -nargs=* -complete=file LAg call <SID>Ag(1, <q-args>)
+command! -nargs=* -complete=file LAgAdd call <SID>Ag(1, <q-args>)
 
 nnoremap <Leader>a :Ag<CR>
 
