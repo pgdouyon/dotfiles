@@ -6,7 +6,7 @@ BASE=$(pwd)
 
 # link RC files
 mkdir -pv bak
-for rc in *rc *aliases *profile *ignore *config tmux.conf ctags; do
+for rc in *rc *aliases *profile *ignore *config tmux.conf ctags my.cnf; do
     [ -e ~/."$rc" ] && mv -v ~/."$rc" bak/."$rc"
     ln -sfv "$BASE/$rc" ~/."$rc"
 done
