@@ -204,6 +204,8 @@ nnoremap <silent> <Leader>r :redraw!<Esc>
 
 nnoremap <C-E> 2<C-E>
 nnoremap <C-Y> 2<C-Y>
+nnoremap zh zH
+nnoremap zl zL
 
 " fix {,} motions in files with trailing whitespace
 nnoremap <silent> { :call search('^\s*$', 'bW')<CR>
