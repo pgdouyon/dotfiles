@@ -441,9 +441,9 @@ endfunction
 let g:todo_tag = "[PGD]"
 command! -nargs=? -bang -complete=dir TodoList call <SID>TodoList(<bang>1, <q-args>)
 
-nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
-nnoremap <Leader>fm O<Esc>ccFIXME <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
-nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR> <Esc>:normal gcc<CR>==A
+nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
+nnoremap <Leader>fm O<Esc>ccFIXME <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
+nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
 
 " ----------------------------------------------------------------------
 " Toggle Trailing Whitespace
