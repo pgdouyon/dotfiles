@@ -78,7 +78,6 @@ set tags=./tags;/
 " Displaying text
 set nowrap
 set linebreak
-set lazyredraw
 set scrolloff=8
 set sidescrolloff=5
 set conceallevel=2
