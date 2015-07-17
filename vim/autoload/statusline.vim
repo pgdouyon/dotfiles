@@ -14,7 +14,7 @@ function! statusline#schmexy_tabline()
         call add(tabline_list, tab_entry)
     endfor
     let tabline = join(tabline_list, "")
-    let tabline .= " %#TablineFill#%T%=%#TabLine# tabs "
+    let tabline .= " %#TablineFill#%T%=%#TabLine# Obsession: %{ObsessionStatus('●', 'Ⅱ', '∎')} "
     return tabline
 endfunction
 
