@@ -21,5 +21,8 @@ function! s:CloseQuickfix()
     endfor
 endfunction
 
+wincmd J
+autocmd BufEnter <buffer> wincmd J
+
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
