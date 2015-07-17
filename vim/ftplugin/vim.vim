@@ -40,9 +40,11 @@ function! s:move_to_function_end(mode, forward)
 endfunction
 
 function! s:jump_to_function()
+    let [save_isk, &iskeyword] = [&iskeyword, &iskeyword . ",:"]
     let function_name = escape(expand("<cword>"), '\')
     let function_start = '^\s*fu[nction!]*\s\+\(s:\)\?'
     call search(function_start.'\V\<'.function_name.'\>', 'sw')
+    let &iskeyword = save_isk
 endfunction
 
 let &cpoptions = s:save_cpo
