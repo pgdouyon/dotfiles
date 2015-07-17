@@ -395,19 +395,19 @@ command! -nargs=1 -complete=dir -bang Keep setlocal buftype= | saveas<bang> <arg
 " BufKill
 " ----------------------------------------------------------------------
 function! s:BufKill()
-    let buf_to_kill = bufname("%")
+    let buf_to_kill = bufnr("%")
     let orig_win = winnr()
     let orig_tab = tabpagenr()
     for i in range(tabpagenr("$"))
-        execute "tabnext " . (i + 1)
+        execute "noautocmd tabnext " . (i + 1)
         while bufwinnr(buf_to_kill) != -1
-            execute bufwinnr(buf_to_kill) . "wincmd w"
+            execute "noautocmd" bufwinnr(buf_to_kill) "wincmd w"
             execute bufname("%") ==# bufname("#") ? "wincmd q" : "buffer #"
         endwhile
     endfor
-    execute "tabnext " . orig_tab
-    execute orig_win . "wincmd w"
-    execute "bdelete " . buf_to_kill
+    execute "noautocmd tabnext" orig_tab
+    execute "noautocmd" orig_win "wincmd w"
+    execute "bdelete!" buf_to_kill
 endfunction
 
 nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
