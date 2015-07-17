@@ -629,6 +629,13 @@ function! s:AutocloseBraces()
 endfunction
 
 " ----------------------------------------------------------------------
+" Protean
+" ----------------------------------------------------------------------
+nmap sP <Plug>Protean-Finish
+nmap sp <Plug>Protean-Replace
+xmap sp <Plug>Protean-Replace
+
+" ----------------------------------------------------------------------
 " Accio
 " ----------------------------------------------------------------------
 let g:accio_warning_highlight = "Todo"
