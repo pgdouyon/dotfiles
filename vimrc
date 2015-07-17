@@ -167,7 +167,9 @@ set shellslash
 set noshelltemp
 if has("unix")
     set shell=bash
-    let $BASH_ENV = "~/.bashrc"     " expand shell aliases/functions in vim
+    " this kills neovim's TUI, wait until you can try out the new terminal
+    " feature to see if this is even necessary anymore
+    " let $BASH_ENV = "~/.bashrc"     " expand shell aliases/functions in vim
 endif
 
 " Various
