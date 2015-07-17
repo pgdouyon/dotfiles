@@ -46,7 +46,7 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'tpope/vim-leiningen', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
 Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
