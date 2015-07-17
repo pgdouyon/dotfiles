@@ -47,5 +47,11 @@ function! s:jump_to_function()
     let &iskeyword = save_isk
 endfunction
 
+augroup vim_ft
+    autocmd!
+    autocmd Syntax vim syntax keyword vimTodo contained TODO FIXME XXX
+    autocmd Syntax vim syntax keyword vimMap tm[ap] tno[remap]
+augroup END
+
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
