@@ -41,6 +41,7 @@ Plug 'mhinz/vim-signify'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'justinmk/vim-dirvish', {'on': 'Dirvish'}
 
 " Languages
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -533,14 +534,11 @@ nmap <Leader>ea <Plug>(EasyAlign)
 xmap <Leader>ea <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------
-" Netrw
+" Dirvish
 " ----------------------------------------------------------------------
-let g:netrw_altfile = 1
-nnoremap <silent> - :Explore %:h<CR>
-augroup netrw_vimrc
-    autocmd!
-    autocmd Filetype netrw setlocal bufhidden=wipe
-augroup END
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+nnoremap <silent> - :Dirvish %:p:h<CR>
 
 " ----------------------------------------------------------------------
 " Emmet
