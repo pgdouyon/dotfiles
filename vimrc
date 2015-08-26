@@ -289,13 +289,16 @@ if has("nvim")
     nnoremap <C-Q> <Esc>
     nnoremap <M-Left> <Esc>gT
     nnoremap <M-Right> <Esc>gt
+    inoremap <M-Left> <Esc>gT
+    inoremap <M-Right> <Esc>gt
     tnoremap <C-H> <C-\><C-N><C-W>h
     tnoremap <C-J> <C-\><C-N><C-W>j
     tnoremap <C-K> <C-\><C-N><C-W>k
     tnoremap <C-L> <C-\><C-N><C-W>l
     tnoremap <M-Left> <C-\><C-N>gT
     tnoremap <M-Right> <C-\><C-N>gt
-    tnoremap <silent> <C-Q> <C-\><C-N>:normal! G<CR>:call search('.\+', 'bcW')<CR>
+    tnoremap <C-Q> <C-\><C-N>'.<C-L>
+
     nnoremap <silent> she :terminal<CR>
     nnoremap <silent> shs :split \| terminal<CR>
     nnoremap <silent> shv :vsplit \| terminal<CR>
@@ -303,7 +306,7 @@ if has("nvim")
     augroup terminal
         autocmd!
         autocmd BufEnter term://* startinsert!
-        autocmd BufLeave term://* stopinsert
+        autocmd BufLeave term://* redraw!
     augroup END
 endif
 
