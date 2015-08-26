@@ -435,10 +435,10 @@ function! s:TodoList(include_tag, search_dir)
     endif
 
     let todo_tag = escape(g:todo_tag, '()[]{}<>!@#$%^&*-_+=\|?.')
-    let todo = 'TODO\|FIXME\|XXX'
-    let todo_tagged = join(map(split(todo, '\\|'), "v:val.' '.'".todo_tag."'"), '\|')
+    let todo = 'TODO|FIXME|XXX'
+    let todo_tagged = join(map(split(todo, '|'), "v:val.' '.'".todo_tag."'"), '|')
     let todo_str = a:include_tag ? todo_tagged : todo
-    execute printf("LAg '%s' %s", todo_str, todo_dir)
+    execute printf("Ag '%s' %s", todo_str, todo_dir)
 endfunction
 
 let g:todo_tag = "[PGD]"
