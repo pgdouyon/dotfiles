@@ -622,7 +622,7 @@ endfunction
 " ----------------------------------------------------------------------
 " Protean
 " ----------------------------------------------------------------------
-nmap sP <Plug>Protean-Finish
+nmap sf <Plug>Protean-Finish
 nmap sp <Plug>Protean-Replace
 xmap sp <Plug>Protean-Replace
 
