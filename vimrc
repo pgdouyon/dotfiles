@@ -76,6 +76,7 @@ set smartcase
 set tags=./tags;/
 
 " Displaying text
+set list
 set nowrap
 set linebreak
 set scrolloff=8
@@ -83,6 +84,7 @@ set sidescrolloff=5
 set conceallevel=2
 set display+=lastline
 set fillchars+=stl:\ ,stlnc:\ ,diff:-
+set listchars=trail:.,tab:>-
 
 " Syntax/Highlighting
 set synmaxcol=500
@@ -446,16 +448,6 @@ nnoremap <Leader>fm O<Esc>ccFIXME <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a
 nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
 
 " ----------------------------------------------------------------------
-" Toggle Trailing Whitespace
-" ----------------------------------------------------------------------
-function! s:ToggleTrailingWhitespace()
-    let w:enableTrailingWhitespace = !get(w:, "enableTrailingWhitespace", 0)
-    call s:SetTrailingWhitespace()
-endfunction
-
-nnoremap <silent> cot :call <SID>ToggleTrailingWhitespace()<CR>
-
-" ----------------------------------------------------------------------
 " Ag
 " ----------------------------------------------------------------------
 function! s:Ag(use_loclist, args)
@@ -669,7 +661,6 @@ augroup END
 " Colorscheme Settings
 " ----------------------------------------------------------------------
 function! s:SetupColorScheme()
-    highlight link TrailingWhitespace Error
     if g:colors_name =~# "seoul256" && &background == "dark"
         highlight DiffChange ctermbg=25 guibg=#005faf
     endif
@@ -688,24 +679,10 @@ function! s:SetColorColumn()
     endif
 endfunction
 
-function! s:SetTrailingWhitespace()
-    if !exists("w:enableTrailingWhitespace")
-        let w:enableTrailingWhitespace = 1
-    endif
-    if w:enableTrailingWhitespace
-        silent! call matchadd("TrailingWhitespace", '\s\+$', 0, 955)
-        echohl WarningMsg | echo "Trailing Whitespace enabled..." | echohl None
-    else
-        silent! call matchdelete(955)
-        echohl WarningMsg | echo "Trailing Whitespace disabled..." | echohl None
-    endif
-endfunction
-
 " ----------------------------------------------------------------------
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
     colorscheme apprentice
     silent call s:SetColorColumn()
-    silent call s:SetTrailingWhitespace()
 endif
