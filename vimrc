@@ -545,14 +545,14 @@ xmap ic <Plug>(signify-motion-inner-visual)
 " ----------------------------------------------------------------------
 " Fugitive Settings
 " ----------------------------------------------------------------------
-nnoremap <silent> <Leader>gb :Gblame<CR>
-nnoremap <silent> <Leader>gs :Gstatus<CR>
-nnoremap <silent> <Leader>gd :Gvdiff<CR>
-nnoremap <silent> <Leader>gc :Gcommit<CR>
-nnoremap <silent> <Leader>ga :Gwrite<CR>
-nnoremap <silent> <Leader>gr :Gread<CR>
-nnoremap <silent> <Leader>gp :Git push origin master<CR>
-nnoremap <silent> <Leader>gh :Git push heroku master<CR>
+nnoremap <silent> dgb :Gblame<CR>
+nnoremap <silent> dgs :Gstatus<CR>
+nnoremap <silent> dgd :Gvdiff<CR>
+nnoremap <silent> dgc :Gcommit<CR>
+nnoremap <silent> dga :Gwrite<CR>
+nnoremap <silent> dgr :Gread<CR>
+nnoremap <silent> dgp :Git push origin master<CR>
+nnoremap <silent> dgh :Git push heroku master<CR>
 
 " ----------------------------------------------------------------------
 " Unimpaired Settings
