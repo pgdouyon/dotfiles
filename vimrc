@@ -541,8 +541,6 @@ nnoremap <silent> <Leader>fe :%Eval<CR>
 let g:signify_vcs_list = ['git', 'svn']
 omap ic <Plug>(signify-motion-inner-pending)
 xmap ic <Plug>(signify-motion-inner-visual)
-omap ac <Plug>(signify-motion-outer-pending)
-xmap ac <Plug>(signify-motion-outer-visual)
 
 " ----------------------------------------------------------------------
 " Fugitive Settings
