@@ -210,8 +210,8 @@ nnoremap zl zL
 " fix {,} motions in files with trailing whitespace
 nnoremap <silent> { m':call search('^\s*$', 'bW')<CR>
 nnoremap <silent> } m':call search('^\s*$', 'W')<CR>
-onoremap <silent> { m':call search('^\s*$', 'bW')<CR>
-onoremap <silent> } m':call search('^\s*$', 'W')<CR>
+onoremap <silent> { :mark ' \| call search('^\s*$', 'bW')<CR>
+onoremap <silent> } :mark ' \| call search('^\s*$', 'W')<CR>
 xnoremap <silent> { :<C-U>execute "normal! m'gv" <Bar> call search('^\s*$', 'bW')<CR>
 xnoremap <silent> } :<C-U>execute "normal! m'gv" <Bar> call search('^\s*$', 'W')<CR>
 
