@@ -683,5 +683,4 @@ endfunction
 " ----------------------------------------------------------------------
 if has('vim_starting')
     colorscheme apprentice
-    silent call s:SetColorColumn()
 endif
