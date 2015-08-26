@@ -198,7 +198,7 @@ nnoremap Q @q
 
 nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
 
-nnoremap <silent> <Leader>bp :buffer #<CR>
+nnoremap <silent> <BS> :buffer #<CR>
 
 nnoremap <silent> <Leader>r :redraw!<Esc>
 
