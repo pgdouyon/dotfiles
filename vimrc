@@ -458,9 +458,9 @@ function! s:Ag(use_loclist, args)
     let ag_output = system(ag_cmd)
     let &g:errorformat = '%f:%l:%c:%m,%f'
     if a:use_loclist
-        silent lgetexpr ag_output | lopen
+        silent! lgetexpr ag_output | lopen
     else
-        silent cgetexpr ag_output | copen
+        silent! cgetexpr ag_output | copen
     endif
     let &g:errorformat = save_errorformat
 endfunction
@@ -470,7 +470,7 @@ command! -nargs=* -complete=file AgAdd call <SID>Ag(0, <q-args>)
 command! -nargs=* -complete=file LAg call <SID>Ag(1, <q-args>)
 command! -nargs=* -complete=file LAgAdd call <SID>Ag(1, <q-args>)
 
-nnoremap <Leader>a :Ag<CR>
+nnoremap ga :Ag<CR>
 
 " ----------------------------------------------------------------------
 " CToggle
