@@ -183,18 +183,15 @@ set sessionoptions-=options
 " ======================================================================
 " Mappings
 " ======================================================================
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-xnoremap j gj
-xnoremap k gk
-xnoremap gj j
-xnoremap gk k
 
 " ----------------------------------------------------------------------
 " Normal Mode
 " ----------------------------------------------------------------------
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
 noremap _ -
 
 nnoremap Q @q
