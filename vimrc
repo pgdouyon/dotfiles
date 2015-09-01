@@ -547,6 +547,7 @@ xmap ic <Plug>(signify-motion-inner-visual)
 " ----------------------------------------------------------------------
 " Fugitive Settings
 " ----------------------------------------------------------------------
+" do git ...
 nnoremap <silent> dgb :Gblame<CR>
 nnoremap <silent> dgs :Gstatus<CR>
 nnoremap <silent> dgd :Gvdiff<CR>
@@ -555,6 +556,13 @@ nnoremap <silent> dga :Gwrite<CR>
 nnoremap <silent> dgr :Gread<CR>
 nnoremap <silent> dgp :Git push origin master<CR>
 nnoremap <silent> dgh :Git push heroku master<CR>
+
+" see git ...
+nnoremap <silent> sgl :Glog<CR>
+nnoremap <silent> sgb :Git! branch<CR>
+nnoremap <silent> sgd :Git! diff<CR>
+nnoremap <silent> sgc :Git! diff --cached<CR>
+nnoremap <silent> sgh :Git! show HEAD<CR>
 
 " ----------------------------------------------------------------------
 " Unimpaired Settings
