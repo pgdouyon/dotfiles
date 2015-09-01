@@ -42,6 +42,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'justinmk/vim-dirvish', {'on': 'Dirvish'}
+Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " Languages
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -633,6 +634,21 @@ xmap sp <Plug>Protean-Replace
 let g:accio_warning_highlight = "Search"
 let g:accio_create_empty_quickfix = 0
 let g:accio_update_interval = 100
+
+" ----------------------------------------------------------------------
+" Gitv
+" ----------------------------------------------------------------------
+let g:Gitv_DoNotMapCtrlKey = 1
+nnoremap <silent> dgv :Gitv<CR>
+nnoremap <silent> dgf :Gitv!<CR>
+augroup gitv
+    autocmd!
+    autocmd Filetype gitv nmap <buffer> <silent> <C-N> <Plug>(gitv-previous-commit)
+    autocmd Filetype gitv nmap <buffer> <silent> <C-P> <Plug>(gitv-next-commit)
+    autocmd Filetype gitv nmap <buffer> <silent> <C-S> <Plug>(gitv-split)
+    autocmd Filetype gitv nmap <buffer> <silent> <C-V> <Plug>(gitv-vsplit)
+    autocmd Filetype gitv nmap <buffer> <silent> <C-T> <Plug>(gitv-tabedit)
+augroup END
 
 
 " ======================================================================
