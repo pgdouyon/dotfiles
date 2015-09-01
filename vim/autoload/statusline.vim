@@ -49,6 +49,7 @@ function! statusline#get_buftype_text()
     let buftype = (&buftype ==# "help" ? "Help" : buftype)
     let buftype = (&buftype ==# "quickfix" ? statusline#get_quickfix_text() : buftype)
     let buftype = (&previewwindow ? "Preview" : buftype)
+    let buftype = (&filetype ==# "dirvish" ? bufname("%") : buftype)
     return (empty(buftype) ? "" : buftype)
 endfunction
 
