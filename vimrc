@@ -34,7 +34,7 @@ Plug 'michaeljsmith/vim-indent-object'
 " Appearance
 Plug 'junegunn/seoul256.vim'
 Plug 'romainl/Apprentice'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'jonathanfilip/vim-lucius'
 
 " Tool Integration
 Plug 'mhinz/vim-signify'
@@ -362,10 +362,10 @@ inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 " Toggle Background Color
 " ----------------------------------------------------------------------
 function! s:ColorToggle()
-    if (g:colors_name =~ "apprentice")
-        colorscheme seoul256-light
+    if (&background ==? "dark")
+        LuciusLightLowContrast
     else
-        colorscheme apprentice
+        LuciusDarkLowContrast
     endif
 endfunction
 
@@ -683,5 +683,6 @@ endfunction
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
-    colorscheme apprentice
+    colorscheme lucius
+    LuciusDarkLowContrast
 endif
