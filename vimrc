@@ -313,7 +313,7 @@ if has("nvim")
     nnoremap <silent> sht :tab split \| terminal<CR>
     augroup terminal
         autocmd!
-        autocmd BufEnter term://* startinsert!
+        autocmd BufEnter term://* call feedkeys("i", "nt")
         autocmd BufLeave term://* redraw!
     augroup END
 else
