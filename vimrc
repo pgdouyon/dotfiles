@@ -202,7 +202,7 @@ noremap _ -
 
 nnoremap Q @q
 
-nnoremap <silent> <Leader>sv :silent source $MYVIMRC<CR>
+nnoremap <Leader>sv :silent source $MYVIMRC<CR>
 
 nnoremap <silent> <BS> :buffer #<CR>
 
