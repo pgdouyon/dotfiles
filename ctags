@@ -4,7 +4,13 @@
 --exclude=bundle
 --exclude=min
 --exclude=vendor
+--exclude=highcharts
+--exclude=underscore-min.js
+--exclude=bootstrap.js
+--exclude=*.html
+--exclude=*.bat
 --exclude=*.min.*
+--exclude=*.pack.js
 --exclude=*.map
 --exclude=*.swp
 --exclude=*.bak
