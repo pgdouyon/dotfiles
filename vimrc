@@ -553,16 +553,16 @@ let g:niffler_user_command = 'ag %s -g ""'
 let g:niffler_ignore_extensions = [".class", ".backup"]
 let g:niffler_ignore_dirs = ["Library", "Applications", "Downloads", "1Password"]
 
-nnoremap <silent> znf :Niffler<CR>
-nnoremap <silent> znh :Niffler %:h<CR>
-nnoremap <silent> zng :Niffler -vcs<CR>
-nnoremap <silent> znm :NifflerMRU<CR>
-nnoremap <silent> znb :NifflerBuffer<CR>
-nnoremap <silent> znT :NifflerTags<CR>
-nnoremap <silent> znt :NifflerTags %<CR>
+nnoremap <silent> snf :Niffler<CR>
+nnoremap <silent> snh :Niffler %:h<CR>
+nnoremap <silent> sng :Niffler -vcs<CR>
+nnoremap <silent> snm :NifflerMRU<CR>
+nnoremap <silent> snb :NifflerBuffer<CR>
+nnoremap <silent> snT :NifflerTags<CR>
+nnoremap <silent> snt :NifflerTags %<CR>
 
-nnoremap <silent> g<C-]> :NifflerTselect<CR>
-nnoremap <silent> g] :NifflerTjump<CR>
+nnoremap <silent> g] :NifflerTselect<CR>
+nnoremap <silent> g<C-]> :NifflerTjump<CR>
 
 " ----------------------------------------------------------------------
 " Rainbow Parentheses Settings
