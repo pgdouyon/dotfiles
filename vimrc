@@ -316,6 +316,11 @@ if has("nvim")
         autocmd BufEnter term://* startinsert!
         autocmd BufLeave term://* redraw!
     augroup END
+else
+    nnoremap <silent> she :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
+    nnoremap <silent> shs :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
+    nnoremap <silent> shv :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
+    nnoremap <silent> sht :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
 endif
 
 
