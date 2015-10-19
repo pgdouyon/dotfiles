@@ -9,6 +9,9 @@ setlocal foldlevel=999
 
 compiler flake8
 
+augroup python
+    autocmd BufWrite <buffer> Accio flake8
+augroup END
 " ----------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------
