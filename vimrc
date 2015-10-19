@@ -589,6 +589,8 @@ xmap ic <Plug>(signify-motion-inner-visual)
 " ----------------------------------------------------------------------
 " Fugitive Settings
 " ----------------------------------------------------------------------
+nnoremap cd :Gcd<CR>:pwd<CR>
+
 " do git ...
 nnoremap <silent> dgb :Gblame<CR>
 nnoremap <silent> dgs :Gstatus<CR>
