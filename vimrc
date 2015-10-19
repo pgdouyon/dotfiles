@@ -539,9 +539,7 @@ xnoremap <silent> g! :<C-U>call <SID>vim_eval(visualmode())<CR>
 " ----------------------------------------------------------------------
 " Matchit
 " ----------------------------------------------------------------------
-if !exists('g:loaded_matchit')
-  runtime! macros/matchit.vim
-endif
+runtime! macros/matchit.vim
 
 " ----------------------------------------------------------------------
 " Dispatch Settings
