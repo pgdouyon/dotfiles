@@ -202,6 +202,8 @@ noremap _ -
 
 nnoremap Q @q
 
+nnoremap <silent> du :diffupdate<CR>
+
 nnoremap <Leader>sv :silent source $MYVIMRC<CR>
 
 nnoremap <silent> <BS> :buffer #<CR>
