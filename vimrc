@@ -189,10 +189,14 @@ set sessionoptions-=options
 " ----------------------------------------------------------------------
 " Normal Mode
 " ----------------------------------------------------------------------
-noremap j gj
-noremap k gk
-noremap gj j
-noremap gk k
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+xnoremap j gj
+xnoremap k gk
+xnoremap gj j
+xnoremap gk k
 
 noremap _ -
 
