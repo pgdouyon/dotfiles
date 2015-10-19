@@ -2,7 +2,6 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 
 augroup shell
-    autocmd!
     autocmd BufWrite <buffer> Accio shellcheck
 augroup END
 

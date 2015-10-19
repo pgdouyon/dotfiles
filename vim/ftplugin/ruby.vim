@@ -12,7 +12,6 @@ setlocal softtabstop=2
 compiler rubocop
 
 augroup ruby
-    autocmd!
     autocmd BufWrite <buffer> Accio rubocop
 augroup END
 

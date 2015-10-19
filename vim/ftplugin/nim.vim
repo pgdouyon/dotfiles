@@ -2,7 +2,6 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 
 augroup nim
-    autocmd!
     autocmd BufWrite <buffer> Accio nimcheck
 augroup END
 
