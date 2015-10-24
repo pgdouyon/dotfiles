@@ -499,6 +499,24 @@ endfunction
 nnoremap <silent> coq :call <SID>Ctoggle()<CR>
 
 " ----------------------------------------------------------------------
+" Syntax Names
+" ----------------------------------------------------------------------
+" Stolen from scriptease.vim
+function! s:syntax_groups(count)
+    let syntax_names = reverse(map(synstack(line("."), col(".")), 'synIDattr(v:val, "name")'))
+    if a:count
+        let name = get(syntax_names, a:count - 1, "")
+        if name !=# ""
+            execute "syntax list" name
+        endif
+    else
+        echo join(syntax_names, " ")
+    endif
+endfunction
+
+nnoremap <silent> <C-S> :<C-U>call <SID>syntax_groups(v:count)<CR>
+
+" ----------------------------------------------------------------------
 " Vim Eval
 " ----------------------------------------------------------------------
 " Stolen from scriptease.vim
