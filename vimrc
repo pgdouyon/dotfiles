@@ -646,7 +646,7 @@ nnoremap <silent> - :Dirvish %:p:h<CR>
 " Emmet
 " ----------------------------------------------------------------------
 let g:user_emmet_leader_key='<C-P>'
-let g:user_emmet_mode = 'nvi'
+let g:user_emmet_mode = 'vi'
 
 " ----------------------------------------------------------------------
 " Markdown Settings
