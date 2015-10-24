@@ -68,6 +68,7 @@ let mapleader="\<Space>"
 let maplocalleader="\<CR>"
 
 " Searching
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
