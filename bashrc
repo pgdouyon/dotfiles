@@ -7,12 +7,12 @@ shopt -s expand_aliases
 
 stty -ixon
 
-cdl() {
-    cd $1
+function cdl {
+    cd "$1"
     ls
 }
 
-cpstat() {
+function cpstat {
     rsync -vrltD --stats --human-readable "$1" "$2" | pv -lep -s $((2 + $(find "$1" | wc -l)))
 }
 
@@ -33,7 +33,7 @@ fgdc() {
 }
 
 if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
-    . $(brew --prefix)/etc/bash_completion
+    source "$(brew --prefix)"/etc/bash_completion
 fi
 
 eval "$(fasd --init auto)"
