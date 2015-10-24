@@ -123,7 +123,7 @@ set clipboard=unnamed
 " Editing Text
 set showmatch
 set backspace=indent,eol,start
-set formatoptions=tcroq2lj
+set formatoptions=roq2lj
 set complete=.,w,b
 set nrformats-=octal
 set matchpairs+=<:>
