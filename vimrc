@@ -767,3 +767,7 @@ if has('vim_starting')
     colorscheme lucius
     LuciusDarkLowContrast
 endif
+
+if filereadable(expand('$HOME/.vimrc.local'))
+    source $HOME/.vimrc.local
+endif
