@@ -4,6 +4,8 @@ set -o vi
 
 shopt -s expand_aliases
 
+stty -ixon
+
 cdl() {
     cd $1
     ls
