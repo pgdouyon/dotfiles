@@ -423,7 +423,7 @@ function! s:BufKill()
     endfor
     execute "noautocmd tabnext" orig_tab
     execute "noautocmd" orig_win "wincmd w"
-    execute "bdelete!" buf_to_kill
+    execute "silent! bdelete!" buf_to_kill
 endfunction
 
 nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
