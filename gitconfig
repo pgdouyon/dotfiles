@@ -5,26 +5,6 @@
 	helper = cache --timeout=7200
 [github]
 	user = pgdouyon
-[alias]
-	a = add
-	ap = add -p
-	ae = add -e
-	b = branch --color
-	ba = branch -a --color
-	ci = commit
-	co = checkout
-	cob = checkout -b
-	d = diff --color
-	dc = diff --cached --color
-	gr = log --graph --decorate --color
-	go = log --graph --decorate --oneline --color
-	m = merge
-	mnf = merge --no-ff
-	po = push origin master
-	ph = push heroku master
-	st = status
-	ss = stash save
-	sp = stash pop
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
