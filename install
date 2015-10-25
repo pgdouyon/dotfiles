@@ -47,6 +47,7 @@ if [ "$(uname -s)" = 'Darwin' ]; then
     brew tap neovim/homebrew-neovim
     brew install --HEAD neovim
     pip install neovim
+    gem install pry
 fi
 
 tmux source-file ~/.tmux.conf
