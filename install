@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# colorscheme terminal: lucius https://github.com/jonathanfilip/lucius
+# Font: Fira Mono https://github.com/mozilla/Fira
+
 # cd to dotfiles directory
 cd "$(dirname "$BASH_SOURCE")"
 BASE=$(pwd)
