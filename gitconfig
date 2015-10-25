@@ -6,24 +6,27 @@
 [github]
 	user = pgdouyon
 [alias]
-        a = add
-        ap = add -p
-        ae = add -e
-        br = branch --color
-        ba = branch -a --color
-        ci = commit
-        co = checkout
-        d = diff --color
-        dc = diff --cached --color
-        gr = log --graph --decorate --color
-        go = log --graph --decorate --oneline --color
-        m = merge
-        mnf = merge --no-ff
-        po = push origin master
-        ph = push heroku master
-        st = status
+	a = add
+	ap = add -p
+	ae = add -e
+	b = branch --color
+	ba = branch -a --color
+	ci = commit
+	co = checkout
+	cob = checkout -b
+	d = diff --color
+	dc = diff --cached --color
+	gr = log --graph --decorate --color
+	go = log --graph --decorate --oneline --color
+	m = merge
+	mnf = merge --no-ff
+	po = push origin master
+	ph = push heroku master
+	st = status
+	ss = stash save
+	sp = stash pop
 [core]
-        editor = vim
+	editor = vim
 	excludesfile = ~/.gitignore
 [ghi]
 	token = !security find-internet-password -a pgdouyon -s github.com -l 'ghi token' -w
