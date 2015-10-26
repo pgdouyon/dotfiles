@@ -4,15 +4,18 @@
 # Font: Fira Mono https://github.com/mozilla/Fira
 
 # cd to dotfiles directory
-cd "$(dirname "$BASH_SOURCE")"
-BASE=$(pwd)
+BIN=$(dirname "$BASH_SOURCE")
+BASE="$(dirname "$BIN")"
+cd "$BASE"
 
 # link RC files
 mkdir -pv bak
-for rc in *rc *aliases *profile *ignore *config tmux.conf ctags my.cnf; do
-    dotfile="$HOME/.$rc"
-    [[ -e $dotfile ]] && mv -v "$dotfile" bak/."$rc"
-    ln -sfv "$BASE/$rc" "$dotfile"
+for rc in *; do
+    if [[ -f $rc && ($rc != "README.md") ]]; then
+        dotfile="$HOME/.$rc"
+        [[ -e $dotfile ]] && mv -v "$dotfile" bak/."$rc"
+        ln -sfv "$BASE/$rc" "$dotfile"
+    fi
 done
 
 # link config directories
