@@ -37,7 +37,7 @@ endfunction
 " Statusline
 " ======================================================================
 function! statusline#schmexy_statusline()
-    let left_status = "%(%{statusline#get_buftype_text()} %.60t%m%r%)"
+    let left_status = " %(%{statusline#get_buftype_text()}%.60t%m%r%)"
     let right_status = "%{&filetype} | %l::%-2v "
     let accio_status = exists("*accio#statusline") ? ' %#ErrorMsg#%{statusline#get_accio_text()}%*' : ""
     return left_status . accio_status . "  %=  " . right_status
@@ -45,12 +45,12 @@ endfunction
 
 
 function! statusline#get_buftype_text()
-    let buftype = (exists("g:loaded_fugitive") ? fugitive#statusline() : "")
+    let buftype = (exists("g:loaded_fugitive") ? matchstr(fugitive#statusline(), 'Git(.*)') : "")
     let buftype = (&buftype ==# "help" ? "Help" : buftype)
     let buftype = (&buftype ==# "quickfix" ? statusline#get_quickfix_text() : buftype)
     let buftype = (&previewwindow ? "Preview" : buftype)
     let buftype = (&filetype ==# "dirvish" ? bufname("%") : buftype)
-    return (empty(buftype) ? "" : buftype)
+    return (empty(buftype) ? "" : buftype . " ")
 endfunction
 
 
