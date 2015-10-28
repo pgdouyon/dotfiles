@@ -90,7 +90,6 @@ set listchars=trail:.,tab:>-
 
 " Syntax/Highlighting
 set synmaxcol=500
-set cursorline
 
 " Multiple Windows
 set laststatus=2
@@ -730,6 +729,11 @@ augroup vimrc
     autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
+    autocmd VimEnter *
+                \ autocmd WinEnter * silent setlocal cursorline | redraw
+    autocmd VimEnter *
+                \ autocmd WinLeave * silent setlocal nocursorline
+    autocmd VimEnter * silent setlocal cursorline
 augroup END
 
 augroup qf
