@@ -38,7 +38,7 @@ endfunction
 " ======================================================================
 function! statusline#schmexy_statusline()
     let left_status = "%(%{statusline#get_buftype_text()} %.60t%m%r%)"
-    let right_status = "%{&filetype} | %2p%% | %3l:%2v "
+    let right_status = "%{&filetype} | %l::%-2v "
     let accio_status = exists("*accio#statusline") ? ' %#WarningMsg#%{statusline#get_accio_text()}%*' : ""
     return left_status . accio_status . "  %=  " . right_status
 endfunction
