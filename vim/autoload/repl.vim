@@ -6,7 +6,8 @@ set cpoptions&vim
 " ======================================================================
 function! repl#start_repl(repl, title)
     if has("nvim")
-        wincmd v
+        let wincmd = (winwidth(0) <= (&columns / 2)) ? "wincmd s" : "wincmd v"
+        execute wincmd
         execute "terminal" a:repl
     else
         execute "Start! -title=".a:title." ".a:repl
