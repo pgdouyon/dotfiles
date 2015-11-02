@@ -17,6 +17,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo:
 export _FASD_DATA="$XDG_DATA_HOME/fasd"
