@@ -45,6 +45,9 @@ mv ~/.fzf.zsh "$XDG_DATA_HOME/fzf/fzf.zsh"
 
 # OS X
 if [[ $(uname -s) = 'Darwin' ]]; then
+    # RVM
+    curl -L https://get.rvm.io | bash -s stable
+    rvm use ruby --install --default
     # Homebrew
     [[ -z $(which brew) ]] &&
         ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
