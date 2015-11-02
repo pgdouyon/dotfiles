@@ -38,8 +38,10 @@ if [[ ! -e ~/.git-prompt.sh ]]; then
 fi
 
 # FZF
-git clone https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+git clone https://github.com/junegunn/fzf.git "$XDG_DATA_HOME/fzf"
+"$XDG_DATA_HOME/fzf/install" --all --no-update-rc
+mv ~/.fzf.bash "$XDG_DATA_HOME/fzf/fzf.bash"
+mv ~/.fzf.zsh "$XDG_DATA_HOME/fzf/fzf.zsh"
 
 # OS X
 if [[ $(uname -s) = 'Darwin' ]]; then
