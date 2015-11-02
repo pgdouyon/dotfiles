@@ -32,9 +32,9 @@ mkdir -p "$XDG_CACHE_HOME"
 mkdir -p "$XDG_DATA_HOME"
 
 # git-prompt
-if [[ ! -e ~/.git-prompt.sh ]]; then
+if [[ ! -e $XDG_DATA_HOME/git-prompt.sh ]]; then
     curl https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh \
-        -o ~/.git-prompt.sh
+        -o "$XDG_DATA_HOME/git-prompt.sh"
 fi
 
 # FZF
