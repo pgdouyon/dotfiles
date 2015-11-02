@@ -62,7 +62,7 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     brew install findutils --with-default-names
     # Neovim
     brew tap neovim/homebrew-neovim
-    brew install --HEAD neovim
+    brew install --stable neovim
     pip install neovim
     gem install pry rdoc rdoc-data rubocop
 fi
