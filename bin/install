@@ -62,4 +62,4 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     gem install pry
 fi
 
-tmux source-file ~/.tmux.conf
+tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
