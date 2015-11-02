@@ -13,4 +13,8 @@ export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
 export MAVEN_OPTS='-Xmx1000M -XX:MaxPermSize=800M'
 
-[ -f ~/.profile.local ] && source ~/.profile.local
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+[ -f ~/.profile.local ] && . ~/.profile.local
