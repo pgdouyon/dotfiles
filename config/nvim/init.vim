@@ -731,9 +731,9 @@ augroup vimrc
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
     autocmd VimEnter *
-                \ autocmd WinEnter * silent setlocal cursorline | redraw
+                \ autocmd vimrc WinEnter * if !(&diff) | silent setlocal cursorline | redraw | endif
     autocmd VimEnter *
-                \ autocmd WinLeave * silent setlocal nocursorline
+                \ autocmd vimrc WinLeave * silent setlocal nocursorline
     autocmd VimEnter * silent setlocal cursorline
 augroup END
 
