@@ -82,7 +82,7 @@ set list
 set nowrap
 set linebreak
 set lazyredraw
-set scrolloff=8
+set scrolloff=1
 set sidescrolloff=5
 set conceallevel=2
 set display+=lastline
