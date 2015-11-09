@@ -737,6 +737,12 @@ augroup vimrc
     autocmd VimEnter * silent setlocal cursorline
 augroup END
 
+augroup cmdwin
+    autocmd!
+    autocmd CmdWinEnter * noremap <buffer> <CR> <CR>
+    autocmd CmdWinEnter * noremap! <buffer> <CR> <CR>
+augroup END
+
 augroup qf
     autocmd!
     autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
