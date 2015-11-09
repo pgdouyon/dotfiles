@@ -727,7 +727,6 @@ augroup vimrc
     autocmd FocusLost *.{html,css} write
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.{hbs,handlebars} set filetype=html
-    autocmd ColorScheme * call s:SetupColorScheme()
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
     autocmd VimEnter *
@@ -752,12 +751,6 @@ augroup END
 " ----------------------------------------------------------------------
 " Colorscheme Settings
 " ----------------------------------------------------------------------
-function! s:SetupColorScheme()
-    if g:colors_name =~# "seoul256" && &background == "dark"
-        highlight DiffChange ctermbg=25 guibg=#005faf
-    endif
-endfunction
-
 function! s:SetColorColumn()
     if !exists("w:enableColorcolumn")
         let w:enableColorcolumn = 1
