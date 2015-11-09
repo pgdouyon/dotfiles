@@ -21,6 +21,7 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements
