@@ -38,10 +38,10 @@ Plug 'jonathanfilip/vim-lucius'
 
 " Tool Integration
 Plug 'mhinz/vim-signify'
+Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-Plug 'justinmk/vim-dirvish', {'on': 'Dirvish'}
 Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " Languages
