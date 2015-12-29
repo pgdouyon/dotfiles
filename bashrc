@@ -1,5 +1,5 @@
 #!/bin/bash
-set -o vi
+set -o emacs
 
 shopt -s expand_aliases
 
