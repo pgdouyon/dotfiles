@@ -181,6 +181,8 @@ endif
 set gdefault
 set sessionoptions-=options
 
+let g:is_bash = 1
+
 
 " ======================================================================
 " Mappings
