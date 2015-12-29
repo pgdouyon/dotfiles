@@ -1,4 +1,5 @@
 alias tmux='tmux -f "$XDG_CONFIG_HOME/tmux/tmux.conf"'
+alias ssh='TERM=xterm ssh'
 alias ls='ls -hFG --color=auto'
 alias ll='ls -hlFG --color=auto'
 alias up='cd ..'
