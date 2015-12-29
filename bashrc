@@ -14,6 +14,16 @@ function cpstat {
     rsync -vrltD --stats --human-readable "$1" "$2" | pv -lep -s $((2 + $(find "$1" | wc -l)))
 }
 
+function check-aliases {
+    echo 'Possible alias conflicts...'
+    alias | while read alias_line; do
+        alias=$(sed 's/alias \([^=]*\).*/\1/' <<< "$alias_line")
+        if [[ -n $(which "$alias") ]]; then
+            echo "$alias"
+        fi
+    done
+}
+
 if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
     source "$(brew --prefix)"/etc/bash_completion
 fi
