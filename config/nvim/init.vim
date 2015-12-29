@@ -310,7 +310,13 @@ if has("nvim")
     tnoremap <C-L> <C-\><C-N><C-W>l
     tnoremap <M-Left> <C-\><C-N>gT
     tnoremap <M-Right> <C-\><C-N>gt
-    tnoremap <C-Q> <C-\><C-N>'.<C-L>
+    " fix readline bindings, until neovim properly handles Alt key
+    tnoremap <M-f> <Esc>f
+    tnoremap <M-b> <Esc>b
+    tnoremap <M-d> <Esc>d
+    tnoremap <M-.> <Esc>.
+    tnoremap <M-BS> <Esc><BS>
+    tnoremap <silent> <C-[> <C-\><C-N>:echo <Bar> call search('\S', 'bcW')<CR>0
 
     nnoremap <silent> she :terminal<CR>
     nnoremap <silent> shs :split \| terminal<CR>
