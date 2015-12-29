@@ -7,6 +7,7 @@ alias v='nvim +NifflerMRU'
 alias gtypist='gtypist -b -e0 -w -S'
 alias jconsole='_JAVA_OPTIONS="" jconsole'
 alias testping='ping -c3 www.google.com'
+alias initvim='nvim "$XDG_CONFIG_HOME/nvim/init.vim"'
 
 # git aliases
 alias g='git'
