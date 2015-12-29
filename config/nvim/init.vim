@@ -739,10 +739,12 @@ augroup vimrc
     autocmd BufRead,BufNewFile *.{hbs,handlebars} set filetype=html
     autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
-    autocmd VimEnter *
-                \ autocmd vimrc WinEnter * if !(&diff) | silent setlocal cursorline | redraw | endif
-    autocmd VimEnter *
-                \ autocmd vimrc WinLeave * silent setlocal nocursorline
+    autocmd WinEnter,BufWinEnter * if !(&diff) | silent set cursorline | redraw | endif
+    autocmd WinLeave,BufWinLeave * silent set nocursorline
+augroup END
+
+augroup vimenter
+    autocmd!
     autocmd VimEnter * silent setlocal cursorline
 augroup END
 
