@@ -64,6 +64,18 @@ call plug#end()
 " Options
 " ======================================================================
 
+" Don't set these after startup, can mess up local values and setglobal is borked
+if has('vim_starting')
+    set tags=./tags;/
+    set synmaxcol=500
+    set formatoptions=roq2lj
+    set autoindent
+    set expandtab
+    set shiftwidth=4
+    set softtabstop=4
+    set nofoldenable
+endif
+
 " Leader
 let mapleader="\<Space>"
 let maplocalleader="\<CR>"
@@ -73,9 +85,6 @@ set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-" Tags
-set tags=./tags;/
 
 " Displaying text
 set list
@@ -88,9 +97,6 @@ set conceallevel=2
 set display+=lastline
 set fillchars+=stl:\ ,stlnc:\ ,diff:-
 set listchars=trail:.,tab:>-
-
-" Syntax/Highlighting
-set synmaxcol=500
 
 " Multiple Windows
 set laststatus=2
@@ -123,21 +129,15 @@ set clipboard=unnamed
 " Editing Text
 set showmatch
 set backspace=indent,eol,start
-set formatoptions=roq2lj
 set complete=.,w,b
 set nrformats-=octal
 set matchpairs+=<:>
 
 " Tabs/Indenting
-set autoindent
 set smarttab
-set expandtab
 set shiftround
-set shiftwidth=4
-set softtabstop=4
 
 " Folding
-set nofoldenable
 set foldopen=insert,jump,mark,percent,quickfix,search,tag,undo
 set foldtext=foldtext#schmexy_foldtext()
 
