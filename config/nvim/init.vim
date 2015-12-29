@@ -300,8 +300,8 @@ cnoremap <C-p> <Up>
 " ----------------------------------------------------------------------
 if has("nvim")
     nnoremap <C-Q> <Esc>
-    nnoremap <M-Left> <Esc>gT
-    nnoremap <M-Right> <Esc>gt
+    nnoremap <M-Left> gT
+    nnoremap <M-Right> gt
     inoremap <M-Left> <Esc>gT
     inoremap <M-Right> <Esc>gt
     tnoremap <C-H> <C-\><C-N><C-W>h
