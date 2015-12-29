@@ -6,6 +6,7 @@ alias up='cd ..'
 alias v='nvim +NifflerMRU'
 alias gtypist='gtypist -b -e0 -w -S'
 alias jconsole='_JAVA_OPTIONS="" jconsole'
+alias testping='ping -c3 www.google.com'
 
 # git aliases
 alias g='git'
