@@ -315,7 +315,7 @@ if has("nvim")
     nnoremap <silent> she :terminal<CR>
     nnoremap <silent> shs :split \| terminal<CR>
     nnoremap <silent> shv :vsplit \| terminal<CR>
-    nnoremap <silent> sht :tab split \| terminal<CR>
+    nnoremap <silent> sht :-tabnew +terminal<CR>
     augroup terminal
         autocmd!
         autocmd BufEnter term://* call feedkeys("i", "nt")
