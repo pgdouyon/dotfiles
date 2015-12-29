@@ -319,7 +319,7 @@ if has("nvim")
     augroup terminal
         autocmd!
         autocmd BufEnter term://* call feedkeys("i", "nt")
-        autocmd BufLeave term://* redraw!
+        autocmd BufLeave term://* redraw | echo
     augroup END
 else
     nnoremap <silent> she :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
