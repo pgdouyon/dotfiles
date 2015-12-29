@@ -2,7 +2,7 @@
 " Vim-Plug Bundles
 " ======================================================================
 
-call plug#begin(expand('$XDG_CONFIG_HOME/nvim/bundle'))
+call plug#begin('$XDG_CONFIG_HOME/nvim/bundle')
 
 " Personal Plugins
 Plug 'pgdouyon/vim-niffler'
