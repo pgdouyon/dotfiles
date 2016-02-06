@@ -37,12 +37,12 @@ Plug 'romainl/Apprentice'
 Plug 'jonathanfilip/vim-lucius'
 
 " Tool Integration
+Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
-Plug 'gregsexton/gitv', {'on': 'Gitv'}
 
 " Languages
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -711,19 +711,10 @@ let g:accio_create_empty_quickfix = 0
 let g:accio_update_interval = 250
 
 " ----------------------------------------------------------------------
-" Gitv
+" GV
 " ----------------------------------------------------------------------
-let g:Gitv_DoNotMapCtrlKey = 1
-nnoremap <silent> dgv :Gitv<CR>
-nnoremap <silent> dgf :Gitv!<CR>
-augroup gitv
-    autocmd!
-    autocmd Filetype gitv nmap <buffer> <silent> <C-N> <Plug>(gitv-previous-commit)
-    autocmd Filetype gitv nmap <buffer> <silent> <C-P> <Plug>(gitv-next-commit)
-    autocmd Filetype gitv nmap <buffer> <silent> <C-S> <Plug>(gitv-split)
-    autocmd Filetype gitv nmap <buffer> <silent> <C-V> <Plug>(gitv-vsplit)
-    autocmd Filetype gitv nmap <buffer> <silent> <C-T> <Plug>(gitv-tabedit)
-augroup END
+nnoremap <silent> dgv :GV -n300<CR>
+nnoremap <silent> dgf :GV! -n300<CR>
 
 
 " ======================================================================
