@@ -201,6 +201,9 @@ xnoremap k gk
 xnoremap gj j
 xnoremap gk k
 
+nnoremap gh gT
+nnoremap gl gt
+
 noremap _ -
 
 nnoremap Q @q
@@ -215,8 +218,8 @@ nnoremap <silent> <Leader>r :redraw!<Esc>
 
 nnoremap <C-E> 2<C-E>
 nnoremap <C-Y> 2<C-Y>
-nnoremap zh zH
-nnoremap zl zL
+nnoremap zh 10zh
+nnoremap zl 10zl
 
 " fix {,} motions in files with trailing whitespace
 nnoremap <silent> { m':call search('^\s*$\n\s*\S', 'bW')<CR>
@@ -289,10 +292,6 @@ inoremap <C-_> <C-A>
 " write file with super user privileges
 cabbrev w!! w !sudo tee % > /dev/null
 
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
