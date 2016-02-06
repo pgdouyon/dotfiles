@@ -25,6 +25,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements
+Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
@@ -715,6 +716,19 @@ let g:accio_update_interval = 250
 " ----------------------------------------------------------------------
 nnoremap <silent> dgv :GV -n300<CR>
 nnoremap <silent> dgf :GV! -n300<CR>
+
+" ----------------------------------------------------------------------
+" Switch.vim
+" ----------------------------------------------------------------------
+let g:switch_mapping = "<CR>"
+let g:switch_custom_definitions =
+    \ [
+    \   ['!=', '=='],
+    \   {
+    \       '!(\([^(&|)]\+\|([^()]\+)\) && \([^(&|)]\+\|([^()]\+)\))': '!\1 || !\2',
+    \       '!(\([^(&|)]\+\|([^()]\+)\) || \([^(&|)]\+\|([^()]\+)\))': '!\1 && !\2'
+    \   }
+    \ ]
 
 
 " ======================================================================
