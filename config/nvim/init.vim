@@ -649,7 +649,6 @@ xmap <Leader>ea <Plug>(EasyAlign)
 " ----------------------------------------------------------------------
 " Dirvish
 " ----------------------------------------------------------------------
-let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 nnoremap <silent> - :Dirvish %:p:h<CR>
 
