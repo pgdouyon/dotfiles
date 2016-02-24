@@ -10,6 +10,7 @@ Plug 'pgdouyon/vim-apparate'
 Plug 'pgdouyon/vim-evanesco'
 Plug 'pgdouyon/vim-protean'
 Plug 'pgdouyon/vim-accio'
+Plug 'pgdouyon/vim-yin-yang'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -36,6 +37,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'junegunn/seoul256.vim'
 Plug 'romainl/Apprentice'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'whatyouhide/vim-gotham'
 
 " Tool Integration
 Plug 'junegunn/gv.vim'
@@ -386,9 +388,9 @@ inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 " ----------------------------------------------------------------------
 function! s:ColorToggle()
     if (&background ==? "dark")
-        LuciusLightLowContrast
+        set background=light
     else
-        LuciusDarkLowContrast
+        set background=dark
     endif
 endfunction
 
@@ -772,6 +774,9 @@ augroup END
 " ----------------------------------------------------------------------
 " Colorscheme Settings
 " ----------------------------------------------------------------------
+nnoremap go :colorscheme gotham<CR>
+nnoremap cy :colorscheme yin<CR>
+
 function! s:SetColorColumn()
     if !exists("w:enableColorcolumn")
         let w:enableColorcolumn = 1
@@ -789,8 +794,7 @@ endfunction
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
-    colorscheme lucius
-    LuciusDarkLowContrast
+    colorscheme gotham
 endif
 
 if filereadable(expand('$HOME/.vimrc.local'))
