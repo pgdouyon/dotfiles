@@ -77,6 +77,7 @@ if has('vim_starting')
     set shiftwidth=4
     set softtabstop=4
     set nofoldenable
+    set undofile
 endif
 
 " Leader
@@ -168,7 +169,6 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar
 set wildignore+=**/tmp/*,*.swp,*~
 set wildignore+=*.doc*,*.ppt*,*.jpg,*.png,*.pdf
 set undodir=/tmp/
-set undofile
 
 " Executing External Commands
 set shellslash
