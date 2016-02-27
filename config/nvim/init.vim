@@ -34,7 +34,6 @@ Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 Plug 'michaeljsmith/vim-indent-object'
 
 " Appearance
-Plug 'junegunn/seoul256.vim'
 Plug 'romainl/Apprentice'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'whatyouhide/vim-gotham'
@@ -674,12 +673,6 @@ nmap K <Plug>DashSearch
 " Tagbar
 " ----------------------------------------------------------------------
 nnoremap <Leader>tt :TagbarToggle<CR>
-
-" ----------------------------------------------------------------------
-" Seoul256
-" ----------------------------------------------------------------------
-let g:seoul256_background=236
-let g:seoul256_light_background=255
 
 " ----------------------------------------------------------------------
 " Endwise
