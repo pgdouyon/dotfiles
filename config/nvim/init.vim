@@ -607,7 +607,7 @@ nnoremap cd :Gcd<CR>:pwd<CR>
 
 " do git ...
 nnoremap <silent> dgb :Gblame<CR>
-nnoremap <silent> dgs :Gstatus<CR>
+nnoremap <silent> dgs :Gstatus <Bar> wincmd J<CR>
 nnoremap <silent> dgd :Gvdiff<CR>
 nnoremap <silent> dgc :Gcommit<CR>
 nnoremap <silent> dga :Gwrite<CR>
