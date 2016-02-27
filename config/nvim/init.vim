@@ -416,7 +416,7 @@ function! s:Scratch()
     endif
 endfunction
 
-nnoremap zs :call <SID>Scratch()<CR>
+nnoremap <silent> zs :silent call <SID>Scratch()<CR>
 command! -nargs=1 -complete=dir -bang Keep setlocal buftype= | saveas<bang> <args>
 
 " ----------------------------------------------------------------------
