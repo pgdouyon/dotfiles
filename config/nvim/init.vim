@@ -383,17 +383,6 @@ inoremap <C-b>= <Esc>:call <SID>MakeSectionBox("=")<CR>
 inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 
 " ----------------------------------------------------------------------
-" Toggle Background Color
-" ----------------------------------------------------------------------
-function! s:ColorToggle()
-    if (&background ==? "dark")
-        set background=light
-    else
-        set background=dark
-    endif
-endfunction
-
-" ----------------------------------------------------------------------
 " ColorColumnToggle
 " ----------------------------------------------------------------------
 function! s:ColorColumnToggle()
@@ -637,7 +626,6 @@ nnoremap <silent> sgh :Git! show HEAD<CR>
 " Unimpaired Settings
 " ----------------------------------------------------------------------
 function! s:UnimpairedMappings()
-    nnoremap <silent> cob :call <SID>ColorToggle()<CR>
     nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 endfunction
 
