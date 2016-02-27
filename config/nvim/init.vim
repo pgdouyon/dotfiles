@@ -620,7 +620,7 @@ nnoremap <silent> sgl :Glog<CR>
 nnoremap <silent> sgb :Git! branch<CR>
 nnoremap <silent> sgd :Git! diff<CR>
 nnoremap <silent> sgc :Git! diff --cached<CR>
-nnoremap <silent> sgh :Git! show HEAD<CR>
+nnoremap <silent> sgh :Git! show HEAD --format=short<CR>
 
 " ----------------------------------------------------------------------
 " Unimpaired Settings
