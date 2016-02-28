@@ -302,12 +302,12 @@ if has("nvim")
     nnoremap <M-Right> gt
     inoremap <M-Left> <Esc>gT
     inoremap <M-Right> <Esc>gt
-    tnoremap <C-H> <C-\><C-N><C-W>h
-    tnoremap <C-J> <C-\><C-N><C-W>j
-    tnoremap <C-K> <C-\><C-N><C-W>k
-    tnoremap <C-L> <C-\><C-N><C-W>l
     tnoremap <M-Left> <C-\><C-N>gT
     tnoremap <M-Right> <C-\><C-N>gt
+    tmap <C-H> <C-\><C-N><C-H>
+    tmap <C-J> <C-\><C-N><C-J>
+    tmap <C-K> <C-\><C-N><C-K>
+    tmap <C-L> <C-\><C-N><C-L>
     " fix readline bindings, until neovim properly handles Alt key
     tnoremap <M-f> <Esc>f
     tnoremap <M-b> <Esc>b
