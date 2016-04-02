@@ -55,7 +55,6 @@ Plug 'tpope/vim-salve', {'for': 'clojure'}
 Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
-Plug 'mattn/emmet-vim', {'for': ['html', 'xml', 'ftl']}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
 Plug 'tpope/vim-markdown'
 Plug 'chaquotay/ftl-vim-syntax'
@@ -646,12 +645,6 @@ xmap <Leader>ea <Plug>(EasyAlign)
 " ----------------------------------------------------------------------
 let g:loaded_netrwPlugin = 1
 nnoremap <silent> - :Dirvish %:p:h<CR>
-
-" ----------------------------------------------------------------------
-" Emmet
-" ----------------------------------------------------------------------
-let g:user_emmet_leader_key='<C-P>'
-let g:user_emmet_mode = 'vi'
 
 " ----------------------------------------------------------------------
 " Markdown Settings
