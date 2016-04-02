@@ -209,6 +209,8 @@ noremap _ -
 nnoremap Q @q
 
 nnoremap <silent> du :diffupdate<CR>
+nnoremap <silent> do :<C-U>call diff#diffget()<CR>
+nnoremap <silent> dp :<C-U>call diff#diffput()<CR>
 
 nnoremap <Leader>sv :silent source $MYVIMRC<CR>
 
