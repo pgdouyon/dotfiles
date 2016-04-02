@@ -325,8 +325,8 @@ if has("nvim")
     nnoremap <silent> sht :-tabnew +terminal<CR>
     augroup terminal
         autocmd!
-        autocmd BufEnter term://* call feedkeys("i", "nt")
-        autocmd BufLeave term://* redraw | echo
+        autocmd BufEnter * if &buftype ==# "terminal" | call feedkeys("i", "nt") | endif
+        autocmd BufLeave * if &buftype ==# "terminal" | redraw | echo | endif
     augroup END
 else
     nnoremap <silent> she :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
