@@ -43,6 +43,7 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'chrisbra/vim-diff-enhanced'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
@@ -146,6 +147,7 @@ set foldtext=foldtext#schmexy_foldtext()
 
 " Diff Mode
 set diffopt=filler,vertical
+set diffexpr=EnhancedDiff#Diff('git\ diff',\ '--diff-algorithm=patience')
 
 " Mapping
 set ttimeout
