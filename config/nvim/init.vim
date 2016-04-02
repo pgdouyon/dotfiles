@@ -142,7 +142,7 @@ set smarttab
 set shiftround
 
 " Folding
-set foldopen=insert,jump,mark,percent,quickfix,search,tag,undo
+set foldopen=insert,mark,quickfix,search,tag,undo
 set foldtext=foldtext#schmexy_foldtext()
 
 " Diff Mode
