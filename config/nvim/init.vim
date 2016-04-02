@@ -100,7 +100,7 @@ set sidescrolloff=5
 set conceallevel=2
 set display+=lastline
 set fillchars+=stl:\ ,stlnc:\ ,diff:-
-set listchars=trail:.,tab:>-
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 " Multiple Windows
 set laststatus=2
