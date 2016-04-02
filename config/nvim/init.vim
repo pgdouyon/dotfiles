@@ -183,6 +183,7 @@ set gdefault
 set sessionoptions-=options
 
 let g:is_bash = 1
+let g:sql_type_default = 'mysql'
 
 
 " ======================================================================
