@@ -662,14 +662,13 @@ nnoremap <Leader>tt :TagbarToggle<CR>
 " Endwise
 " ----------------------------------------------------------------------
 let g:endwise_no_mappings = 1
-inoremap <expr> <CR> <SID>AutocloseBraces()
+inoremap <CR> <CR><C-R>=<SID>AutocloseBraces()<CR>
 
 function! s:AutocloseBraces()
-    let prev_char = getline(".")[col(".") - 2]
-    if prev_char ==# "{"
-        return "\<CR>}\<Esc>==O"
+    let prev_line = getline(line(".") - 1)
+    if prev_line =~# '{$'
+        return "}\<C-O>O"
     else
-        call feedkeys("\<CR>", "nt")
         call feedkeys("\<Plug>DiscretionaryEnd", "m")
         return ""
     endif
