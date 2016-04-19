@@ -25,5 +25,18 @@ export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo:
 export _FASD_DATA="$XDG_DATA_HOME/fasd"
 
 export PATH="$PATH:$XDG_DATA_HOME/rvm/bin" # Add RVM to PATH for scripting
+
+if command -v gpg-agent >/dev/null; then
+    if [ -f  "${XDG_CACHE_HOME}/gpg/gpg-agent-info" ]; then
+        . "${XDG_CACHE_HOME}/gpg/gpg-agent-info"
+        export GPG_AGENT_INFO
+    fi
+    if ! gpg-agent 2>/dev/null; then
+        mkdir -p "${XDG_CACHE_HOME}/gpg"
+        eval "$(gpg-agent --daemon --no-allow-external-cache --write-env-file "${XDG_CACHE_HOME}/gpg/gpg-agent-info")"
+        export GPG_AGENT_INFO
+    fi
+fi
+
 [ -s "$XDG_DATA_HOME/rvm/scripts/rvm" ] && . "$XDG_DATA_HOME/rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [ -f ~/.profile.local ] && . ~/.profile.local
