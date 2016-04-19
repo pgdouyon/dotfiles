@@ -53,18 +53,7 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     # Homebrew
     [[ -z $(which brew) ]] &&
         ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
-    brew update
-    brew install \
-        ag bash bash-completion coreutils ctags fasd git ghi \
-        groovy libgit2 leiningen lua luajit macvim maven python python3 pv \
-        reattach-to-user-namespace ruby shellcheck tmux tree vim wget
-    # GNU utils to replace BSD findutils
-    brew tap homebrew/dupes
-    brew install grep --with-default-names
-    brew install findutils --with-default-names
-    # Neovim
-    brew tap neovim/homebrew-neovim
-    brew install --stable neovim
+    brew update; brew bundle
     pip install neovim
     gem install pry rdoc rdoc-data rubocop
 fi
