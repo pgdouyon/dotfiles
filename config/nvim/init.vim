@@ -764,7 +764,9 @@ endfunction
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
-    colorscheme gotham
+    let hour = exists("*strftime") ? str2nr(strftime("%H")) : 0
+    let yinyang = (hour > 5 && hour < 17) ? "yang" : "yin"
+    execute "colorscheme" yinyang
 endif
 
 if filereadable(expand('$HOME/.vimrc.local'))
