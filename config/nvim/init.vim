@@ -294,8 +294,9 @@ inoremap <C-_> <C-A>
 " write file with super user privileges
 cabbrev w!! w !sudo tee % > /dev/null
 
-cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
+cnoremap <C-A> <Home>
+cnoremap <C-N> <Down>
+cnoremap <C-P> <Up>
 
 " ----------------------------------------------------------------------
 " Terminal
