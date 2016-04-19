@@ -7,8 +7,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 # JAVA_TOOL_OPTIONS
 export _JAVA_OPTIONS=-Djava.awt.headless=true
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
-export M2_HOME=/usr/local/apache-maven-3.2.3
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$M2_HOME/bin:$HOME/bin:$PATH
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 
 export MAVEN_OPTS='-Xmx1000M -XX:MaxPermSize=800M'
