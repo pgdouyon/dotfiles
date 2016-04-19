@@ -6,8 +6,7 @@ shopt -s expand_aliases
 stty -ixon
 
 function cdl {
-    cd "$1"
-    ls
+    cd "$@"; ls
 }
 
 function cpstat {
