@@ -282,8 +282,8 @@ inoremap <C-K> <C-X><C-K>
 inoremap <C-F> <C-X><C-F>
 inoremap <C-L> <C-X><C-L>
 
-inoremap <C-a> <Home>
-inoremap <C-e> <End>
+inoremap <C-A> <Home>
+inoremap <expr> <C-E> pumvisible() ? "\<C-E>" : "\<End>"
 
 " can type with <C-/>
 inoremap <C-_> <C-A>
