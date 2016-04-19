@@ -499,7 +499,7 @@ nnoremap <silent> coq :call <SID>Ctoggle()<CR>
 " ----------------------------------------------------------------------
 " Stolen from scriptease.vim
 function! s:syntax_groups(count)
-    let syntax_names = reverse(map(synstack(line("."), col(".")), 'synIDattr(v:val, "name")'))
+    let syntax_names = uniq(reverse(map(synstack(line("."), col(".")), 'synIDattr(v:val, "name")')))
     if a:count
         let name = get(syntax_names, a:count - 1, "")
         if name !=# ""
