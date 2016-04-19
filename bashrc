@@ -5,6 +5,12 @@ shopt -s expand_aliases
 
 stty -ixon
 
+# Private utility functions
+function __archive_name {
+    printf '%s' "$(basename "$1").tar"
+}
+
+# Public functions
 function cdl {
     cd "$@"; ls
 }
@@ -27,6 +33,24 @@ function vs {
     session_home="$HOME/vim-sessions/"
     session=$(find "$session_home" -type f -print0 | xargs -0 -n1 basename | fzf)
     nvim -S "${session_home}${session}"
+}
+
+function archive {
+    for file in "$@"; do
+        local archive_name
+        archive_name=$(__archive_name "$file")
+        if tar -cvf "$archive_name" "$file"; then
+            rm -rf "$file"
+        fi
+    done
+}
+
+function unarchive {
+    for tar_file in "$@"; do
+        if tar -xvf "$tar_file"; then
+            rm -rf "$tar_file"
+        fi
+    done
 }
 
 if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
