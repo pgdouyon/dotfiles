@@ -302,13 +302,6 @@ cnoremap <C-P> <Up>
 " Terminal
 " ----------------------------------------------------------------------
 if has("nvim")
-    nnoremap <C-Q> <Esc>
-    nnoremap <M-Left> gT
-    nnoremap <M-Right> gt
-    inoremap <M-Left> <Esc>gT
-    inoremap <M-Right> <Esc>gt
-    tnoremap <M-Left> <C-\><C-N>gT
-    tnoremap <M-Right> <C-\><C-N>gt
     tmap <C-H> <C-\><C-N><C-H>
     tmap <C-J> <C-\><C-N><C-J>
     tmap <C-K> <C-\><C-N><C-K>
