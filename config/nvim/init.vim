@@ -709,7 +709,6 @@ augroup vimrc
     autocmd!
     " Jump to the last position when reopening a file
     autocmd BufReadPost * if &filetype != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    autocmd FocusLost *.{html,css} write
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.{hbs,handlebars} set filetype=html
     autocmd Filetype pandoc,markdown setlocal spell
