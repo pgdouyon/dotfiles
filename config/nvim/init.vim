@@ -583,13 +583,6 @@ augroup rainbow
 augroup END
 
 " ----------------------------------------------------------------------
-" Fireplace Settings
-" ----------------------------------------------------------------------
-nnoremap <silent> <Leader>fdj yiw:Djump <C-r>0<CR>
-nnoremap <silent> <Leader>fds yiw:Dsplit <C-r>0<CR>
-nnoremap <silent> <Leader>fe :%Eval<CR>
-
-" ----------------------------------------------------------------------
 " Signify Settings
 " ----------------------------------------------------------------------
 let g:signify_vcs_list = ['git', 'svn']
