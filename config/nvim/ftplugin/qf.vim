@@ -1,6 +1,7 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
+nnoremap <silent><buffer><nowait> <CR> <CR>
 nnoremap <silent><buffer><nowait> s <C-W><CR><C-W>p<C-W>J<C-W>p
 nnoremap <silent><buffer><nowait> v <C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p
 nnoremap <silent><buffer><nowait> t <C-W><CR><C-W>T
