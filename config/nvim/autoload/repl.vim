@@ -4,9 +4,9 @@ set cpoptions&vim
 " ======================================================================
 " Start Repl
 " ======================================================================
-function! repl#start_repl(repl, title)
+function! repl#start_repl(repl, title, ...)
     if has("nvim")
-        let filetype = &filetype
+        let filetype = a:0 ? a:1 : &filetype
         let wincmd = (winwidth(0) <= (&columns / 2)) ? "wincmd s" : "wincmd v"
         execute wincmd
         execute "terminal" a:repl
