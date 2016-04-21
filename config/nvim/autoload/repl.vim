@@ -11,6 +11,7 @@ function! repl#start_repl(repl, title)
         execute wincmd
         execute "terminal" a:repl
         execute "setlocal filetype=".filetype
+        execute "file" a:repl
     else
         execute "Start! -title=".a:title." ".a:repl
         call system("tmux join-pane -h -p 30 -s ".a:title)
