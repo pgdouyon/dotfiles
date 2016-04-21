@@ -406,7 +406,7 @@ command! -nargs=1 -complete=dir -bang Keep setlocal buftype= | saveas<bang> <arg
 " ----------------------------------------------------------------------
 " BufKill
 " ----------------------------------------------------------------------
-function! s:BufKill()
+function! s:BufKill(kill_command)
     let buf_to_kill = bufnr("%")
     let orig_win = winnr()
     let orig_tab = tabpagenr()
@@ -419,10 +419,11 @@ function! s:BufKill()
     endfor
     execute "noautocmd tabnext" orig_tab
     execute "noautocmd" orig_win "wincmd w"
-    execute "silent! bdelete!" buf_to_kill
+    execute "silent!" a:kill_command buf_to_kill
 endfunction
 
-nnoremap <silent> <Leader>bd :call <SID>BufKill()<CR>
+nnoremap <silent> <Leader>bd :call <SID>BufKill("bdelete!")<CR>
+nnoremap <silent> <Leader>bw :call <SID>BufKill("bwipe!")<CR>
 
 " ----------------------------------------------------------------------
 " Todo
