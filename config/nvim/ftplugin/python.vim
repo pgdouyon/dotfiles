@@ -15,7 +15,7 @@ augroup END
 " ----------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------
-nnoremap <silent><buffer> R :<C-U>call repl#start_repl("python", "python")<CR>
+nnoremap <silent><buffer> R :<C-U>call repl#start_repl("python3", "python3")<CR>
 nnoremap <silent><buffer> K :python help("<C-R><C-W>")<CR>
 
 nnoremap <silent><buffer> gd :<C-U>call <SID>goto_local_declaration()<CR>
