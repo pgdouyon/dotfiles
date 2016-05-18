@@ -1,6 +1,7 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
+runtime! ftplugin/html.vim
 runtime! ftplugin/html/sparkup.vim
 
 setlocal shiftwidth=2
