@@ -29,6 +29,7 @@ function! s:sort_imports()
 endfunction
 
 command! -nargs=0 -buffer SortImports call <SID>sort_imports()
+command! -nargs=0 -buffer IntellijOpen silent !open -a IntelliJ\ IDEA\ 15 %
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
