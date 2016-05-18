@@ -8,5 +8,13 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+[color]
+	ui = auto
+[color "diff"]
+	old = 88
+	new = 29
+[color "status"]
+	added = 29
+	changed = 88
 [ghi]
 	token = !security find-internet-password -a pgdouyon -s github.com -l 'ghi token' -w
