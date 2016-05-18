@@ -1,6 +1,8 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
+runtime! ftplugin/html/sparkup.vim
+
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal commentstring=<#--%s-->
