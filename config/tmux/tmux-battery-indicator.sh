@@ -15,11 +15,11 @@ if (( charged_slots > 10 )); then
 fi
 
 if (( charged_slots <= 2 )); then
-    echo -n '#[fg=red]'
+    echo -n '#[fg=colour52]'
 elif (( charged_slots <= 5 )); then
-    echo -n '#[fg=yellow]'
+    echo -n '#[fg=colour142]'
 else
-    echo -n '#[fg=green]'
+    echo -n '#[fg=colour35]'
 fi
 
 echo -n 'Battery: ['
