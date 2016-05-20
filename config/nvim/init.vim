@@ -547,6 +547,12 @@ nnoremap <silent> g! :<C-U>set opfunc=<SID>vim_eval<CR>g@
 nnoremap <silent> g!! :<C-U>set opfunc=<SID>vim_eval<CR>g@_
 xnoremap <silent> g! :<C-U>call <SID>vim_eval(visualmode())<CR>
 
+" ----------------------------------------------------------------------
+" Refresh Filetype Settings
+" ----------------------------------------------------------------------
+command! -nargs=1 RefreshFiletypeSettings
+            \ bufdo if &ft ==# '<args>' | set ft=text | set ft=<args> | endif
+
 
 " ======================================================================
 " Plugins
