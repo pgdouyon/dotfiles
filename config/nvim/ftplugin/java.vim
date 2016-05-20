@@ -8,13 +8,13 @@ nnoremap <silent><buffer> R :<C-U>call repl#start_repl("groovysh", "groovysh", "
 " struts
 nnoremap <silent><buffer> S :Ag --xml "\b<C-R><C-W>\b"<CR>
 
-function! s:jump_to_class_decl(direction)
+function! s:jump_to_toplevel_decl(direction)
     let flags = a:direction . 'sW'
-    call search('\C \<class\> \+\zs', flags)
+    call search('\C \<\%(class\|enum\|interface\)\> \+\zs', flags)
 endfunction
 
-nnoremap <silent><buffer> [[ :call <SID>jump_to_class_decl('b')<CR>
-nnoremap <silent><buffer> ]] :call <SID>jump_to_class_decl('')<CR>
+nnoremap <silent><buffer> [[ :call <SID>jump_to_toplevel_decl('b')<CR>
+nnoremap <silent><buffer> ]] :call <SID>jump_to_toplevel_decl('')<CR>
 
 function! s:sort_imports()
     let save_cursor = getpos(".")
