@@ -28,6 +28,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Editing Enhancements
 Plug 'AndrewRadev/switch.vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
@@ -712,6 +713,13 @@ let g:switch_custom_definitions =
     \   }
     \ ]
 
+" ----------------------------------------------------------------------
+" Ultisnips
+" ----------------------------------------------------------------------
+let g:UltiSnipsSnippetsDir = '$XDG_CONFIG_HOME/nvim/ultisnips'
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 " ======================================================================
 " Autocmds
