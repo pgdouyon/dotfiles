@@ -105,7 +105,6 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 " Multiple Windows
 set laststatus=2
 set statusline=%!statusline#schmexy_statusline()
-set hidden
 set splitbelow
 set splitright
 
@@ -133,7 +132,8 @@ set clipboard=unnamed
 " Editing Text
 set showmatch
 set backspace=indent,eol,start
-set complete=.,w,b
+set complete=.,w,b,u
+set completeopt=menu,preview
 set nrformats-=octal
 set matchpairs+=<:>
 
@@ -154,7 +154,6 @@ set ttimeout
 set ttimeoutlen=20
 
 " Reading/Writing Files
-set autowrite
 set autoread
 
 " Swap Files
