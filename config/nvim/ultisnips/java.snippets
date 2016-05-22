@@ -1,0 +1,75 @@
+snippet ifnull
+if (${1:var} == null) {
+	$0${VISUAL}
+}
+endsnippet
+
+snippet notnull
+if (${1:var} != null) {
+	$0${VISUAL}
+}
+endsnippet
+
+snippet get
+public ${1:String} get${2:Name}() {
+	return ${2/./\l$0/};
+}
+endsnippet
+
+snippet set
+public void set${1:Name}(${2:String} ${1/./\l$0/}) {
+	this.${1/./\l$0/} = ${1/./\l$0/};
+}
+endsnippet
+
+snippet getset
+public ${1:String} get${2:Name}() {
+	return ${2/./\l$0/};
+}
+
+public void set$2($1 ${2/./\l$0/}) {
+	this.${2/./\l$0/} = ${2/./\l$0/};
+}
+endsnippet
+
+snippet class
+package ${1:`!v substitute(substitute(expand(%:p:h), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
+
+${2:public} class `!v expand('%:t:r')` {
+	${3:public} `!v expand('%:t:r')`($4) {
+		${0:super();}
+	}
+}
+endsnippet
+
+snippet try
+try {
+	${1:${VISUAL}}
+} catch (${2:Exception} ex) {
+	${3:// do nothing}
+}
+endsnippet
+
+snippet tryf
+try {
+	${1:${VISUAL}}
+} finally {
+	${2}
+}
+endsnippet
+
+snippet const
+${1:private} static final ${2:String} ${3:CONSTANT} = $0;
+endsnippet
+
+snippet ju
+import java.util.$0;
+endsnippet
+
+snippet jus
+import java.util.stream.$0;
+endsnippet
+
+snippet juf
+import java.util.function.$0;
+endsnippet
