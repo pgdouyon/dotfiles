@@ -49,17 +49,17 @@ Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 " Languages
-Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'guns/vim-sexp', {'for': 'clojure'}
-Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'tpope/vim-salve', {'for': 'clojure'}
-Plug 'derekwyatt/vim-scala'
 Plug 'elzr/vim-json'
 Plug 'vim-ruby/vim-ruby'
-Plug 'rstacruz/sparkup', {'rtp': 'vim', 'for': ['html', 'xml', 'ftl']}
-Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
 Plug 'tpope/vim-markdown'
+Plug 'derekwyatt/vim-scala'
 Plug 'chaquotay/ftl-vim-syntax'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'rstacruz/sparkup', {'rtp': 'vim'}
+Plug 'guns/vim-sexp', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
 
 call plug#end()
 
