@@ -161,7 +161,7 @@ set directory^=~/.vim/_temp//
 " Command Line Editing
 set wildmenu
 set wildignorecase
-set wildmode=list:longest,full
+set wildmode=longest,full
 set wildignore+=*.o,*.out,*.obj,*.class,*.exe,*.git,*.pyc,*.rbc,*.rbo,*.gem,*/node_modules/*
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar
 set wildignore+=**/tmp/*,*.swp,*~
