@@ -33,7 +33,7 @@ public void set$2($1 ${2/./\l$0/}) {
 endsnippet
 
 snippet class
-package ${1:`!v substitute(substitute(expand(%:p:h), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
+package ${1:`!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
 
 ${2:public} class `!v expand('%:t:r')` {
 	${3:public} `!v expand('%:t:r')`($4) {
