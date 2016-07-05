@@ -53,7 +53,6 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-markdown'
 Plug 'derekwyatt/vim-scala'
 Plug 'chaquotay/ftl-vim-syntax'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-salve', {'for': 'clojure'}
@@ -579,14 +578,6 @@ nnoremap <silent> snt :NifflerTags %<CR>
 
 nnoremap <silent> g] :NifflerTselect<CR>
 nnoremap <silent> g<C-]> :NifflerTjump<CR>
-
-" ----------------------------------------------------------------------
-" Rainbow Parentheses Settings
-" ----------------------------------------------------------------------
-augroup rainbow
-    autocmd!
-    autocmd FileType clojure,html,javascript RainbowParentheses
-augroup END
 
 " ----------------------------------------------------------------------
 " Signify Settings
