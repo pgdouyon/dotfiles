@@ -23,7 +23,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Editing Enhancements
 Plug 'AndrewRadev/switch.vim'
@@ -720,6 +719,33 @@ let g:UltiSnipsSnippetsDir = '$XDG_CONFIG_HOME/nvim/ultisnips'
 let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+
+" ----------------------------------------------------------------------
+" Vim-Sexp
+" ----------------------------------------------------------------------
+function! s:sexp_mappings()
+    for wrap_char in ["b", "(", ")", "r", "[", "]", "B", "{", "}"]
+        " vim surround mappings
+        execute printf("nmap <buffer><silent> cse%s vieS%s", wrap_char, wrap_char)
+    endfor
+    nmap <buffer> dsf <Plug>(sexp_splice_list)
+    nmap <buffer> <I  <Plug>(sexp_insert_at_list_head)
+    nmap <buffer> >I  <Plug>(sexp_insert_at_list_tail)
+    nmap <buffer> <f  <Plug>(sexp_swap_list_backward)
+    nmap <buffer> >f  <Plug>(sexp_swap_list_forward)
+    nmap <buffer> <e  <Plug>(sexp_swap_element_backward)
+    nmap <buffer> >e  <Plug>(sexp_swap_element_forward)
+    nmap <buffer> >(  <Plug>(sexp_emit_head_element)
+    nmap <buffer> <)  <Plug>(sexp_emit_tail_element)
+    nmap <buffer> <(  <Plug>(sexp_capture_prev_element)
+    nmap <buffer> >)  <Plug>(sexp_capture_next_element)
+endfunction
+
+augroup sexp_mappings
+    autocmd!
+    autocmd FileType clojure call <SID>sexp_mappings()
+augroup END
+
 
 " ======================================================================
 " Autocmds
