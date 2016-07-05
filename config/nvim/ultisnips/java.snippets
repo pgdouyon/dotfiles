@@ -25,8 +25,16 @@ endsnippet
 snippet getset
 public ${1:String} get${2:Name}() {
 	return ${2/./\l$0/};
+}$0
+public void set$2($1 ${2/./\l$0/}) {
+	this.${2/./\l$0/} = ${2/./\l$0/};
 }
+endsnippet
 
+snippet isset
+public ${1:String} is${2:Name}() {
+	return ${2/./\l$0/};
+}$0
 public void set$2($1 ${2/./\l$0/}) {
 	this.${2/./\l$0/} = ${2/./\l$0/};
 }
@@ -36,6 +44,16 @@ snippet class
 package ${1:`!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
 
 ${2:public} class `!v expand('%:t:r')` {
+	${3:public} `!v expand('%:t:r')`($4) {
+		${0:super();}
+	}
+}
+endsnippet
+
+snippet enum
+package ${1:`!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
+
+${2:public} enum `!v expand('%:t:r')` {
 	${3:public} `!v expand('%:t:r')`($4) {
 		${0:super();}
 	}
@@ -72,4 +90,16 @@ endsnippet
 
 snippet juf
 import java.util.function.$0;
+endsnippet
+
+snippet jio
+import java.io.$0;
+endsnippet
+
+snippet toList
+collect(Collectors.toList());$0
+endsnippet
+
+snippet toSet
+collect(Collectors.toSet());$0
 endsnippet
