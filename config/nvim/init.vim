@@ -26,7 +26,6 @@ Plug 'tpope/vim-eunuch'
 
 " Editing Enhancements
 Plug 'AndrewRadev/switch.vim'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
@@ -682,12 +681,6 @@ xmap sp <Plug>Protean-Replace
 " ----------------------------------------------------------------------
 let g:accio_create_empty_quickfix = 0
 let g:accio_update_interval = 250
-
-" ----------------------------------------------------------------------
-" SplitJoin
-" ----------------------------------------------------------------------
-let g:splitjoin_split_mapping = "sj"
-let g:splitjoin_join_mapping = "sk"
 
 " ----------------------------------------------------------------------
 " Switch.vim
