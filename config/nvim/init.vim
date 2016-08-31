@@ -509,39 +509,6 @@ endfunction
 nnoremap <silent> <C-S> :<C-U>call <SID>syntax_groups(v:count)<CR>
 
 " ----------------------------------------------------------------------
-" Vim Eval
-" ----------------------------------------------------------------------
-" Stolen from scriptease.vim
-function! s:vim_eval(type)
-    let reg_save = @@
-    let clipboad_save = &clipboard
-    let selection_save = &selection
-    try
-        set selection=inclusive clipboard=
-        if a:type ==# "char"
-            execute "normal! `[v`]y"
-        elseif a:type ==# "line"
-            execute "normal! '[V']y"
-        else
-            execute "normal! gvy"
-        endif
-        let @@ = matchstr(@@, '^\_s\+') . string(eval(substitute(@@, '\n\%(\s*\\\)\?', '', 'g')))
-        normal! gvp
-    catch /^.*/
-        echohl ErrorMsg | echo "Error in evaling expression:" @@ | echo v:exception | echohl NONE
-    finally
-        let @@ = reg_save
-        let &clipboard = clipboad_save
-        let &selection = selection_save
-    endtry
-endfunction
-
-nnoremap <silent> g!p :copy . <Bar> execute "normal g!!" <Bar> execute "normal! I=> "  <Bar> -join <Bar> silent! call repeat#set("g!p", 1)<CR>
-nnoremap <silent> g! :<C-U>set opfunc=<SID>vim_eval<CR>g@
-nnoremap <silent> g!! :<C-U>set opfunc=<SID>vim_eval<CR>g@_
-xnoremap <silent> g! :<C-U>call <SID>vim_eval(visualmode())<CR>
-
-" ----------------------------------------------------------------------
 " Refresh Filetype Settings
 " ----------------------------------------------------------------------
 command! -nargs=1 RefreshFiletypeSettings
