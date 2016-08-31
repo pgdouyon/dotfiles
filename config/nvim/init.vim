@@ -77,7 +77,6 @@ endif
 
 " Leader
 let mapleader="\<Space>"
-let maplocalleader="\<CR>"
 
 " Searching
 set nohlsearch
@@ -146,14 +145,13 @@ set diffexpr=EnhancedDiff#Diff('git\ diff',\ '--diff-algorithm=patience')
 
 " Mapping
 set ttimeout
-set ttimeoutlen=20
+set ttimeoutlen=10
 
 " Reading/Writing Files
 set autoread
 
 " Swap Files
 set noswapfile
-set directory^=~/.vim/_temp//
 
 " Command Line Editing
 set wildmenu
