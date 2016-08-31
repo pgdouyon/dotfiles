@@ -34,8 +34,6 @@ Plug 'michaeljsmith/vim-indent-object'
 
 " Appearance
 Plug 'romainl/Apprentice'
-Plug 'jonathanfilip/vim-lucius'
-Plug 'whatyouhide/vim-gotham'
 
 " Tool Integration
 Plug 'junegunn/gv.vim'
@@ -766,7 +764,6 @@ augroup END
 " ----------------------------------------------------------------------
 " Colorscheme Settings
 " ----------------------------------------------------------------------
-nnoremap go :colorscheme gotham<CR>
 nnoremap cy :colorscheme yin<CR>
 
 function! s:SetColorColumn()
