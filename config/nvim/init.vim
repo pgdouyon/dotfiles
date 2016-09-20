@@ -391,11 +391,11 @@ function! s:Scratch()
         setlocal bufhidden=hide
         setlocal noswapfile
         setlocal buflisted
+        command! -buffer -nargs=1 -complete=dir -bang Keep setlocal buftype= | saveas<bang> <args>
     endif
 endfunction
 
 nnoremap <silent> zs :silent call <SID>Scratch()<CR>
-command! -nargs=1 -complete=dir -bang Keep setlocal buftype= | saveas<bang> <args>
 
 " ----------------------------------------------------------------------
 " BufKill
