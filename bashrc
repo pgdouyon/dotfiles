@@ -1,6 +1,7 @@
 #!/bin/bash
 set -o emacs
 
+shopt -s histappend
 shopt -s expand_aliases
 
 stty -ixon
