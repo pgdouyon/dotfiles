@@ -28,6 +28,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'AndrewRadev/switch.vim'
 Plug 'SirVer/ultisnips'
 Plug 'romainl/vim-qf'
+Plug 'romainl/vim-qlist'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
