@@ -282,6 +282,8 @@ inoremap <expr> <C-E> pumvisible() ? "\<C-E>" : "\<End>"
 " can type with <C-/>
 inoremap <C-_> <C-A>
 
+inoremap {<CR> {<CR>}<C-O>O
+
 " ----------------------------------------------------------------------
 " Command Line
 " ----------------------------------------------------------------------
@@ -616,22 +618,6 @@ nmap K <Plug>DashSearch
 " Tagbar
 " ----------------------------------------------------------------------
 nnoremap <Leader>tt :TagbarToggle<CR>
-
-" ----------------------------------------------------------------------
-" Endwise
-" ----------------------------------------------------------------------
-let g:endwise_no_mappings = 1
-inoremap <CR> <CR><C-R>=<SID>AutocloseBraces()<CR>
-
-function! s:AutocloseBraces()
-    let prev_line = getline(line(".") - 1)
-    if prev_line =~# '{$'
-        return "}\<C-O>O"
-    else
-        call feedkeys("\<Plug>DiscretionaryEnd", "m")
-        return ""
-    endif
-endfunction
 
 " ----------------------------------------------------------------------
 " Protean
