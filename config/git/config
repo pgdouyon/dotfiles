@@ -6,7 +6,7 @@
 [github]
 	user = pgdouyon
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 [color]
 	ui = auto
