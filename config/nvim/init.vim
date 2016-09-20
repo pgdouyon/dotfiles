@@ -457,26 +457,18 @@ nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<S
 " ----------------------------------------------------------------------
 " Ag
 " ----------------------------------------------------------------------
-function! s:Ag(use_loclist, args)
-    let save_errorformat = &g:errorformat
+if executable('ag')
+    set grepprg=ag\ --vimgrep\ --smart-case\ -W500\ $*
+    set grepformat=%f:%l:%c:%m,%f:%l:%m,%f
+endif
+
+function! s:Ag(args)
     let ag_args = (empty(a:args) ? printf('"\b%s\b"', expand("<cword>")) : a:args)
-    let ag_cmd = printf('ag --vimgrep --follow --smart-case %s 2>/dev/null', ag_args)
-    let ag_output = system(ag_cmd)
-    let &g:errorformat = '%f:%l:%c:%m,%f'
-    if a:use_loclist
-        silent! lgetexpr ag_output | lopen
-    else
-        silent! cgetexpr ag_output | copen
-    endif
-    let &g:errorformat = save_errorformat
+    execute "silent grep!" escape(ag_args, '|') | cwindow | redraw!
 endfunction
 
-command! -nargs=* -complete=file Ag call <SID>Ag(0, <q-args>)
-command! -nargs=* -complete=file AgAdd call <SID>Ag(0, <q-args>)
-command! -nargs=* -complete=file LAg call <SID>Ag(1, <q-args>)
-command! -nargs=* -complete=file LAgAdd call <SID>Ag(1, <q-args>)
-
-nnoremap ga :Ag<CR>
+command! -nargs=* -complete=file Ag call <SID>Ag(<q-args>)
+nnoremap <silent> ga :Ag<CR>
 
 " ----------------------------------------------------------------------
 " CToggle
