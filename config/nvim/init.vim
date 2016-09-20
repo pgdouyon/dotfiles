@@ -27,6 +27,7 @@ Plug 'tpope/vim-eunuch'
 " Editing Enhancements
 Plug 'AndrewRadev/switch.vim'
 Plug 'SirVer/ultisnips'
+Plug 'romainl/vim-qf'
 Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
