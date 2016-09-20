@@ -30,8 +30,8 @@ endfunction
 
 command! -nargs=0 -buffer SortImports call <SID>sort_imports()
 command! -nargs=0 -buffer IntellijOpen silent !open -a IntelliJ\ IDEA\ 15 %
-command! -nargs=0 -buffer Implements Ag ' implements %:t:r'
-command! -nargs=0 -buffer Extends Ag ' extends %:t:r'
+command! -nargs=0 -buffer Implements Ag ' implements .*%:t:r'
+command! -nargs=0 -buffer Extends Ag ' extends .*%:t:r'
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
