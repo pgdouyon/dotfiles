@@ -8,6 +8,8 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+[format]
+	pretty = %C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
 [color]
 	ui = auto
 [color "diff"]
