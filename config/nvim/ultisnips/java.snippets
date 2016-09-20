@@ -32,11 +32,11 @@ public void set$2($1 ${2/./\l$0/}) {
 endsnippet
 
 snippet isset
-public ${1:String} is${2:Name}() {
-	return ${2/./\l$0/};
+public boolean is${1:Name}() {
+	return ${1/./\l$0/};
 }$0
-public void set$2($1 ${2/./\l$0/}) {
-	this.${2/./\l$0/} = ${2/./\l$0/};
+public void set$1(boolean ${1/./\l$0/}) {
+	this.${1/./\l$0/} = ${1/./\l$0/};
 }
 endsnippet
 
@@ -96,10 +96,10 @@ snippet jio
 import java.io.$0;
 endsnippet
 
-snippet toList
+snippet tolist
 collect(Collectors.toList());$0
 endsnippet
 
-snippet toSet
+snippet toset
 collect(Collectors.toSet());$0
 endsnippet
