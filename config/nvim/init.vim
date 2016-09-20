@@ -47,9 +47,7 @@ Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 " Languages
-Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-markdown'
-Plug 'derekwyatt/vim-scala'
 Plug 'chaquotay/ftl-vim-syntax'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'guns/vim-sexp', {'for': 'clojure'}
