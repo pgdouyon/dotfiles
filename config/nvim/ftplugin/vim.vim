@@ -1,6 +1,8 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
+setlocal define=^\\s*let
+
 nnoremap <silent><buffer> K :help <C-R><C-W><CR>
 
 nnoremap <silent><buffer> [m :<C-U>call <SID>move_to_function_start("n", 0)<CR>

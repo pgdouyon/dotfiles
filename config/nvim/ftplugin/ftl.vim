@@ -8,6 +8,7 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal commentstring=<#--%s-->
 setlocal iskeyword+=-
+setlocal define=^\\s*<#assign
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo

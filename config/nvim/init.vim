@@ -85,6 +85,7 @@ set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
+set define=^\\s*.\\{-\\}\\ze\\i\\+\\s\\+=
 
 " Displaying text
 set list
