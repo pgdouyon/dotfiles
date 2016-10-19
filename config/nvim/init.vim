@@ -676,6 +676,15 @@ augroup sexp_mappings
     autocmd FileType clojure call <SID>sexp_mappings()
 augroup END
 
+" ----------------------------------------------------------------------
+" MatchTagAlways
+" ----------------------------------------------------------------------
+let g:mta_filetypes = {
+        \ 'html': 1,
+        \ 'ftl': 1,
+        \ 'xml' : 1
+        \ }
+
 
 " ======================================================================
 " Autocmds
