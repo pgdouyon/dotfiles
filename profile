@@ -1,7 +1,6 @@
 #!/bin/sh
 export EDITOR=vim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-# export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 export JAVA_HOME=`/usr/libexec/java_home`
 # JAVA_TOOL_OPTIONS
@@ -9,6 +8,7 @@ export _JAVA_OPTIONS=-Djava.awt.headless=true
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+export MANPAGER="nvim -c 'set ft=man' - ; echo"
 
 export MAVEN_OPTS='-Xmx1000M -XX:MaxPermSize=800M'
 
