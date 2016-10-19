@@ -12,3 +12,5 @@ export HISTCONTROL=ignoredups
 
 source ~/.profile
 source ~/.bashrc
+
+figlet -w120 'Ou pa konnen tout bagay' | cowsay -fdaemon -n
