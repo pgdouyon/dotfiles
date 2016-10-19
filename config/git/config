@@ -18,5 +18,7 @@
 [color "status"]
 	added = 29
 	changed = 88
+[remote "origin"]
+	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [ghi]
 	token = !security find-internet-password -a pgdouyon -s github.com -l 'ghi token' -w
