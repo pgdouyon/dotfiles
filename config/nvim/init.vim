@@ -662,7 +662,6 @@ xmap sp <Plug>Protean-Replace
 " Accio
 " ----------------------------------------------------------------------
 let g:accio_create_empty_quickfix = 0
-let g:accio_update_interval = 250
 
 " ----------------------------------------------------------------------
 " Switch.vim
