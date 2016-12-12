@@ -314,6 +314,7 @@ if has("nvim")
     nnoremap <silent> sht :-tabnew +terminal<CR>
     augroup terminal
         autocmd!
+        autocmd TermClose * bwipe!
         autocmd BufEnter * if &buftype ==# "terminal" | call feedkeys("i", "nt") | endif
         autocmd BufLeave * if &buftype ==# "terminal" | redraw | echo | endif
     augroup END
