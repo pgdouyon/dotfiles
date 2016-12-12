@@ -438,19 +438,18 @@ function! s:TodoList(include_tag, search_dir)
         let todo_dir = fnamemodify(vcs_dir, ":h")
     endif
 
-    let todo_tag = escape(g:todo_tag, '()[]{}<>!@#$%^&*-_+=\|?.')
+    let todo_tag = escape('[PGD]', '()[]{}<>!@#$%^&*-_+=\|?.')
     let todo = 'TODO|FIXME|XXX'
     let todo_tagged = join(map(split(todo, '|'), "v:val.' '.'".todo_tag."'"), '|')
     let todo_str = a:include_tag ? todo_tagged : todo
     execute printf("Ag '%s' %s", todo_str, todo_dir)
 endfunction
 
-let g:todo_tag = "[PGD]"
 command! -nargs=? -bang -complete=dir TodoList call <SID>TodoList(<bang>1, <q-args>)
 
-nnoremap <Leader>td O<Esc>ccTODO <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
-nnoremap <Leader>fm O<Esc>ccFIXME <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
-nnoremap <Leader>xx O<Esc>ccXXX <C-R>=g:todo_tag<CR><Esc>:normal gcc<CR>==0f]a<Space>
+nnoremap <Leader>td :<C-U>put! ='TODO [PGD]'<Bar>normal gcc==<CR>0f]a<Space>
+nnoremap <Leader>fm :<C-U>put! ='FIXME [PGD]'<Bar>normal gcc==<CR>0f]a<Space>
+nnoremap <Leader>xx :<C-U>put! ='XXX [PGD]'<Bar>normal gcc==<CR>0f]a<Space>
 
 " ----------------------------------------------------------------------
 " Ag
