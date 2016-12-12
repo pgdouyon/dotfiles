@@ -459,12 +459,34 @@ if executable('rg')
     set grepformat=%f:%l:%c:%m,%f:%l:%m,%f
 endif
 
+function! s:get_visual_selection()
+    let selection_save = &selection
+    let unnamed_save = @@
+    let yank_save = @0
+    set selection=inclusive
+    normal! gvy
+    let visual_selection = @@
+    let @0 = yank_save
+    let @@ = unnamed_save
+    let &selection = selection_save
+    return visual_selection
+endfunction
+
+function! s:search(args, flags)
+    execute "silent grep! -F" a:flags shellescape(escape(a:args, '|')) | cwindow | redraw!
+endfunction
+
 function! s:ripgrep(args)
     execute "silent grep!" escape(a:args, '|') | cwindow | redraw!
 endfunction
 
+command! -nargs=+ -complete=tag Search call <SID>search(<q-args>)
 command! -nargs=+ -complete=file Ripgrep call <SID>ripgrep(<q-args>)
-nnoremap <silent> gr :Ripgrep '\\b<C-R><C-W>\\b'<CR>
+nnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(expand('<cword>'), '-w')<CR>
+xnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(<SID>get_visual_selection(), '')<CR>
+
+nmap <silent> gr <Plug>GrepOperator
+xmap <silent> gr <Plug>GrepOperator
 
 " ----------------------------------------------------------------------
 " CToggle
