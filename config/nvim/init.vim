@@ -442,7 +442,7 @@ function! s:TodoList(include_tag, search_dir)
     let todo = 'TODO|FIXME|XXX'
     let todo_tagged = join(map(split(todo, '|'), "v:val.' '.'".todo_tag."'"), '|')
     let todo_str = a:include_tag ? todo_tagged : todo
-    execute printf("Ag '%s' %s", todo_str, todo_dir)
+    execute printf("Ripgrep '%s' %s", todo_str, todo_dir)
 endfunction
 
 command! -nargs=? -bang -complete=dir TodoList call <SID>TodoList(<bang>1, <q-args>)
@@ -452,20 +452,19 @@ nnoremap <Leader>fm :<C-U>put! ='FIXME [PGD]'<Bar>normal gcc==<CR>0f]a<Space>
 nnoremap <Leader>xx :<C-U>put! ='XXX [PGD]'<Bar>normal gcc==<CR>0f]a<Space>
 
 " ----------------------------------------------------------------------
-" Ag
+" Ripgrep
 " ----------------------------------------------------------------------
-if executable('ag')
-    set grepprg=ag\ --vimgrep\ --smart-case\ -W500\ $*
+if executable('rg')
+    set grepprg=rg\ -H\ --no-heading\ --vimgrep\ $*
     set grepformat=%f:%l:%c:%m,%f:%l:%m,%f
 endif
 
-function! s:Ag(args)
-    let ag_args = (empty(a:args) ? printf('"\b%s\b"', expand("<cword>")) : a:args)
-    execute "silent grep!" escape(ag_args, '|') | cwindow | redraw!
+function! s:ripgrep(args)
+    execute "silent grep!" escape(a:args, '|') | cwindow | redraw!
 endfunction
 
-command! -nargs=* -complete=file Ag call <SID>Ag(<q-args>)
-nnoremap <silent> ga :Ag<CR>
+command! -nargs=+ -complete=file Ripgrep call <SID>ripgrep(<q-args>)
+nnoremap <silent> gr :Ripgrep '\\b<C-R><C-W>\\b'<CR>
 
 " ----------------------------------------------------------------------
 " CToggle

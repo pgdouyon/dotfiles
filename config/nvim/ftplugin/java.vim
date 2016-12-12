@@ -6,7 +6,7 @@ let g:java_highlight_all = 1
 nnoremap <silent><buffer> R :<C-U>call repl#start_repl("groovysh", "groovysh", "groovy")<CR>
 
 " struts
-nnoremap <silent><buffer> S :Ag --xml "\b<C-R><C-W>\b"<CR>
+nnoremap <silent><buffer> S :Ripgrep -txml "\b<C-R><C-W>\b"<CR>
 
 function! s:jump_to_toplevel_decl(direction)
     let flags = a:direction . 'sW'
@@ -30,8 +30,8 @@ endfunction
 
 command! -nargs=0 -buffer SortImports call <SID>sort_imports()
 command! -nargs=0 -buffer IntellijOpen silent !open -a IntelliJ\ IDEA\ 15 %
-command! -nargs=0 -buffer Implements Ag ' implements .*%:t:r'
-command! -nargs=0 -buffer Extends Ag ' extends .*%:t:r'
+command! -nargs=0 -buffer Implements Ripgrep -tjava ' implements .*%:t:r'
+command! -nargs=0 -buffer Extends Ripgrep -tjava ' extends .*%:t:r'
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
