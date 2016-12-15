@@ -26,6 +26,7 @@ Plug 'tpope/vim-eunuch'
 
 " Editing Enhancements
 Plug 'AndrewRadev/switch.vim'
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-qlist'
@@ -676,6 +677,12 @@ let g:switch_custom_definitions =
     \       '!(\([^(&|)]\+\|([^()]\+)\) || \([^(&|)]\+\|([^()]\+)\))': '!\1 && !\2'
     \   }
     \ ]
+
+" ----------------------------------------------------------------------
+" SplitJoin
+" ----------------------------------------------------------------------
+let g:splitjoin_split_mapping = 'sj'
+let g:splitjoin_join_mapping = 'sk'
 
 " ----------------------------------------------------------------------
 " Ultisnips
