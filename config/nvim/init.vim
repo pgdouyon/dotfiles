@@ -539,7 +539,7 @@ runtime! macros/matchit.vim
 " ----------------------------------------------------------------------
 " Niffler Settings
 " ----------------------------------------------------------------------
-let g:niffler_user_command = 'ag %s -g ""'
+let g:niffler_user_command = 'rg --files %s'
 let g:niffler_ignore_extensions = [".class", ".backup"]
 let g:niffler_ignore_dirs = ["Library", "Applications", "Downloads", "1Password"]
 
