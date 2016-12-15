@@ -68,7 +68,7 @@ function check-aliases {
 function vs {
     session_home="$HOME/vim-sessions/"
     session=$(find "$session_home" -type f -print0 | xargs -0 -n1 basename | fzf)
-    nvim -S "${session_home}${session}"
+    [[ -n $session ]] && nvim -S "${session_home}${session}"
 }
 
 function archive {
