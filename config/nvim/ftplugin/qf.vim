@@ -25,7 +25,13 @@ function! s:close_command()
     return empty(getloclist(0)) ? 'cclose' : 'lclose'
 endfunction
 
-autocmd WinEnter <buffer> resize 10
+function! s:resize()
+    if winheight(0) > 10
+        resize 10
+    endif
+endfunction
+
+autocmd WinEnter <buffer> call <SID>resize()
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
