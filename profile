@@ -1,6 +1,13 @@
 #!/bin/sh
 export EDITOR=vim
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+if [ -z "$TMUX" ]; then
+    if toe -a | grep xterm-256color-italic >/dev/null ; then
+        export TERM=xterm-256color-italic
+    else
+        export TERM=xterm-256color
+    fi
+fi
 
 export JAVA_HOME=`/usr/libexec/java_home`
 # JAVA_TOOL_OPTIONS
