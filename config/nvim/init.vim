@@ -571,11 +571,10 @@ nnoremap <silent> dgb :Gblame<CR>
 nnoremap <silent> dgs :Gstatus <Bar> wincmd J<CR>
 nnoremap <silent> dgd :Gvdiff<CR>
 nnoremap <silent> dgc :Gcommit<CR>
-nnoremap <silent> dgC :Git! diff --cached<CR>:Gcommit<CR>
+nnoremap <silent> dgC :tab split<Bar>Git! diff --cached<CR>:Gcommit<CR>
 nnoremap <silent> dga :Gwrite<CR>
 nnoremap <silent> dgr :Gread<CR>
 nnoremap <silent> dgp :Git push origin master<CR>
-nnoremap <silent> dgh :Git push heroku master<CR>
 
 " see git ...
 nnoremap <silent> sgl :Glog<CR>
