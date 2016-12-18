@@ -540,6 +540,7 @@ runtime! macros/matchit.vim
 " ----------------------------------------------------------------------
 " Niffler Settings
 " ----------------------------------------------------------------------
+let g:niffler_tag_mappings = 1
 let g:niffler_user_command = 'rg --files %s'
 let g:niffler_ignore_extensions = [".class", ".backup"]
 let g:niffler_ignore_dirs = ["Library", "Applications", "Downloads", "1Password"]
@@ -551,9 +552,6 @@ nnoremap <silent> snm :NifflerMRU<CR>
 nnoremap <silent> snb :NifflerBuffer<CR>
 nnoremap <silent> snT :NifflerTags<CR>
 nnoremap <silent> snt :NifflerTags %<CR>
-
-nnoremap <silent> g] :NifflerTselect<CR>
-nnoremap <silent> g<C-]> :NifflerTjump<CR>
 
 " ----------------------------------------------------------------------
 " Signify Settings
