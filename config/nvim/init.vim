@@ -782,7 +782,7 @@ endfunction
 " ----------------------------------------------------------------------
 if has('vim_starting')
     let hour = exists("*strftime") ? str2nr(strftime("%H")) : 0
-    let yinyang = (hour > 5 && hour < 17) ? "yang" : "yin"
+    let yinyang = (hour > 7 && hour < 17) ? "yang" : "yin"
     execute "colorscheme" yinyang
 endif
 
