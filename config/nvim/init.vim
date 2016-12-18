@@ -474,18 +474,19 @@ function! s:get_visual_selection()
     return visual_selection
 endfunction
 
-function! s:search(args, flags)
-    execute "silent grep! -F" a:flags shellescape(escape(a:args, '|')) | cwindow | redraw!
+function! s:search(args, ...)
+    let flags = a:0 ? a:1 : ''
+    execute "silent grep! -F" flags shellescape(escape(a:args, '|#%')) | cwindow | redraw!
 endfunction
 
 function! s:ripgrep(args)
-    execute "silent grep!" escape(a:args, '|') | cwindow | redraw!
+    execute "silent grep!" escape(a:args, '|#%') | cwindow | redraw!
 endfunction
 
 command! -nargs=+ -complete=tag Search call <SID>search(<q-args>)
 command! -nargs=+ -complete=file Ripgrep call <SID>ripgrep(<q-args>)
 nnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(expand('<cword>'), '-w')<CR>
-xnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(<SID>get_visual_selection(), '')<CR>
+xnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(<SID>get_visual_selection())<CR>
 
 nmap <silent> gr <Plug>GrepOperator
 xmap <silent> gr <Plug>GrepOperator
