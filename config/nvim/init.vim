@@ -85,6 +85,9 @@ set incsearch
 set ignorecase
 set smartcase
 set define=^\\s*.\\{-\\}\\ze\\i\\+\\s\\+=
+if exists("&inccommand")
+    set inccommand=nosplit
+endif
 
 " Displaying text
 set list
