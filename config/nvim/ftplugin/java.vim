@@ -177,5 +177,10 @@ command! -nargs=0 -buffer IntellijOpen silent !open -a IntelliJ\ IDEA\ 15 %
 command! -nargs=0 -buffer Implements Ripgrep -tjava ' implements .*%:t:r'
 command! -nargs=0 -buffer Extends Ripgrep -tjava ' extends .*%:t:r'
 
+augroup java_ftplugin
+    autocmd BufWritePost <buffer> Accio 'javac'
+augroup END
+
+
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
