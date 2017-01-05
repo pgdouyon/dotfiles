@@ -768,17 +768,28 @@ augroup END
 nnoremap cy :colorscheme yin<CR>
 
 function! s:SetColorColumn()
+    let configured_filetypes = ['java']
+    let is_enabled = (index(configured_filetypes, &filetype) > -1)
     if !exists("w:enableColorcolumn")
-        let w:enableColorcolumn = 1
+        let w:enableColorcolumn = 0
     endif
-    if w:enableColorcolumn
-        silent! call matchadd("ColorColumn", '\%>100v.', 0, 954)
-        echohl WarningMsg | echo "ColorColumn enabled..." | echohl None
-    else
-        silent! call matchdelete(954)
-        echohl WarningMsg | echo "ColorColumn disabled..." | echohl None
+    if w:enableColorcolumn != is_enabled
+        let w:enableColorcolumn = is_enabled
+        if w:enableColorcolumn
+            silent! call matchadd("ColorColumn", '\%>100v.', 0, 954)
+            echohl WarningMsg | echo "ColorColumn enabled..." | echohl None
+        else
+            silent! call matchdelete(954)
+            echohl WarningMsg | echo "ColorColumn disabled..." | echohl None
+        endif
     endif
 endfunction
+
+augroup colorcolumn
+    autocmd!
+    autocmd WinEnter * silent call <SID>SetColorColumn()
+    autocmd BufWinEnter * silent call <SID>SetColorColumn()
+augroup END
 
 " ----------------------------------------------------------------------
 " Background Settings
