@@ -9,6 +9,7 @@ tmp/
 tags
 tags.lock
 tags.temp
+jquery*.js
 *.pdf
 *.dmp
 *.log
