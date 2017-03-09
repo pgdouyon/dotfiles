@@ -485,8 +485,16 @@ function! s:ripgrep(args)
     execute "silent grep!" escape(a:args, '|#%') | cwindow | redraw!
 endfunction
 
+function! s:ag(args)
+    let save_grepprg = &grepprg
+    set grepprg=ag\ --vimgrep\ --smart-case\ -W500\ $*
+    execute "silent grep!" escape(a:args, '|#%') | cwindow | redraw!
+    let &grepprg = save_grepprg
+endfunction
+
 command! -nargs=+ -complete=tag Search call <SID>search(<q-args>)
 command! -nargs=+ -complete=file Ripgrep call <SID>ripgrep(<q-args>)
+command! -nargs=+ -complete=file Ag call <SID>ag(<q-args>)
 nnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(expand('<cword>'), '-w')<CR>
 xnoremap <silent> <Plug>GrepOperator :<C-U>call <SID>search(<SID>get_visual_selection())<CR>
 
