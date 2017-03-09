@@ -6,15 +6,16 @@
 # cd to dotfiles directory
 BIN=$(dirname "$BASH_SOURCE")
 BASE=$(dirname "$BIN")
+BACKUP_DIR=${HOME}/config_backup
 cd "$BASE"
 
 # link RC files
-mkdir -pv bak
+mkdir -pv "$BACKUP_DIR"
 for rc in *; do
     if [[ -f $rc && ($rc != "README.md") ]]; then
         dotfile="$HOME/.$rc"
-        [[ -e $dotfile ]] && mv -v "$dotfile" bak/."$rc"
-        ln -sfv "$BASE/$rc" "$dotfile"
+        [[ -e $dotfile ]] && mv -v "$dotfile" "${BACKUP_DIR}/.${rc}"
+        ln -sfv "${BASE}/${rc}" "$dotfile"
     fi
 done
 
@@ -22,10 +23,11 @@ done
 for dir in *; do
     if [[ -d $dir ]]; then
         dotdir="$HOME/.$dir"
-        [[ -e $dotdir ]] && mv -v "$dotdir" bak/."$dir"
-        ln -sfv "$BASE/$dir" "$dotdir"
+        [[ -e $dotdir ]] && mv -v "$dotdir" "${BACKUP_DIR}/.${dir}"
+        ln -sfv "${BASE}/${dir}" "$dotdir"
     fi
 done
+echo "Existing config files backed up to ${BACKUP_DIR}..."
 
 mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CACHE_HOME"
@@ -51,10 +53,13 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     curl -L https://get.rvm.io | bash -s stable
     rvm use ruby --install --default
     # Homebrew
-    [[ -z $(which brew) ]] &&
-        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
+    while ! command -v brew &>/dev/null; do
+        echo "Please install Homebrew (https://raw.github.com/Homebrew/install/master/install) to ${HOMEBREW_HOME:-~/.homebrew}"
+        read -p "Press Enter to continue..."
+    done
     brew update; brew bundle
-    pip install neovim
+    pip install --user neovim
+    pip3 install --user neovim
     gem install pry rdoc rdoc-data rubocop
 fi
 
