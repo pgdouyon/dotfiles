@@ -119,7 +119,6 @@ set mouse=""
 
 " GUI
 set guioptions="cegmt"
-silent! set fullscreen
 
 " Messages
 set shortmess+=A
