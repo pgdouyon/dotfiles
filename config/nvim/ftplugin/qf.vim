@@ -29,6 +29,7 @@ function! s:resize()
     if winheight(0) > 10
         resize 10
     endif
+    wincmd J
 endfunction
 
 autocmd WinEnter <buffer> call <SID>resize()
