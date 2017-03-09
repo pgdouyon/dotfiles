@@ -22,7 +22,7 @@ function! s:sort_imports()
     let import_start = search("^import", 'cW')
     while import_start
         let import_end = search('^\%(import\)\@!', 'W')
-        execute import_start ',' (import_end - 1) 'sort r /.*\ze;/'
+        execute 'keepjumps' import_start ',' (import_end - 1) 'sort r /.*\ze;/'
         let import_start = search("^import", 'W')
     endwhile
     call setpos(".", save_cursor)
@@ -174,8 +174,8 @@ let b:splitjoin_join_callbacks = map(["join_ternary_expr", "join_boolean_exprs",
 
 command! -nargs=0 -buffer SortImports call <SID>sort_imports()
 command! -nargs=0 -buffer IntellijOpen silent !open -a IntelliJ\ IDEA\ 15 %
-command! -nargs=0 -buffer Implements Ripgrep -tjava ' implements .*%:t:r'
-command! -nargs=0 -buffer Extends Ripgrep -tjava ' extends .*%:t:r'
+command! -nargs=0 -buffer Implements Ag --java '\bimplements\b[^{]*\b%:t:r\b'
+command! -nargs=0 -buffer Extends Ag --java '\bextends\b[^{]*\b%:t:r\b'
 
 augroup java_ftplugin
     autocmd BufWritePost <buffer> Accio 'javac'
