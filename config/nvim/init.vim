@@ -43,6 +43,7 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'justinmk/vim-dirvish'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
@@ -734,6 +735,11 @@ let g:mta_filetypes = {
         \ 'ftl': 1,
         \ 'xml' : 1
         \ }
+
+" ----------------------------------------------------------------------
+" EditorConfig
+" ----------------------------------------------------------------------
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 
 " ======================================================================
