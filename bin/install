@@ -47,20 +47,27 @@ git clone https://github.com/junegunn/fzf.git "$XDG_DATA_HOME/fzf"
 mv ~/.fzf.bash "$XDG_DATA_HOME/fzf/fzf.bash"
 mv ~/.fzf.zsh "$XDG_DATA_HOME/fzf/fzf.zsh"
 
-# OS X
+# MacOS
 if [[ $(uname -s) = 'Darwin' ]]; then
     # RVM
     curl -L https://get.rvm.io | bash -s stable
     rvm use ruby --install --default
     # Homebrew
-    while ! command -v brew &>/dev/null; do
+    if command -v brew &>/dev/null; then
+        echo 'Installing homebrew packages...'
+        brew update; brew bundle
+        pip install --user neovim flake8
+        pip2 install --user neovim flake8
+        gem install pry rdoc rdoc-data rubocop
+    else
         echo "Please install Homebrew (https://raw.github.com/Homebrew/install/master/install) to ${HOMEBREW_HOME:-~/.homebrew}"
-        read -p "Press Enter to continue..."
-    done
-    brew update; brew bundle
-    pip install --user neovim
-    pip3 install --user neovim
-    gem install pry rdoc rdoc-data rubocop
+        echo 'Then run the following installation commands:'
+        echo
+        echo 'brew update; brew bundle'
+        echo 'pip install --user neovim flake8'
+        echo 'pip2 install --user neovim flake8'
+        echo 'gem install pry rdoc rdoc-data rubocop'
+    fi
 fi
 
 tmux source-file "$XDG_CONFIG_HOME/tmux/tmux.conf"
