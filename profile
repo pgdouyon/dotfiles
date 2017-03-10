@@ -9,7 +9,12 @@ if [ -z "$TMUX" ]; then
     fi
 fi
 
-export HOMEBREW_HOME="${HOME}/.homebrew"
+export HOMEBREW_HOME
+if command -v brew >/dev/null 2>&1; then
+    HOMEBREW_HOME=$(brew --prefix)
+else
+    HOMEBREW_HOME=~/.homebrew
+fi
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_HOME}/Caskroom"
 
 # JAVA_TOOL_OPTIONS

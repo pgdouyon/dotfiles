@@ -134,8 +134,8 @@ function decrypt {
     fi
 }
 
-if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
-    source "$(brew --prefix)"/etc/bash_completion
+if [[ -f $HOMEBREW_HOME/etc/bash_completion ]]; then
+    source "$HOMEBREW_HOME"/etc/bash_completion
 fi
 
 eval "$(fasd --init auto)"
