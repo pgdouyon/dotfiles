@@ -8,7 +8,7 @@ stty -ixon
 
 # Private utility functions
 function __prompt {
-    prompt=${1:-"Do you wish to proceed [yes/no]?"}
+    prompt=${1:-'Do you wish to proceed [yes/no]?'}
     while true; do
         read -p "$prompt" response
         case $response in
@@ -138,8 +138,11 @@ if [[ -f $HOMEBREW_HOME/etc/bash_completion ]]; then
     source "$HOMEBREW_HOME"/etc/bash_completion
 fi
 
-eval "$(fasd --init auto)"
+if [[ -f $HOMEBREW_HOME/etc/profile.d/autojump.sh ]]; then
+    source "$HOMEBREW_HOME"/etc/profile.d/autojump.sh
+fi
+
 [[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
 [[ -f $XDG_DATA_HOME/fzf/fzf.bash ]] && source "$XDG_DATA_HOME/fzf/fzf.bash"
 [[ -f $XDG_DATA_HOME/git-prompt.sh ]] && source "$XDG_DATA_HOME/git-prompt.sh"
-[[ -f $XDG_CONFIG_HOME/bash/aliases ]] && source "$XDG_CONFIG_HOME"/bash/aliases && _fasd_bash_hook_cmd_complete j jj o
+[[ -f $XDG_CONFIG_HOME/bash/aliases ]] && source "$XDG_CONFIG_HOME"/bash/aliases

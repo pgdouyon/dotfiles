@@ -39,7 +39,6 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export PIP_CONFIG_FILE="$XDG_CONFIG_HOME/pip/pip.conf"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo:
-export _FASD_DATA="$XDG_DATA_HOME/fasd"
 
 export PATH="$PATH:$XDG_DATA_HOME/rvm/bin" # Add RVM to PATH for scripting
 
