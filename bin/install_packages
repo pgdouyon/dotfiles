@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# MacOS
+if [[ $(uname -s) = 'Darwin' ]]; then
+    # RVM
+    curl -L https://get.rvm.io | bash -s stable
+    rvm use ruby --install --default
+    # Homebrew
+    while ! command -v brew &>/dev/null; do
+        echo "Please install Homebrew (https://raw.github.com/Homebrew/install/master/install) to ${HOMEBREW_HOME}"
+        read -p 'Press Enter to continue...'
+    done
+
+    echo 'Installing homebrew packages...'
+    brew update; brew bundle
+    pip2 install --user neovim flake8
+    pip3 install --user neovim flake8
+    gem install pry rdoc rdoc-data rubocop
+fi
