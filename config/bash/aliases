@@ -9,12 +9,15 @@ alias gtypist='gtypist -b -e1 -w -S'
 alias jconsole='_JAVA_OPTIONS="" jconsole'
 alias testping='ping -c3 www.google.com'
 alias initvim='nvim -c "call fugitive#detect(expand(\"%:p\"))" "$XDG_CONFIG_HOME/nvim/init.vim"'
-alias vim='vim -X'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
+
+if [[ $(uname -s) = 'Darwin' ]]; then
+    alias vim='mvim -v'
+fi
 
 # git aliases
 alias g='git'
