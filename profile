@@ -23,7 +23,7 @@ export _JAVA_OPTIONS="-Djava.awt.headless=true"
 export GROOVY_HOME=$HOMEBREW_HOME/opt/groovy/libexec
 
 export PATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnubin:$HOMEBREW_HOME/bin:$HOME/bin:$PATH
-export MANPATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnuman:$MANPATH
+export MANPATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnuman:$HOMEBREW_HOME/share/man:$MANPATH
 export MANPAGER="nvim -c 'set ft=man' - ; echo"
 
 export MAVEN_OPTS='-Xmx1000M -XX:MaxPermSize=800M'
