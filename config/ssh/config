@@ -1,0 +1,6 @@
+Host *
+    User pgdouyon
+    UseKeychain yes
+    ForwardAgent yes
+    ServerAliveInterval 300
+    ServerAliveCountMax 3
