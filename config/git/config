@@ -8,8 +8,11 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+[pretty]
+	sexy = %C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+        reflog = %C(yellow)%h%Creset %gd: %gs %Cgreen(%cr) %C(bold blue)<%an>%Creset
 [format]
-	pretty = %C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+	pretty = sexy
 [color]
 	ui = auto
 [color "diff"]
@@ -18,7 +21,5 @@
 [color "status"]
 	added = 29
 	changed = 88
-[remote "origin"]
-	fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 [ghi]
 	token = !security find-internet-password -a pgdouyon -s github.com -l 'ghi token' -w
