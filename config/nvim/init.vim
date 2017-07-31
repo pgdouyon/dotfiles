@@ -30,7 +30,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'SirVer/ultisnips'
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-qlist'
-Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 " Text Objects
 Plug 'michaeljsmith/vim-indent-object'
@@ -610,12 +609,6 @@ nnoremap <silent> dgf :GV! -n500<CR>
 function! s:UnimpairedMappings()
     nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 endfunction
-
-" ----------------------------------------------------------------------
-" Vim-Easy-Align
-" ----------------------------------------------------------------------
-nmap <Leader>ea <Plug>(EasyAlign)
-xmap <Leader>ea <Plug>(EasyAlign)
 
 " ----------------------------------------------------------------------
 " Dirvish
