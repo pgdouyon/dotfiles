@@ -176,6 +176,8 @@ command! -nargs=0 -buffer SortImports call <SID>sort_imports()
 command! -nargs=0 -buffer IntellijOpen silent !open -a IntelliJ\ IDEA\ 15 %
 command! -nargs=0 -buffer Implements Ag --java '\bimplements\b[^{]*\b%:t:r\b'
 command! -nargs=0 -buffer Extends Ag --java '\bextends\b[^{]*\b%:t:r\b'
+command! -nargs=0 -buffer Override normal {o@Override
+command! -nargs=0 -buffer Deprecated normal {o@Deprecated
 
 augroup java_ftplugin
     autocmd BufWritePost <buffer> Accio 'javac'
