@@ -46,7 +46,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 
 " Languages
 Plug 'tpope/vim-markdown'
@@ -639,11 +638,6 @@ let g:markdown_fenced_languages = ["vim","python","clojure","javascript","bash=s
 " Dash
 " ----------------------------------------------------------------------
 nmap K <Plug>DashSearch
-
-" ----------------------------------------------------------------------
-" Tagbar
-" ----------------------------------------------------------------------
-nnoremap <Leader>tt :TagbarToggle<CR>
 
 " ----------------------------------------------------------------------
 " Endwise
