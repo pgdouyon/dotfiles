@@ -83,7 +83,7 @@ set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
-set define=^\\s*.\\{-\\}\\ze\\i\\+\\s\\+=
+set define=^\\s*.\\{-\\}\\ze\\i\\+\\s\\+==\\@!
 if exists("&inccommand")
     set inccommand=nosplit
 endif
