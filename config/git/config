@@ -2,7 +2,7 @@
 	name = Pierre Douyon
 	email = pgdouyon@alum.mit.edu
 [credential]
-	helper = cache --timeout=7200
+	helper = osxkeychain
 [github]
 	user = pgdouyon
 [core]
