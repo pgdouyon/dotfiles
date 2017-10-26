@@ -14,7 +14,9 @@ inoreabbrev <buffer> where WHERE
 inoreabbrev <buffer> and AND
 inoreabbrev <buffer> or OR
 inoreabbrev <buffer> not NOT
+inoreabbrev <buffer> is IS
 inoreabbrev <buffer> in IN
+inoreabbrev <buffer> null NULL
 inoreabbrev <buffer> group GROUP
 inoreabbrev <buffer> by BY
 inoreabbrev <buffer> having HAVING
