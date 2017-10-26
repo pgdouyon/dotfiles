@@ -299,7 +299,7 @@ if has("nvim")
     tnoremap <M-d> <Esc>d
     tnoremap <M-.> <Esc>.
     tnoremap <M-BS> <Esc><BS>
-    tnoremap <silent> <C-[> <C-\><C-N>:echo <Bar> call search('\S', 'bcW')<CR>0
+    tnoremap <silent> <C-[> <C-\><C-N>:echo<CR>
 
     nnoremap <silent> she :terminal<CR>
     nnoremap <silent> shs :split \| terminal<CR>
