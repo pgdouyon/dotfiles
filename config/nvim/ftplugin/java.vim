@@ -173,7 +173,7 @@ let b:splitjoin_split_callbacks = map(["split_ternary_expr", "split_boolean_expr
 let b:splitjoin_join_callbacks = map(["join_ternary_expr", "join_boolean_exprs", "join_args"], 's:SID() . v:val')
 
 command! -nargs=0 -buffer SortImports call <SID>sort_imports()
-command! -nargs=0 -buffer IntellijOpen silent !idea %
+command! -nargs=0 -buffer IntellijOpen execute "silent !idea --line" line(".") expand("%:p")
 command! -nargs=0 -buffer Implements Ag --java '\bimplements\b[^{]*\b%:t:r\b'
 command! -nargs=0 -buffer Extends Ag --java '\bextends\b[^{]*\b%:t:r\b'
 command! -nargs=0 -buffer Override normal {o@Override
