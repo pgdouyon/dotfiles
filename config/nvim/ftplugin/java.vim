@@ -3,7 +3,7 @@ set cpoptions&vim
 
 let g:java_highlight_all = 1
 
-nnoremap <silent><buffer> R :<C-U>call repl#start_repl("groovysh", "groovysh", "groovy")<CR>
+nnoremap <silent><buffer> R :<C-U>call repl#start_repl("jshell", "jshell")<CR>
 
 " struts
 nnoremap <silent><buffer> S :Ripgrep -txml "\b<C-R><C-W>\b"<CR>
