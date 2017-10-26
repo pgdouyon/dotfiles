@@ -26,7 +26,7 @@ export PATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnubin:$HOMEBREW_HOME/bin:$HOME
 export MANPATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnuman:$HOMEBREW_HOME/share/man:$MANPATH
 export MANPAGER="nvim -c 'set ft=man' - ; echo"
 
-export MAVEN_OPTS='-Xmx1000M -XX:MaxPermSize=800M'
+export MAVEN_OPTS='-Xmx1000M'
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
