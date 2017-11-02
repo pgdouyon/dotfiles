@@ -12,9 +12,6 @@ tags.temp
 jquery*.js
 *.pdf
 *.dmp
-*.log
-*.tar.gz*
-*.zip
 *.deb
 *.class
 *.js.map*
@@ -22,4 +19,3 @@ jquery*.js
 *.min.js*
 *.min.css*
 *.min.old.js*
-*.wsdl
