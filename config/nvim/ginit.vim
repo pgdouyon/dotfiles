@@ -1,4 +1,4 @@
 if exists(":GuiFont") && exists(":GuiLinespace")
-    GuiFont Fira Mono:h11
+    GuiFont Fira Medium:h12
     GuiLinespace 3
 endif
