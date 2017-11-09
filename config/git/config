@@ -8,6 +8,8 @@
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore
+[diff]
+	algorithm = histogram
 [pretty]
 	sexy = %C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
         reflog = %C(yellow)%h%Creset %gd: %gs %Cgreen(%cr) %C(bold blue)<%an>%Creset

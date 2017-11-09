@@ -149,7 +149,7 @@ set foldtext=foldtext#schmexy_foldtext()
 
 " Diff Mode
 set diffopt=filler,vertical
-set diffexpr=EnhancedDiff#Diff('git\ diff',\ '--diff-algorithm=patience')
+set diffexpr=EnhancedDiff#Diff('git\ diff',\ '--diff-algorithm=histogram')
 
 " Mapping
 set ttimeout
