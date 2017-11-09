@@ -13,5 +13,6 @@ export HISTCONTROL=ignoredups
 source ~/.profile
 source ~/.bashrc
 
-figlet -w120 'Meikyo Shisui' | cowsay -fdaemon -n
+# figlet -w120 'Meikyo Shisui' | cowsay -fdaemon -n
 # figlet -w120 'Chita! Gen Imilite' | cowsay -fdaemon -n
+figlet -w120 'Pran pasyans' | cowsay -fdaemon -n
