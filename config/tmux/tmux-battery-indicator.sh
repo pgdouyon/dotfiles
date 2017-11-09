@@ -24,9 +24,19 @@ fi
 
 echo -n 'Battery: ['
 
-empty_slots=$(( 10 - charged_slots ))
-for (( i=0; i < charged_slots; i++ )); do echo -n "="; done
-for (( i=0; i < empty_slots; i++ )); do echo -n " "; done
+case $charged_slots in
+    0) echo -n "            ";;
+    1) echo -n "=>          ";;
+    2) echo -n "==>         ";;
+    3) echo -n "===        ";;
+    4) echo -n "===>>=     ";;
+    5) echo -n "===>=>     ";;
+    6) echo -n "======    ";;
+    7) echo -n "======>>= ";;
+    8) echo -n "======>=> ";;
+    9) echo -n "=========";;
+    *) echo -n "=========";;
+esac
 
 echo -n ']'
 echo -n '#[default]'
