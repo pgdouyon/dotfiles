@@ -22,7 +22,9 @@ function! s:sort_imports()
     let import_start = search("^import", 'cW')
     while import_start
         let import_end = search('^\%(import\)\@!', 'W')
-        execute 'keepjumps' import_start ',' (import_end - 1) 'sort r /.*\ze;/'
+        execute 'keepjumps' import_start ',' (import_end - 1) 'sort ur /.*\ze;/'
+
+        call cursor(import_end, 0)
         let import_start = search("^import", 'W')
     endwhile
     call setpos(".", save_cursor)
