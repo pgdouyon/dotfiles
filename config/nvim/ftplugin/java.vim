@@ -182,6 +182,7 @@ command! -nargs=0 -buffer Override normal {o@Override
 command! -nargs=0 -buffer Deprecated normal {o@Deprecated
 
 augroup java_ftplugin
+    autocmd BufWritePre <buffer> SortImports
     autocmd BufWritePost <buffer> Accio 'javac'
 augroup END
 
