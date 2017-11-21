@@ -658,7 +658,7 @@ let g:switch_mapping = "<CR>"
 let g:switch_custom_definitions =
     \ [
     \   ['!=', '=='],
-    \   ['public', 'private'],
+    \   ['public', 'private', 'protected'],
     \   ['extends', 'implements'],
     \   {
     \       '!(\([^(&|)]\+\|([^()]\+)\) && \([^(&|)]\+\|([^()]\+)\))': '!\1 || !\2',
