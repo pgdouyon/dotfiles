@@ -221,8 +221,8 @@ nnoremap <silent> <Leader>r :redraw!<Esc>
 
 nnoremap <C-E> 2<C-E>
 nnoremap <C-Y> 2<C-Y>
-nnoremap zh 30zh
-nnoremap zl 30zl
+nnoremap zh 10zh
+nnoremap zl 10zl
 
 " fix {,} motions in files with trailing whitespace
 nnoremap <silent> { m':call search('^\s*$\n\s*\S', 'bW')<CR>
@@ -510,24 +510,6 @@ endfunction
 nnoremap <silent> coq :call <SID>Ctoggle()<CR>
 
 " ----------------------------------------------------------------------
-" Syntax Names
-" ----------------------------------------------------------------------
-" Stolen from scriptease.vim
-function! s:syntax_groups(count)
-    let syntax_names = uniq(reverse(map(synstack(line("."), col(".")), 'synIDattr(v:val, "name")')))
-    if a:count
-        let name = get(syntax_names, a:count - 1, "")
-        if name !=# ""
-            execute "syntax list" name
-        endif
-    else
-        echo join(syntax_names, " ")
-    endif
-endfunction
-
-nnoremap <silent> <C-S> :<C-U>call <SID>syntax_groups(v:count)<CR>
-
-" ----------------------------------------------------------------------
 " Refresh Filetype Settings
 " ----------------------------------------------------------------------
 command! -nargs=1 RefreshFiletypeSettings
@@ -714,11 +696,7 @@ augroup END
 " ----------------------------------------------------------------------
 " MatchTagAlways
 " ----------------------------------------------------------------------
-let g:mta_filetypes = {
-        \ 'html': 1,
-        \ 'ftl': 1,
-        \ 'xml' : 1
-        \ }
+let g:mta_filetypes = { 'html': 1, 'ftl': 1, 'xml' : 1 }
 
 " ----------------------------------------------------------------------
 " EditorConfig
@@ -736,7 +714,6 @@ augroup vimrc
     autocmd BufReadPost * if &filetype != "gitcommit" && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.{hbs,handlebars} set filetype=html
-    autocmd Filetype pandoc,markdown setlocal spell
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
     autocmd WinEnter * if !(&diff) | silent set cursorline | endif
     autocmd WinLeave * silent set nocursorline
