@@ -510,10 +510,9 @@ endfunction
 nnoremap <silent> coq :call <SID>Ctoggle()<CR>
 
 " ----------------------------------------------------------------------
-" Refresh Filetype Settings
+" Filetype Detect
 " ----------------------------------------------------------------------
-command! -nargs=1 RefreshFiletypeSettings
-            \ bufdo if &ft ==# '<args>' | set ft=text | set ft=<args> | endif
+command! -nargs=1 FiletypeDetect bufdo if &ft ==# '<args>' | filetype detect | endif
 
 
 " ======================================================================
