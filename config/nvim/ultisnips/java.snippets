@@ -11,50 +11,80 @@ if (${1:var} != null) {
 endsnippet
 
 snippet get
-public ${1:String} get${2:Name}() {
+public ${1:String} get${2:$1}() {
 	return ${2/./\l$0/};
 }
 endsnippet
 
 snippet set
-public void set${1:Name}(${2:String} ${1/./\l$0/}) {
+public void set${1:Name}(${2:$1} ${1/./\l$0/}) {
 	this.${1/./\l$0/} = ${1/./\l$0/};
 }
 endsnippet
 
-snippet getset
-public ${1:String} get${2:Name}() {
+snippet getset "Getter + Setter" m
+public ${1:String} get${2:$1}() {
 	return ${2/./\l$0/};
-}$0
+}
+
 public void set$2($1 ${2/./\l$0/}) {
 	this.${2/./\l$0/} = ${2/./\l$0/};
-}
+}$0
 endsnippet
 
-snippet isset
+snippet isset "Boolean Getter + Setter" m
 public boolean is${1:Name}() {
 	return ${1/./\l$0/};
-}$0
+}
+
 public void set$1(boolean ${1/./\l$0/}) {
 	this.${1/./\l$0/} = ${1/./\l$0/};
-}
+}$0
+endsnippet
+
+snippet pkg
+package `!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`;
+
+
 endsnippet
 
 snippet class
-package ${1:`!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
+${1:public }final class `!v expand('%:t:r')` {
+	public `!v expand('%:t:r')`($2) {
+		${0:super();}
+	}
+}
+endsnippet
 
-${2:public} class `!v expand('%:t:r')` {
-	${3:public} `!v expand('%:t:r')`($4) {
+snippet classe
+${1:public }final class `!v expand('%:t:r')` extends ${2:Super} {
+	public `!v expand('%:t:r')`($3) {
+		${0:super();}
+	}
+}
+endsnippet
+
+snippet classi
+${1:public }final class `!v expand('%:t:r')` implements ${2:Interface} {
+	public `!v expand('%:t:r')`($3) {
+		${0:super();}
+	}
+}
+endsnippet
+
+snippet classj
+${1:public }final class `!v expand('%:t:r')`
+		extends ${2:Super}
+		implements ${3:Interface} {
+	public `!v expand('%:t:r')`($4) {
 		${0:super();}
 	}
 }
 endsnippet
 
 snippet enum
-package ${1:`!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`};
-
-${2:public} enum `!v expand('%:t:r')` {
-	${3:public} `!v expand('%:t:r')`($4) {
+${1:public }enum `!v expand('%:t:r')` {
+	`!v expand('%:t:r')`($2) {
 		${0:super();}
 	}
 }
