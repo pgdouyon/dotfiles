@@ -514,6 +514,21 @@ nnoremap <silent> coq :call <SID>Ctoggle()<CR>
 " ----------------------------------------------------------------------
 command! -nargs=1 FiletypeDetect bufdo if &ft ==# '<args>' | filetype detect | endif
 
+" ----------------------------------------------------------------------
+" Changelist Jump
+" ----------------------------------------------------------------------
+function! s:changelist_jump(forward)
+    let cmd = a:forward ? "g;" : "g,"
+    let cursor_position = getpos(".")
+    execute "normal!" cmd
+    if cursor_position == getpos(".")
+        execute "normal!" cmd
+    endif
+endfunction
+
+nnoremap <silent> g; :<C-U>call <SID>changelist_jump(1)<CR>
+nnoremap <silent> g, :<C-U>call <SID>changelist_jump(0)<CR>
+
 
 " ======================================================================
 " Plugins
