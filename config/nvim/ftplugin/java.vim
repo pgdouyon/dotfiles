@@ -20,14 +20,28 @@ function! s:sort_imports()
     let save_cursor = getpos(".")
     call cursor(1, 0)
     let import_start = search("^import", 'cW')
-    while import_start
-        let import_end = search('^\%(import\)\@!', 'W')
-        execute 'keepjumps' import_start ',' (import_end - 1) 'sort ur /.*\ze;/'
+    let import_end = search('^\%(import\)\@!\S', 'W') - 1
 
-        call cursor(import_end, 0)
-        let import_start = search("^import", 'W')
-    endwhile
+    let imports = filter(getline(import_start, import_end), 'v:val =~# "^import"')
+    let sorted_imports = uniq(sort(imports, "s:compare_imports"))
+    let ordered_imports = []
+    for import_regex in b:java_import_order
+        let matching_imports = filter(copy(sorted_imports), 'v:val =~# import_regex')
+        if !empty(matching_imports)
+            call filter(sorted_imports, 'v:val !~# import_regex')
+            call extend(ordered_imports, matching_imports)
+            call add(ordered_imports, '')
+        endif
+    endfor
+    execute "silent" import_start . "," . import_end "delete _"
+    call append(import_start - 1, ordered_imports)
     call setpos(".", save_cursor)
+endfunction
+
+function! s:compare_imports(import1, import2)
+    let normalized_i1 = substitute(a:import1, ';$', '', '')
+    let normalized_i2 = substitute(a:import2, ';$', '', '')
+    return normalized_i1 ==# normalized_i2 ? 0 : normalized_i1 <# normalized_i2 ? -1 : 1
 endfunction
 
 function! s:parse_expression(start, end, process_function)
@@ -171,6 +185,12 @@ function! s:SID()
     return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID$')
 endfunction
 
+let b:java_import_order = [
+            \ 'import java\..*',
+            \ 'import javax.*',
+            \ 'import org.*',
+            \ 'import \%(static\)\@!.*',
+            \ 'import static .*']
 let b:splitjoin_split_callbacks = map(["split_ternary_expr", "split_boolean_exprs", "split_args"], 's:SID() . v:val')
 let b:splitjoin_join_callbacks = map(["join_ternary_expr", "join_boolean_exprs", "join_args"], 's:SID() . v:val')
 
