@@ -11,7 +11,7 @@ endif
 let s:cpo_save = &cpoptions
 set cpoptions&vim
 
-CompilerSet makeprg=rubocop\ --format\ emacs\ $*\ %
+CompilerSet makeprg=rubocop\ --format\ emacs\ $*\ %\ 2>/dev/null
 
 CompilerSet errorformat=
     \%W%f:%l:%c:\ C:\ %m,
