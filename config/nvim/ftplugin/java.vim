@@ -33,8 +33,10 @@ function! s:sort_imports()
             call add(ordered_imports, '')
         endif
     endfor
-    execute "silent" import_start . "," . import_end "delete _"
-    call append(import_start - 1, ordered_imports)
+    if getline(import_start, import_end) !=# ordered_imports
+        execute "silent" import_start . "," . import_end "delete _"
+        call append(import_start - 1, ordered_imports)
+    endif
     call setpos(".", save_cursor)
 endfunction
 
