@@ -10,6 +10,10 @@ if (${1:var} != null) {
 }
 endsnippet
 
+snippet v
+${1:String} ${2:${1/./\l$0/}}$0;
+endsnippet
+
 snippet get
 public ${1:String} get${2:$1}() {
 	return ${2/./\l$0/};
@@ -44,7 +48,6 @@ endsnippet
 
 snippet pkg
 package `!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`;
-
 
 endsnippet
 
@@ -87,6 +90,11 @@ ${1:public }enum `!v expand('%:t:r')` {
 	`!v expand('%:t:r')`($2) {
 		${0:super();}
 	}
+}
+endsnippet
+
+snippet interface
+${1:public }interface `!v expand('%:t:r')` ${2:extends ${3:Super} }{
 }
 endsnippet
 
