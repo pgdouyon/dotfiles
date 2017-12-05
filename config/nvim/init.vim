@@ -126,6 +126,7 @@ endif
 
 " Messages
 set shortmess+=A
+set noshowcmd
 set ruler
 
 " Selecting Text
