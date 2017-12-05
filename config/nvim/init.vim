@@ -520,10 +520,14 @@ command! -nargs=1 FiletypeDetect bufdo if &ft ==# '<args>' | filetype detect | e
 function! s:changelist_jump(forward)
     let cmd = a:forward ? "g;" : "g,"
     let cursor_position = getpos(".")
-    execute "normal!" cmd
-    if cursor_position == getpos(".")
-        execute "normal!" cmd
-    endif
+    try
+        execute "normal!" v:count1 . cmd
+        if cursor_position == getpos(".")
+            execute "normal!" v:count1 . cmd
+        endif
+    catch
+        echohl ErrorMsg | echo substitute(v:exception, '^[^:]*:', '', '') | echohl None
+    endtry
 endfunction
 
 nnoremap <silent> g; :<C-U>call <SID>changelist_jump(1)<CR>
