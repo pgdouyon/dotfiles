@@ -22,20 +22,22 @@ function! s:sort_imports()
     let import_start = search("^import", 'cW')
     let import_end = search('^\%(import\)\@!\S', 'W') - 1
 
-    let imports = filter(getline(import_start, import_end), 'v:val =~# "^import"')
-    let sorted_imports = uniq(sort(imports, "s:compare_imports"))
-    let ordered_imports = []
-    for import_regex in b:java_import_order
-        let matching_imports = filter(copy(sorted_imports), 'v:val =~# import_regex')
-        if !empty(matching_imports)
-            call filter(sorted_imports, 'v:val !~# import_regex')
-            call extend(ordered_imports, matching_imports)
-            call add(ordered_imports, '')
+    if import_start
+        let imports = filter(getline(import_start, import_end), 'v:val =~# "^import"')
+        let sorted_imports = uniq(sort(imports, "s:compare_imports"))
+        let ordered_imports = []
+        for import_regex in b:java_import_order
+            let matching_imports = filter(copy(sorted_imports), 'v:val =~# import_regex')
+            if !empty(matching_imports)
+                call filter(sorted_imports, 'v:val !~# import_regex')
+                call extend(ordered_imports, matching_imports)
+                call add(ordered_imports, '')
+            endif
+        endfor
+        if getline(import_start, import_end) !=# ordered_imports
+            execute "silent" import_start . "," . import_end "delete _"
+            call append(import_start - 1, ordered_imports)
         endif
-    endfor
-    if getline(import_start, import_end) !=# ordered_imports
-        execute "silent" import_start . "," . import_end "delete _"
-        call append(import_start - 1, ordered_imports)
     endif
     call setpos(".", save_cursor)
 endfunction
