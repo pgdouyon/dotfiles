@@ -441,9 +441,9 @@ function! s:TodoList(include_tag, search_dir)
     endif
 
     let todo_tag = escape('[PGD]', '()[]{}<>!@#$%^&*-_+=\|?.')
-    let todo = 'TODO|FIXME|XXX'
-    let todo_tagged = join(map(split(todo, '|'), "v:val.' '.'".todo_tag."'"), '|')
-    let todo_str = a:include_tag ? todo_tagged : todo
+    let todo_regex = '(TODO|FIXME|XXX)'
+    let todo_tag_regex = join([todo_regex, todo_tag], ' ')
+    let todo_str = a:include_tag ? todo_tag_regex : todo_regex
     execute printf("Ripgrep '%s' %s", todo_str, todo_dir)
 endfunction
 
