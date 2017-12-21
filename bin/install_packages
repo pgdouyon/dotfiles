@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_CACHE_HOME"
+mkdir -p "$XDG_DATA_HOME"
+
+echo 'Installing packages...'
+# git-prompt
+if [[ ! -e $XDG_DATA_HOME/git-prompt.sh ]]; then
+    curl https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh \
+        -o "$XDG_DATA_HOME/git-prompt.sh"
+fi
+
+# FZF
+git clone https://github.com/junegunn/fzf.git "$XDG_DATA_HOME/fzf"
+"$XDG_DATA_HOME/fzf/install" --all --no-update-rc
+mv ~/.fzf.bash "$XDG_DATA_HOME/fzf/fzf.bash"
+mv ~/.fzf.zsh "$XDG_DATA_HOME/fzf/fzf.zsh"
+
 # MacOS
 if [[ $(uname -s) = 'Darwin' ]]; then
     # RVM
