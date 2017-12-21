@@ -1,6 +1,5 @@
 #!/bin/sh
 export EDITOR=nvim
-export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 if [ -z "$TMUX" ]; then
     if toe -a | grep xterm-256color-italic >/dev/null ; then
         export TERM=xterm-256color-italic
