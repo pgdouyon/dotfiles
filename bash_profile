@@ -13,6 +13,4 @@ export HISTCONTROL=ignoredups
 source ~/.profile
 source ~/.bashrc
 
-# figlet -w120 'Meikyo Shisui' | cowsay -fdaemon -n
-# figlet -w120 'Chita! Gen Imilite' | cowsay -fdaemon -n
-figlet -w120 'Pran pasyans' | cowsay -fdaemon -n
+echo 'Meikyo Shisui|Chita! Gen Imilite|Pran pasyans' | tr '|' '\n' | sort --random-sort | head -n1 | figlet -w120 | cowsay -fdaemon -n
