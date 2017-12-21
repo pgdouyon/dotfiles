@@ -536,6 +536,24 @@ endfunction
 nnoremap <silent> g; :<C-U>call <SID>changelist_jump(1)<CR>
 nnoremap <silent> g, :<C-U>call <SID>changelist_jump(0)<CR>
 
+" ----------------------------------------------------------------------
+" Eval Expression
+" ----------------------------------------------------------------------
+function! s:eval()
+    let expression = input(":= ", "", "expression")
+    redraw
+    try
+        if !empty(expression)
+            echo eval(expression)
+        endif
+    catch
+        let error_message = substitute(v:exception, '^Vim[^:]*:', '', '')
+        echohl WarningMsg | echo error_message | echohl None
+    endtry
+endfunction
+
+nnoremap g= :<C-U>call <SID>eval()<CR>
+
 
 " ======================================================================
 " Plugins
