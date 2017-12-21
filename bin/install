@@ -16,14 +16,17 @@ for rc in *; do
     fi
 done
 
-# link config directories
-for dir in *; do
-    if [[ -d $dir ]]; then
-        dotdir="$HOME/.$dir"
-        [[ -e $dotdir ]] && mv -v "$dotdir" "${BACKUP_DIR}/.${dir}"
-        ln -sfv "${BASE}/${dir}" "$dotdir"
-    fi
-done
+# link directories
+if [[ -d config ]]; then
+    config_dir="$HOME/.config"
+    [[ -e $config_dir ]] && mv -v "$config_dir" "${BACKUP_DIR}/.config"
+    ln -sfv "${BASE}/config" "$config_dir"
+fi
+if [[ -d bin ]]; then
+    bin_dir="$HOME/bin"
+    [[ -e $bin_dir ]] && mv -v "$bin_dir" "${BACKUP_DIR}/bin"
+    ln -sfv "${BASE}/bin" "$bin_dir"
+fi
 echo "Existing config files backed up to ${BACKUP_DIR}..."
 
 mkdir -p "$XDG_CONFIG_HOME"
