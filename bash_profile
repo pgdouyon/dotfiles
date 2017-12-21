@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # color term
 export CLICOLOR=1
 
@@ -13,4 +15,6 @@ export HISTCONTROL=ignoredups
 source ~/.profile
 source ~/.bashrc
 
-echo 'Meikyo Shisui|Chita! Gen Imilite|Pran pasyans' | tr '|' '\n' | sort --random-sort | head -n1 | figlet -w120 | cowsay -fdaemon -n
+if (command -v figlet &>/dev/null) && (command -v cowsay &>/dev/null); then
+    echo 'Meikyo Shisui|Chita! Gen Imilite|Pran pasyans' | tr '|' '\n' | sort --random-sort | head -n1 | figlet -w120 | cowsay -fdaemon -n
+fi
