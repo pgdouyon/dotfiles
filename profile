@@ -53,5 +53,6 @@ if command -v gpg-agent >/dev/null; then
     fi
 fi
 
-[ -s "$XDG_DATA_HOME/rvm/scripts/rvm" ] && . "$XDG_DATA_HOME/rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# rvm doubles startup time, disable it unless it's necessary
+# [ -s "$XDG_DATA_HOME/rvm/scripts/rvm" ] && . "$XDG_DATA_HOME/rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [ -f ~/.profile.local ] && . ~/.profile.local
