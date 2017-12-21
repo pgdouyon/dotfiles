@@ -316,7 +316,6 @@ if has("nvim")
     augroup terminal
         autocmd!
         autocmd TermClose * bwipe!
-        autocmd BufEnter * if &buftype ==# "terminal" | call feedkeys("i", "nt") | endif
         autocmd BufLeave * if &buftype ==# "terminal" | redraw | echo | endif
     augroup END
 else
