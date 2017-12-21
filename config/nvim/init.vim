@@ -119,6 +119,8 @@ set mouse=""
 " GUI
 set guioptions="cegmt"
 set termguicolors
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+            \,a:blinkwait700-blinkoff100-blinkon999-Cursor/lCursor
 if !has("nvim") && !empty($TMUX)
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -735,6 +737,7 @@ augroup vimrc
     autocmd SourceCmd *unimpaired.vim source <afile> | call <SID>UnimpairedMappings()
     autocmd WinEnter * if !(&diff) | silent set cursorline | endif
     autocmd WinLeave * silent set nocursorline
+    autocmd VimLeave * set guicursor=a:block-blinkon0
 augroup END
 
 augroup vimenter
