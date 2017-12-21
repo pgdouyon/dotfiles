@@ -292,6 +292,7 @@ cabbrev w!! w !sudo tee % > /dev/null
 cnoremap <C-A> <Home>
 cnoremap <C-N> <Down>
 cnoremap <C-P> <Up>
+cnoremap %<C-H> <C-R>=expand("%:h")<CR>
 
 " ----------------------------------------------------------------------
 " Terminal
