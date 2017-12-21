@@ -75,5 +75,16 @@ function! statusline#get_quickfix_text()
     return ""
 endfunction
 
+
+" ======================================================================
+" Ruler
+" ======================================================================
+function! statusline#schmexy_rulerformat()
+    let git_branch = '%{empty(fugitive#head(6)) ? "" : fugitive#head(6) . " |"}'
+    let accio_errors = '%#ErrorMsg#%{accio#statusline("  Errors %d ", "")}%*%{empty(accio#statusline("Errors %d", "")) ? "" : "|"}'
+    let cursor_info = ' %l::%-2v%'
+    return '%55(%=' . git_branch . accio_errors . cursor_info . ')'
+endfunction
+
 let &cpoptions = s:save_cpo
 unlet s:save_cpo

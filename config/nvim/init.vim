@@ -101,13 +101,13 @@ set fillchars+=stl:\ ,stlnc:\ ,diff:-
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 " Multiple Windows
-set laststatus=2
+set laststatus=1
 set statusline=%!statusline#schmexy_statusline()
 set splitbelow
 set splitright
 
 " Multiple Tab Pages
-set showtabline=2
+set showtabline=1
 set tabline=%!statusline#schmexy_tabline()
 
 " Terminal
@@ -130,6 +130,7 @@ endif
 set shortmess+=A
 set noshowcmd
 set ruler
+let &rulerformat=statusline#schmexy_rulerformat()
 
 " Selecting Text
 set clipboard=unnamed
