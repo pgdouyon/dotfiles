@@ -9,7 +9,7 @@ cd "$BASE"
 # link RC files
 mkdir -pv "$BACKUP_DIR"
 for rc in *; do
-    if [[ -f $rc && ($rc != "README.md") ]]; then
+    if [[ -f $rc && ($rc != "README.md") && ($rc != "Brewfile") ]]; then
         dotfile="$HOME/.$rc"
         [[ -e $dotfile ]] && mv -v "$dotfile" "${BACKUP_DIR}/.${rc}"
         ln -sfv "${BASE}/${rc}" "$dotfile"
