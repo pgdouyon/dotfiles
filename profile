@@ -16,20 +16,21 @@ else
 fi
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_HOME}/Caskroom"
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
 # JAVA_TOOL_OPTIONS
 export JAVA_HOME=`/usr/libexec/java_home`
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
 export GROOVY_HOME=$HOMEBREW_HOME/opt/groovy/libexec
+export GEM_HOME="$XDG_DATA_HOME/gem"
 
-export PATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnubin:$HOMEBREW_HOME/bin:$HOME/bin:$PATH
+export PATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnubin:$HOMEBREW_HOME/bin:$GEM_HOME/bin:$HOME/bin:$PATH
 export MANPATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnuman:$HOMEBREW_HOME/share/man:$MANPATH
 export MANPAGER="nvim -c 'set ft=man' - ; echo"
 
 export MAVEN_OPTS='-Xmx1500M'
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
 
 export rvm_path="$XDG_DATA_HOME/rvm"
 export GEM_SPEC_CACHE="$XDG_DATA_HOME/gem/specs"
