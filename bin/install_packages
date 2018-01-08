@@ -25,12 +25,12 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     # Homebrew
     while ! command -v brew &>/dev/null; do
         echo "Please install Homebrew (https://raw.github.com/Homebrew/install/master/install) to ${HOMEBREW_HOME}"
-        read -p 'Press Enter to continue...'
+        read -r -p 'Press Enter to continue...'
     done
 
     echo 'Installing homebrew packages...'
     brew update; brew bundle
-    pip2 install --user neovim flake8
-    pip3 install --user neovim flake8
+    pip2 install --user neovim
+    pip3 install --user neovim flake8 csvkit
     gem install pry rdoc rdoc-data rubocop
 fi
