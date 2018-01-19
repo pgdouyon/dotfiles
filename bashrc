@@ -6,6 +6,23 @@ shopt -s expand_aliases
 
 stty -ixon
 
+function jenv {
+    if [[ -x /usr/libexec/java_home ]]; then
+        local version
+        case $1 in
+            # Java 9 and later version strings dropped the 1.X format
+            [0-8] ) version="1.$1";;
+            * ) version=$1;;
+        esac
+        if /usr/libexec/java_home -F -v "$version"; then
+            export JAVA_VERSION=$version
+        fi
+    else
+        echo 'Cannot find /usr/libexec/java_home executable'
+        exit 1
+    fi
+}
+
 # Private utility functions
 function __prompt {
     prompt=${1:-'Do you wish to proceed [yes/no]?'}
