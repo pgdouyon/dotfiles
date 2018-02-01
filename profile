@@ -28,7 +28,7 @@ export GEM_HOME="$XDG_DATA_HOME/gem"
 
 export PATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnubin:$HOMEBREW_HOME/bin:$GEM_HOME/bin:$HOME/bin:$PATH
 export MANPATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnuman:$HOMEBREW_HOME/share/man:$MANPATH
-export MANPAGER="nvim -c 'set ft=man' - ; echo"
+export MANPAGER="nvim -c 'set ft=man' -"
 
 export MAVEN_OPTS='-Xmx1500M'
 
