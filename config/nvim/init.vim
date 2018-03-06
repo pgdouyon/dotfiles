@@ -297,7 +297,7 @@ cnoremap %<C-H> <C-R>=expand("%:h")<CR>
 " ----------------------------------------------------------------------
 " Terminal
 " ----------------------------------------------------------------------
-if has("nvim")
+if exists(":terminal")
     tmap <C-H> <C-\><C-N><C-H>
     tmap <C-J> <C-\><C-N><C-J>
     tmap <C-K> <C-\><C-N><C-K>
@@ -316,8 +316,13 @@ if has("nvim")
     nnoremap <silent> sht :-tabnew +terminal<CR>
     augroup terminal
         autocmd!
-        autocmd TermClose * bwipe!
-        autocmd BufLeave * if &buftype ==# "terminal" | redraw | echo | endif
+        autocmd BufLeave * if &buftype ==# "terminal" | echo | endif
+        if exists("##TermOpen")
+            autocmd TermOpen * setlocal bufhidden=hide
+        endif
+        if exists("##TermClose")
+            autocmd TermClose * bwipe!
+        endif
     augroup END
 else
     nnoremap <silent> she :echoerr "You're inside an instance of Vim, not Neovim!"<CR>
