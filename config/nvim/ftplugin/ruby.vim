@@ -8,7 +8,7 @@ let g:ruby_no_comment_fold = 1
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal softtabstop=2
-setlocal iskeyword+=?,!
+setlocal iskeyword+=?
 
 compiler rubocop
 
