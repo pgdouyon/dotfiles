@@ -3,8 +3,6 @@ packages/
 Library/
 target/
 trash/
-logs/
-log/
 tmp/
 tags
 tags.lock
