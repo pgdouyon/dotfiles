@@ -321,7 +321,7 @@ if exists(":terminal")
             autocmd TermOpen * setlocal bufhidden=hide
         endif
         if exists("##TermClose")
-            autocmd TermClose * bwipe!
+            autocmd TermClose * call feedkeys("\<CR>")
         endif
     augroup END
 else
