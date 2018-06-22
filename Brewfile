@@ -31,7 +31,7 @@ brew 'ruby'
 brew 'shellcheck'
 brew 'tmux'
 brew 'tree'
-brew 'vim', args: ['with-client-server', 'with-lua', 'with-luajit', 'with-python3']
+brew 'vim', args: ['with-lua', 'with-luajit', 'with-python3']
 
 # GNU utils to replace BSD findutils
 tap 'homebrew/dupes'
