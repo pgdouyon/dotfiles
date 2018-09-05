@@ -21,7 +21,9 @@ function! s:binary()
 endfunction
 
 nnoremap <silent><buffer> R :<C-U>call repl#start_repl(<SID>binary(), <SID>binary())<CR>
-nnoremap <silent><buffer> K :python help("<C-R><C-W>")<CR>
+if empty(mapcheck("K", "n"))
+    nnoremap <silent><buffer> K :python help("<C-R><C-W>")<CR>
+endif
 
 nnoremap <silent><buffer> gd :<C-U>call <SID>goto_local_declaration()<CR>
 nnoremap <silent><buffer> gm :<C-U>call <SID>jump_to_function()<CR>
