@@ -15,7 +15,12 @@ augroup END
 " ----------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------
-nnoremap <silent><buffer> R :<C-U>call repl#start_repl("python3", "python3")<CR>
+function! s:binary()
+    let binaries = filter(["python3", "python2"], 'executable(v:val)')
+    return get(binaries, 0, "python")
+endfunction
+
+nnoremap <silent><buffer> R :<C-U>call repl#start_repl(<SID>binary(), <SID>binary())<CR>
 nnoremap <silent><buffer> K :python help("<C-R><C-W>")<CR>
 
 nnoremap <silent><buffer> gd :<C-U>call <SID>goto_local_declaration()<CR>
