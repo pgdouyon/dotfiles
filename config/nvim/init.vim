@@ -310,6 +310,7 @@ if exists(":terminal")
     tnoremap <M-.> <Esc>.
     tnoremap <M-BS> <Esc><BS>
     tnoremap <silent> <C-[> <C-\><C-N>:echo<CR>
+    tnoremap <silent> <C-Q> <C-\><C-N>:<C-U>close<CR>
 
     nnoremap <silent> she :terminal<CR>
     nnoremap <silent> shs :split \| terminal<CR>
@@ -320,6 +321,7 @@ if exists(":terminal")
         autocmd BufLeave * if &buftype ==# "terminal" | echo | endif
         if exists("##TermOpen")
             autocmd TermOpen * setlocal bufhidden=hide
+            autocmd TermOpen * nnoremap <silent><buffer> <C-Q> :<C-U>close<CR>
         endif
         if exists("##TermClose")
             autocmd TermClose * call feedkeys("\<CR>")
