@@ -773,7 +773,7 @@ augroup END
 
 augroup vimenter
     autocmd!
-    autocmd VimEnter * silent setlocal cursorline
+    autocmd VimEnter * silent set cursorline
 augroup END
 
 augroup cmdwin
