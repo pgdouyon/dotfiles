@@ -11,6 +11,7 @@ Plug 'pgdouyon/vim-evanesco'
 Plug 'pgdouyon/vim-protean'
 Plug 'pgdouyon/vim-accio'
 Plug 'pgdouyon/vim-yin-yang'
+Plug 'pgdouyon/vim-alayas'
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -788,7 +789,9 @@ augroup END
 " ----------------------------------------------------------------------
 " Colorscheme Settings
 " ----------------------------------------------------------------------
-nnoremap cy :colorscheme yin<CR>
+nnoremap cyi :colorscheme yin<CR>
+nnoremap cya :colorscheme yang<CR>
+nnoremap cv :colorscheme vimalayas<CR>
 
 function! s:SetColorColumn()
     let configured_filetypes = ['java']
@@ -818,9 +821,7 @@ augroup END
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
-    let hour = exists("*strftime") ? str2nr(strftime("%H")) : 0
-    let yinyang = (hour > 7 && hour < 17) ? "yang" : "yin"
-    execute "colorscheme" yinyang
+    colorscheme vimalayas
 endif
 
 if filereadable(expand('$HOME/.vimrc.local'))
