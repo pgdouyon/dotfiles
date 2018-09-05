@@ -8,24 +8,23 @@ alias recent='find * -type f -mtime 0'
 alias gtypist='gtypist -b -e1 -w -S'
 alias jconsole='_JAVA_OPTIONS="" jconsole'
 alias testping='ping -c3 www.google.com'
+
+# vim aliases
 alias initvim='nvim -c "call fugitive#detect(expand(\"%:p\"))" "$XDG_CONFIG_HOME/nvim/init.vim"'
 alias vv='nvim -c "Niffler -vcs"'
 alias vt='nvim -c "NifflerTags"'
+if [[ $(uname -s) = 'Darwin' ]]; then
+    alias vim='mvim -v'
+fi
+
+# cd aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 
-if [[ $(uname -s) = 'Darwin' ]]; then
-    alias vim='mvim -v'
-fi
-
 # git aliases
-alias g='git'
-alias ga='git add'
-alias gap='git add -p'
-alias gae='git add -e'
 alias gb='git branch --color'
 alias gci='git commit'
 alias gco='git checkout'
@@ -35,7 +34,6 @@ alias gd='git diff --color'
 alias gdc='git diff --cached --color'
 alias ggo='git log --graph --color'
 alias gh='git help'
-alias gm='git merge'
 alias gmff='git merge --ff-only'
 alias gmnf='git merge --no-ff'
 alias gpo='git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`'
