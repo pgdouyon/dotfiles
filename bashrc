@@ -6,6 +6,14 @@ shopt -s expand_aliases
 
 stty -ixon
 
+function orgflowy {
+    case $# in
+        0) nvim -c "NifflerOrgFlowy" ;;
+        1) nvim -c "OrgFlowy $1" ;;
+        *) __error 'Usage: orgflowy [NOTE_NAME]' ;;
+    esac
+}
+
 function jenv {
     if [[ -x /usr/libexec/java_home ]]; then
         local version
