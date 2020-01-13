@@ -12,6 +12,7 @@ Plug 'pgdouyon/vim-protean'
 Plug 'pgdouyon/vim-accio'
 Plug 'pgdouyon/vim-yin-yang'
 Plug 'pgdouyon/vim-alayas'
+Plug 'pgdouyon/vim-orgflowy', {'dir': '~/projects/vim-orgflowy'}
 
 " Tim Pope
 Plug 'tpope/vim-repeat'
@@ -592,6 +593,9 @@ nnoremap <silent> snm :NifflerMRU<CR>
 nnoremap <silent> snb :NifflerBuffer<CR>
 nnoremap <silent> snT :NifflerTags<CR>
 nnoremap <silent> snt :NifflerTags %<CR>
+
+command! -nargs=0 -bang NifflerOrgFlowy call niffler#custom({'source': function('orgflowy#completion_candidates_list'), 'sink': 'OrgFlowy'})
+nnoremap <silent> sno :NifflerOrgFlowy<CR>
 
 " ----------------------------------------------------------------------
 " Signify Settings
