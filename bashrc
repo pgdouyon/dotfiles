@@ -38,6 +38,7 @@ function __prompt {
 
 function __error {
     echo "$@" 1>&2
+    return 1
 }
 
 function __archive_name {
@@ -59,13 +60,12 @@ function __gpg {
         gnupg "$@"
     else
         __error 'Unable to locate GPG program. Aborting...'
-        exit 1
     fi
 }
 
 # Public functions
 function cdl {
-    cd "$@"; ls
+    cd "$@" && ls
 }
 
 function cpstat {
@@ -151,15 +151,17 @@ function decrypt {
     fi
 }
 
-if [[ -f $HOMEBREW_HOME/etc/bash_completion ]]; then
-    source "$HOMEBREW_HOME"/etc/bash_completion
-fi
+function __source_if_present {
+    # ignore non-constant source check
+    # shellcheck disable=SC1090
+    [[ -f $1 ]] && source "$1"
+}
 
-if [[ -f $HOMEBREW_HOME/etc/profile.d/autojump.sh ]]; then
-    source "$HOMEBREW_HOME"/etc/profile.d/autojump.sh
-fi
+# XXX bash_completion is slow to load
+__source_if_present "$HOMEBREW_HOME"/etc/bash_completion
+__source_if_present "$HOMEBREW_HOME"/etc/profile.d/autojump.sh
 
-[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
-[[ -f $XDG_DATA_HOME/fzf/fzf.bash ]] && source "$XDG_DATA_HOME/fzf/fzf.bash"
-[[ -f $XDG_DATA_HOME/git-prompt.sh ]] && source "$XDG_DATA_HOME/git-prompt.sh"
-[[ -f $XDG_CONFIG_HOME/bash/aliases ]] && source "$XDG_CONFIG_HOME"/bash/aliases
+__source_if_present ~/.bashrc.local
+__source_if_present "$XDG_DATA_HOME/fzf/fzf.bash"
+__source_if_present "$XDG_DATA_HOME/git-prompt.sh"
+__source_if_present "$XDG_CONFIG_HOME"/bash/aliases
