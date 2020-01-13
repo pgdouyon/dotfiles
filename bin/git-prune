@@ -2,60 +2,110 @@
 
 require 'io/console'
 
+VALID_CHAR = '[^\[\]\s]'.freeze
+UPSTREAM_NAME_RE = /(?<name>#{VALID_CHAR}+?\/#{VALID_CHAR}+)/.source
+UPSTREAM_INFO_RE = /:\s(?<info>#{VALID_CHAR}+)/.source
+UPSTREAM_REGEXP = /\A\[#{UPSTREAM_NAME_RE}(?:#{UPSTREAM_INFO_RE})?\]/
+
+SEPARATOR = "\n\n".freeze
+
+def current_branch
+  `git rev-parse --abbrev-ref HEAD`.strip
+end
+
+def local_branches
+  list_branches.map(&:strip)
+end
+
 def remote_branches
-  `git branch -r | cut -c 3-`.lines
-    .reject { |branch| pointer?(branch) }
-    .map(&:strip)
+  list_branches('-r').map(&:strip)
 end
 
 def upstream_branches
-  `git branch -vv | cut -c 3-`.lines.reject { |branch| pointer?(branch) }
-    .map do |branch|
-      branch_parts = branch.split
-      local = branch_parts[0]
-      upstream = branch_parts[2][/^\[(\S+)\]$/, 1]
-      blank?(upstream) ? 'origin/' << local : upstream
-    end
+  list_branches('-vv').map do |branch|
+    branch_info = parse_branch(branch)
+    branch_info[:upstream_name] || 'origin/' << branch_info[:local]
+  end
 end
 
-def blank?(s)
-  s.to_s.strip.empty?
+def gone_branches
+  list_branches('-vv')
+    .select { |branch| gone?(branch) }
+    .map { |branch| parse_branch(branch)[:local] }
+end
+
+def list_branches(*args)
+  `git branch #{args.join(' ')} | cut -c 3-`
+    .lines
+    .reject { |branch| pointer?(branch) }
 end
 
 def pointer?(branch)
   branch =~ /\s->\s/
 end
 
-non_tracking_branches = remote_branches - upstream_branches
-if non_tracking_branches.empty?
-  puts 'All remote branches up to date'
-  exit(0)
+def gone?(branch)
+  parse_branch(branch)[:upstream_info] == 'gone'
 end
 
-loop do
-  puts "Found #{non_tracking_branches.size} non-tracking remote branches"
-  puts
-  puts 'Please enter:'
-  puts '[p|preview] to see the branches before deleting'
-  puts '[y|yes] to confirm deletion'
-  puts '[n|no] to abort deletion'
+def parse_branch(branch)
+  branch_parts = branch.split(/\s+/, 3)
+  upstream_match = branch_parts[2].match(UPSTREAM_REGEXP)
+  {
+    local: branch_parts[0],
+    sha: branch_parts[1],
+    upstream_name: upstream_match && upstream_match['name'],
+    upstream_info: upstream_match && upstream_match['info']
+  }
+end
 
-  case STDIN.getch
-  when 'p'
-    puts "\n\t#{non_tracking_branches.join("\n\t")}"
-    puts
-    puts
-  when 'y'
-    puts 'Deleting non-tracking branches...'
-    non_tracking_branches.each_slice(20).each do |branches|
-      puts "Deleting #{branches.join(' ')}"
-      `git branch -r -d #{branches.map { |b| format('"%s"', b) }.join(' ')}`
-      puts
-      puts
-    end
-    exit(0)
-  when 'n'
-    puts 'Aborting...'
-    exit(1)
+def delete_branches(branches, message, *args)
+  return if branches.nil? || branches.empty?
+
+  puts message
+  branches.each_slice(20).each do |branch_batch|
+    branch_args = branch_batch.map { |b| format('"%s"', b) }.join(' ')
+    puts "Deleting #{branch_batch.join(' ')}"
+    `git branch -d #{args.join(' ')} #{branch_args}`
+    puts SEPARATOR
   end
 end
+
+def confirm(message)
+  puts message
+  response = STDIN.getch
+  exit(1) if response !~ /\w/
+  response =~ /[yY]/
+end
+
+puts `git remote prune origin`
+
+gone_branches.each do |branch|
+  puts `git branch --unset-upstream #{branch}`
+end
+
+delete_branches((remote_branches - upstream_branches),
+                'Deleting non-tracking branches...',
+                '-r')
+
+puts 'Looping through local branches...'
+local_branches.each do |branch|
+  next if ['master', current_branch].include?(branch)
+
+  puts
+  puts branch.to_s
+  puts "\t" << `git branch -vv --list #{branch}`.strip
+  puts "\t" << `git show -s #{branch}`
+  puts
+
+  system("git show #{branch}") if confirm 'Show commit? [y|n]'
+  next unless confirm "Do you want to delete #{branch}? [y|n]"
+  next if system("git branch -d #{branch}")
+
+  if confirm "Do you want to FORCE delete #{branch}? [y|n]"
+    system("git branch -D #{branch}")
+  end
+end
+
+puts 'All remote branches up to date'
+exit(0)
