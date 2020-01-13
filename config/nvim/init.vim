@@ -289,7 +289,7 @@ inoremap <expr> <C-E> pumvisible() ? "\<C-E>" : "\<End>"
 " Command Line
 " ----------------------------------------------------------------------
 " write file with super user privileges
-cabbrev w!! w !sudo tee % > /dev/null
+" cabbrev w!! w !sudo tee % > /dev/null
 
 cnoremap <C-A> <Home>
 cnoremap <C-N> <Down>
@@ -339,6 +339,11 @@ endif
 " ======================================================================
 " Functions
 " ======================================================================
+
+function! s:synnames()
+    call string(reverse(map(synstack(line('.'), col('.')), 'execute("hi ".synIDattr(v:val, "name"), "")')))
+endfunction
+nnoremap <silent> <C-S> :call <SID>synnames()<CR>
 
 " ----------------------------------------------------------------------
 " Tmux Navigation
@@ -827,7 +832,14 @@ augroup END
 " Background Settings
 " ----------------------------------------------------------------------
 if has('vim_starting')
-    colorscheme vimalayas
+    let hour = str2nr(strftime("%H"))
+    if hour <= 15
+        colorscheme yang
+    elseif hour > 15 && hour < 20
+        colorscheme vimalayas
+    else
+        colorscheme yin
+    endif
 endif
 
 if filereadable(expand('$HOME/.vimrc.local'))
