@@ -1,6 +1,6 @@
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
 tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
 
 brew 'ag'
 brew 'autojump'
@@ -56,3 +56,4 @@ cask 'spotify'
 cask 'tableplus'
 cask 'font-fira-mono'
 cask 'font-fira-code'
+cask 'font-jetbrains-mono'
