@@ -1,0 +1,5 @@
+snippet strict
+set -euo pipefail
+
+trap 'echo "\"$BASH_COMMAND\" command failed with exit code $? at line $LINENO."' ERR
+endsnippet
