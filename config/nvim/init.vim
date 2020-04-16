@@ -833,7 +833,7 @@ augroup END
 " ----------------------------------------------------------------------
 if has('vim_starting')
     let hour = str2nr(strftime("%H"))
-    if hour <= 15
+    if hour > 7 && hour <= 15
         colorscheme yang
     elseif hour > 15 && hour < 20
         colorscheme vimalayas
