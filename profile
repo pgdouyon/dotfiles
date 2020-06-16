@@ -36,7 +36,7 @@ export rvm_path="$XDG_DATA_HOME/rvm"
 export GEM_SPEC_CACHE="$XDG_DATA_HOME/gem/specs"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
-export PIP_CONFIG_FILE="$XDG_CONFIG_HOME/pip/pip.conf"
+# export PIP_CONFIG_FILE="$XDG_CONFIG_HOME/pip/pip.conf"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo:
 
