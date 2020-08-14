@@ -92,6 +92,7 @@ puts 'Looping through local branches...'
 local_branches.each do |branch|
   next if ['master', current_branch].include?(branch)
 
+  system("clear")
   puts
   puts branch.to_s
   puts "\t" << `git branch -vv --list #{branch}`.strip
