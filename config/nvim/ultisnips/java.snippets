@@ -47,7 +47,7 @@ public void set$1(boolean ${1/./\l$0/}) {
 endsnippet
 
 snippet pkg
-package `!v substitute(substitute(expand("%:p:h"), '.*/src/main/java/', '', ''), '/', '.', 'g')`;
+package `!v substitute(substitute(expand("%:p:h"), '.*/src/\%(main\|test\)/java/', '', ''), '/', '.', 'g')`;
 
 endsnippet
 
@@ -134,10 +134,30 @@ snippet jio
 import java.io.$0;
 endsnippet
 
+snippet jt
+import java.time.$0;
+endsnippet
+
+snippet jtf
+import java.time.format.$0;
+endsnippet
+
+snippet jpa
+import javax.persistence.$0;
+endsnippet
+
 snippet tolist
 collect(Collectors.toList());$0
 endsnippet
 
 snippet toset
 collect(Collectors.toSet());$0
+endsnippet
+
+snippet tomap
+collect(Collectors.toMap(${1:keyMapper}, ${2:valueMapper}));$0
+endsnippet
+
+snippet grouping
+collect(Collectors.groupingBy(${1:classifier}));$0
 endsnippet
