@@ -50,12 +50,15 @@ Plug 'rizzatti/dash.vim', {'on': ['Dash', '<Plug>DashSearch']}
 
 " Languages
 Plug 'tpope/vim-markdown'
-Plug 'chaquotay/ftl-vim-syntax'
 Plug 'rstacruz/sparkup', {'rtp': 'vim'}
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-salve', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'ftl']}
+
+if filereadable(expand('$HOME/.plug.local.vim'))
+    source $HOME/.plug.local.vim
+endif
 
 call plug#end()
 
