@@ -766,6 +766,14 @@ let g:mta_filetypes = { 'html': 1, 'ftl': 1, 'xml' : 1 }
 " ----------------------------------------------------------------------
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+" ----------------------------------------------------------------------
+" Gutentags
+" ----------------------------------------------------------------------
+if executable('rg')
+    let g:gutentags_file_list_command = 'rg --files'
+else
+    let g:gutentags_file_list_command = { 'markers': { '.git': 'git ls-files' } }
+endif
 
 " ======================================================================
 " Autocmds
