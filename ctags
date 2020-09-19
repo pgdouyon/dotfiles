@@ -2,6 +2,7 @@
 --exclude=.svn
 --exclude=.hg
 --exclude=bundle
+--exclude=bundles
 --exclude=node_modules
 --exclude=min
 --exclude=vendor
