@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+BIN=$(cd "$(dirname "$0")" && pwd)
+BASE=$(dirname "$BIN")
+
 if [[ -z $XDG_CONFIG_HOME || -z $XDG_CACHE_HOME || -z $XDG_DATA_HOME ]]; then
     echo 'XDG environment variables not set. Aborting...';
     exit 1;
@@ -8,6 +11,17 @@ fi
 mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CACHE_HOME"
 mkdir -p "$XDG_DATA_HOME"
+
+if command -v tic; then
+    echo 'Installing terminfo profiles...'
+    for terminfo in $BASE/tweaked_terminfos/*; do
+        tic "$terminfo"
+    done
+    echo 'Done.'
+else
+    echo 'WARNING: tic command not found. Skipping terminfo installation...'
+fi
+echo
 
 echo 'Installing packages...'
 # git-prompt
