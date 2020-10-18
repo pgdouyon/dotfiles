@@ -1,5 +1,12 @@
 #!/bin/sh
 export EDITOR=nvim
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo
 if [ -z "$TMUX" ]; then
     if toe -a | grep xterm-256color-italic >/dev/null ; then
         export TERM=xterm-256color-italic
@@ -12,13 +19,10 @@ export HOMEBREW_HOME
 if command -v brew >/dev/null 2>&1; then
     HOMEBREW_HOME=$(brew --prefix)
 else
-    HOMEBREW_HOME=~/.homebrew
+    # HOMEBREW_HOME=~/.homebrew
+    HOMEBREW_HOME=/usr/local
 fi
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_HOME}/Caskroom"
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
 
 # JAVA_TOOL_OPTIONS
 export JAVA_HOME=`/usr/libexec/java_home`
@@ -38,7 +42,6 @@ export GEM_SPEC_CACHE="$XDG_DATA_HOME/gem/specs"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 # export PIP_CONFIG_FILE="$XDG_CONFIG_HOME/pip/pip.conf"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
-export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo:
 
 export PATH="$PATH:$XDG_DATA_HOME/rvm/bin" # Add RVM to PATH for scripting
 
