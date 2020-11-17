@@ -1,0 +1,57 @@
+" Search
+set gdefault        " all substiutions have 'g' flag on by default
+set ignorecase      " do case insensitive matching
+set smartcase       " do smart case matching
+set incsearch       " incremental search
+set showmatch       " show matching brackets.
+
+" Misc
+set clipboard=unnamed
+
+" make j and k operate over display lines
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+vnoremap j gj
+vnoremap k gk
+vnoremap gj j
+vnoremap gk k
+
+noremap _ -
+
+" qq to record, Q to replay
+nnoremap Q @q
+
+" switch to alternate buffer
+nnoremap <silent> <Leader>bp :buffer #<CR>
+
+" make Y play nice like C and D do
+nnoremap Y y$
+
+" yank-paste -> paste the last yank
+nnoremap yp "0p
+nnoremap yP "0P
+
+" global substitution
+nnoremap gs :%s/
+xnoremap gs :s/
+
+" reuse flags when repeating substitute command with &
+nnoremap & :&&<CR>
+
+nnoremap gw <C-w>
+
+" emacs keybindings
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+
+" emacs keybindings
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+
+
