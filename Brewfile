@@ -14,7 +14,7 @@ brew 'figlet'
 brew 'ghc'
 brew 'git'
 brew 'gnu-sed'
-brew 'gnupg2', args: ['with-readline']
+brew 'gnupg2'
 brew 'groovy'
 brew 'gtypist'
 brew 'leiningen'
@@ -32,12 +32,12 @@ brew 'ruby'
 brew 'shellcheck'
 brew 'tmux'
 brew 'tree'
-brew 'vim', args: ['with-lua', 'with-luajit', 'with-python3']
+brew 'vim'
 
 # GNU utils to replace BSD findutils
 tap 'homebrew/dupes'
-brew 'grep', args: ['with-default-names']
-brew 'findutils', args: ['with-default-names']
+brew 'grep'
+brew 'findutils'
 
 # Cask
 cask 'anki'
