@@ -10,7 +10,7 @@ alias jconsole='_JAVA_OPTIONS="" jconsole'
 alias testping='ping -c3 www.google.com'
 
 # vim aliases
-alias initvim='nvim -c "call fugitive#detect(expand(\"%:p\"))" "$XDG_CONFIG_HOME/nvim/init.vim"'
+alias initvim='nvim "$XDG_CONFIG_HOME/nvim/init.vim"'
 alias vv='nvim -c "Niffler -vcs"'
 alias vt='nvim -c "NifflerTags"'
 if [[ $(uname -s) = 'Darwin' ]]; then
