@@ -35,7 +35,6 @@ brew 'tree'
 brew 'vim'
 
 # GNU utils to replace BSD findutils
-tap 'homebrew/dupes'
 brew 'grep'
 brew 'findutils'
 
