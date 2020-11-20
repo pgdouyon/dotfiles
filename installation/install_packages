@@ -66,4 +66,12 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     else
         echo "WARNING: gem command not found. Skipping installation..."
     fi
+
+    # Vim-Plug
+    sh -c 'curl -fLo "${XDG_CONFIG_HOME}"/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    if command -v nvim; then
+        nvim +PlugInstall +qall
+    else
+        echo "WARNING: nvim command not found. Skipping Vim-Plug installation..."
+    fi
 fi
