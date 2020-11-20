@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # cd to dotfiles directory
-BIN=$(cd "$(dirname "$0")" && pwd)
-BASE=$(dirname "$BIN")
+INSTALL_DIR=$(cd "$(dirname "$0")" && pwd)
+BASE=$(dirname "$INSTALL_DIR")
 BACKUP_DIR=${HOME}/config_backup
 cd "$BASE" || exit 1
 
@@ -38,4 +38,4 @@ echo 'Done.'
 echo "Existing config files backed up to ${BACKUP_DIR}..."
 
 # Run script in a new shell to ensure the environment variables are properly set up
-exec bash -l "${BIN}/install_packages"
+exec bash -l "${INSTALL_DIR}/install_packages"

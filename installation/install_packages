@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-BIN=$(cd "$(dirname "$0")" && pwd)
-BASE=$(dirname "$BIN")
+INSTALL_DIR=$(cd "$(dirname "$0")" && pwd)
+BASE=$(dirname "$INSTALL_DIR")
 
 if [[ -z $XDG_CONFIG_HOME || -z $XDG_CACHE_HOME || -z $XDG_DATA_HOME ]]; then
     echo 'XDG environment variables not set. Aborting...';
@@ -51,7 +51,19 @@ if [[ $(uname -s) = 'Darwin' ]]; then
 
     echo 'Installing homebrew packages...'
     brew update; brew bundle
-    pip2 install --user neovim
-    pip3 install --user neovim flake8 csvkit
-    gem install pry rdoc rdoc-data rubocop
+    echo 'Done installing homebrew packages.'
+
+    if command -v pip2; then
+        pip2 install --user neovim
+    fi
+    if command -v pip3; then
+        pip3 install --user neovim flake8 csvkit
+    else
+        echo "WARNING: pip3 command not found. Skipping installation..."
+    fi
+    if command -v gem; then
+        gem install pry rdoc rdoc-data rubocop
+    else
+        echo "WARNING: gem command not found. Skipping installation..."
+    fi
 fi
