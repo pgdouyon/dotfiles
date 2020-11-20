@@ -25,7 +25,9 @@ fi
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_HOME}/Caskroom"
 
 # JAVA_TOOL_OPTIONS
-export JAVA_HOME=`/usr/libexec/java_home`
+if /usr/libexec/java_home &> /dev/null; then
+    export JAVA_HOME=`/usr/libexec/java_home`
+fi
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
 export GROOVY_HOME=$HOMEBREW_HOME/opt/groovy/libexec
 export GEM_HOME="$XDG_DATA_HOME/gem"
