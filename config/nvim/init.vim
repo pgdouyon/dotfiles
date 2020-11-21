@@ -18,6 +18,7 @@ Plug 'pgdouyon/vim-orgflowy', {'dir': '~/projects/vim-orgflowy'}
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
