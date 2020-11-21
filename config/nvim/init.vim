@@ -618,20 +618,20 @@ xmap ic <Plug>(signify-motion-inner-visual)
 nnoremap cd :Gcd<CR>:pwd<CR>
 
 " do git ...
-nnoremap <silent> dgb :Gblame<CR>
-nnoremap <silent> dgs :Gstatus <Bar> wincmd J<CR>
-nnoremap <silent> dgd :Gvdiff<CR>
-nnoremap <silent> dgC :tab split<Bar>Git! diff --cached<CR>:Gcommit<CR>
+nnoremap <silent> dgb :Git blame<CR>
+nnoremap <silent> dgs :Git <Bar> wincmd J<CR>
+nnoremap <silent> dgd :Gvdiffsplit<CR>
+nnoremap <silent> dgC :tab split<Bar>Git diff --cached<CR>:Git commit<CR>
 nnoremap <silent> dga :Gwrite<CR>
 nnoremap <silent> dgr :Gread<CR>
 nnoremap <silent> dgp :Git push origin master<CR>
 
 " see git ...
-nnoremap <silent> sgl :Glog<CR>
-nnoremap <silent> sgb :Git! branch<CR>
-nnoremap <silent> sgd :Git! diff<CR>
-nnoremap <silent> sgc :Git! diff --cached<CR>
-nnoremap <silent> sgh :Git! show HEAD --format=short<CR>
+nnoremap <silent> sgl :Git log<CR>
+nnoremap <silent> sgb :Git branch<CR>
+nnoremap <silent> sgd :0Git diff<CR>
+nnoremap <silent> sgc :0Git diff --cached<CR>
+nnoremap <silent> sgh :0Git show HEAD --format=short<CR>
 
 augroup fugitive_vimrc
     autocmd!
