@@ -25,7 +25,7 @@ fi
 export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_HOME}/Caskroom"
 
 # JAVA_TOOL_OPTIONS
-if /usr/libexec/java_home &> /dev/null; then
+if /usr/libexec/java_home 1> /dev/null 2>&1; then
     export JAVA_HOME=`/usr/libexec/java_home`
 fi
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
