@@ -1,5 +1,5 @@
 function! s:project_root()
-    return fnamemodify(fugitive#extract_git_dir(expand("%:p")), ":h")
+    return fnamemodify(FugitiveExtractGitDir(expand("%:p")), ":h")
 endfunction
 
 function! s:with_project_root(dir)
