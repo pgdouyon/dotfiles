@@ -8,3 +8,4 @@ GRTAGS
 trash/
 .ignore
 .DS_STORE
+.projections.json
