@@ -616,6 +616,8 @@ xmap ic <Plug>(signify-motion-inner-visual)
 " ----------------------------------------------------------------------
 " Fugitive Settings
 " ----------------------------------------------------------------------
+let g:fugitive_dynamic_colors = 0
+
 nnoremap cd :Gcd<CR>:pwd<CR>
 
 " do git ...
