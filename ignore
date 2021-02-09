@@ -6,6 +6,7 @@ tmp/
 tags
 tags.lock
 tags.temp
+tags.files
 jquery*.js
 *.pdf
 *.dmp
