@@ -395,8 +395,8 @@ inoremap <C-b>- <Esc>:call <SID>MakeSectionBox("-")<CR>
 " ColorColumnToggle
 " ----------------------------------------------------------------------
 function! s:ColorColumnToggle()
-    let w:enableColorcolumn = !get(w:, "enableColorcolumn", 0)
-    call s:SetColorColumn()
+    let is_enabled = !get(w:, "enableColorcolumn", 0)
+    call s:SetColorColumn(is_enabled)
 endfunction
 
 " ----------------------------------------------------------------------
@@ -818,16 +818,16 @@ nnoremap cyi :colorscheme yin<CR>
 nnoremap cya :colorscheme yang<CR>
 nnoremap cv :colorscheme vimalayas<CR>
 
-function! s:SetColorColumn()
+function! s:SetColorColumn(...)
     let configured_filetypes = ['java']
-    let is_enabled = (index(configured_filetypes, &filetype) > -1)
+    let is_enabled = a:0 ? a:1 : (index(configured_filetypes, &filetype) > -1)
     if !exists("w:enableColorcolumn")
         let w:enableColorcolumn = 0
     endif
     if w:enableColorcolumn != is_enabled
         let w:enableColorcolumn = is_enabled
         if w:enableColorcolumn
-            silent! call matchadd("ColorColumn", '\%>100v.', 0, 954)
+            silent! call matchadd("ColorColumn", '\%>120v.', 0, 954)
             echohl WarningMsg | echo "ColorColumn enabled..." | echohl None
         else
             silent! call matchdelete(954)
@@ -838,6 +838,7 @@ endfunction
 
 augroup colorcolumn
     autocmd!
+    autocmd FileType * silent call <SID>SetColorColumn()
     autocmd WinEnter * silent call <SID>SetColorColumn()
     autocmd BufWinEnter * silent call <SID>SetColorColumn()
 augroup END
