@@ -10,3 +10,4 @@ trash/
 .ignore
 .DS_STORE
 .projections.json
+Brewfile.lock.json

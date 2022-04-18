@@ -7,6 +7,7 @@ tags
 tags.lock
 tags.temp
 tags.files
+Brewfile.lock.json
 jquery*.js
 *.pdf
 *.dmp
