@@ -14,6 +14,9 @@ for rc in *; do
         dotfile="$HOME/.$rc"
         [[ -e $dotfile ]] && mv -v "$dotfile" "${BACKUP_DIR}/.${rc}"
         ln -sfv "${BASE}/${rc}" "$dotfile"
+        if [[ $rc == "ignore" ]]; then
+            ln -sfv "${BASE}/${rc}" "$HOME/.agignore"
+        fi
     fi
 done
 echo 'Done.'
