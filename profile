@@ -15,25 +15,26 @@ if [ -z "$TMUX" ]; then
     fi
 fi
 
-export HOMEBREW_HOME
-if command -v brew >/dev/null 2>&1; then
-    HOMEBREW_HOME=$(brew --prefix)
-else
-    # HOMEBREW_HOME=~/.homebrew
-    HOMEBREW_HOME=/usr/local
+if [ -x "/opt/homebrew/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
-export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_HOME}/Caskroom"
+
+if [ -n "$HOMEBREW_PREFIX" ]; then
+    export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications --caskroom=${HOMEBREW_PREFIX}/Caskroom"
+fi
 
 # JAVA_TOOL_OPTIONS
 if /usr/libexec/java_home 1> /dev/null 2>&1; then
     export JAVA_HOME=`/usr/libexec/java_home`
 fi
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
-export GROOVY_HOME=$HOMEBREW_HOME/opt/groovy/libexec
+export GROOVY_HOME=$HOMEBREW_PREFIX/opt/groovy/libexec
 export GEM_HOME="$XDG_DATA_HOME/gem"
 
-export PATH=$HOME/bin:$HOMEBREW_HOME/opt/coreutils/libexec/gnubin:$HOMEBREW_HOME/opt/grep/libexec/gnubin:$HOMEBREW_HOME/opt/findutils/libexec/gnubin:$HOMEBREW_HOME/bin:$GEM_HOME/bin:$PATH
-export MANPATH=$HOMEBREW_HOME/opt/coreutils/libexec/gnuman:$HOMEBREW_HOME/share/man:$MANPATH
+export PATH=$HOME/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$HOMEBREW_PREFIX/bin:$GEM_HOME/bin:$HOME/Library/Python/3.9/bin:$PATH
+export MANPATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$HOMEBREW_PREFIX/share/man:$MANPATH
 export MANPAGER="nvim -c 'set ft=man' -"
 
 export MAVEN_OPTS='-Xmx1500M'

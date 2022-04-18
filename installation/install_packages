@@ -45,7 +45,7 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     rvm use ruby --install --default
     # Homebrew
     while ! command -v brew &>/dev/null; do
-        echo "Please install Homebrew (https://raw.github.com/Homebrew/install/master/install) to ${HOMEBREW_HOME}"
+        echo "Please install Homebrew (https://raw.github.com/Homebrew/install/master/install) to ${HOMEBREW_PREFIX}"
         read -r -p 'Press Enter to continue...'
     done
 
