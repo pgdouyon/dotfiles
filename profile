@@ -35,7 +35,7 @@ export GEM_HOME="$XDG_DATA_HOME/gem"
 
 export PATH=$HOME/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$HOMEBREW_PREFIX/bin:$GEM_HOME/bin:$HOME/Library/Python/3.9/bin:$PATH
 export MANPATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$HOMEBREW_PREFIX/share/man:$MANPATH
-export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER="nvim +Man!"
 
 export MAVEN_OPTS='-Xmx1500M'
 
