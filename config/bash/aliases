@@ -8,6 +8,7 @@ alias recent='find * -type f -mtime 0'
 alias gtypist='gtypist -b -e1 -w -S'
 alias jconsole='_JAVA_OPTIONS="" jconsole'
 alias testping='ping -c3 www.google.com'
+alias ibrew='arch -x86_64 "${HOMEBREW_PREFIX}"/bin/brew'
 
 # vim aliases
 alias initvim='nvim "$XDG_CONFIG_HOME/nvim/init.vim"'
