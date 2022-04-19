@@ -650,6 +650,8 @@ nnoremap <silent> dgf :GV! -n500<CR>
 " ----------------------------------------------------------------------
 " Unimpaired Settings
 " ----------------------------------------------------------------------
+nmap co <Plug>(unimpaired-toggle)
+
 function! s:UnimpairedMappings()
     nnoremap <silent> cou :call <SID>ColorColumnToggle()<CR>
 endfunction
