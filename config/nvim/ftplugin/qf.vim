@@ -3,6 +3,10 @@ set cpoptions&vim
 
 set nobuflisted
 
+" vim-qf mappings
+nmap <buffer> { <Plug>(qf_previous_file)
+nmap <buffer> } <Plug>(qf_next_file)
+
 nnoremap <silent><buffer><nowait> <CR> <CR>
 nnoremap <silent><buffer><nowait> o <CR><C-W>p
 nnoremap <silent><buffer><nowait> <C-s> <C-W><CR><C-W>p<C-W>J<C-W>p
