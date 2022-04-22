@@ -39,7 +39,7 @@ export _JAVA_OPTIONS="-Djava.awt.headless=true"
 export GROOVY_HOME=$HOMEBREW_PREFIX/opt/groovy/libexec
 export GEM_HOME="$XDG_DATA_HOME/gem"
 
-export PATH=$HOME/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$HOMEBREW_PREFIX/bin:$GEM_HOME/bin:$HOME/Library/Python/3.9/bin:$PATH
+export PATH=$HOME/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$GEM_HOME/bin:$HOME/Library/Python/3.9/bin:$PATH
 export MANPATH=$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$HOMEBREW_PREFIX/opt/grep/libexec/gnuman:$HOMEBREW_PREFIX/opt/findutils/libexec/gnuman:$MANPATH
 export MANPAGER="nvim +Man!"
 
