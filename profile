@@ -7,6 +7,12 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo
+
+if [ -x /usr/libexec/path_helper ]; then
+    export PATH=""
+    eval "$(/usr/libexec/path_helper -s)"
+fi
+
 if [ -z "$TMUX" ]; then
     if toe -a | grep xterm-256color-italic >/dev/null ; then
         export TERM=xterm-256color-italic
