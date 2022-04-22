@@ -46,8 +46,6 @@ export PATH="$PATH:$XDG_DATA_HOME/rvm/bin" # Add RVM to PATH for scripting
 export MANPATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman:$HOMEBREW_PREFIX/opt/grep/libexec/gnuman:$HOMEBREW_PREFIX/opt/findutils/libexec/gnuman:$MANPATH"
 export MANPAGER="nvim +Man!"
 
-export MAVEN_OPTS='-Xmx1500M'
-
 export rvm_path="$XDG_DATA_HOME/rvm"
 export GEM_SPEC_CACHE="$XDG_DATA_HOME/gem/specs"
 
