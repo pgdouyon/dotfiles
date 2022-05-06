@@ -52,16 +52,9 @@ export GEM_SPEC_CACHE="$XDG_DATA_HOME/gem/specs"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
-if command -v gpg-agent >/dev/null; then
-    if [ -f  "${XDG_CACHE_HOME}/gpg/gpg-agent-info" ]; then
-        . "${XDG_CACHE_HOME}/gpg/gpg-agent-info"
-        export GPG_AGENT_INFO
-    fi
-    if ! gpg-agent 2>/dev/null; then
-        mkdir -p "${XDG_CACHE_HOME}/gpg"
-        eval "$(gpg-agent --daemon --no-allow-external-cache --write-env-file "${XDG_CACHE_HOME}/gpg/gpg-agent-info")"
-        export GPG_AGENT_INFO
-    fi
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+if [ ! -d "$GNUPGHOME" ]; then
+    mkdir -p "$GNUPGHOME"
 fi
 
 # rvm doubles startup time, disable it unless it's necessary
