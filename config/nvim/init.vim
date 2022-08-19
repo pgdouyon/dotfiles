@@ -494,17 +494,17 @@ endfunction
 
 function! s:search(args, ...)
     let flags = a:0 ? a:1 : ''
-    execute "silent grep! -F" flags shellescape(escape(a:args, '|#%')) | cwindow | redraw!
+    execute "silent grep! -F" flags shellescape(escape(a:args, '|#%'))
 endfunction
 
 function! s:ripgrep(args)
-    execute "silent grep!" escape(a:args, '|#%') | cwindow | redraw!
+    execute "silent grep!" escape(a:args, '|#%')
 endfunction
 
 function! s:ag(args)
     let save_grepprg = &grepprg
     set grepprg=ag\ --vimgrep\ --smart-case\ -W500\ $*
-    execute "silent grep!" escape(a:args, '|#%') | cwindow | redraw!
+    execute "silent grep!" escape(a:args, '|#%')
     let &grepprg = save_grepprg
 endfunction
 
@@ -807,10 +807,17 @@ augroup cmdwin
     autocmd CmdWinEnter * noremap! <buffer> <CR> <CR>
 augroup END
 
-augroup qf
+function! s:quickfix_cmd_post(list)
+    if empty(a:list)
+        redraw!
+        unsilent call dotfiles#utils#echo_error("No results found")
+    endif
+endfunction
+
+augroup quickfix
     autocmd!
-    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
-    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lcscope,lfile,lgetfile,laddfile lwindow
+    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep call <SID>quickfix_cmd_post(getqflist())
+    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lcscope,lfile,lgetfile,laddfile call <SID>quickfix_cmd_post(getloclist(winnr()))
 augroup END
 
 " ----------------------------------------------------------------------
