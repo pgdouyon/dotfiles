@@ -207,7 +207,7 @@ command! -nargs=0 -buffer Deprecated normal {o@Deprecated
 
 augroup java_ftplugin
     autocmd BufWritePre <buffer> SortImports
-    autocmd BufWritePost <buffer> Accio 'javac'
+    autocmd BufWritePost <buffer> Accio javac
 augroup END
 
 

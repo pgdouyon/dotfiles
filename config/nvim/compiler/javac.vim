@@ -45,11 +45,15 @@ function! s:lookup_classpath()
 endfunction
 
 function! s:get_classpath()
-    let target_classes = s:project_root() . "/target/classes"
-    " TODO use file_info.profile to fetch classpath for test files
-    let file_info = s:file_info()
-    let build_classpath = s:get_maven_classpath(file_info)
-    return s:join_classpaths(s:destination_directory(), target_classes, build_classpath)
+    try
+        let target_classes = s:project_root() . "/target/classes"
+        " TODO use file_info.profile to fetch classpath for test files
+        let file_info = s:file_info()
+        let build_classpath = s:get_maven_classpath(file_info)
+        return s:join_classpaths(s:destination_directory(), target_classes, build_classpath)
+    catch
+        return ""
+    endtry
 endfunction
 
 " maven
