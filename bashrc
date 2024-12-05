@@ -166,7 +166,7 @@ function __source_if_present {
 }
 
 # XXX bash_completion is slow to load
-# __source_if_present "$HOMEBREW_PREFIX"/etc/bash_completion
+__source_if_present "$HOMEBREW_PREFIX"/etc/profile.d/bash_completion.sh
 __source_if_present "$HOMEBREW_PREFIX"/etc/profile.d/autojump.sh
 
 __source_if_present ~/.bashrc.local
