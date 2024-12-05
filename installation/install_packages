@@ -67,6 +67,7 @@ if [[ $(uname -s) = 'Darwin' ]]; then
         echo "WARNING: gem command not found. Skipping installation..."
     fi
 
+    echo 'Installing vim plugins...'
     # Vim-Plug
     sh -c 'curl -fLo "${XDG_CONFIG_HOME}"/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     if command -v nvim; then
@@ -74,4 +75,12 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     else
         echo "WARNING: nvim command not found. Skipping Vim-Plug installation..."
     fi
+    echo 'Done installing vim plugins.'
+
+    echo
+    echo 'Adding homebrew bash to /etc/shells...'
+    echo "$(brew --prefix)/bin/bash" | sudo tee -a /etc/shells
+    echo 'Setting default shell to bash...'
+    chsh -s "$(brew --prefix)/bin/bash"
+    echo 'Done changing default shell.'
 fi
