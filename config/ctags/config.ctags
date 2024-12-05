@@ -2,6 +2,7 @@
 --exclude=.git
 --exclude=.svn
 --exclude=.hg
+--exclude=.yarn
 --exclude=bundle
 --exclude=bundles
 --exclude=node_modules
@@ -11,9 +12,12 @@
 --exclude=underscore-min.js
 --exclude=bootstrap.js
 --exclude=*.html
+--exclude=*.xml
+--exclude=*.sql
 --exclude=*.bat
 --exclude=*.min.*
 --exclude=*.pack.js
+--exclude=*.spec.js
 --exclude=*.map
 --exclude=*.swp
 --exclude=*.bak
