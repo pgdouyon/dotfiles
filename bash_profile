@@ -19,5 +19,5 @@ source ~/.profile
 source ~/.bashrc
 
 if (command -v figlet &>/dev/null) && (command -v cowsay &>/dev/null); then
-    echo 'Meikyo Shisui|Chita! Gen Imilite|Pran pasyans' | tr '|' '\n' | sort --random-sort | head -n1 | figlet -w120 | cowsay -fdaemon -n
+    echo 'Meikyo Shisui|Chita! Gen Imilite|Pran pasyans|Konsantre!' | tr '|' '\n' | sort --random-sort | head -n1 | figlet -w120 | cowsay -fdaemon -n
 fi
