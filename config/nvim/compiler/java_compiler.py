@@ -189,22 +189,83 @@ class BuildSystem:
                         project_root: str,
                         module: str,
                         target: str) -> Optional[List[str]]:
-        """Get Bazel dependencies for the given target."""
-        query = ('bazel aquery \'mnemonic("Javac", //{module}:{target})\' '
-                 '--output textproto')
-        result = subprocess.run(query, shell=True, cwd=project_root,
-                                capture_output=True, text=True)
+        """Get Bazel dependencies for the given target.
+
+        Uses bazel query to get the actual jar paths for all Java dependencies.
+        The --output=location flag gives us the actual file paths that can be
+        used directly in the classpath.
+        """
+        # Query for all Java dependencies and get their actual locations
+        query = ('bazel query \'deps(//{module}:{target})\' '
+                 '--output=location')
+        result = subprocess.run(query,
+                                shell=True,
+                                cwd=project_root,
+                                capture_output=True,
+                                text=True)
+
         if result.returncode != 0:
-            logger.error("Failed to parse bazel dependencies")
+            logger.error(f"Failed to query Bazel dependencies:{result.stderr}")
             return None
 
         deps = []
         for line in result.stdout.split('\n'):
-            if 'exec_path:' in line and '.jar' in line:
-                jar_path = re.search(self.config.BAZEL_JAR_PATTERN, line)
-                if jar_path:
-                    deps.append(os.path.join(project_root, jar_path.group(0)))
+            # Each line is in the format: /path/to/file:line:col: target_name
+            # We need to extract the target name after the last occurrence
+            # of ':' that's followed by a space
+            target_match = re.search(r':\s+([^\s]+)$', line)
+            target_name = target_match.group(1) if target_match else None
+            jar_path = self._resolve_bazel_target(project_root, target_name)
+            if jar_path:
+                deps.append(jar_path)
+
         return deps
+
+    def _resolve_bazel_target(self,
+                              project_root: str,
+                              target: str) -> Optional[str]:
+        """Resolve a Bazel target to its actual file path.
+
+        Args:
+            project_root: The root directory of the Bazel workspace
+            target: The Bazel target name (e.g. @repo//:jar or //module:target)
+
+        Returns:
+            The resolved path to the jar file, or None if it cannot be resolved
+        """
+        if not target:
+            return None
+
+        # Handle @maven//... style targets
+        if target.startswith('@'):
+            # Extract repository and target name
+            # Example: @maven//:guava-31.1-jre.jar -> maven, guava-31.1-jre.jar
+            match = re.match(r'@([^/]+)//:([^:]+)', target)
+            if match:
+                repo, jar_name = match.groups()
+                if not jar_name.endswith('.jar'):
+                    jar_name += '.jar'
+                return os.path.join(project_root,
+                                    'bazel-bin',
+                                    'external',
+                                    repo,
+                                    jar_name)
+
+        # Handle //... style targets
+        elif target.startswith('//'):
+            # Example: //module:target -> module/target.jar
+            match = re.match(r'//([^:]+):([^:]+)', target)
+            if match:
+                module, target_name = match.groups()
+                if not target_name.endswith('.jar'):
+                    target_name += '.jar'
+                return os.path.join(project_root,
+                                    'bazel-bin',
+                                    module,
+                                    target_name)
+
+        logger.error(f"Could not resolve Bazel target: {target}")
+        return None
 
 
 class JavaCompiler:
