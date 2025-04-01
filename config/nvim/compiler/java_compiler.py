@@ -43,7 +43,7 @@ class CacheManager:
             with open(self.config.CACHE_FILE, 'r') as f:
                 return json.load(f)
         except (json.JSONDecodeError, IOError) as e:
-            logger.debug(f"Failed to load cache: {e}")
+            logger.error(f"Failed to load cache: {e}")
             return {}
 
     def save(self, cache: Dict) -> None:
@@ -53,7 +53,7 @@ class CacheManager:
             with open(self.config.CACHE_FILE, 'w') as f:
                 json.dump(cache, f)
         except IOError as e:
-            logger.debug(f"Failed to save cache: {e}")
+            logger.error(f"Failed to save cache: {e}")
 
     def get_key(self, file_path: str) -> str:
         """Generate a cache key for the given file."""
