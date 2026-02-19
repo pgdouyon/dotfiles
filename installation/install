@@ -36,6 +36,17 @@ if [[ -d bin ]]; then
 fi
 
 ln -sfv "${BASE}/config/nvim" "${HOME}/.vim"
+
+echo 'Linking Claude Code config files...'
+mkdir -pv "${HOME}/.claude"
+for f in "${BASE}/config/claude"/*; do
+    if [[ -f "$f" ]]; then
+        filename=$(basename "$f")
+        dotfile="${HOME}/.claude/${filename}"
+        [[ -e $dotfile && ! -L $dotfile ]] && mv -v "$dotfile" "${BACKUP_DIR}/${filename}"
+        ln -sfv "$f" "$dotfile"
+    fi
+done
 echo 'Done.'
 
 echo "Existing config files backed up to ${BACKUP_DIR}..."

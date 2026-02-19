@@ -1,0 +1,41 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/pdouyon/.claude/statusline-command.sh"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/dotfiles/config/claude/hooks/notify.sh --record"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/dotfiles/config/claude/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/dotfiles/config/claude/hooks/notify.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
