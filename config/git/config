@@ -27,3 +27,5 @@
 	token = !security find-internet-password -a pgdouyon -s github.com -l 'ghi token' -w
 [rerere]
 	enabled = true
+[init]
+	defaultBranch = main
