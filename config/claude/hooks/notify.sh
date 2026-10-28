@@ -23,7 +23,7 @@ case "$1" in
         terminal-notifier \
           -message "Claude needs your attention" \
           -title "Claude Code" \
-          -timeout 5 \
+          -ignoreDnD \
           -activate com.googlecode.iterm2 \
           -group claude-code
         sleep 3
