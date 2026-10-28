@@ -8,6 +8,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export TERMINFO="$XDG_DATA_HOME"/terminfo
 export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo
 
+# color term
+export CLICOLOR=1
+
 if [ -x /usr/libexec/path_helper ]; then
     export PATH=""
     eval "$(/usr/libexec/path_helper -s)"
@@ -51,6 +54,8 @@ export GEM_SPEC_CACHE="$XDG_DATA_HOME/gem/specs"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 if [ ! -d "$GNUPGHOME" ]; then

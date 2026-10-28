@@ -14,7 +14,7 @@ alias ibrew='arch -x86_64 "${HOMEBREW_PREFIX}"/bin/brew'
 alias initvim='nvim "$XDG_CONFIG_HOME/nvim/init.vim"'
 alias vv='nvim -c "Niffler -vcs"'
 alias vt='nvim -c "NifflerTags"'
-if [[ $(uname -s) = 'Darwin' ]]; then
+if command -v mvim >/dev/null; then
     alias vim='mvim -v'
 fi
 
@@ -50,8 +50,8 @@ alias gsp='git stash pop'
 alias gsl='git stash list'
 alias restore='git checkout -; git stash pop'
 
-if [[ $(uname -s) = Darwin ]]; then
+if command -v mdfind >/dev/null; then
     alias locate='mdfind -name'
 fi
 
-[ -f ~/.bash_aliases.local ] && source ~/.bash_aliases.local
+__source_if_present ~/.bash_aliases.local
