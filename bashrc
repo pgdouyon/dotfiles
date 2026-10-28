@@ -6,12 +6,18 @@ shopt -s expand_aliases
 
 stty -ixon
 
-function orgflowy {
-    case $# in
-        0) nvim -c "NifflerOrgFlowy" ;;
-        1) nvim -c "OrgFlowy $1" ;;
-        *) __error 'Usage: orgflowy [NOTE_NAME]' ;;
-    esac
+function tmux_backup {
+    local backup_dir
+    backup_dir="$HOME/tmux-backup/$(date --iso-8601)"
+    mkdir -p "$backup_dir"
+    for session in $(tmux ls -F "#{session_name}"); do
+        echo "Capturing tmux state for session: ${session}"
+        for pane in $(tmux list-panes -t "$session" -s -F "#{window_index}.#{pane_index}"); do
+            tmux capture-pane -p -t "${session}:${pane}" -S -5000 > "${backup_dir}/${session}-${pane}.txt"
+        done
+    done
+    echo "Finished tmux backup. Capture files saved to: ${backup_dir}"
+    ls -la "$backup_dir"
 }
 
 function jenv {
@@ -57,27 +63,17 @@ function __is_tar_file {
     tar -tvf "$1" &> /dev/null
 }
 
-function __gpg {
-    if command -v gpg2 &>/dev/null; then
-        gpg2 "$@"
-    elif command -v gnupg2 &>/dev/null; then
-        gnupg2 "$@"
-    elif command -v gpg &>/dev/null; then
-        gpg "$@"
-    elif command -v gnupg &>/dev/null; then
-        gnupg "$@"
-    else
-        __error 'Unable to locate GPG program. Aborting...'
-    fi
-}
-
 # Public functions
 function cdl {
     cd "$@" && ls
 }
 
 function cpstat {
-    rsync -vrltD --stats --human-readable "$1" "$2" | pv -lep -s $((2 + $(find "$1" | wc -l)))
+    # copy large file directories, recursively, using pv to show a live progress meter
+    local estimated_output_size
+    # estimated output = rsync headers (~2) + total file count
+    estimated_output_size=$((2 + $(find "$1" | wc -l)))
+    rsync -vrltD --stats --human-readable "$1" "$2" | pv -lep -s "$estimated_output_size"
 }
 
 function check-aliases {
@@ -114,51 +110,6 @@ function unarchive {
     done
 }
 
-function encrypt {
-    if ! command -v pbpaste &>/dev/null; then
-        echo 'pbpaste command required. Aborting...'
-        return 1
-    elif (( $# == 0 )); then
-        echo 'Usage: encrypt FILE...'
-        return 2
-    fi
-    echo "Please copy passphrase to the system clipboard."
-    if __prompt "Are you ready to continue [yes/no]?"; then
-        for target in "$@"; do
-            if [[ -d $target ]]; then
-                archive "$target"
-                target=$(__archive_name "$target")
-            fi
-            if __gpg --batch --symmetric --passphrase "$(pbpaste)" "$target"; then
-                rm -f "$target"
-            fi
-        done
-    fi
-}
-
-function decrypt {
-    if ! command -v pbpaste &>/dev/null; then
-        echo 'pbpaste command required. Aborting...'
-        return 1
-    elif (( $# == 0 )); then
-        echo 'Usage: decrypt FILE...'
-        return 2
-    fi
-    echo "Please copy passphrase to the system clipboard."
-    if __prompt "Are you ready to continue [yes/no]?"; then
-        for gpg_file in "$@"; do
-            local decrypted_file
-            decrypted_file=$(sed 's/\.gpg$//' <<< "$gpg_file")
-
-            if __gpg --batch --passphrase "$(pbpaste)" "$gpg_file"; then
-                if __is_tar_file "$decrypted_file"; then
-                    unarchive "$decrypted_file"
-                fi
-            fi
-        done
-    fi
-}
-
 function __source_if_present {
     # ignore non-constant source check
     # shellcheck disable=SC1090
@@ -166,7 +117,7 @@ function __source_if_present {
 }
 
 # XXX bash_completion is slow to load
-__source_if_present "$HOMEBREW_PREFIX"/etc/profile.d/bash_completion.sh
+# __source_if_present "$HOMEBREW_PREFIX"/etc/profile.d/bash_completion.sh
 __source_if_present "$HOMEBREW_PREFIX"/etc/profile.d/autojump.sh
 
 __source_if_present ~/.bashrc.local
