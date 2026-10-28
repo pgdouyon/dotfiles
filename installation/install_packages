@@ -59,12 +59,19 @@ if [[ $(uname -s) = 'Darwin' ]]; then
     if command -v pip3; then
         pip3 install --user neovim flake8 csvkit
     else
-        echo "WARNING: pip3 command not found. Skipping installation..."
+        echo 'WARNING: pip3 command not found. Skipping installation...'
     fi
     if command -v gem; then
         gem install pry rdoc rdoc-data rubocop
     else
-        echo "WARNING: gem command not found. Skipping installation..."
+        echo 'WARNING: gem command not found. Skipping installation...'
+    fi
+
+    if command -v claude; then
+        echo 'Claude CLI already installed. Skipping installation...'
+    else
+        echo 'Installing Claude CLI...'
+        curl -fsSL https://claude.ai/install.sh | bash
     fi
 
     echo 'Installing vim plugins...'
