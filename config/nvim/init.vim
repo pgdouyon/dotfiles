@@ -39,6 +39,7 @@ Plug 'michaeljsmith/vim-indent-object'
 
 " Appearance
 Plug 'romainl/Apprentice'
+Plug 'junegunn/goyo.vim'
 
 " Tool Integration
 Plug 'junegunn/gv.vim'
@@ -659,7 +660,6 @@ endfunction
 " ----------------------------------------------------------------------
 " Dirvish
 " ----------------------------------------------------------------------
-let g:loaded_netrwPlugin = 1
 nnoremap <silent> - :Dirvish %:p:h<CR>
 
  " ----------------------------------------------------------------------
